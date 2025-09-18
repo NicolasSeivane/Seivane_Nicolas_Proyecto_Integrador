@@ -1,0 +1,262 @@
+Resultados de Regresion Logistica con validacion cruzada (5 folds):
+
+C=0.01, penalty=l1, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.0, 'accuracy': 0.3912987012987013, 'precision': 0.1537103221453871, 'recall': 0.3912987012987013, 'f1': 0.22055404055404054}, tiempo_total=0.12 segundos
+
+C=0.01, penalty=l1, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.0, 'accuracy': 0.4022077922077922, 'precision': 0.16184255355034577, 'recall': 0.4022077922077922, 'f1': 0.2307892107892108}, tiempo_total=0.12 segundos
+
+C=0.01, penalty=l2, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.21319055935674963, 'accuracy': 0.5146753246753246, 'precision': 0.4104441574685477, 'recall': 0.5146753246753246, 'f1': 0.44072936548043173}, tiempo_total=0.19 segundos
+
+C=0.01, penalty=l2, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.21319055935674963, 'accuracy': 0.5146753246753246, 'precision': 0.4104441574685477, 'recall': 0.5146753246753246, 'f1': 0.44072936548043173}, tiempo_total=0.18 segundos
+
+C=0.01, penalty=l2, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.21319055935674963, 'accuracy': 0.5146753246753246, 'precision': 0.4104441574685477, 'recall': 0.5146753246753246, 'f1': 0.44072936548043173}, tiempo_total=0.16 segundos
+
+C=0.01, penalty=l2, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.22604600881491183, 'accuracy': 0.5218831168831168, 'precision': 0.4145271672211888, 'recall': 0.5218831168831168, 'f1': 0.4472325365369108}, tiempo_total=0.13 segundos
+
+C=0.01, penalty=l2, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.22604600881491183, 'accuracy': 0.5218831168831168, 'precision': 0.4145271672211888, 'recall': 0.5218831168831168, 'f1': 0.4472325365369108}, tiempo_total=0.14 segundos
+
+C=0.01, penalty=l2, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.22604600881491183, 'accuracy': 0.5218831168831168, 'precision': 0.4145271672211888, 'recall': 0.5218831168831168, 'f1': 0.4472325365369108}, tiempo_total=0.12 segundos
+
+C=0.01, penalty=elasticnet, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.0, 'accuracy': 0.4022077922077922, 'precision': 0.16184255355034577, 'recall': 0.4022077922077922, 'f1': 0.2307892107892108}, tiempo_total=0.11 segundos
+
+C=0.01, penalty=elasticnet, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.0, 'accuracy': 0.4022077922077922, 'precision': 0.16184255355034577, 'recall': 0.4022077922077922, 'f1': 0.2307892107892108}, tiempo_total=0.10 segundos
+
+C=0.01, penalty=None, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.25273348259212663, 'accuracy': 0.5036363636363637, 'precision': 0.4904111905019438, 'recall': 0.5036363636363637, 'f1': 0.4869796452039331}, tiempo_total=0.37 segundos
+
+C=0.01, penalty=None, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.24487190097064274, 'accuracy': 0.5037662337662338, 'precision': 0.4853273852761949, 'recall': 0.5037662337662338, 'f1': 0.4838363846458716}, tiempo_total=1.74 segundos
+
+C=0.01, penalty=None, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.248465809270012, 'accuracy': 0.5, 'precision': 0.4888568555088737, 'recall': 0.5, 'f1': 0.4844194086924771}, tiempo_total=0.30 segundos
+
+C=0.01, penalty=None, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.2325277646898914, 'accuracy': 0.4855194805194805, 'precision': 0.4794294365909549, 'recall': 0.4855194805194805, 'f1': 0.4757311167521324}, tiempo_total=0.51 segundos
+
+C=0.01, penalty=None, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.23837046833222475, 'accuracy': 0.49642857142857144, 'precision': 0.4831977481579212, 'recall': 0.49642857142857144, 'f1': 0.4836104403724636}, tiempo_total=1.00 segundos
+
+C=0.01, penalty=None, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.23276468118525134, 'accuracy': 0.48545454545454536, 'precision': 0.4809863381873821, 'recall': 0.48545454545454536, 'f1': 0.47638814606663793}, tiempo_total=0.42 segundos
+
+C=0.1, penalty=l1, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.22986377959852025, 'accuracy': 0.5217532467532467, 'precision': 0.44049146528107974, 'recall': 0.5217532467532467, 'f1': 0.4527021641981035}, tiempo_total=0.16 segundos
+
+C=0.1, penalty=l1, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.23133621530624424, 'accuracy': 0.521883116883117, 'precision': 0.39871372545638356, 'recall': 0.521883116883117, 'f1': 0.4480922977798235}, tiempo_total=0.14 segundos
+
+C=0.1, penalty=l2, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.23934356620650643, 'accuracy': 0.5218831168831168, 'precision': 0.4677564080940705, 'recall': 0.5218831168831168, 'f1': 0.468365536462186}, tiempo_total=0.18 segundos
+
+C=0.1, penalty=l2, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.23934356620650643, 'accuracy': 0.5218831168831168, 'precision': 0.4677564080940705, 'recall': 0.5218831168831168, 'f1': 0.468365536462186}, tiempo_total=0.36 segundos
+
+C=0.1, penalty=l2, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.23934356620650643, 'accuracy': 0.5218831168831168, 'precision': 0.4677564080940705, 'recall': 0.5218831168831168, 'f1': 0.468365536462186}, tiempo_total=0.17 segundos
+
+C=0.1, penalty=l2, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.22802346054818315, 'accuracy': 0.5110389610389611, 'precision': 0.4522975717795452, 'recall': 0.5110389610389611, 'f1': 0.4658850254676872}, tiempo_total=0.15 segundos
+
+C=0.1, penalty=l2, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.22802346054818315, 'accuracy': 0.5110389610389611, 'precision': 0.4522975717795452, 'recall': 0.5110389610389611, 'f1': 0.4658850254676872}, tiempo_total=0.29 segundos
+
+C=0.1, penalty=l2, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.22802346054818315, 'accuracy': 0.5110389610389611, 'precision': 0.4522975717795452, 'recall': 0.5110389610389611, 'f1': 0.4658850254676872}, tiempo_total=0.17 segundos
+
+C=0.1, penalty=elasticnet, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.25800399986511036, 'accuracy': 0.5361688311688311, 'precision': 0.45569238836404996, 'recall': 0.5361688311688311, 'f1': 0.47468825844483353}, tiempo_total=0.22 segundos
+
+C=0.1, penalty=elasticnet, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.2214598723636795, 'accuracy': 0.5146753246753246, 'precision': 0.40588733912962527, 'recall': 0.5146753246753246, 'f1': 0.44652180169280803}, tiempo_total=0.24 segundos
+
+C=0.1, penalty=None, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.25273348259212663, 'accuracy': 0.5036363636363637, 'precision': 0.4904111905019438, 'recall': 0.5036363636363637, 'f1': 0.4869796452039331}, tiempo_total=0.38 segundos
+
+C=0.1, penalty=None, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.24487190097064274, 'accuracy': 0.5037662337662338, 'precision': 0.4853273852761949, 'recall': 0.5037662337662338, 'f1': 0.4838363846458716}, tiempo_total=1.83 segundos
+
+C=0.1, penalty=None, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.248465809270012, 'accuracy': 0.5, 'precision': 0.4888568555088737, 'recall': 0.5, 'f1': 0.4844194086924771}, tiempo_total=0.32 segundos
+
+C=0.1, penalty=None, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.2325277646898914, 'accuracy': 0.4855194805194805, 'precision': 0.4794294365909549, 'recall': 0.4855194805194805, 'f1': 0.4757311167521324}, tiempo_total=0.51 segundos
+
+C=0.1, penalty=None, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.23837046833222475, 'accuracy': 0.49642857142857144, 'precision': 0.4831977481579212, 'recall': 0.49642857142857144, 'f1': 0.4836104403724636}, tiempo_total=0.96 segundos
+
+C=0.1, penalty=None, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.23276468118525134, 'accuracy': 0.48545454545454536, 'precision': 0.4809863381873821, 'recall': 0.48545454545454536, 'f1': 0.47638814606663793}, tiempo_total=0.35 segundos
+
+C=1, penalty=l1, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.25753601797149245, 'accuracy': 0.5253896103896103, 'precision': 0.4879428474280691, 'recall': 0.5253896103896103, 'f1': 0.48963081822360166}, tiempo_total=0.90 segundos
+
+C=1, penalty=l1, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.23273359044603953, 'accuracy': 0.5072727272727273, 'precision': 0.4749667685086404, 'recall': 0.5072727272727273, 'f1': 0.47428369476313803}, tiempo_total=0.95 segundos
+
+C=1, penalty=l2, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.2685302615969468, 'accuracy': 0.5290909090909091, 'precision': 0.514190409091663, 'recall': 0.5290909090909091, 'f1': 0.5031243244024568}, tiempo_total=0.23 segundos
+
+C=1, penalty=l2, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.2741920331115841, 'accuracy': 0.5326623376623376, 'precision': 0.5169673279400104, 'recall': 0.5326623376623376, 'f1': 0.5063099592835869}, tiempo_total=0.92 segundos
+
+C=1, penalty=l2, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.2685302615969468, 'accuracy': 0.5290909090909091, 'precision': 0.514190409091663, 'recall': 0.5290909090909091, 'f1': 0.5031243244024568}, tiempo_total=0.19 segundos
+
+C=1, penalty=l2, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.24752014045500764, 'accuracy': 0.510909090909091, 'precision': 0.4852418491331535, 'recall': 0.510909090909091, 'f1': 0.4894756862626761}, tiempo_total=0.21 segundos
+
+C=1, penalty=l2, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.24752014045500764, 'accuracy': 0.510909090909091, 'precision': 0.4852418491331535, 'recall': 0.510909090909091, 'f1': 0.4894756862626761}, tiempo_total=0.62 segundos
+
+C=1, penalty=l2, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.24752014045500764, 'accuracy': 0.510909090909091, 'precision': 0.4852418491331535, 'recall': 0.510909090909091, 'f1': 0.4894756862626761}, tiempo_total=0.15 segundos
+
+C=1, penalty=elasticnet, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.2724465346970524, 'accuracy': 0.5326623376623376, 'precision': 0.509719401810311, 'recall': 0.5326623376623376, 'f1': 0.503196492344135}, tiempo_total=1.03 segundos
+
+C=1, penalty=elasticnet, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.2431477411392911, 'accuracy': 0.510974025974026, 'precision': 0.48330426716141, 'recall': 0.510974025974026, 'f1': 0.4853587285779236}, tiempo_total=0.89 segundos
+
+C=1, penalty=None, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.25273348259212663, 'accuracy': 0.5036363636363637, 'precision': 0.4904111905019438, 'recall': 0.5036363636363637, 'f1': 0.4869796452039331}, tiempo_total=0.38 segundos
+
+C=1, penalty=None, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.24487190097064274, 'accuracy': 0.5037662337662338, 'precision': 0.4853273852761949, 'recall': 0.5037662337662338, 'f1': 0.4838363846458716}, tiempo_total=1.84 segundos
+
+C=1, penalty=None, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.248465809270012, 'accuracy': 0.5, 'precision': 0.4888568555088737, 'recall': 0.5, 'f1': 0.4844194086924771}, tiempo_total=0.30 segundos
+
+C=1, penalty=None, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.2325277646898914, 'accuracy': 0.4855194805194805, 'precision': 0.4794294365909549, 'recall': 0.4855194805194805, 'f1': 0.4757311167521324}, tiempo_total=0.52 segundos
+
+C=1, penalty=None, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.23837046833222475, 'accuracy': 0.49642857142857144, 'precision': 0.4831977481579212, 'recall': 0.49642857142857144, 'f1': 0.4836104403724636}, tiempo_total=1.02 segundos
+
+C=1, penalty=None, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.23276468118525134, 'accuracy': 0.48545454545454536, 'precision': 0.4809863381873821, 'recall': 0.48545454545454536, 'f1': 0.47638814606663793}, tiempo_total=0.39 segundos
+
+C=10, penalty=l1, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.2463494464219068, 'accuracy': 0.5074025974025974, 'precision': 0.4860976335464432, 'recall': 0.5074025974025974, 'f1': 0.4853134011667657}, tiempo_total=2.32 segundos
+
+C=10, penalty=l1, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.23076291272074262, 'accuracy': 0.49279220779220784, 'precision': 0.4760635490237221, 'recall': 0.49279220779220784, 'f1': 0.47807812320695114}, tiempo_total=1.51 segundos
+
+C=10, penalty=l2, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.24590647538152624, 'accuracy': 0.5073376623376624, 'precision': 0.48299895795638825, 'recall': 0.5073376623376624, 'f1': 0.4843430582184401}, tiempo_total=0.26 segundos
+
+C=10, penalty=l2, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.24590647538152624, 'accuracy': 0.5073376623376624, 'precision': 0.48299895795638825, 'recall': 0.5073376623376624, 'f1': 0.4843430582184401}, tiempo_total=1.69 segundos
+
+C=10, penalty=l2, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.24590647538152624, 'accuracy': 0.5073376623376624, 'precision': 0.48299895795638825, 'recall': 0.5073376623376624, 'f1': 0.4843430582184401}, tiempo_total=0.23 segundos
+
+C=10, penalty=l2, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.2452544051581511, 'accuracy': 0.5037012987012986, 'precision': 0.48446475355395896, 'recall': 0.5037012987012986, 'f1': 0.48723450400835555}, tiempo_total=0.33 segundos
+
+C=10, penalty=l2, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.2452544051581511, 'accuracy': 0.5037012987012986, 'precision': 0.48446475355395896, 'recall': 0.5037012987012986, 'f1': 0.48723450400835555}, tiempo_total=1.22 segundos
+
+C=10, penalty=l2, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.2452544051581511, 'accuracy': 0.5037012987012986, 'precision': 0.48446475355395896, 'recall': 0.5037012987012986, 'f1': 0.48723450400835555}, tiempo_total=0.19 segundos
+
+C=10, penalty=elasticnet, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.24516075911738106, 'accuracy': 0.5073376623376624, 'precision': 0.483213243670674, 'recall': 0.5073376623376624, 'f1': 0.48404978133321785}, tiempo_total=2.38 segundos
+
+C=10, penalty=elasticnet, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.2452544051581511, 'accuracy': 0.5037012987012986, 'precision': 0.48446475355395896, 'recall': 0.5037012987012986, 'f1': 0.48723450400835555}, tiempo_total=1.69 segundos
+
+C=10, penalty=None, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.25273348259212663, 'accuracy': 0.5036363636363637, 'precision': 0.4904111905019438, 'recall': 0.5036363636363637, 'f1': 0.4869796452039331}, tiempo_total=0.37 segundos
+
+C=10, penalty=None, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.24487190097064274, 'accuracy': 0.5037662337662338, 'precision': 0.4853273852761949, 'recall': 0.5037662337662338, 'f1': 0.4838363846458716}, tiempo_total=1.78 segundos
+
+C=10, penalty=None, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.248465809270012, 'accuracy': 0.5, 'precision': 0.4888568555088737, 'recall': 0.5, 'f1': 0.4844194086924771}, tiempo_total=0.30 segundos
+
+C=10, penalty=None, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.2325277646898914, 'accuracy': 0.4855194805194805, 'precision': 0.4794294365909549, 'recall': 0.4855194805194805, 'f1': 0.4757311167521324}, tiempo_total=0.50 segundos
+
+C=10, penalty=None, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.23837046833222475, 'accuracy': 0.49642857142857144, 'precision': 0.4831977481579212, 'recall': 0.49642857142857144, 'f1': 0.4836104403724636}, tiempo_total=1.00 segundos
+
+C=10, penalty=None, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.23276468118525134, 'accuracy': 0.48545454545454536, 'precision': 0.4809863381873821, 'recall': 0.48545454545454536, 'f1': 0.47638814606663793}, tiempo_total=0.37 segundos
+
+
+------------------------------------------------------
+
+Resultados de Regresion Logistica con validacion cruzada (5 folds) undersample:
+
+C=0.01, penalty=l1, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.0, 'accuracy': 0.22888888888888886, 'precision': 0.053753086419753085, 'recall': 0.22888888888888886, 'f1': 0.08668220668220669}, tiempo_total=0.10 segundos
+
+C=0.01, penalty=l1, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.0, 'accuracy': 0.22888888888888886, 'precision': 0.053753086419753085, 'recall': 0.22888888888888886, 'f1': 0.08668220668220669}, tiempo_total=0.10 segundos
+
+C=0.01, penalty=l2, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.11720534807509078, 'accuracy': 0.31111111111111106, 'precision': 0.3535026455026455, 'recall': 0.31111111111111106, 'f1': 0.27701587301587305}, tiempo_total=0.16 segundos
+
+C=0.01, penalty=l2, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.14084837171811443, 'accuracy': 0.3311111111111111, 'precision': 0.3535026455026455, 'recall': 0.3311111111111111, 'f1': 0.289015873015873}, tiempo_total=0.12 segundos
+
+C=0.01, penalty=l2, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.11720534807509078, 'accuracy': 0.31111111111111106, 'precision': 0.3535026455026455, 'recall': 0.31111111111111106, 'f1': 0.27701587301587305}, tiempo_total=0.12 segundos
+
+C=0.01, penalty=l2, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.14084837171811443, 'accuracy': 0.3311111111111111, 'precision': 0.3535026455026455, 'recall': 0.3311111111111111, 'f1': 0.289015873015873}, tiempo_total=0.11 segundos
+
+C=0.01, penalty=l2, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.11720534807509078, 'accuracy': 0.31111111111111106, 'precision': 0.3535026455026455, 'recall': 0.31111111111111106, 'f1': 0.27701587301587305}, tiempo_total=0.15 segundos
+
+C=0.01, penalty=l2, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.14084837171811443, 'accuracy': 0.3311111111111111, 'precision': 0.3535026455026455, 'recall': 0.3311111111111111, 'f1': 0.289015873015873}, tiempo_total=0.11 segundos
+
+C=0.01, penalty=elasticnet, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.0, 'accuracy': 0.24888888888888888, 'precision': 0.06375308641975308, 'recall': 0.24888888888888888, 'f1': 0.10104118104118105}, tiempo_total=0.10 segundos
+
+C=0.01, penalty=elasticnet, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.0, 'accuracy': 0.24888888888888888, 'precision': 0.06375308641975308, 'recall': 0.24888888888888888, 'f1': 0.10104118104118105}, tiempo_total=0.10 segundos
+
+C=0.01, penalty=None, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.1298464707103968, 'accuracy': 0.33111111111111113, 'precision': 0.3731322751322751, 'recall': 0.33111111111111113, 'f1': 0.31253968253968256}, tiempo_total=0.24 segundos
+
+C=0.01, penalty=None, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.09427425928665534, 'accuracy': 0.30888888888888894, 'precision': 0.3165396825396825, 'recall': 0.30888888888888894, 'f1': 0.2707936507936508}, tiempo_total=0.13 segundos
+
+C=0.01, penalty=None, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.14804221950037308, 'accuracy': 0.35333333333333333, 'precision': 0.41498412698412696, 'recall': 0.35333333333333333, 'f1': 0.3347619047619047}, tiempo_total=0.39 segundos
+
+C=0.01, penalty=None, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.14782550782550777, 'accuracy': 0.35333333333333333, 'precision': 0.39142857142857135, 'recall': 0.35333333333333333, 'f1': 0.3244444444444444}, tiempo_total=0.25 segundos
+
+C=0.01, penalty=None, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.06742616888432254, 'accuracy': 0.29111111111111115, 'precision': 0.2886878306878307, 'recall': 0.29111111111111115, 'f1': 0.2614285714285714}, tiempo_total=0.31 segundos
+
+C=0.01, penalty=None, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.06510121457489877, 'accuracy': 0.29333333333333333, 'precision': 0.27455555555555555, 'recall': 0.29333333333333333, 'f1': 0.26616931216931217}, tiempo_total=0.18 segundos
+
+C=0.1, penalty=l1, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.0, 'accuracy': 0.23111111111111113, 'precision': 0.05609876543209876, 'recall': 0.23111111111111113, 'f1': 0.08949494949494949}, tiempo_total=0.11 segundos
+
+C=0.1, penalty=l1, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.0, 'accuracy': 0.2088888888888889, 'precision': 0.04375308641975308, 'recall': 0.2088888888888889, 'f1': 0.07232323232323233}, tiempo_total=0.10 segundos
+
+C=0.1, penalty=l2, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.22953325600179553, 'accuracy': 0.41555555555555557, 'precision': 0.41955555555555557, 'recall': 0.41555555555555557, 'f1': 0.37439153439153433}, tiempo_total=0.16 segundos
+
+C=0.1, penalty=l2, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.23235998235998231, 'accuracy': 0.41555555555555557, 'precision': 0.4404814814814816, 'recall': 0.41555555555555557, 'f1': 0.38675132275132273}, tiempo_total=0.12 segundos
+
+C=0.1, penalty=l2, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.22953325600179553, 'accuracy': 0.41555555555555557, 'precision': 0.41955555555555557, 'recall': 0.41555555555555557, 'f1': 0.37439153439153433}, tiempo_total=0.14 segundos
+
+C=0.1, penalty=l2, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.23235998235998231, 'accuracy': 0.41555555555555557, 'precision': 0.4404814814814816, 'recall': 0.41555555555555557, 'f1': 0.38675132275132273}, tiempo_total=0.13 segundos
+
+C=0.1, penalty=l2, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.22953325600179553, 'accuracy': 0.41555555555555557, 'precision': 0.41955555555555557, 'recall': 0.41555555555555557, 'f1': 0.37439153439153433}, tiempo_total=0.15 segundos
+
+C=0.1, penalty=l2, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.23235998235998231, 'accuracy': 0.41555555555555557, 'precision': 0.4404814814814816, 'recall': 0.41555555555555557, 'f1': 0.38675132275132273}, tiempo_total=0.12 segundos
+
+C=0.1, penalty=elasticnet, solver=saga, multi_class=ovr --> {'cohen_kappa': -0.038597219340112024, 'accuracy': 0.18666666666666668, 'precision': 0.051555555555555556, 'recall': 0.18666666666666668, 'f1': 0.07925925925925927}, tiempo_total=0.11 segundos
+
+C=0.1, penalty=elasticnet, solver=saga, multi_class=multinomial --> {'cohen_kappa': -0.08467450271247734, 'accuracy': 0.14444444444444446, 'precision': 0.04756613756613757, 'recall': 0.14444444444444446, 'f1': 0.07098765432098764}, tiempo_total=0.10 segundos
+
+C=0.1, penalty=None, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.1298464707103968, 'accuracy': 0.33111111111111113, 'precision': 0.3731322751322751, 'recall': 0.33111111111111113, 'f1': 0.31253968253968256}, tiempo_total=0.25 segundos
+
+C=0.1, penalty=None, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.09427425928665534, 'accuracy': 0.30888888888888894, 'precision': 0.3165396825396825, 'recall': 0.30888888888888894, 'f1': 0.2707936507936508}, tiempo_total=0.13 segundos
+
+C=0.1, penalty=None, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.14804221950037308, 'accuracy': 0.35333333333333333, 'precision': 0.41498412698412696, 'recall': 0.35333333333333333, 'f1': 0.3347619047619047}, tiempo_total=0.38 segundos
+
+C=0.1, penalty=None, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.14782550782550777, 'accuracy': 0.35333333333333333, 'precision': 0.39142857142857135, 'recall': 0.35333333333333333, 'f1': 0.3244444444444444}, tiempo_total=0.26 segundos
+
+C=0.1, penalty=None, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.06742616888432254, 'accuracy': 0.29111111111111115, 'precision': 0.2886878306878307, 'recall': 0.29111111111111115, 'f1': 0.2614285714285714}, tiempo_total=0.31 segundos
+
+C=0.1, penalty=None, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.06510121457489877, 'accuracy': 0.29333333333333333, 'precision': 0.27455555555555555, 'recall': 0.29333333333333333, 'f1': 0.26616931216931217}, tiempo_total=0.16 segundos
+
+C=1, penalty=l1, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.13872092819461235, 'accuracy': 0.3488888888888889, 'precision': 0.3331851851851852, 'recall': 0.3488888888888889, 'f1': 0.29794708994708996}, tiempo_total=0.23 segundos
+
+C=1, penalty=l1, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.1462142377396614, 'accuracy': 0.3488888888888889, 'precision': 0.3442962962962963, 'recall': 0.3488888888888889, 'f1': 0.3064126984126984}, tiempo_total=0.17 segundos
+
+C=1, penalty=l2, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.20328285462021442, 'accuracy': 0.39333333333333326, 'precision': 0.46799999999999997, 'recall': 0.39333333333333326, 'f1': 0.3840952380952381}, tiempo_total=0.19 segundos
+
+C=1, penalty=l2, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.14813363225787723, 'accuracy': 0.3511111111111111, 'precision': 0.45511111111111113, 'recall': 0.3511111111111111, 'f1': 0.3513968253968254}, tiempo_total=0.14 segundos
+
+C=1, penalty=l2, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.20328285462021442, 'accuracy': 0.39333333333333326, 'precision': 0.46799999999999997, 'recall': 0.39333333333333326, 'f1': 0.3840952380952381}, tiempo_total=0.22 segundos
+
+C=1, penalty=l2, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.14813363225787723, 'accuracy': 0.3511111111111111, 'precision': 0.45511111111111113, 'recall': 0.3511111111111111, 'f1': 0.3513968253968254}, tiempo_total=0.17 segundos
+
+C=1, penalty=l2, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.20328285462021442, 'accuracy': 0.39333333333333326, 'precision': 0.46799999999999997, 'recall': 0.39333333333333326, 'f1': 0.3840952380952381}, tiempo_total=0.16 segundos
+
+C=1, penalty=l2, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.14813363225787723, 'accuracy': 0.3511111111111111, 'precision': 0.45511111111111113, 'recall': 0.3511111111111111, 'f1': 0.3513968253968254}, tiempo_total=0.12 segundos
+
+C=1, penalty=elasticnet, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.17710622849647037, 'accuracy': 0.37111111111111106, 'precision': 0.4172592592592593, 'recall': 0.37111111111111106, 'f1': 0.35765079365079366}, tiempo_total=0.23 segundos
+
+C=1, penalty=elasticnet, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.1731876668888553, 'accuracy': 0.37111111111111106, 'precision': 0.4394814814814815, 'recall': 0.37111111111111106, 'f1': 0.35987301587301584}, tiempo_total=0.18 segundos
+
+C=1, penalty=None, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.1298464707103968, 'accuracy': 0.33111111111111113, 'precision': 0.3731322751322751, 'recall': 0.33111111111111113, 'f1': 0.31253968253968256}, tiempo_total=0.24 segundos
+
+C=1, penalty=None, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.09427425928665534, 'accuracy': 0.30888888888888894, 'precision': 0.3165396825396825, 'recall': 0.30888888888888894, 'f1': 0.2707936507936508}, tiempo_total=0.14 segundos
+
+C=1, penalty=None, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.14804221950037308, 'accuracy': 0.35333333333333333, 'precision': 0.41498412698412696, 'recall': 0.35333333333333333, 'f1': 0.3347619047619047}, tiempo_total=0.40 segundos
+
+C=1, penalty=None, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.14782550782550777, 'accuracy': 0.35333333333333333, 'precision': 0.39142857142857135, 'recall': 0.35333333333333333, 'f1': 0.3244444444444444}, tiempo_total=0.25 segundos
+
+C=1, penalty=None, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.06742616888432254, 'accuracy': 0.29111111111111115, 'precision': 0.2886878306878307, 'recall': 0.29111111111111115, 'f1': 0.2614285714285714}, tiempo_total=0.31 segundos
+
+C=1, penalty=None, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.06510121457489877, 'accuracy': 0.29333333333333333, 'precision': 0.27455555555555555, 'recall': 0.29333333333333333, 'f1': 0.26616931216931217}, tiempo_total=0.16 segundos
+
+C=10, penalty=l1, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.13539172691715062, 'accuracy': 0.35111111111111104, 'precision': 0.3814285714285714, 'recall': 0.35111111111111104, 'f1': 0.31920634920634916}, tiempo_total=0.49 segundos
+
+C=10, penalty=l1, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.11129049021884745, 'accuracy': 0.3288888888888889, 'precision': 0.3683174603174604, 'recall': 0.3288888888888889, 'f1': 0.2995238095238095}, tiempo_total=0.34 segundos
+
+C=10, penalty=l2, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.20033203494808322, 'accuracy': 0.39333333333333326, 'precision': 0.4768888888888889, 'recall': 0.39333333333333326, 'f1': 0.38365079365079363}, tiempo_total=0.28 segundos
+
+C=10, penalty=l2, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.19900003361608193, 'accuracy': 0.39333333333333326, 'precision': 0.4416507936507936, 'recall': 0.39333333333333326, 'f1': 0.3780952380952381}, tiempo_total=0.20 segundos
+
+C=10, penalty=l2, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.20033203494808322, 'accuracy': 0.39333333333333326, 'precision': 0.4768888888888889, 'recall': 0.39333333333333326, 'f1': 0.38365079365079363}, tiempo_total=0.49 segundos
+
+C=10, penalty=l2, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.19900003361608193, 'accuracy': 0.39333333333333326, 'precision': 0.4416507936507936, 'recall': 0.39333333333333326, 'f1': 0.3780952380952381}, tiempo_total=0.29 segundos
+
+C=10, penalty=l2, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.20033203494808322, 'accuracy': 0.39333333333333326, 'precision': 0.4768888888888889, 'recall': 0.39333333333333326, 'f1': 0.38365079365079363}, tiempo_total=0.20 segundos
+
+C=10, penalty=l2, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.19900003361608193, 'accuracy': 0.39333333333333326, 'precision': 0.4416507936507936, 'recall': 0.39333333333333326, 'f1': 0.3780952380952381}, tiempo_total=0.15 segundos
+
+C=10, penalty=elasticnet, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.20033203494808322, 'accuracy': 0.39333333333333326, 'precision': 0.4768888888888889, 'recall': 0.39333333333333326, 'f1': 0.38365079365079363}, tiempo_total=0.53 segundos
+
+C=10, penalty=elasticnet, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.17435800897405726, 'accuracy': 0.3733333333333333, 'precision': 0.434984126984127, 'recall': 0.3733333333333333, 'f1': 0.3547619047619047}, tiempo_total=0.37 segundos
+
+C=10, penalty=None, solver=lbfgs, multi_class=ovr --> {'cohen_kappa': 0.1298464707103968, 'accuracy': 0.33111111111111113, 'precision': 0.3731322751322751, 'recall': 0.33111111111111113, 'f1': 0.31253968253968256}, tiempo_total=0.27 segundos
+
+C=10, penalty=None, solver=lbfgs, multi_class=multinomial --> {'cohen_kappa': 0.09427425928665534, 'accuracy': 0.30888888888888894, 'precision': 0.3165396825396825, 'recall': 0.30888888888888894, 'f1': 0.2707936507936508}, tiempo_total=0.15 segundos
+
+C=10, penalty=None, solver=saga, multi_class=ovr --> {'cohen_kappa': 0.14804221950037308, 'accuracy': 0.35333333333333333, 'precision': 0.41498412698412696, 'recall': 0.35333333333333333, 'f1': 0.3347619047619047}, tiempo_total=0.39 segundos
+
+C=10, penalty=None, solver=saga, multi_class=multinomial --> {'cohen_kappa': 0.14782550782550777, 'accuracy': 0.35333333333333333, 'precision': 0.39142857142857135, 'recall': 0.35333333333333333, 'f1': 0.3244444444444444}, tiempo_total=0.27 segundos
+
+C=10, penalty=None, solver=newton-cg, multi_class=ovr --> {'cohen_kappa': 0.06742616888432254, 'accuracy': 0.29111111111111115, 'precision': 0.2886878306878307, 'recall': 0.29111111111111115, 'f1': 0.2614285714285714}, tiempo_total=0.31 segundos
+
+C=10, penalty=None, solver=newton-cg, multi_class=multinomial --> {'cohen_kappa': 0.06510121457489877, 'accuracy': 0.29333333333333333, 'precision': 0.27455555555555555, 'recall': 0.29333333333333333, 'f1': 0.26616931216931217}, tiempo_total=0.18 segundos

@@ -1,0 +1,678 @@
+Resultados de SVM con validacion cruzada (5 folds):
+
+C=0.001, kernel=linear, gamma=scale, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.9201130952380951}, tiempo_total=0.15 segundos
+
+C=0.001, kernel=linear, gamma=auto, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.9201130952380951}, tiempo_total=0.15 segundos
+
+C=0.001, kernel=poly, gamma=scale, degree=2 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.7360615079365079}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=scale, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.8963472222222222}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=scale, degree=4 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.7138948412698414}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=scale, degree=5 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.8775535714285715}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=scale, degree=6 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.6319583333333334}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=scale, degree=7 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.810779761904762}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=scale, degree=8 --> {'cohen_kappa': -0.009611251336426907, 'accuracy': 0.4774193548387097, 'precision': 0.2324934750345439, 'recall': 0.4774193548387097, 'f1': 0.3127013239215203, 'roc_auc': 0.6126289682539683}, tiempo_total=0.17 segundos
+
+C=0.001, kernel=poly, gamma=scale, degree=9 --> {'cohen_kappa': 0.007992007992007989, 'accuracy': 0.4870967741935484, 'precision': 0.27360843383770317, 'recall': 0.4870967741935484, 'f1': 0.32221691352126136, 'roc_auc': 0.7044226190476189}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=scale, degree=10 --> {'cohen_kappa': -0.018333952329976234, 'accuracy': 0.4709677419354839, 'precision': 0.23082854267242117, 'recall': 0.4709677419354839, 'f1': 0.3098027731968826, 'roc_auc': 0.6039285714285716}, tiempo_total=0.17 segundos
+
+C=0.001, kernel=poly, gamma=auto, degree=2 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.7360595238095238}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=auto, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.8954007936507937}, tiempo_total=0.15 segundos
+
+C=0.001, kernel=poly, gamma=auto, degree=4 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.7104444444444444}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=auto, degree=5 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.8775694444444445}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=auto, degree=6 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.6326765873015873}, tiempo_total=0.20 segundos
+
+C=0.001, kernel=poly, gamma=auto, degree=7 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.8093730158730159}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=auto, degree=8 --> {'cohen_kappa': -0.005215646940822482, 'accuracy': 0.4806451612903226, 'precision': 0.23331229422903052, 'recall': 0.4806451612903226, 'f1': 0.3141346731809565, 'roc_auc': 0.6056031746031747}, tiempo_total=0.17 segundos
+
+C=0.001, kernel=poly, gamma=auto, degree=9 --> {'cohen_kappa': 0.007992007992007989, 'accuracy': 0.4870967741935484, 'precision': 0.27360843383770317, 'recall': 0.4870967741935484, 'f1': 0.32221691352126136, 'roc_auc': 0.7111190476190477}, tiempo_total=0.16 segundos
+
+C=0.001, kernel=poly, gamma=auto, degree=10 --> {'cohen_kappa': -0.018333952329976234, 'accuracy': 0.4709677419354839, 'precision': 0.23082854267242117, 'recall': 0.4709677419354839, 'f1': 0.3098027731968826, 'roc_auc': 0.6037281746031745}, tiempo_total=0.17 segundos
+
+C=0.001, kernel=rbf, gamma=scale, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.9268253968253969}, tiempo_total=0.22 segundos
+
+C=0.001, kernel=rbf, gamma=auto, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.9263075396825396}, tiempo_total=0.22 segundos
+
+C=0.001, kernel=sigmoid, gamma=scale, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.9196686507936509}, tiempo_total=0.19 segundos
+
+C=0.001, kernel=sigmoid, gamma=auto, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.9199404761904763}, tiempo_total=0.19 segundos
+
+C=0.01, kernel=linear, gamma=scale, degree=3 --> {'cohen_kappa': 0.5363888396258829, 'accuracy': 0.7225806451612904, 'precision': 0.614089906535326, 'recall': 0.7225806451612904, 'f1': 0.6559949261723785, 'roc_auc': 0.9290178571428571}, tiempo_total=0.14 segundos
+
+C=0.01, kernel=linear, gamma=auto, degree=3 --> {'cohen_kappa': 0.5363888396258829, 'accuracy': 0.7225806451612904, 'precision': 0.614089906535326, 'recall': 0.7225806451612904, 'f1': 0.6559949261723785, 'roc_auc': 0.9290178571428571}, tiempo_total=0.14 segundos
+
+C=0.01, kernel=poly, gamma=scale, degree=2 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.7290416666666666}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=scale, degree=3 --> {'cohen_kappa': 0.0010030090270812142, 'accuracy': 0.4838709677419355, 'precision': 0.23489875641834837, 'recall': 0.4838709677419355, 'f1': 0.3162615785336683, 'roc_auc': 0.8978571428571428}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=scale, degree=4 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.7076309523809523}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=scale, degree=5 --> {'cohen_kappa': 0.009227683049147362, 'accuracy': 0.4870967741935484, 'precision': 0.3009501714402688, 'recall': 0.4870967741935484, 'f1': 0.3237930839613869, 'roc_auc': 0.8785000000000001}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=scale, degree=6 --> {'cohen_kappa': -0.009611251336426907, 'accuracy': 0.4774193548387097, 'precision': 0.2324934750345439, 'recall': 0.4774193548387097, 'f1': 0.3127013239215203, 'roc_auc': 0.6433730158730158}, tiempo_total=0.17 segundos
+
+C=0.01, kernel=poly, gamma=scale, degree=7 --> {'cohen_kappa': 0.0321993795989425, 'accuracy': 0.4967741935483871, 'precision': 0.38077610875260465, 'recall': 0.4967741935483871, 'f1': 0.34343240320201096, 'roc_auc': 0.8127083333333334}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=scale, degree=8 --> {'cohen_kappa': -0.02258431223948474, 'accuracy': 0.467741935483871, 'precision': 0.22995374770249222, 'recall': 0.467741935483871, 'f1': 0.30830464585605866, 'roc_auc': 0.6203630952380952}, tiempo_total=0.17 segundos
+
+C=0.01, kernel=poly, gamma=scale, degree=9 --> {'cohen_kappa': 0.05014348719685955, 'accuracy': 0.5032258064516129, 'precision': 0.5078613967324527, 'recall': 0.5032258064516129, 'f1': 0.362520584772661, 'roc_auc': 0.714938492063492}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=scale, degree=10 --> {'cohen_kappa': -0.036173010156731245, 'accuracy': 0.4580645161290323, 'precision': 0.22732787925120754, 'recall': 0.4580645161290323, 'f1': 0.3038091413605541, 'roc_auc': 0.5917936507936508}, tiempo_total=0.18 segundos
+
+C=0.01, kernel=poly, gamma=auto, degree=2 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.7287123015873016}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=auto, degree=3 --> {'cohen_kappa': 0.010189650788693405, 'accuracy': 0.4870967741935484, 'precision': 0.2694853380187987, 'recall': 0.4870967741935484, 'f1': 0.3242227618104196, 'roc_auc': 0.8975972222222222}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=auto, degree=4 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.7064960317460317}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=auto, degree=5 --> {'cohen_kappa': 0.010189650788693405, 'accuracy': 0.4870967741935484, 'precision': 0.2694853380187987, 'recall': 0.4870967741935484, 'f1': 0.3242227618104196, 'roc_auc': 0.8790932539682539}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=auto, degree=6 --> {'cohen_kappa': -0.009611251336426907, 'accuracy': 0.4774193548387097, 'precision': 0.2324934750345439, 'recall': 0.4774193548387097, 'f1': 0.3127013239215203, 'roc_auc': 0.6436170634920635}, tiempo_total=0.17 segundos
+
+C=0.01, kernel=poly, gamma=auto, degree=7 --> {'cohen_kappa': 0.03128498466292069, 'accuracy': 0.4967741935483871, 'precision': 0.41221405298442537, 'recall': 0.4967741935483871, 'f1': 0.342986793477677, 'roc_auc': 0.8149503968253968}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=auto, degree=8 --> {'cohen_kappa': -0.02258431223948474, 'accuracy': 0.467741935483871, 'precision': 0.22995374770249222, 'recall': 0.467741935483871, 'f1': 0.30830464585605866, 'roc_auc': 0.6252440476190476}, tiempo_total=0.17 segundos
+
+C=0.01, kernel=poly, gamma=auto, degree=9 --> {'cohen_kappa': 0.043236831968309186, 'accuracy': 0.5, 'precision': 0.4997964324502596, 'recall': 0.5, 'f1': 0.3595651193126649, 'roc_auc': 0.7077757936507937}, tiempo_total=0.16 segundos
+
+C=0.01, kernel=poly, gamma=auto, degree=10 --> {'cohen_kappa': -0.036173010156731245, 'accuracy': 0.4580645161290323, 'precision': 0.22732787925120754, 'recall': 0.4580645161290323, 'f1': 0.3038091413605541, 'roc_auc': 0.5989047619047619}, tiempo_total=0.18 segundos
+
+C=0.01, kernel=rbf, gamma=scale, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.9254186507936508}, tiempo_total=0.22 segundos
+
+C=0.01, kernel=rbf, gamma=auto, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.925498015873016}, tiempo_total=0.24 segundos
+
+C=0.01, kernel=sigmoid, gamma=scale, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.9205694444444443}, tiempo_total=0.19 segundos
+
+C=0.01, kernel=sigmoid, gamma=auto, degree=3 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.9209464285714286}, tiempo_total=0.19 segundos
+
+C=0.1, kernel=linear, gamma=scale, degree=3 --> {'cohen_kappa': 0.7311887383115695, 'accuracy': 0.832258064516129, 'precision': 0.8387172209795718, 'recall': 0.832258064516129, 'f1': 0.8318566856704201, 'roc_auc': 0.9560277777777777}, tiempo_total=0.14 segundos
+
+C=0.1, kernel=linear, gamma=auto, degree=3 --> {'cohen_kappa': 0.7311887383115695, 'accuracy': 0.832258064516129, 'precision': 0.8387172209795718, 'recall': 0.832258064516129, 'f1': 0.8318566856704201, 'roc_auc': 0.9560277777777777}, tiempo_total=0.14 segundos
+
+C=0.1, kernel=poly, gamma=scale, degree=2 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.7298849206349207}, tiempo_total=0.16 segundos
+
+C=0.1, kernel=poly, gamma=scale, degree=3 --> {'cohen_kappa': 0.4420117903640163, 'accuracy': 0.6806451612903226, 'precision': 0.6996483907929161, 'recall': 0.6806451612903226, 'f1': 0.6214901786311674, 'roc_auc': 0.9079126984126983}, tiempo_total=0.15 segundos
+
+C=0.1, kernel=poly, gamma=scale, degree=4 --> {'cohen_kappa': -0.014758390479589868, 'accuracy': 0.4741935483870968, 'precision': 0.23164736186690776, 'recall': 0.4741935483870968, 'f1': 0.3112361224563188, 'roc_auc': 0.7047539682539683}, tiempo_total=0.17 segundos
+
+C=0.1, kernel=poly, gamma=scale, degree=5 --> {'cohen_kappa': 0.2792800805813158, 'accuracy': 0.603225806451613, 'precision': 0.6390588293331837, 'recall': 0.603225806451613, 'f1': 0.527856723425357, 'roc_auc': 0.8876349206349206}, tiempo_total=0.16 segundos
+
+C=0.1, kernel=poly, gamma=scale, degree=6 --> {'cohen_kappa': -0.031932005094497826, 'accuracy': 0.4612903225806452, 'precision': 0.2282026742211365, 'recall': 0.4612903225806452, 'f1': 0.3053072687013781, 'roc_auc': 0.6542678571428572}, tiempo_total=0.17 segundos
+
+C=0.1, kernel=poly, gamma=scale, degree=7 --> {'cohen_kappa': 0.21805859347077222, 'accuracy': 0.5741935483870967, 'precision': 0.6207247870198535, 'recall': 0.5741935483870967, 'f1': 0.49028873042161897, 'roc_auc': 0.8058273809523809}, tiempo_total=0.16 segundos
+
+C=0.1, kernel=poly, gamma=scale, degree=8 --> {'cohen_kappa': -0.05479359234312135, 'accuracy': 0.4451612903225806, 'precision': 0.22426002189138736, 'recall': 0.4451612903225806, 'f1': 0.2980876066430064, 'roc_auc': 0.6368829365079365}, tiempo_total=0.18 segundos
+
+C=0.1, kernel=poly, gamma=scale, degree=9 --> {'cohen_kappa': 0.18051351409549407, 'accuracy': 0.5580645161290322, 'precision': 0.6143075920495275, 'recall': 0.5580645161290322, 'f1': 0.46783264459494484, 'roc_auc': 0.702561507936508}, tiempo_total=0.16 segundos
+
+C=0.1, kernel=poly, gamma=scale, degree=10 --> {'cohen_kappa': -0.04182739094577252, 'accuracy': 0.4451612903225806, 'precision': 0.3152671889066315, 'recall': 0.4451612903225806, 'f1': 0.32044064157504537, 'roc_auc': 0.6255515873015873}, tiempo_total=0.19 segundos
+
+C=0.1, kernel=poly, gamma=auto, degree=2 --> {'cohen_kappa': 0.0, 'accuracy': 0.4838709677419355, 'precision': 0.23413111342351717, 'recall': 0.4838709677419355, 'f1': 0.3155680224403927, 'roc_auc': 0.7294821428571427}, tiempo_total=0.17 segundos
+
+C=0.1, kernel=poly, gamma=auto, degree=3 --> {'cohen_kappa': 0.44660266436725793, 'accuracy': 0.6838709677419355, 'precision': 0.6997028477898695, 'recall': 0.6838709677419355, 'f1': 0.6233219834840368, 'roc_auc': 0.9090654761904762}, tiempo_total=0.22 segundos
+
+C=0.1, kernel=poly, gamma=auto, degree=4 --> {'cohen_kappa': -0.014758390479589868, 'accuracy': 0.4741935483870968, 'precision': 0.23164736186690776, 'recall': 0.4741935483870968, 'f1': 0.3112361224563188, 'roc_auc': 0.7041011904761905}, tiempo_total=0.17 segundos
+
+C=0.1, kernel=poly, gamma=auto, degree=5 --> {'cohen_kappa': 0.26470323730734024, 'accuracy': 0.5967741935483871, 'precision': 0.6341923667730119, 'recall': 0.5967741935483871, 'f1': 0.5176946889963558, 'roc_auc': 0.8866904761904761}, tiempo_total=0.16 segundos
+
+C=0.1, kernel=poly, gamma=auto, degree=6 --> {'cohen_kappa': -0.024710340099512895, 'accuracy': 0.4645161290322581, 'precision': 0.29348644624822573, 'recall': 0.4645161290322581, 'f1': 0.3121452180358211, 'roc_auc': 0.6445833333333333}, tiempo_total=0.17 segundos
+
+C=0.1, kernel=poly, gamma=auto, degree=7 --> {'cohen_kappa': 0.21073011544778586, 'accuracy': 0.5709677419354838, 'precision': 0.626817569679615, 'recall': 0.5709677419354838, 'f1': 0.4865394120612949, 'roc_auc': 0.7966587301587301}, tiempo_total=0.17 segundos
+
+C=0.1, kernel=poly, gamma=auto, degree=8 --> {'cohen_kappa': -0.05285085533118321, 'accuracy': 0.4193548387096774, 'precision': 0.2504600771665483, 'recall': 0.4193548387096774, 'f1': 0.2923758483224127, 'roc_auc': 0.625797619047619}, tiempo_total=0.18 segundos
+
+C=0.1, kernel=poly, gamma=auto, degree=9 --> {'cohen_kappa': 0.1820009377618506, 'accuracy': 0.5580645161290322, 'precision': 0.62278849946507, 'recall': 0.5580645161290322, 'f1': 0.468146693893403, 'roc_auc': 0.695609126984127}, tiempo_total=0.16 segundos
+
+C=0.1, kernel=poly, gamma=auto, degree=10 --> {'cohen_kappa': -0.016484590069219963, 'accuracy': 0.432258064516129, 'precision': 0.3830117699398068, 'recall': 0.432258064516129, 'f1': 0.3166660478390083, 'roc_auc': 0.6369920634920635}, tiempo_total=0.18 segundos
+
+C=0.1, kernel=rbf, gamma=scale, degree=3 --> {'cohen_kappa': 0.5577913375821527, 'accuracy': 0.7354838709677418, 'precision': 0.6811107283485933, 'recall': 0.7354838709677418, 'f1': 0.6772192258040906, 'roc_auc': 0.9321170634920636}, tiempo_total=0.20 segundos
+
+C=0.1, kernel=rbf, gamma=auto, degree=3 --> {'cohen_kappa': 0.5627707478155035, 'accuracy': 0.7387096774193548, 'precision': 0.6827778285913959, 'recall': 0.7387096774193548, 'f1': 0.6798706078457935, 'roc_auc': 0.9323253968253968}, tiempo_total=0.20 segundos
+
+C=0.1, kernel=sigmoid, gamma=scale, degree=3 --> {'cohen_kappa': 0.5489039121201014, 'accuracy': 0.7290322580645162, 'precision': 0.6479246225677533, 'recall': 0.7290322580645162, 'f1': 0.6713856030093474, 'roc_auc': 0.9336805555555555}, tiempo_total=0.17 segundos
+
+C=0.1, kernel=sigmoid, gamma=auto, degree=3 --> {'cohen_kappa': 0.5544898354033931, 'accuracy': 0.732258064516129, 'precision': 0.6500444058899268, 'recall': 0.732258064516129, 'f1': 0.6735744140176216, 'roc_auc': 0.9336071428571427}, tiempo_total=0.17 segundos
+
+C=1, kernel=linear, gamma=scale, degree=3 --> {'cohen_kappa': 0.7575619389309921, 'accuracy': 0.8483870967741935, 'precision': 0.8561883317161346, 'recall': 0.8483870967741935, 'f1': 0.8476606149484429, 'roc_auc': 0.9626964285714286}, tiempo_total=0.14 segundos
+
+C=1, kernel=linear, gamma=auto, degree=3 --> {'cohen_kappa': 0.7575619389309921, 'accuracy': 0.8483870967741935, 'precision': 0.8561883317161346, 'recall': 0.8483870967741935, 'f1': 0.8476606149484429, 'roc_auc': 0.9626964285714286}, tiempo_total=0.14 segundos
+
+C=1, kernel=poly, gamma=scale, degree=2 --> {'cohen_kappa': 0.27272159394532725, 'accuracy': 0.5516129032258065, 'precision': 0.5649588595950186, 'recall': 0.5516129032258065, 'f1': 0.5105046898321173, 'roc_auc': 0.743172619047619}, tiempo_total=0.17 segundos
+
+C=1, kernel=poly, gamma=scale, degree=3 --> {'cohen_kappa': 0.61242865854645, 'accuracy': 0.7645161290322582, 'precision': 0.7861729559529964, 'recall': 0.7645161290322582, 'f1': 0.7477438413260806, 'roc_auc': 0.9250297619047618}, tiempo_total=0.17 segundos
+
+C=1, kernel=poly, gamma=scale, degree=4 --> {'cohen_kappa': 0.20112346194847563, 'accuracy': 0.4870967741935484, 'precision': 0.5040975175841738, 'recall': 0.4870967741935484, 'f1': 0.4343185714355392, 'roc_auc': 0.7306984126984128}, tiempo_total=0.17 segundos
+
+C=1, kernel=poly, gamma=scale, degree=5 --> {'cohen_kappa': 0.4436002023651377, 'accuracy': 0.667741935483871, 'precision': 0.6822977789793407, 'recall': 0.667741935483871, 'f1': 0.6314851846659153, 'roc_auc': 0.8955158730158731}, tiempo_total=0.15 segundos
+
+C=1, kernel=poly, gamma=scale, degree=6 --> {'cohen_kappa': 0.19900506824342107, 'accuracy': 0.4838709677419355, 'precision': 0.5195598425738197, 'recall': 0.4838709677419355, 'f1': 0.4339651532731018, 'roc_auc': 0.6748730158730158}, tiempo_total=0.18 segundos
+
+C=1, kernel=poly, gamma=scale, degree=7 --> {'cohen_kappa': 0.36442352909211684, 'accuracy': 0.6322580645161289, 'precision': 0.6304427163743744, 'recall': 0.6322580645161289, 'f1': 0.5803606058887164, 'roc_auc': 0.7670833333333333}, tiempo_total=0.15 segundos
+
+C=1, kernel=poly, gamma=scale, degree=8 --> {'cohen_kappa': 0.19253812529471853, 'accuracy': 0.4806451612903226, 'precision': 0.5678288898779701, 'recall': 0.4806451612903226, 'f1': 0.44230090856071813, 'roc_auc': 0.6438194444444444}, tiempo_total=0.19 segundos
+
+C=1, kernel=poly, gamma=scale, degree=9 --> {'cohen_kappa': 0.2471766506439262, 'accuracy': 0.5838709677419354, 'precision': 0.5961532051839415, 'recall': 0.5838709677419354, 'f1': 0.5111396809978359, 'roc_auc': 0.6993194444444444}, tiempo_total=0.16 segundos
+
+C=1, kernel=poly, gamma=scale, degree=10 --> {'cohen_kappa': 0.0634326660165527, 'accuracy': 0.4258064516129032, 'precision': 0.48293466006599645, 'recall': 0.4258064516129032, 'f1': 0.3697535043346616, 'roc_auc': 0.6439007936507937}, tiempo_total=0.19 segundos
+
+C=1, kernel=poly, gamma=auto, degree=2 --> {'cohen_kappa': 0.2835381665912785, 'accuracy': 0.5580645161290323, 'precision': 0.5601323778330529, 'recall': 0.5580645161290323, 'f1': 0.5195960784979752, 'roc_auc': 0.745093253968254}, tiempo_total=0.16 segundos
+
+C=1, kernel=poly, gamma=auto, degree=3 --> {'cohen_kappa': 0.5773133518794735, 'accuracy': 0.7419354838709677, 'precision': 0.7771601345447285, 'recall': 0.7419354838709677, 'f1': 0.7262880646455209, 'roc_auc': 0.9249484126984127}, tiempo_total=0.15 segundos
+
+C=1, kernel=poly, gamma=auto, degree=4 --> {'cohen_kappa': 0.20112346194847563, 'accuracy': 0.4870967741935484, 'precision': 0.5040975175841738, 'recall': 0.4870967741935484, 'f1': 0.4343185714355392, 'roc_auc': 0.7237896825396825}, tiempo_total=0.17 segundos
+
+C=1, kernel=poly, gamma=auto, degree=5 --> {'cohen_kappa': 0.4303545583639877, 'accuracy': 0.6580645161290322, 'precision': 0.7015846158418356, 'recall': 0.6580645161290322, 'f1': 0.623450108897238, 'roc_auc': 0.8991349206349207}, tiempo_total=0.15 segundos
+
+C=1, kernel=poly, gamma=auto, degree=6 --> {'cohen_kappa': 0.20520676042936453, 'accuracy': 0.4903225806451613, 'precision': 0.5477485416729829, 'recall': 0.4903225806451613, 'f1': 0.43829068633235907, 'roc_auc': 0.6691884920634921}, tiempo_total=0.18 segundos
+
+C=1, kernel=poly, gamma=auto, degree=7 --> {'cohen_kappa': 0.3248810869170762, 'accuracy': 0.603225806451613, 'precision': 0.6377662429736162, 'recall': 0.603225806451613, 'f1': 0.549745579857314, 'roc_auc': 0.7678869047619048}, tiempo_total=0.16 segundos
+
+C=1, kernel=poly, gamma=auto, degree=8 --> {'cohen_kappa': 0.19567455238707435, 'accuracy': 0.4870967741935484, 'precision': 0.5527872334763173, 'recall': 0.4870967741935484, 'f1': 0.44322480895212124, 'roc_auc': 0.6425238095238094}, tiempo_total=0.19 segundos
+
+C=1, kernel=poly, gamma=auto, degree=9 --> {'cohen_kappa': 0.24307848193381779, 'accuracy': 0.5677419354838709, 'precision': 0.6329744078213677, 'recall': 0.5677419354838709, 'f1': 0.5006605054408885, 'roc_auc': 0.7033492063492064}, tiempo_total=0.16 segundos
+
+C=1, kernel=poly, gamma=auto, degree=10 --> {'cohen_kappa': 0.01737570911985813, 'accuracy': 0.4193548387096774, 'precision': 0.43969245188590955, 'recall': 0.4193548387096774, 'f1': 0.34387945368608613, 'roc_auc': 0.647390873015873}, tiempo_total=0.19 segundos
+
+C=1, kernel=rbf, gamma=scale, degree=3 --> {'cohen_kappa': 0.7413005805135588, 'accuracy': 0.8387096774193548, 'precision': 0.8418966692204437, 'recall': 0.8387096774193548, 'f1': 0.8375539137025324, 'roc_auc': 0.9537996031746033}, tiempo_total=0.17 segundos
+
+C=1, kernel=rbf, gamma=auto, degree=3 --> {'cohen_kappa': 0.7413005805135588, 'accuracy': 0.8387096774193548, 'precision': 0.8418966692204437, 'recall': 0.8387096774193548, 'f1': 0.8375539137025324, 'roc_auc': 0.9538968253968253}, tiempo_total=0.17 segundos
+
+C=1, kernel=sigmoid, gamma=scale, degree=3 --> {'cohen_kappa': 0.7519441831443564, 'accuracy': 0.8451612903225806, 'precision': 0.8519651843894442, 'recall': 0.8451612903225806, 'f1': 0.844260835294595, 'roc_auc': 0.9515257936507936}, tiempo_total=0.15 segundos
+
+C=1, kernel=sigmoid, gamma=auto, degree=3 --> {'cohen_kappa': 0.7559022572649652, 'accuracy': 0.8483870967741935, 'precision': 0.8530304351741901, 'recall': 0.8483870967741935, 'f1': 0.8460645236052133, 'roc_auc': 0.955406746031746}, tiempo_total=0.15 segundos
+
+C=10, kernel=linear, gamma=scale, degree=3 --> {'cohen_kappa': 0.7679322132302185, 'accuracy': 0.8548387096774194, 'precision': 0.863110582899307, 'recall': 0.8548387096774194, 'f1': 0.8541201484743114, 'roc_auc': 0.9608650793650793}, tiempo_total=0.15 segundos
+
+C=10, kernel=linear, gamma=auto, degree=3 --> {'cohen_kappa': 0.7679322132302185, 'accuracy': 0.8548387096774194, 'precision': 0.863110582899307, 'recall': 0.8548387096774194, 'f1': 0.8541201484743114, 'roc_auc': 0.9608650793650793}, tiempo_total=0.15 segundos
+
+C=10, kernel=poly, gamma=scale, degree=2 --> {'cohen_kappa': 0.2684069368581863, 'accuracy': 0.5451612903225806, 'precision': 0.555495809890043, 'recall': 0.5451612903225806, 'f1': 0.5311579800671885, 'roc_auc': 0.7468611111111111}, tiempo_total=0.18 segundos
+
+C=10, kernel=poly, gamma=scale, degree=3 --> {'cohen_kappa': 0.6854185311195619, 'accuracy': 0.8064516129032258, 'precision': 0.8062144472770119, 'recall': 0.8064516129032258, 'f1': 0.7944107670636594, 'roc_auc': 0.9343630952380952}, tiempo_total=0.15 segundos
+
+C=10, kernel=poly, gamma=scale, degree=4 --> {'cohen_kappa': 0.267429214931373, 'accuracy': 0.532258064516129, 'precision': 0.560036762762933, 'recall': 0.532258064516129, 'f1': 0.5120312595612616, 'roc_auc': 0.7270972222222223}, tiempo_total=0.20 segundos
+
+C=10, kernel=poly, gamma=scale, degree=5 --> {'cohen_kappa': 0.6089863176754264, 'accuracy': 0.7548387096774194, 'precision': 0.7757521652738559, 'recall': 0.7548387096774194, 'f1': 0.7422760599693276, 'roc_auc': 0.8955456349206349}, tiempo_total=0.15 segundos
+
+C=10, kernel=poly, gamma=scale, degree=6 --> {'cohen_kappa': 0.21918605604427893, 'accuracy': 0.4967741935483871, 'precision': 0.5517386494707913, 'recall': 0.4967741935483871, 'f1': 0.46955497417708314, 'roc_auc': 0.6685892857142857}, tiempo_total=0.20 segundos
+
+C=10, kernel=poly, gamma=scale, degree=7 --> {'cohen_kappa': 0.4892205920165814, 'accuracy': 0.6774193548387097, 'precision': 0.7399031509620244, 'recall': 0.6774193548387097, 'f1': 0.6586251237804218, 'roc_auc': 0.7300218253968255}, tiempo_total=0.16 segundos
+
+C=10, kernel=poly, gamma=scale, degree=8 --> {'cohen_kappa': 0.212595236528529, 'accuracy': 0.4870967741935484, 'precision': 0.58643778062284, 'recall': 0.4870967741935484, 'f1': 0.46261985238184805, 'roc_auc': 0.6513611111111112}, tiempo_total=0.21 segundos
+
+C=10, kernel=poly, gamma=scale, degree=9 --> {'cohen_kappa': 0.3850344925872665, 'accuracy': 0.6096774193548387, 'precision': 0.7016706582423711, 'recall': 0.6096774193548387, 'f1': 0.5886983216809514, 'roc_auc': 0.6952242063492065}, tiempo_total=0.23 segundos
+
+C=10, kernel=poly, gamma=scale, degree=10 --> {'cohen_kappa': 0.19140751105455053, 'accuracy': 0.4709677419354839, 'precision': 0.5692285018244199, 'recall': 0.4709677419354839, 'f1': 0.44267151018345546, 'roc_auc': 0.6358452380952382}, tiempo_total=0.21 segundos
+
+C=10, kernel=poly, gamma=auto, degree=2 --> {'cohen_kappa': 0.2791645196570442, 'accuracy': 0.5516129032258065, 'precision': 0.5624614480890778, 'recall': 0.5516129032258065, 'f1': 0.5377280210983095, 'roc_auc': 0.7483531746031745}, tiempo_total=0.18 segundos
+
+C=10, kernel=poly, gamma=auto, degree=3 --> {'cohen_kappa': 0.7007811135724499, 'accuracy': 0.8161290322580645, 'precision': 0.8138580763038771, 'recall': 0.8161290322580645, 'f1': 0.8042694743799232, 'roc_auc': 0.9335833333333333}, tiempo_total=0.15 segundos
+
+C=10, kernel=poly, gamma=auto, degree=4 --> {'cohen_kappa': 0.2653864705260277, 'accuracy': 0.5322580645161291, 'precision': 0.5558664485947279, 'recall': 0.5322580645161291, 'f1': 0.5148163826851527, 'roc_auc': 0.7232460317460316}, tiempo_total=0.19 segundos
+
+C=10, kernel=poly, gamma=auto, degree=5 --> {'cohen_kappa': 0.6034060622870991, 'accuracy': 0.7516129032258064, 'precision': 0.771578964081037, 'recall': 0.7516129032258064, 'f1': 0.7398750987348425, 'roc_auc': 0.8970198412698412}, tiempo_total=0.15 segundos
+
+C=10, kernel=poly, gamma=auto, degree=6 --> {'cohen_kappa': 0.23570807644235484, 'accuracy': 0.5064516129032258, 'precision': 0.5736472791785886, 'recall': 0.5064516129032258, 'f1': 0.47969824552119916, 'roc_auc': 0.6715773809523808}, tiempo_total=0.20 segundos
+
+C=10, kernel=poly, gamma=auto, degree=7 --> {'cohen_kappa': 0.49805859881494186, 'accuracy': 0.6806451612903226, 'precision': 0.743263100854265, 'recall': 0.6806451612903226, 'f1': 0.6660953664007355, 'roc_auc': 0.7410496031746031}, tiempo_total=0.16 segundos
+
+C=10, kernel=poly, gamma=auto, degree=8 --> {'cohen_kappa': 0.1903294717984559, 'accuracy': 0.4709677419354839, 'precision': 0.5467475199243543, 'recall': 0.4709677419354839, 'f1': 0.44595808027004524, 'roc_auc': 0.6609603174603175}, tiempo_total=0.21 segundos
+
+C=10, kernel=poly, gamma=auto, degree=9 --> {'cohen_kappa': 0.38569283444792574, 'accuracy': 0.6096774193548387, 'precision': 0.7401211413847548, 'recall': 0.6096774193548387, 'f1': 0.592508721100913, 'roc_auc': 0.6905515873015873}, tiempo_total=0.16 segundos
+
+C=10, kernel=poly, gamma=auto, degree=10 --> {'cohen_kappa': 0.16792033109614923, 'accuracy': 0.4548387096774194, 'precision': 0.5295655835152294, 'recall': 0.4548387096774194, 'f1': 0.42552080359545086, 'roc_auc': 0.6511329365079365}, tiempo_total=0.21 segundos
+
+C=10, kernel=rbf, gamma=scale, degree=3 --> {'cohen_kappa': 0.7211320433351457, 'accuracy': 0.8258064516129032, 'precision': 0.8277266853226, 'recall': 0.8258064516129032, 'f1': 0.8250100850943209, 'roc_auc': 0.9468888888888889}, tiempo_total=0.17 segundos
+
+C=10, kernel=rbf, gamma=auto, degree=3 --> {'cohen_kappa': 0.7261512965293303, 'accuracy': 0.8290322580645162, 'precision': 0.8303524750926021, 'recall': 0.8290322580645162, 'f1': 0.8283100798781866, 'roc_auc': 0.9468095238095238}, tiempo_total=0.17 segundos
+
+C=10, kernel=sigmoid, gamma=scale, degree=3 --> {'cohen_kappa': 0.6454596606544534, 'accuracy': 0.7774193548387096, 'precision': 0.7849661674696661, 'recall': 0.7774193548387096, 'f1': 0.7778886272436897, 'roc_auc': 0.9236904761904763}, tiempo_total=0.13 segundos
+
+C=10, kernel=sigmoid, gamma=auto, degree=3 --> {'cohen_kappa': 0.6472087927892701, 'accuracy': 0.7774193548387097, 'precision': 0.7863179635456838, 'recall': 0.7774193548387097, 'f1': 0.7757285173712639, 'roc_auc': 0.925702380952381}, tiempo_total=0.13 segundos
+
+C=15, kernel=linear, gamma=scale, degree=3 --> {'cohen_kappa': 0.7638768731036427, 'accuracy': 0.8516129032258064, 'precision': 0.8598601744990244, 'recall': 0.8516129032258064, 'f1': 0.8530518474394297, 'roc_auc': 0.961404761904762}, tiempo_total=0.15 segundos
+
+C=15, kernel=linear, gamma=auto, degree=3 --> {'cohen_kappa': 0.7638768731036427, 'accuracy': 0.8516129032258064, 'precision': 0.8598601744990244, 'recall': 0.8516129032258064, 'f1': 0.8530518474394297, 'roc_auc': 0.961404761904762}, tiempo_total=0.15 segundos
+
+C=15, kernel=poly, gamma=scale, degree=2 --> {'cohen_kappa': 0.2748471720822685, 'accuracy': 0.5451612903225806, 'precision': 0.5547159853930449, 'recall': 0.5451612903225806, 'f1': 0.5390900321732611, 'roc_auc': 0.7481587301587302}, tiempo_total=0.19 segundos
+
+C=15, kernel=poly, gamma=scale, degree=3 --> {'cohen_kappa': 0.6762243766899817, 'accuracy': 0.8, 'precision': 0.8012530758346254, 'recall': 0.8, 'f1': 0.791306775026219, 'roc_auc': 0.9329285714285713}, tiempo_total=0.15 segundos
+
+C=15, kernel=poly, gamma=scale, degree=4 --> {'cohen_kappa': 0.2886488409927671, 'accuracy': 0.5451612903225806, 'precision': 0.5689936431030401, 'recall': 0.5451612903225806, 'f1': 0.5305833052161348, 'roc_auc': 0.7274246031746031}, tiempo_total=0.20 segundos
+
+C=15, kernel=poly, gamma=scale, degree=5 --> {'cohen_kappa': 0.6124373965272556, 'accuracy': 0.7580645161290323, 'precision': 0.7716412961789642, 'recall': 0.7580645161290323, 'f1': 0.7458662748695319, 'roc_auc': 0.9002420634920634}, tiempo_total=0.16 segundos
+
+C=15, kernel=poly, gamma=scale, degree=6 --> {'cohen_kappa': 0.21266634014507627, 'accuracy': 0.4935483870967742, 'precision': 0.5430814492104815, 'recall': 0.4935483870967742, 'f1': 0.4676523574008459, 'roc_auc': 0.6708730158730158}, tiempo_total=0.21 segundos
+
+C=15, kernel=poly, gamma=scale, degree=7 --> {'cohen_kappa': 0.48538880010541063, 'accuracy': 0.6741935483870967, 'precision': 0.7239348807449631, 'recall': 0.6741935483870967, 'f1': 0.6604340566813429, 'roc_auc': 0.7277519841269842}, tiempo_total=0.16 segundos
+
+C=15, kernel=poly, gamma=scale, degree=8 --> {'cohen_kappa': 0.19244028920595896, 'accuracy': 0.4709677419354839, 'precision': 0.5534651278890911, 'recall': 0.4709677419354839, 'f1': 0.44295752281652045, 'roc_auc': 0.6440178571428572}, tiempo_total=0.21 segundos
+
+C=15, kernel=poly, gamma=scale, degree=9 --> {'cohen_kappa': 0.42378231824507406, 'accuracy': 0.6290322580645161, 'precision': 0.7290150236615316, 'recall': 0.6290322580645161, 'f1': 0.6112186618240845, 'roc_auc': 0.6889662698412699}, tiempo_total=0.16 segundos
+
+C=15, kernel=poly, gamma=scale, degree=10 --> {'cohen_kappa': 0.1955309145686865, 'accuracy': 0.4709677419354839, 'precision': 0.5625986025858691, 'recall': 0.4709677419354839, 'f1': 0.4428440968003472, 'roc_auc': 0.6303591269841269}, tiempo_total=0.22 segundos
+
+C=15, kernel=poly, gamma=auto, degree=2 --> {'cohen_kappa': 0.28453128190328214, 'accuracy': 0.5516129032258064, 'precision': 0.5641030558244129, 'recall': 0.5516129032258064, 'f1': 0.5450236614096158, 'roc_auc': 0.7499206349206349}, tiempo_total=0.19 segundos
+
+C=15, kernel=poly, gamma=auto, degree=3 --> {'cohen_kappa': 0.6818212090074618, 'accuracy': 0.8032258064516128, 'precision': 0.805413755021319, 'recall': 0.8032258064516128, 'f1': 0.7944481624868881, 'roc_auc': 0.934313492063492}, tiempo_total=0.15 segundos
+
+C=15, kernel=poly, gamma=auto, degree=4 --> {'cohen_kappa': 0.29579789479487106, 'accuracy': 0.5483870967741936, 'precision': 0.5955304061417135, 'recall': 0.5483870967741936, 'f1': 0.5367045841391626, 'roc_auc': 0.7286388888888888}, tiempo_total=0.20 segundos
+
+C=15, kernel=poly, gamma=auto, degree=5 --> {'cohen_kappa': 0.6173305602479997, 'accuracy': 0.7612903225806452, 'precision': 0.7737342878492639, 'recall': 0.7612903225806452, 'f1': 0.749303066463058, 'roc_auc': 0.9025873015873017}, tiempo_total=0.17 segundos
+
+C=15, kernel=poly, gamma=auto, degree=6 --> {'cohen_kappa': 0.21281755029209676, 'accuracy': 0.4935483870967742, 'precision': 0.5485082155688321, 'recall': 0.4935483870967742, 'f1': 0.46942623083126966, 'roc_auc': 0.6764404761904762}, tiempo_total=0.21 segundos
+
+C=15, kernel=poly, gamma=auto, degree=7 --> {'cohen_kappa': 0.49842261713678404, 'accuracy': 0.6806451612903226, 'precision': 0.7398058251046865, 'recall': 0.6806451612903226, 'f1': 0.6689431390031386, 'roc_auc': 0.7374861111111112}, tiempo_total=0.16 segundos
+
+C=15, kernel=poly, gamma=auto, degree=8 --> {'cohen_kappa': 0.18267257936507936, 'accuracy': 0.467741935483871, 'precision': 0.5274413743768582, 'recall': 0.467741935483871, 'f1': 0.4370638506293014, 'roc_auc': 0.6532063492063492}, tiempo_total=0.21 segundos
+
+C=15, kernel=poly, gamma=auto, degree=9 --> {'cohen_kappa': 0.4189682349973526, 'accuracy': 0.6258064516129032, 'precision': 0.7565490363598778, 'recall': 0.6258064516129032, 'f1': 0.6116823649651838, 'roc_auc': 0.7032797619047619}, tiempo_total=0.16 segundos
+
+C=15, kernel=poly, gamma=auto, degree=10 --> {'cohen_kappa': 0.12098764373160623, 'accuracy': 0.4387096774193548, 'precision': 0.4864811236843945, 'recall': 0.4387096774193548, 'f1': 0.41092266879909445, 'roc_auc': 0.6348392857142857}, tiempo_total=0.21 segundos
+
+C=15, kernel=rbf, gamma=scale, degree=3 --> {'cohen_kappa': 0.7262684511333305, 'accuracy': 0.8290322580645162, 'precision': 0.8313530654405017, 'recall': 0.8290322580645162, 'f1': 0.8284753110415796, 'roc_auc': 0.944936507936508}, tiempo_total=0.17 segundos
+
+C=15, kernel=rbf, gamma=auto, degree=3 --> {'cohen_kappa': 0.7155375921796603, 'accuracy': 0.8225806451612904, 'precision': 0.8249345377316516, 'recall': 0.8225806451612904, 'f1': 0.8210291807342992, 'roc_auc': 0.9443928571428571}, tiempo_total=0.17 segundos
+
+C=15, kernel=sigmoid, gamma=scale, degree=3 --> {'cohen_kappa': 0.6378283168418367, 'accuracy': 0.7709677419354838, 'precision': 0.7829544212317986, 'recall': 0.7709677419354838, 'f1': 0.7714981377204941, 'roc_auc': 0.9201884920634921}, tiempo_total=0.14 segundos
+
+C=15, kernel=sigmoid, gamma=auto, degree=3 --> {'cohen_kappa': 0.6729926705711223, 'accuracy': 0.7935483870967742, 'precision': 0.8021630259835721, 'recall': 0.7935483870967742, 'f1': 0.7954929106617478, 'roc_auc': 0.9304464285714286}, tiempo_total=0.13 segundos
+
+C=20, kernel=linear, gamma=scale, degree=3 --> {'cohen_kappa': 0.7525170624472683, 'accuracy': 0.8451612903225806, 'precision': 0.8499678257466323, 'recall': 0.8451612903225806, 'f1': 0.8451743889565847, 'roc_auc': 0.9574365079365078}, tiempo_total=0.15 segundos
+
+C=20, kernel=linear, gamma=auto, degree=3 --> {'cohen_kappa': 0.7525170624472683, 'accuracy': 0.8451612903225806, 'precision': 0.8499678257466323, 'recall': 0.8451612903225806, 'f1': 0.8451743889565847, 'roc_auc': 0.9574365079365078}, tiempo_total=0.16 segundos
+
+C=20, kernel=poly, gamma=scale, degree=2 --> {'cohen_kappa': 0.27608378214366264, 'accuracy': 0.5451612903225806, 'precision': 0.5566466161489305, 'recall': 0.5451612903225806, 'f1': 0.5395138506992713, 'roc_auc': 0.7496468253968254}, tiempo_total=0.19 segundos
+
+C=20, kernel=poly, gamma=scale, degree=3 --> {'cohen_kappa': 0.6765158882483537, 'accuracy': 0.8, 'precision': 0.8006039793581718, 'recall': 0.8, 'f1': 0.7908895793051316, 'roc_auc': 0.9329662698412697}, tiempo_total=0.15 segundos
+
+C=20, kernel=poly, gamma=scale, degree=4 --> {'cohen_kappa': 0.2913204992127037, 'accuracy': 0.5451612903225806, 'precision': 0.5936773532698829, 'recall': 0.5451612903225806, 'f1': 0.534653110371097, 'roc_auc': 0.7263968253968254}, tiempo_total=0.21 segundos
+
+C=20, kernel=poly, gamma=scale, degree=5 --> {'cohen_kappa': 0.5870687527726989, 'accuracy': 0.7451612903225806, 'precision': 0.7448153526340309, 'recall': 0.7451612903225806, 'f1': 0.7280728240531898, 'roc_auc': 0.906}, tiempo_total=0.16 segundos
+
+C=20, kernel=poly, gamma=scale, degree=6 --> {'cohen_kappa': 0.19884528075619645, 'accuracy': 0.4870967741935484, 'precision': 0.5332978071762996, 'recall': 0.4870967741935484, 'f1': 0.4616664583028431, 'roc_auc': 0.6788650793650794}, tiempo_total=0.21 segundos
+
+C=20, kernel=poly, gamma=scale, degree=7 --> {'cohen_kappa': 0.5133073106763547, 'accuracy': 0.6903225806451612, 'precision': 0.7461493354536752, 'recall': 0.6903225806451612, 'f1': 0.6805259800650909, 'roc_auc': 0.7243849206349205}, tiempo_total=0.16 segundos
+
+C=20, kernel=poly, gamma=scale, degree=8 --> {'cohen_kappa': 0.2105939493418605, 'accuracy': 0.4838709677419355, 'precision': 0.5562469677167712, 'recall': 0.4838709677419355, 'f1': 0.4586944137852912, 'roc_auc': 0.6396448412698412}, tiempo_total=0.22 segundos
+
+C=20, kernel=poly, gamma=scale, degree=9 --> {'cohen_kappa': 0.41532573264117884, 'accuracy': 0.6225806451612903, 'precision': 0.7665853978757203, 'recall': 0.6225806451612903, 'f1': 0.6101070658319322, 'roc_auc': 0.6894563492063492}, tiempo_total=0.16 segundos
+
+C=20, kernel=poly, gamma=scale, degree=10 --> {'cohen_kappa': 0.17726812349147503, 'accuracy': 0.4612903225806452, 'precision': 0.5316952600481157, 'recall': 0.4612903225806452, 'f1': 0.4389989433855687, 'roc_auc': 0.6270753968253968}, tiempo_total=0.22 segundos
+
+C=20, kernel=poly, gamma=auto, degree=2 --> {'cohen_kappa': 0.29786991198655444, 'accuracy': 0.5580645161290323, 'precision': 0.5691958613559598, 'recall': 0.5580645161290323, 'f1': 0.5539585637519356, 'roc_auc': 0.7455416666666667}, tiempo_total=0.19 segundos
+
+C=20, kernel=poly, gamma=auto, degree=3 --> {'cohen_kappa': 0.6713447041010374, 'accuracy': 0.7967741935483872, 'precision': 0.7978660851845268, 'recall': 0.7967741935483872, 'f1': 0.7880140772529239, 'roc_auc': 0.9316468253968255}, tiempo_total=0.15 segundos
+
+C=20, kernel=poly, gamma=auto, degree=4 --> {'cohen_kappa': 0.2905577477147334, 'accuracy': 0.5451612903225806, 'precision': 0.592413893857756, 'recall': 0.5451612903225806, 'f1': 0.533531665224572, 'roc_auc': 0.7267976190476191}, tiempo_total=0.21 segundos
+
+C=20, kernel=poly, gamma=auto, degree=5 --> {'cohen_kappa': 0.6116091587960817, 'accuracy': 0.7580645161290323, 'precision': 0.7647217677783542, 'recall': 0.7580645161290323, 'f1': 0.7458755647570301, 'roc_auc': 0.9059325396825397}, tiempo_total=0.16 segundos
+
+C=20, kernel=poly, gamma=auto, degree=6 --> {'cohen_kappa': 0.20668981499685052, 'accuracy': 0.4903225806451613, 'precision': 0.53872423581227, 'recall': 0.4903225806451613, 'f1': 0.46584797501195874, 'roc_auc': 0.6834523809523809}, tiempo_total=0.21 segundos
+
+C=20, kernel=poly, gamma=auto, degree=7 --> {'cohen_kappa': 0.5100887497603217, 'accuracy': 0.6935483870967741, 'precision': 0.7675738212338248, 'recall': 0.6935483870967741, 'f1': 0.6822117495577485, 'roc_auc': 0.7259801587301588}, tiempo_total=0.16 segundos
+
+C=20, kernel=poly, gamma=auto, degree=8 --> {'cohen_kappa': 0.19654997775100952, 'accuracy': 0.4709677419354839, 'precision': 0.5594908322477483, 'recall': 0.4709677419354839, 'f1': 0.4452873670621824, 'roc_auc': 0.6565138888888888}, tiempo_total=0.21 segundos
+
+C=20, kernel=poly, gamma=auto, degree=9 --> {'cohen_kappa': 0.4191473910026873, 'accuracy': 0.6258064516129032, 'precision': 0.7379333738726528, 'recall': 0.6258064516129032, 'f1': 0.615937277126978, 'roc_auc': 0.6987281746031747}, tiempo_total=0.16 segundos
+
+C=20, kernel=poly, gamma=auto, degree=10 --> {'cohen_kappa': 0.187535049227668, 'accuracy': 0.4645161290322581, 'precision': 0.5607022116881442, 'recall': 0.4645161290322581, 'f1': 0.4403236244637446, 'roc_auc': 0.6360555555555555}, tiempo_total=0.24 segundos
+
+C=20, kernel=rbf, gamma=scale, degree=3 --> {'cohen_kappa': 0.7113925473408429, 'accuracy': 0.8193548387096774, 'precision': 0.8265387377963874, 'recall': 0.8193548387096774, 'f1': 0.8180526515310398, 'roc_auc': 0.9422380952380953}, tiempo_total=0.17 segundos
+
+C=20, kernel=rbf, gamma=auto, degree=3 --> {'cohen_kappa': 0.7163164754182979, 'accuracy': 0.8225806451612904, 'precision': 0.8291973694872772, 'recall': 0.8225806451612904, 'f1': 0.8210015106970507, 'roc_auc': 0.9425178571428571}, tiempo_total=0.17 segundos
+
+C=20, kernel=sigmoid, gamma=scale, degree=3 --> {'cohen_kappa': 0.6483762998324322, 'accuracy': 0.7774193548387096, 'precision': 0.7919664359283545, 'recall': 0.7774193548387096, 'f1': 0.7789012243305338, 'roc_auc': 0.9233908730158731}, tiempo_total=0.13 segundos
+
+C=20, kernel=sigmoid, gamma=auto, degree=3 --> {'cohen_kappa': 0.6884267394329554, 'accuracy': 0.8032258064516128, 'precision': 0.8114332177135661, 'recall': 0.8032258064516128, 'f1': 0.8049743021390411, 'roc_auc': 0.9336091269841269}, tiempo_total=0.13 segundos
+
+C=25, kernel=linear, gamma=scale, degree=3 --> {'cohen_kappa': 0.7737309941115538, 'accuracy': 0.8580645161290322, 'precision': 0.8659967467699916, 'recall': 0.8580645161290322, 'f1': 0.8585757740139751, 'roc_auc': 0.9619246031746032}, tiempo_total=0.16 segundos
+
+C=25, kernel=linear, gamma=auto, degree=3 --> {'cohen_kappa': 0.7737309941115538, 'accuracy': 0.8580645161290322, 'precision': 0.8659967467699916, 'recall': 0.8580645161290322, 'f1': 0.8585757740139751, 'roc_auc': 0.9619246031746032}, tiempo_total=0.16 segundos
+
+C=25, kernel=poly, gamma=scale, degree=2 --> {'cohen_kappa': 0.28583693370028673, 'accuracy': 0.5516129032258065, 'precision': 0.5646507435364307, 'recall': 0.5516129032258065, 'f1': 0.5485290432649091, 'roc_auc': 0.750936507936508}, tiempo_total=0.20 segundos
+
+C=25, kernel=poly, gamma=scale, degree=3 --> {'cohen_kappa': 0.6665407593663444, 'accuracy': 0.7935483870967742, 'precision': 0.793093184902857, 'recall': 0.7935483870967742, 'f1': 0.7856297326019439, 'roc_auc': 0.9295059523809523}, tiempo_total=0.15 segundos
+
+C=25, kernel=poly, gamma=scale, degree=4 --> {'cohen_kappa': 0.28676723735956144, 'accuracy': 0.5419354838709677, 'precision': 0.5888745653191528, 'recall': 0.5419354838709677, 'f1': 0.530750011023556, 'roc_auc': 0.7202301587301588}, tiempo_total=0.21 segundos
+
+C=25, kernel=poly, gamma=scale, degree=5 --> {'cohen_kappa': 0.5847230159628899, 'accuracy': 0.7451612903225806, 'precision': 0.7434815650475659, 'recall': 0.7451612903225806, 'f1': 0.7265345520011952, 'roc_auc': 0.9105575396825397}, tiempo_total=0.16 segundos
+
+C=25, kernel=poly, gamma=scale, degree=6 --> {'cohen_kappa': 0.21822079862618898, 'accuracy': 0.4967741935483871, 'precision': 0.5541537297644468, 'recall': 0.4967741935483871, 'f1': 0.47660676122455403, 'roc_auc': 0.6802123015873016}, tiempo_total=0.22 segundos
+
+C=25, kernel=poly, gamma=scale, degree=7 --> {'cohen_kappa': 0.5284638780072161, 'accuracy': 0.7, 'precision': 0.7544877632886047, 'recall': 0.7, 'f1': 0.6910961654732322, 'roc_auc': 0.7289484126984127}, tiempo_total=0.16 segundos
+
+C=25, kernel=poly, gamma=scale, degree=8 --> {'cohen_kappa': 0.20492465314593872, 'accuracy': 0.4806451612903226, 'precision': 0.5484543916292643, 'recall': 0.4806451612903226, 'f1': 0.4548499730725899, 'roc_auc': 0.642906746031746}, tiempo_total=0.22 segundos
+
+C=25, kernel=poly, gamma=scale, degree=9 --> {'cohen_kappa': 0.4342123832850414, 'accuracy': 0.635483870967742, 'precision': 0.7342826760568696, 'recall': 0.635483870967742, 'f1': 0.6196885808884981, 'roc_auc': 0.6945119047619048}, tiempo_total=0.16 segundos
+
+C=25, kernel=poly, gamma=scale, degree=10 --> {'cohen_kappa': 0.1880029204449824, 'accuracy': 0.467741935483871, 'precision': 0.5508743401917275, 'recall': 0.467741935483871, 'f1': 0.441554497511253, 'roc_auc': 0.6290456349206349}, tiempo_total=0.22 segundos
+
+C=25, kernel=poly, gamma=auto, degree=2 --> {'cohen_kappa': 0.29323356279674107, 'accuracy': 0.5548387096774194, 'precision': 0.566809104873621, 'recall': 0.5548387096774194, 'f1': 0.5516852441367733, 'roc_auc': 0.7482678571428572}, tiempo_total=0.20 segundos
+
+C=25, kernel=poly, gamma=auto, degree=3 --> {'cohen_kappa': 0.6665407593663444, 'accuracy': 0.7935483870967742, 'precision': 0.793093184902857, 'recall': 0.7935483870967742, 'f1': 0.7856297326019439, 'roc_auc': 0.9270059523809524}, tiempo_total=0.15 segundos
+
+C=25, kernel=poly, gamma=auto, degree=4 --> {'cohen_kappa': 0.2965988655696049, 'accuracy': 0.5483870967741936, 'precision': 0.5912557325390297, 'recall': 0.5483870967741936, 'f1': 0.5373100007366995, 'roc_auc': 0.7334960317460318}, tiempo_total=0.21 segundos
+
+C=25, kernel=poly, gamma=auto, degree=5 --> {'cohen_kappa': 0.5810536701288378, 'accuracy': 0.7419354838709676, 'precision': 0.7412448710971056, 'recall': 0.7419354838709676, 'f1': 0.7257850739818482, 'roc_auc': 0.9034781746031746}, tiempo_total=0.16 segundos
+
+C=25, kernel=poly, gamma=auto, degree=6 --> {'cohen_kappa': 0.21227598651131055, 'accuracy': 0.4935483870967742, 'precision': 0.5310370618089513, 'recall': 0.4935483870967742, 'f1': 0.47243375568177937, 'roc_auc': 0.6783015873015873}, tiempo_total=0.22 segundos
+
+C=25, kernel=poly, gamma=auto, degree=7 --> {'cohen_kappa': 0.5202846465423472, 'accuracy': 0.7, 'precision': 0.7754420052869357, 'recall': 0.7, 'f1': 0.6896232881492044, 'roc_auc': 0.7235873015873016}, tiempo_total=0.16 segundos
+
+C=25, kernel=poly, gamma=auto, degree=8 --> {'cohen_kappa': 0.20209851825397002, 'accuracy': 0.4774193548387097, 'precision': 0.552265629377384, 'recall': 0.4774193548387097, 'f1': 0.4550735205674, 'roc_auc': 0.6486825396825397}, tiempo_total=0.22 segundos
+
+C=25, kernel=poly, gamma=auto, degree=9 --> {'cohen_kappa': 0.41905515576405505, 'accuracy': 0.6258064516129032, 'precision': 0.7282245937424205, 'recall': 0.6258064516129032, 'f1': 0.6168382973121099, 'roc_auc': 0.6991111111111111}, tiempo_total=0.20 segundos
+
+C=25, kernel=poly, gamma=auto, degree=10 --> {'cohen_kappa': 0.18883048156804336, 'accuracy': 0.4709677419354839, 'precision': 0.5435965895558426, 'recall': 0.4709677419354839, 'f1': 0.4446750315074133, 'roc_auc': 0.6376884920634921}, tiempo_total=0.21 segundos
+
+C=25, kernel=rbf, gamma=scale, degree=3 --> {'cohen_kappa': 0.7064711754672469, 'accuracy': 0.8161290322580645, 'precision': 0.824446585799112, 'recall': 0.8161290322580645, 'f1': 0.8144746018462048, 'roc_auc': 0.9412857142857144}, tiempo_total=0.17 segundos
+
+C=25, kernel=rbf, gamma=auto, degree=3 --> {'cohen_kappa': 0.7068858946538622, 'accuracy': 0.8161290322580645, 'precision': 0.8243059737230162, 'recall': 0.8161290322580645, 'f1': 0.8154691192502593, 'roc_auc': 0.9414603174603176}, tiempo_total=0.17 segundos
+
+C=25, kernel=sigmoid, gamma=scale, degree=3 --> {'cohen_kappa': 0.6482116979910083, 'accuracy': 0.7774193548387098, 'precision': 0.7891237349242977, 'recall': 0.7774193548387098, 'f1': 0.7780639492726518, 'roc_auc': 0.9209126984126984}, tiempo_total=0.13 segundos
+
+C=25, kernel=sigmoid, gamma=auto, degree=3 --> {'cohen_kappa': 0.6844355083972696, 'accuracy': 0.8, 'precision': 0.8119821705100282, 'recall': 0.8, 'f1': 0.8024123228111796, 'roc_auc': 0.9311587301587302}, tiempo_total=0.13 segundos
+
+
+------------------------------------------------------
+
+Resultados de SVM con validacion cruzada (5 folds) undersample:
+
+C=0.001, C=0.001, gamma=scale, degree=2 --> {'cohen_kappa': 0.14166666666666666, 'accuracy': 0.42777777777777776, 'precision': 0.3966854385263729, 'recall': 0.42777777777777776, 'f1': 0.32553941189483615, 'roc_auc': 0.31851851851851853}, tiempo_total=0.15 segundos
+
+C=0.001, C=0.001, gamma=scale, degree=3 --> {'cohen_kappa': 0.05, 'accuracy': 0.36666666666666664, 'precision': 0.36062221753905327, 'recall': 0.36666666666666664, 'f1': 0.24062448781160004, 'roc_auc': 0.18287037037037038}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=scale, degree=4 --> {'cohen_kappa': 0.049999999999999954, 'accuracy': 0.36666666666666664, 'precision': 0.3177731092436974, 'recall': 0.36666666666666664, 'f1': 0.2299846561086154, 'roc_auc': 0.3238425925925926}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=scale, degree=5 --> {'cohen_kappa': 0.04166666666666667, 'accuracy': 0.36111111111111105, 'precision': 0.31671554252199413, 'recall': 0.36111111111111105, 'f1': 0.21946815458443364, 'roc_auc': 0.6439814814814815}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=scale, degree=6 --> {'cohen_kappa': 0.05833333333333337, 'accuracy': 0.3722222222222222, 'precision': 0.4177285459638401, 'recall': 0.3722222222222222, 'f1': 0.24211069432161017, 'roc_auc': 0.505787037037037}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=scale, degree=7 --> {'cohen_kappa': 0.07499999999999996, 'accuracy': 0.38333333333333336, 'precision': 0.463008658008658, 'recall': 0.38333333333333336, 'f1': 0.2595881187370549, 'roc_auc': 0.6365740740740741}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=scale, degree=8 --> {'cohen_kappa': 0.0666666666666667, 'accuracy': 0.37777777777777777, 'precision': 0.4524064171122994, 'recall': 0.37777777777777777, 'f1': 0.25194245368158413, 'roc_auc': 0.4979166666666666}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=scale, degree=9 --> {'cohen_kappa': 0.09166666666666676, 'accuracy': 0.3944444444444445, 'precision': 0.4857397504456328, 'recall': 0.3944444444444445, 'f1': 0.2790486807878112, 'roc_auc': 0.5664351851851851}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=scale, degree=10 --> {'cohen_kappa': 0.0666666666666667, 'accuracy': 0.37777777777777777, 'precision': 0.4190730837789661, 'recall': 0.37777777777777777, 'f1': 0.2512098529489834, 'roc_auc': 0.44722222222222224}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=auto, degree=2 --> {'cohen_kappa': 0.14166666666666666, 'accuracy': 0.42777777777777776, 'precision': 0.3966854385263729, 'recall': 0.42777777777777776, 'f1': 0.32553941189483615, 'roc_auc': 0.3159722222222222}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=auto, degree=3 --> {'cohen_kappa': 0.05, 'accuracy': 0.36666666666666664, 'precision': 0.36062221753905327, 'recall': 0.36666666666666664, 'f1': 0.24062448781160004, 'roc_auc': 0.18101851851851852}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=auto, degree=4 --> {'cohen_kappa': 0.049999999999999954, 'accuracy': 0.36666666666666664, 'precision': 0.3177731092436974, 'recall': 0.36666666666666664, 'f1': 0.2299846561086154, 'roc_auc': 0.31712962962962965}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=auto, degree=5 --> {'cohen_kappa': 0.049999999999999975, 'accuracy': 0.36666666666666664, 'precision': 0.3840171298235814, 'recall': 0.36666666666666664, 'f1': 0.23043378469899994, 'roc_auc': 0.5458333333333333}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=auto, degree=6 --> {'cohen_kappa': 0.05833333333333337, 'accuracy': 0.3722222222222222, 'precision': 0.4177285459638401, 'recall': 0.3722222222222222, 'f1': 0.24211069432161017, 'roc_auc': 0.5104166666666667}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=auto, degree=7 --> {'cohen_kappa': 0.08333333333333329, 'accuracy': 0.38888888888888895, 'precision': 0.4963419913419913, 'recall': 0.38888888888888895, 'f1': 0.2691119282608644, 'roc_auc': 0.6344907407407406}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=auto, degree=8 --> {'cohen_kappa': 0.0666666666666667, 'accuracy': 0.37777777777777777, 'precision': 0.4524064171122994, 'recall': 0.37777777777777777, 'f1': 0.25194245368158413, 'roc_auc': 0.4877314814814814}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=auto, degree=9 --> {'cohen_kappa': 0.10000000000000006, 'accuracy': 0.4, 'precision': 0.5531194295900178, 'recall': 0.4, 'f1': 0.2900780379041249, 'roc_auc': 0.5645833333333333}, tiempo_total=0.13 segundos
+
+C=0.001, C=0.001, gamma=auto, degree=10 --> {'cohen_kappa': 0.07500000000000002, 'accuracy': 0.38333333333333336, 'precision': 0.4531639928698752, 'recall': 0.38333333333333336, 'f1': 0.2615417432808737, 'roc_auc': 0.46574074074074073}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=scale, degree=2 --> {'cohen_kappa': 0.14166666666666666, 'accuracy': 0.42777777777777776, 'precision': 0.3966854385263729, 'recall': 0.42777777777777776, 'f1': 0.32553941189483615, 'roc_auc': 0.29097222222222224}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=scale, degree=3 --> {'cohen_kappa': 0.20833333333333331, 'accuracy': 0.4722222222222222, 'precision': 0.678289526085225, 'recall': 0.4722222222222222, 'f1': 0.4130937332920917, 'roc_auc': 0.7949074074074074}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=scale, degree=4 --> {'cohen_kappa': 0.08333333333333334, 'accuracy': 0.3888888888888889, 'precision': 0.488680926916221, 'recall': 0.3888888888888889, 'f1': 0.2734195273325708, 'roc_auc': 0.5604166666666667}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=scale, degree=5 --> {'cohen_kappa': 0.15000000000000002, 'accuracy': 0.4333333333333334, 'precision': 0.568829183677381, 'recall': 0.4333333333333334, 'f1': 0.3405831647287663, 'roc_auc': 0.7914351851851851}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=scale, degree=6 --> {'cohen_kappa': 0.08333333333333333, 'accuracy': 0.38888888888888895, 'precision': 0.5205436720142603, 'recall': 0.38888888888888895, 'f1': 0.27257110039718735, 'roc_auc': 0.5328703703703704}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=scale, degree=7 --> {'cohen_kappa': 0.15833333333333333, 'accuracy': 0.43888888888888894, 'precision': 0.5695867594349567, 'recall': 0.43888888888888894, 'f1': 0.3480579122035138, 'roc_auc': 0.5629629629629629}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=scale, degree=8 --> {'cohen_kappa': 0.11666666666666663, 'accuracy': 0.4111111111111111, 'precision': 0.5235782876200334, 'recall': 0.4111111111111111, 'f1': 0.30650184553116805, 'roc_auc': 0.42824074074074076}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=scale, degree=9 --> {'cohen_kappa': 0.15000000000000002, 'accuracy': 0.4333333333333334, 'precision': 0.5682426734134514, 'recall': 0.4333333333333334, 'f1': 0.34580280297166033, 'roc_auc': 0.518287037037037}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=scale, degree=10 --> {'cohen_kappa': 0.125, 'accuracy': 0.41666666666666663, 'precision': 0.5555675349318613, 'recall': 0.41666666666666663, 'f1': 0.32256175461433295, 'roc_auc': 0.40925925925925927}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=auto, degree=2 --> {'cohen_kappa': 0.14166666666666666, 'accuracy': 0.42777777777777776, 'precision': 0.3966854385263729, 'recall': 0.42777777777777776, 'f1': 0.32553941189483615, 'roc_auc': 0.28634259259259254}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=auto, degree=3 --> {'cohen_kappa': 0.2083333333333334, 'accuracy': 0.4722222222222222, 'precision': 0.6689144905273938, 'recall': 0.4722222222222222, 'f1': 0.41234074786742364, 'roc_auc': 0.7951388888888888}, tiempo_total=0.12 segundos
+
+C=0.01, C=0.01, gamma=auto, degree=4 --> {'cohen_kappa': 0.09999999999999998, 'accuracy': 0.4, 'precision': 0.5893939393939394, 'recall': 0.4, 'f1': 0.2928005328005328, 'roc_auc': 0.5564814814814815}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=auto, degree=5 --> {'cohen_kappa': 0.14999999999999997, 'accuracy': 0.4333333333333334, 'precision': 0.5584756483238457, 'recall': 0.4333333333333334, 'f1': 0.3381555923011939, 'roc_auc': 0.7916666666666667}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=auto, degree=6 --> {'cohen_kappa': 0.09999999999999998, 'accuracy': 0.4, 'precision': 0.5227718360071301, 'recall': 0.4, 'f1': 0.2904180843311278, 'roc_auc': 0.512962962962963}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=auto, degree=7 --> {'cohen_kappa': 0.14999999999999997, 'accuracy': 0.4333333333333334, 'precision': 0.5576691967109425, 'recall': 0.4333333333333334, 'f1': 0.3389582779876005, 'roc_auc': 0.5523148148148148}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=auto, degree=8 --> {'cohen_kappa': 0.1, 'accuracy': 0.4, 'precision': 0.454854522454143, 'recall': 0.4, 'f1': 0.293217379183001, 'roc_auc': 0.4409722222222222}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=auto, degree=9 --> {'cohen_kappa': 0.14166666666666666, 'accuracy': 0.42777777777777787, 'precision': 0.5563251106894371, 'recall': 0.42777777777777787, 'f1': 0.3367031687557471, 'roc_auc': 0.5375}, tiempo_total=0.13 segundos
+
+C=0.01, C=0.01, gamma=auto, degree=10 --> {'cohen_kappa': 0.14166666666666666, 'accuracy': 0.42777777777777776, 'precision': 0.6467644183773216, 'recall': 0.42777777777777776, 'f1': 0.3441377743703325, 'roc_auc': 0.5069444444444444}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=scale, degree=2 --> {'cohen_kappa': 0.25, 'accuracy': 0.5, 'precision': 0.6297773707773707, 'recall': 0.5, 'f1': 0.46117958311456764, 'roc_auc': 0.6877314814814816}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=scale, degree=3 --> {'cohen_kappa': 0.3583333333333334, 'accuracy': 0.5722222222222222, 'precision': 0.7598030118030118, 'recall': 0.5722222222222222, 'f1': 0.548676458072743, 'roc_auc': 0.8472222222222223}, tiempo_total=0.12 segundos
+
+C=0.1, C=0.1, gamma=scale, degree=4 --> {'cohen_kappa': 0.15, 'accuracy': 0.4333333333333334, 'precision': 0.5585112205801861, 'recall': 0.4333333333333334, 'f1': 0.3698453690419258, 'roc_auc': 0.6483796296296297}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=scale, degree=5 --> {'cohen_kappa': 0.25, 'accuracy': 0.5, 'precision': 0.6853980417198808, 'recall': 0.5, 'f1': 0.4519738351876085, 'roc_auc': 0.837037037037037}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=scale, degree=6 --> {'cohen_kappa': 0.12500000000000003, 'accuracy': 0.41666666666666663, 'precision': 0.5308256087010258, 'recall': 0.41666666666666663, 'f1': 0.3370760987418757, 'roc_auc': 0.5724537037037037}, tiempo_total=0.16 segundos
+
+C=0.1, C=0.1, gamma=scale, degree=7 --> {'cohen_kappa': 0.2333333333333333, 'accuracy': 0.48888888888888893, 'precision': 0.6973180076628352, 'recall': 0.48888888888888893, 'f1': 0.4357160900632923, 'roc_auc': 0.6731481481481482}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=scale, degree=8 --> {'cohen_kappa': 0.16666666666666666, 'accuracy': 0.4444444444444445, 'precision': 0.5955382523791868, 'recall': 0.4444444444444445, 'f1': 0.37387299094048954, 'roc_auc': 0.5078703703703703}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=scale, degree=9 --> {'cohen_kappa': 0.21666666666666665, 'accuracy': 0.47777777777777775, 'precision': 0.6955555555555556, 'recall': 0.47777777777777775, 'f1': 0.42043381455146156, 'roc_auc': 0.6502314814814815}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=scale, degree=10 --> {'cohen_kappa': 0.175, 'accuracy': 0.45, 'precision': 0.5863984674329502, 'recall': 0.45, 'f1': 0.38207954726606097, 'roc_auc': 0.581712962962963}, tiempo_total=0.20 segundos
+
+C=0.1, C=0.1, gamma=auto, degree=2 --> {'cohen_kappa': 0.2833333333333333, 'accuracy': 0.5222222222222223, 'precision': 0.644229819563153, 'recall': 0.5222222222222223, 'f1': 0.4856944292083611, 'roc_auc': 0.6925925925925925}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=auto, degree=3 --> {'cohen_kappa': 0.3500000000000001, 'accuracy': 0.5666666666666667, 'precision': 0.7587448107448107, 'recall': 0.5666666666666667, 'f1': 0.5434402907313125, 'roc_auc': 0.8548611111111111}, tiempo_total=0.12 segundos
+
+C=0.1, C=0.1, gamma=auto, degree=4 --> {'cohen_kappa': 0.1333333333333333, 'accuracy': 0.42222222222222217, 'precision': 0.5333716475095786, 'recall': 0.42222222222222217, 'f1': 0.3528606727243743, 'roc_auc': 0.6636574074074074}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=auto, degree=5 --> {'cohen_kappa': 0.24166666666666664, 'accuracy': 0.49444444444444435, 'precision': 0.6810946907498632, 'recall': 0.49444444444444435, 'f1': 0.44466111522782975, 'roc_auc': 0.8381944444444445}, tiempo_total=0.12 segundos
+
+C=0.1, C=0.1, gamma=auto, degree=6 --> {'cohen_kappa': 0.13333333333333336, 'accuracy': 0.4222222222222222, 'precision': 0.5474302134646962, 'recall': 0.4222222222222222, 'f1': 0.3506545126057321, 'roc_auc': 0.638888888888889}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=auto, degree=7 --> {'cohen_kappa': 0.24166666666666664, 'accuracy': 0.49444444444444446, 'precision': 0.7314942528735632, 'recall': 0.49444444444444446, 'f1': 0.44609162239004424, 'roc_auc': 0.7493055555555556}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=auto, degree=8 --> {'cohen_kappa': 0.16666666666666663, 'accuracy': 0.4444444444444445, 'precision': 0.6113984674329502, 'recall': 0.4444444444444445, 'f1': 0.37469399164521117, 'roc_auc': 0.5289351851851852}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=auto, degree=9 --> {'cohen_kappa': 0.225, 'accuracy': 0.4833333333333333, 'precision': 0.7297318007662834, 'recall': 0.4833333333333333, 'f1': 0.43080934687821343, 'roc_auc': 0.681712962962963}, tiempo_total=0.13 segundos
+
+C=0.1, C=0.1, gamma=auto, degree=10 --> {'cohen_kappa': 0.175, 'accuracy': 0.45, 'precision': 0.5844271412680756, 'recall': 0.45, 'f1': 0.3800716071391057, 'roc_auc': 0.5960648148148148}, tiempo_total=0.13 segundos
+
+C=1, C=1, gamma=scale, degree=2 --> {'cohen_kappa': 0.35, 'accuracy': 0.5666666666666667, 'precision': 0.6172570314675577, 'recall': 0.5666666666666667, 'f1': 0.5500656114096973, 'roc_auc': 0.7416666666666667}, tiempo_total=0.12 segundos
+
+C=1, C=1, gamma=scale, degree=3 --> {'cohen_kappa': 0.5583333333333333, 'accuracy': 0.7055555555555555, 'precision': 0.8008592737883354, 'recall': 0.7055555555555555, 'f1': 0.7080243870224288, 'roc_auc': 0.9043981481481481}, tiempo_total=0.12 segundos
+
+C=1, C=1, gamma=scale, degree=4 --> {'cohen_kappa': 0.2416666666666667, 'accuracy': 0.49444444444444446, 'precision': 0.5961768108434776, 'recall': 0.49444444444444446, 'f1': 0.47118662482439577, 'roc_auc': 0.7224537037037038}, tiempo_total=0.13 segundos
+
+C=1, C=1, gamma=scale, degree=5 --> {'cohen_kappa': 0.3583333333333333, 'accuracy': 0.5722222222222222, 'precision': 0.7442051282051283, 'recall': 0.5722222222222222, 'f1': 0.5578456740685842, 'roc_auc': 0.856712962962963}, tiempo_total=0.12 segundos
+
+C=1, C=1, gamma=scale, degree=6 --> {'cohen_kappa': 0.19999999999999998, 'accuracy': 0.4666666666666667, 'precision': 0.6154432234432236, 'recall': 0.4666666666666667, 'f1': 0.43101985835731965, 'roc_auc': 0.6703703703703703}, tiempo_total=0.13 segundos
+
+C=1, C=1, gamma=scale, degree=7 --> {'cohen_kappa': 0.2666666666666667, 'accuracy': 0.5111111111111111, 'precision': 0.7137771041219316, 'recall': 0.5111111111111111, 'f1': 0.48026144036715657, 'roc_auc': 0.7206018518518518}, tiempo_total=0.12 segundos
+
+C=1, C=1, gamma=scale, degree=8 --> {'cohen_kappa': 0.19166666666666662, 'accuracy': 0.46111111111111114, 'precision': 0.593872468527641, 'recall': 0.46111111111111114, 'f1': 0.41019955282509085, 'roc_auc': 0.662962962962963}, tiempo_total=0.14 segundos
+
+C=1, C=1, gamma=scale, degree=9 --> {'cohen_kappa': 0.2333333333333333, 'accuracy': 0.4888888888888888, 'precision': 0.6999351606248159, 'recall': 0.4888888888888888, 'f1': 0.44888917102010806, 'roc_auc': 0.6944444444444444}, tiempo_total=0.12 segundos
+
+C=1, C=1, gamma=scale, degree=10 --> {'cohen_kappa': 0.19999999999999993, 'accuracy': 0.4666666666666667, 'precision': 0.5936130876360762, 'recall': 0.4666666666666667, 'f1': 0.41170771814206086, 'roc_auc': 0.6247685185185186}, tiempo_total=0.14 segundos
+
+C=1, C=1, gamma=auto, degree=2 --> {'cohen_kappa': 0.3666666666666667, 'accuracy': 0.5777777777777778, 'precision': 0.6291163738222562, 'recall': 0.5777777777777778, 'f1': 0.5625748988669734, 'roc_auc': 0.7418981481481481}, tiempo_total=0.13 segundos
+
+C=1, C=1, gamma=auto, degree=3 --> {'cohen_kappa': 0.5583333333333332, 'accuracy': 0.7055555555555555, 'precision': 0.7892105263157896, 'recall': 0.7055555555555555, 'f1': 0.7065808204170725, 'roc_auc': 0.907175925925926}, tiempo_total=0.12 segundos
+
+C=1, C=1, gamma=auto, degree=4 --> {'cohen_kappa': 0.225, 'accuracy': 0.4833333333333334, 'precision': 0.5777665544332211, 'recall': 0.4833333333333334, 'f1': 0.45903563482510845, 'roc_auc': 0.712037037037037}, tiempo_total=0.13 segundos
+
+C=1, C=1, gamma=auto, degree=5 --> {'cohen_kappa': 0.3833333333333333, 'accuracy': 0.5888888888888889, 'precision': 0.7502136752136753, 'recall': 0.5888888888888889, 'f1': 0.5775111599879402, 'roc_auc': 0.8527777777777776}, tiempo_total=0.12 segundos
+
+C=1, C=1, gamma=auto, degree=6 --> {'cohen_kappa': 0.2166666666666667, 'accuracy': 0.47777777777777775, 'precision': 0.6607106367451194, 'recall': 0.47777777777777775, 'f1': 0.44841360765584887, 'roc_auc': 0.6671296296296296}, tiempo_total=0.14 segundos
+
+C=1, C=1, gamma=auto, degree=7 --> {'cohen_kappa': 0.2666666666666667, 'accuracy': 0.5111111111111111, 'precision': 0.7214285714285713, 'recall': 0.5111111111111111, 'f1': 0.4838196484171716, 'roc_auc': 0.7210648148148148}, tiempo_total=0.15 segundos
+
+C=1, C=1, gamma=auto, degree=8 --> {'cohen_kappa': 0.1833333333333333, 'accuracy': 0.45555555555555555, 'precision': 0.5863026819923371, 'recall': 0.45555555555555555, 'f1': 0.40244249878396215, 'roc_auc': 0.6333333333333334}, tiempo_total=0.15 segundos
+
+C=1, C=1, gamma=auto, degree=9 --> {'cohen_kappa': 0.24166666666666664, 'accuracy': 0.49444444444444446, 'precision': 0.7019704433497538, 'recall': 0.49444444444444446, 'f1': 0.46207302889776647, 'roc_auc': 0.6891203703703703}, tiempo_total=0.13 segundos
+
+C=1, C=1, gamma=auto, degree=10 --> {'cohen_kappa': 0.19166666666666665, 'accuracy': 0.4611111111111111, 'precision': 0.5660180623973726, 'recall': 0.4611111111111111, 'f1': 0.4074526544321907, 'roc_auc': 0.6333333333333333}, tiempo_total=0.14 segundos
+
+C=10, C=10, gamma=scale, degree=2 --> {'cohen_kappa': 0.275, 'accuracy': 0.5166666666666667, 'precision': 0.5372164654517596, 'recall': 0.5166666666666667, 'f1': 0.5058492264094339, 'roc_auc': 0.7254629629629629}, tiempo_total=0.14 segundos
+
+C=10, C=10, gamma=scale, degree=3 --> {'cohen_kappa': 0.5916666666666667, 'accuracy': 0.7277777777777777, 'precision': 0.7874628639334521, 'recall': 0.7277777777777777, 'f1': 0.730439472708141, 'roc_auc': 0.9087962962962963}, tiempo_total=0.12 segundos
+
+C=10, C=10, gamma=scale, degree=4 --> {'cohen_kappa': 0.3083333333333333, 'accuracy': 0.5388888888888889, 'precision': 0.6052539176223387, 'recall': 0.5388888888888889, 'f1': 0.523415194686542, 'roc_auc': 0.7152777777777779}, tiempo_total=0.15 segundos
+
+C=10, C=10, gamma=scale, degree=5 --> {'cohen_kappa': 0.475, 'accuracy': 0.65, 'precision': 0.7612504031268335, 'recall': 0.65, 'f1': 0.6522870409630664, 'roc_auc': 0.8439814814814817}, tiempo_total=0.13 segundos
+
+C=10, C=10, gamma=scale, degree=6 --> {'cohen_kappa': 0.275, 'accuracy': 0.5166666666666666, 'precision': 0.6384391164391164, 'recall': 0.5166666666666666, 'f1': 0.4937676792849091, 'roc_auc': 0.6678240740740741}, tiempo_total=0.15 segundos
+
+C=10, C=10, gamma=scale, degree=7 --> {'cohen_kappa': 0.4, 'accuracy': 0.6, 'precision': 0.7441650941650942, 'recall': 0.6, 'f1': 0.591453150106401, 'roc_auc': 0.7231481481481481}, tiempo_total=0.13 segundos
+
+C=10, C=10, gamma=scale, degree=8 --> {'cohen_kappa': 0.2250000000000001, 'accuracy': 0.4833333333333333, 'precision': 0.594698642742121, 'recall': 0.4833333333333333, 'f1': 0.45227828987890917, 'roc_auc': 0.6754629629629629}, tiempo_total=0.17 segundos
+
+C=10, C=10, gamma=scale, degree=9 --> {'cohen_kappa': 0.3416666666666667, 'accuracy': 0.5611111111111111, 'precision': 0.7330020350020351, 'recall': 0.5611111111111111, 'f1': 0.5408551073102157, 'roc_auc': 0.7247685185185185}, tiempo_total=0.13 segundos
+
+C=10, C=10, gamma=scale, degree=10 --> {'cohen_kappa': 0.2, 'accuracy': 0.4666666666666667, 'precision': 0.531006105006105, 'recall': 0.4666666666666667, 'f1': 0.4168920025731171, 'roc_auc': 0.6729166666666667}, tiempo_total=0.15 segundos
+
+C=10, C=10, gamma=auto, degree=2 --> {'cohen_kappa': 0.2916666666666667, 'accuracy': 0.5277777777777777, 'precision': 0.5514847278624369, 'recall': 0.5277777777777777, 'f1': 0.5175795004159844, 'roc_auc': 0.7256944444444444}, tiempo_total=0.14 segundos
+
+C=10, C=10, gamma=auto, degree=3 --> {'cohen_kappa': 0.5916666666666667, 'accuracy': 0.7277777777777777, 'precision': 0.7874628639334521, 'recall': 0.7277777777777777, 'f1': 0.730439472708141, 'roc_auc': 0.9087962962962963}, tiempo_total=0.12 segundos
+
+C=10, C=10, gamma=auto, degree=4 --> {'cohen_kappa': 0.3083333333333333, 'accuracy': 0.5388888888888889, 'precision': 0.6066364240048451, 'recall': 0.5388888888888889, 'f1': 0.5225830113235559, 'roc_auc': 0.7076388888888888}, tiempo_total=0.15 segundos
+
+C=10, C=10, gamma=auto, degree=5 --> {'cohen_kappa': 0.5, 'accuracy': 0.6666666666666667, 'precision': 0.7767486704826859, 'recall': 0.6666666666666667, 'f1': 0.6673851233283281, 'roc_auc': 0.8435185185185186}, tiempo_total=0.12 segundos
+
+C=10, C=10, gamma=auto, degree=6 --> {'cohen_kappa': 0.2416666666666667, 'accuracy': 0.49444444444444446, 'precision': 0.6071637426900585, 'recall': 0.49444444444444446, 'f1': 0.46778096603323804, 'roc_auc': 0.6787037037037037}, tiempo_total=0.15 segundos
+
+C=10, C=10, gamma=auto, degree=7 --> {'cohen_kappa': 0.4, 'accuracy': 0.6000000000000001, 'precision': 0.7627942637073072, 'recall': 0.6000000000000001, 'f1': 0.5882846225261085, 'roc_auc': 0.733101851851852}, tiempo_total=0.13 segundos
+
+C=10, C=10, gamma=auto, degree=8 --> {'cohen_kappa': 0.16666666666666663, 'accuracy': 0.4444444444444445, 'precision': 0.5140904897571563, 'recall': 0.4444444444444445, 'f1': 0.4004075593704076, 'roc_auc': 0.6944444444444444}, tiempo_total=0.15 segundos
+
+C=10, C=10, gamma=auto, degree=9 --> {'cohen_kappa': 0.3416666666666667, 'accuracy': 0.5611111111111111, 'precision': 0.7495575551662508, 'recall': 0.5611111111111111, 'f1': 0.5346254695480702, 'roc_auc': 0.718287037037037}, tiempo_total=0.13 segundos
+
+C=10, C=10, gamma=auto, degree=10 --> {'cohen_kappa': 0.16666666666666663, 'accuracy': 0.4444444444444445, 'precision': 0.5146954280287613, 'recall': 0.4444444444444445, 'f1': 0.3959451985922574, 'roc_auc': 0.645138888888889}, tiempo_total=0.15 segundos
+
+C=15, C=15, gamma=scale, degree=2 --> {'cohen_kappa': 0.3, 'accuracy': 0.5333333333333332, 'precision': 0.5478466665773167, 'recall': 0.5333333333333332, 'f1': 0.5218560783998264, 'roc_auc': 0.7194444444444443}, tiempo_total=0.14 segundos
+
+C=15, C=15, gamma=scale, degree=3 --> {'cohen_kappa': 0.5833333333333333, 'accuracy': 0.7222222222222222, 'precision': 0.7773653980465126, 'recall': 0.7222222222222222, 'f1': 0.7246908058035602, 'roc_auc': 0.9032407407407408}, tiempo_total=0.12 segundos
+
+C=15, C=15, gamma=scale, degree=4 --> {'cohen_kappa': 0.29166666666666663, 'accuracy': 0.5277777777777778, 'precision': 0.5789311662995874, 'recall': 0.5277777777777778, 'f1': 0.5120038088014718, 'roc_auc': 0.7060185185185185}, tiempo_total=0.15 segundos
+
+C=15, C=15, gamma=scale, degree=5 --> {'cohen_kappa': 0.5166666666666666, 'accuracy': 0.6777777777777778, 'precision': 0.7761405295770621, 'recall': 0.6777777777777778, 'f1': 0.6798925750408135, 'roc_auc': 0.84375}, tiempo_total=0.13 segundos
+
+C=15, C=15, gamma=scale, degree=6 --> {'cohen_kappa': 0.25, 'accuracy': 0.5, 'precision': 0.6255764411027569, 'recall': 0.5, 'f1': 0.47776357945238407, 'roc_auc': 0.6956018518518519}, tiempo_total=0.15 segundos
+
+C=15, C=15, gamma=scale, degree=7 --> {'cohen_kappa': 0.4166666666666667, 'accuracy': 0.6111111111111112, 'precision': 0.7637254806385241, 'recall': 0.6111111111111112, 'f1': 0.602120918715346, 'roc_auc': 0.7344907407407408}, tiempo_total=0.13 segundos
+
+C=15, C=15, gamma=scale, degree=8 --> {'cohen_kappa': 0.2, 'accuracy': 0.4666666666666666, 'precision': 0.5340116555478874, 'recall': 0.4666666666666666, 'f1': 0.42513888411721235, 'roc_auc': 0.6951388888888889}, tiempo_total=0.15 segundos
+
+C=15, C=15, gamma=scale, degree=9 --> {'cohen_kappa': 0.35, 'accuracy': 0.5666666666666667, 'precision': 0.7528994355081312, 'recall': 0.5666666666666667, 'f1': 0.5412962269928213, 'roc_auc': 0.7245370370370371}, tiempo_total=0.13 segundos
+
+C=15, C=15, gamma=scale, degree=10 --> {'cohen_kappa': 0.18333333333333335, 'accuracy': 0.45555555555555555, 'precision': 0.5027372134038801, 'recall': 0.45555555555555555, 'f1': 0.4050041003136979, 'roc_auc': 0.695138888888889}, tiempo_total=0.15 segundos
+
+C=15, C=15, gamma=auto, degree=2 --> {'cohen_kappa': 0.3, 'accuracy': 0.5333333333333332, 'precision': 0.549116507847158, 'recall': 0.5333333333333332, 'f1': 0.5225344124114937, 'roc_auc': 0.7287037037037037}, tiempo_total=0.15 segundos
+
+C=15, C=15, gamma=auto, degree=3 --> {'cohen_kappa': 0.5916666666666667, 'accuracy': 0.7277777777777777, 'precision': 0.7819073083778966, 'recall': 0.7277777777777777, 'f1': 0.7309523078262392, 'roc_auc': 0.9074074074074072}, tiempo_total=0.12 segundos
+
+C=15, C=15, gamma=auto, degree=4 --> {'cohen_kappa': 0.3083333333333333, 'accuracy': 0.5388888888888889, 'precision': 0.6030316954001165, 'recall': 0.5388888888888889, 'f1': 0.5204732763060271, 'roc_auc': 0.7020833333333334}, tiempo_total=0.15 segundos
+
+C=15, C=15, gamma=auto, degree=5 --> {'cohen_kappa': 0.55, 'accuracy': 0.7, 'precision': 0.7969820466845638, 'recall': 0.7, 'f1': 0.6987566437592274, 'roc_auc': 0.8439814814814814}, tiempo_total=0.13 segundos
+
+C=15, C=15, gamma=auto, degree=6 --> {'cohen_kappa': 0.2583333333333333, 'accuracy': 0.5055555555555555, 'precision': 0.5981981303720434, 'recall': 0.5055555555555555, 'f1': 0.4774117222646634, 'roc_auc': 0.6923611111111111}, tiempo_total=0.15 segundos
+
+C=15, C=15, gamma=auto, degree=7 --> {'cohen_kappa': 0.4083333333333333, 'accuracy': 0.6055555555555555, 'precision': 0.7559191919191919, 'recall': 0.6055555555555555, 'f1': 0.5962353684954305, 'roc_auc': 0.7287037037037037}, tiempo_total=0.13 segundos
+
+C=15, C=15, gamma=auto, degree=8 --> {'cohen_kappa': 0.17499999999999996, 'accuracy': 0.45, 'precision': 0.5185664335664335, 'recall': 0.45, 'f1': 0.40833926247844676, 'roc_auc': 0.6956018518518519}, tiempo_total=0.15 segundos
+
+C=15, C=15, gamma=auto, degree=9 --> {'cohen_kappa': 0.375, 'accuracy': 0.5833333333333333, 'precision': 0.7597321937321938, 'recall': 0.5833333333333333, 'f1': 0.560674504327755, 'roc_auc': 0.7122685185185185}, tiempo_total=0.13 segundos
+
+C=15, C=15, gamma=auto, degree=10 --> {'cohen_kappa': 0.16666666666666663, 'accuracy': 0.4444444444444445, 'precision': 0.5263573463573463, 'recall': 0.4444444444444445, 'f1': 0.4012899765686143, 'roc_auc': 0.6402777777777778}, tiempo_total=0.15 segundos
+
+C=20, C=20, gamma=scale, degree=2 --> {'cohen_kappa': 0.325, 'accuracy': 0.55, 'precision': 0.5619208277103015, 'recall': 0.55, 'f1': 0.53822684725025, 'roc_auc': 0.7270833333333334}, tiempo_total=0.15 segundos
+
+C=20, C=20, gamma=scale, degree=3 --> {'cohen_kappa': 0.5916666666666666, 'accuracy': 0.7277777777777779, 'precision': 0.7692705442705442, 'recall': 0.7277777777777779, 'f1': 0.7319201449453167, 'roc_auc': 0.9}, tiempo_total=0.12 segundos
+
+C=20, C=20, gamma=scale, degree=4 --> {'cohen_kappa': 0.3, 'accuracy': 0.5333333333333333, 'precision': 0.5794691794846594, 'recall': 0.5333333333333333, 'f1': 0.5192121803947407, 'roc_auc': 0.700462962962963}, tiempo_total=0.16 segundos
+
+C=20, C=20, gamma=scale, degree=5 --> {'cohen_kappa': 0.55, 'accuracy': 0.7, 'precision': 0.7961022476623499, 'recall': 0.7, 'f1': 0.699308870475524, 'roc_auc': 0.8430555555555556}, tiempo_total=0.13 segundos
+
+C=20, C=20, gamma=scale, degree=6 --> {'cohen_kappa': 0.2666666666666666, 'accuracy': 0.5111111111111111, 'precision': 0.6088119288119288, 'recall': 0.5111111111111111, 'f1': 0.48770963818042834, 'roc_auc': 0.6974537037037037}, tiempo_total=0.16 segundos
+
+C=20, C=20, gamma=scale, degree=7 --> {'cohen_kappa': 0.425, 'accuracy': 0.6166666666666667, 'precision': 0.7649562498692932, 'recall': 0.6166666666666667, 'f1': 0.6108779464197422, 'roc_auc': 0.7347222222222222}, tiempo_total=0.13 segundos
+
+C=20, C=20, gamma=scale, degree=8 --> {'cohen_kappa': 0.19166666666666665, 'accuracy': 0.46111111111111114, 'precision': 0.5529446479446479, 'recall': 0.46111111111111114, 'f1': 0.42557170612898165, 'roc_auc': 0.7074074074074075}, tiempo_total=0.16 segundos
+
+C=20, C=20, gamma=scale, degree=9 --> {'cohen_kappa': 0.3583333333333334, 'accuracy': 0.5722222222222222, 'precision': 0.7457632496328148, 'recall': 0.5722222222222222, 'f1': 0.552938975787273, 'roc_auc': 0.7159722222222221}, tiempo_total=0.15 segundos
+
+C=20, C=20, gamma=scale, degree=10 --> {'cohen_kappa': 0.17499999999999996, 'accuracy': 0.45, 'precision': 0.5153744403744404, 'recall': 0.45, 'f1': 0.4081401084342261, 'roc_auc': 0.6717592592592592}, tiempo_total=0.15 segundos
+
+C=20, C=20, gamma=auto, degree=2 --> {'cohen_kappa': 0.3083333333333334, 'accuracy': 0.538888888888889, 'precision': 0.5481642139536875, 'recall': 0.538888888888889, 'f1': 0.5288553220892513, 'roc_auc': 0.7300925925925926}, tiempo_total=0.15 segundos
+
+C=20, C=20, gamma=auto, degree=3 --> {'cohen_kappa': 0.5833333333333334, 'accuracy': 0.7222222222222221, 'precision': 0.7631086451674687, 'recall': 0.7222222222222221, 'f1': 0.7235285727956235, 'roc_auc': 0.9016203703703705}, tiempo_total=0.12 segundos
+
+C=20, C=20, gamma=auto, degree=4 --> {'cohen_kappa': 0.2916666666666667, 'accuracy': 0.5277777777777779, 'precision': 0.5633109191003928, 'recall': 0.5277777777777779, 'f1': 0.5120133613515218, 'roc_auc': 0.6921296296296297}, tiempo_total=0.16 segundos
+
+C=20, C=20, gamma=auto, degree=5 --> {'cohen_kappa': 0.5333333333333334, 'accuracy': 0.6888888888888889, 'precision': 0.7841991341991342, 'recall': 0.6888888888888889, 'f1': 0.6890680486187957, 'roc_auc': 0.8444444444444444}, tiempo_total=0.13 segundos
+
+C=20, C=20, gamma=auto, degree=6 --> {'cohen_kappa': 0.2666666666666666, 'accuracy': 0.5111111111111111, 'precision': 0.5725822325822325, 'recall': 0.5111111111111111, 'f1': 0.48325969260644186, 'roc_auc': 0.6993055555555555}, tiempo_total=0.16 segundos
+
+C=20, C=20, gamma=auto, degree=7 --> {'cohen_kappa': 0.4416666666666667, 'accuracy': 0.6277777777777778, 'precision': 0.7704685009032837, 'recall': 0.6277777777777778, 'f1': 0.621809842490957, 'roc_auc': 0.7249999999999999}, tiempo_total=0.13 segundos
+
+C=20, C=20, gamma=auto, degree=8 --> {'cohen_kappa': 0.19999999999999998, 'accuracy': 0.4666666666666666, 'precision': 0.5391892551892552, 'recall': 0.4666666666666666, 'f1': 0.4305282766583076, 'roc_auc': 0.701388888888889}, tiempo_total=0.16 segundos
+
+C=20, C=20, gamma=auto, degree=9 --> {'cohen_kappa': 0.375, 'accuracy': 0.5833333333333333, 'precision': 0.7264236343366778, 'recall': 0.5833333333333333, 'f1': 0.5640113532373594, 'roc_auc': 0.7050925925925926}, tiempo_total=0.13 segundos
+
+C=20, C=20, gamma=auto, degree=10 --> {'cohen_kappa': 0.16666666666666663, 'accuracy': 0.4444444444444445, 'precision': 0.5231562881562881, 'recall': 0.4444444444444445, 'f1': 0.4074687845740478, 'roc_auc': 0.6578703703703704}, tiempo_total=0.15 segundos
+
+C=25, C=25, gamma=scale, degree=2 --> {'cohen_kappa': 0.3083333333333334, 'accuracy': 0.538888888888889, 'precision': 0.5529790287685025, 'recall': 0.538888888888889, 'f1': 0.5251704918409535, 'roc_auc': 0.7280092592592593}, tiempo_total=0.15 segundos
+
+C=25, C=25, gamma=scale, degree=3 --> {'cohen_kappa': 0.5916666666666666, 'accuracy': 0.7277777777777776, 'precision': 0.7605443868137367, 'recall': 0.7277777777777776, 'f1': 0.72987699050262, 'roc_auc': 0.900462962962963}, tiempo_total=0.13 segundos
+
+C=25, C=25, gamma=scale, degree=4 --> {'cohen_kappa': 0.3, 'accuracy': 0.5333333333333333, 'precision': 0.5621480697951287, 'recall': 0.5333333333333333, 'f1': 0.518967114436635, 'roc_auc': 0.6953703703703704}, tiempo_total=0.16 segundos
+
+C=25, C=25, gamma=scale, degree=5 --> {'cohen_kappa': 0.5583333333333333, 'accuracy': 0.7055555555555555, 'precision': 0.7987364326494761, 'recall': 0.7055555555555555, 'f1': 0.704725328912972, 'roc_auc': 0.84375}, tiempo_total=0.13 segundos
+
+C=25, C=25, gamma=scale, degree=6 --> {'cohen_kappa': 0.29166666666666663, 'accuracy': 0.5277777777777778, 'precision': 0.6087937827068262, 'recall': 0.5277777777777778, 'f1': 0.5011491200951425, 'roc_auc': 0.6979166666666666}, tiempo_total=0.16 segundos
+
+C=25, C=25, gamma=scale, degree=7 --> {'cohen_kappa': 0.425, 'accuracy': 0.6166666666666667, 'precision': 0.7528736078736079, 'recall': 0.6166666666666667, 'f1': 0.6070058390182229, 'roc_auc': 0.7340277777777777}, tiempo_total=0.13 segundos
+
+C=25, C=25, gamma=scale, degree=8 --> {'cohen_kappa': 0.19166666666666662, 'accuracy': 0.4611111111111111, 'precision': 0.5237740037740037, 'recall': 0.4611111111111111, 'f1': 0.426692520847185, 'roc_auc': 0.7085648148148149}, tiempo_total=0.15 segundos
+
+C=25, C=25, gamma=scale, degree=9 --> {'cohen_kappa': 0.3666666666666667, 'accuracy': 0.5777777777777777, 'precision': 0.7523367485976182, 'recall': 0.5777777777777777, 'f1': 0.5569657092876907, 'roc_auc': 0.712037037037037}, tiempo_total=0.13 segundos
+
+C=25, C=25, gamma=scale, degree=10 --> {'cohen_kappa': 0.16666666666666663, 'accuracy': 0.4444444444444445, 'precision': 0.5090424873033569, 'recall': 0.4444444444444445, 'f1': 0.4040910970167936, 'roc_auc': 0.6833333333333333}, tiempo_total=0.15 segundos
+
+C=25, C=25, gamma=auto, degree=2 --> {'cohen_kappa': 0.3166666666666667, 'accuracy': 0.5444444444444445, 'precision': 0.5518964076858813, 'recall': 0.5444444444444445, 'f1': 0.5330951809957769, 'roc_auc': 0.7296296296296296}, tiempo_total=0.18 segundos
+
+C=25, C=25, gamma=auto, degree=3 --> {'cohen_kappa': 0.5833333333333334, 'accuracy': 0.7222222222222221, 'precision': 0.7513731005836269, 'recall': 0.7222222222222221, 'f1': 0.7225503695534945, 'roc_auc': 0.898611111111111}, tiempo_total=0.14 segundos
+
+C=25, C=25, gamma=auto, degree=4 --> {'cohen_kappa': 0.2583333333333334, 'accuracy': 0.5055555555555555, 'precision': 0.5364041514041513, 'recall': 0.5055555555555555, 'f1': 0.49211695906432756, 'roc_auc': 0.6893518518518519}, tiempo_total=0.16 segundos
+
+C=25, C=25, gamma=auto, degree=5 --> {'cohen_kappa': 0.5416666666666667, 'accuracy': 0.6944444444444444, 'precision': 0.7835786435786436, 'recall': 0.6944444444444444, 'f1': 0.6931518373939964, 'roc_auc': 0.8416666666666666}, tiempo_total=0.13 segundos
+
+C=25, C=25, gamma=auto, degree=6 --> {'cohen_kappa': 0.2666666666666666, 'accuracy': 0.5111111111111111, 'precision': 0.5754802604802605, 'recall': 0.5111111111111111, 'f1': 0.4834209692383067, 'roc_auc': 0.6983796296296296}, tiempo_total=0.16 segundos
+
+C=25, C=25, gamma=auto, degree=7 --> {'cohen_kappa': 0.45833333333333337, 'accuracy': 0.6388888888888888, 'precision': 0.7730326034673862, 'recall': 0.6388888888888888, 'f1': 0.638434738063221, 'roc_auc': 0.7372685185185185}, tiempo_total=0.13 segundos
+
+C=25, C=25, gamma=auto, degree=8 --> {'cohen_kappa': 0.2166666666666667, 'accuracy': 0.47777777777777775, 'precision': 0.533015873015873, 'recall': 0.47777777777777775, 'f1': 0.4465209455766731, 'roc_auc': 0.7092592592592593}, tiempo_total=0.15 segundos
+
+C=25, C=25, gamma=auto, degree=9 --> {'cohen_kappa': 0.3833333333333334, 'accuracy': 0.5888888888888888, 'precision': 0.727654403567447, 'recall': 0.5888888888888888, 'f1': 0.5727683809417556, 'roc_auc': 0.7152777777777777}, tiempo_total=0.13 segundos
+
+C=25, C=25, gamma=auto, degree=10 --> {'cohen_kappa': 0.15833333333333338, 'accuracy': 0.43888888888888883, 'precision': 0.5123964891790979, 'recall': 0.43888888888888883, 'f1': 0.4010419552679614, 'roc_auc': 0.6615740740740741}, tiempo_total=0.15 segundos

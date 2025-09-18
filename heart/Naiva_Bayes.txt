@@ -1,0 +1,26 @@
+Resultados de Naive Bayes con validacion cruzada (5 folds):
+
+C=25, var_smoothing=1e-09-> {'cohen_kappa': 0.6785263224646514, 'accuracy': 0.8409130971267407, 'precision': 0.8444281262372095, 'recall': 0.8409130971267407, 'f1': 0.8409791433018533, 'roc_auc': 0.8411579045801888}, tiempo_total=0.27 segundos
+
+C=25, var_smoothing=1e-08-> {'cohen_kappa': 0.6785263224646514, 'accuracy': 0.8409130971267407, 'precision': 0.8444281262372095, 'recall': 0.8409130971267407, 'f1': 0.8409791433018533, 'roc_auc': 0.8411579045801888}, tiempo_total=0.14 segundos
+
+C=25, var_smoothing=1e-07-> {'cohen_kappa': 0.6785263224646514, 'accuracy': 0.8409130971267407, 'precision': 0.8444281262372095, 'recall': 0.8409130971267407, 'f1': 0.8409791433018533, 'roc_auc': 0.8411579045801888}, tiempo_total=0.14 segundos
+
+C=25, var_smoothing=1e-06-> {'cohen_kappa': 0.6785263224646514, 'accuracy': 0.8409130971267407, 'precision': 0.8444281262372095, 'recall': 0.8409130971267407, 'f1': 0.8409791433018533, 'roc_auc': 0.8411579045801888}, tiempo_total=0.16 segundos
+
+C=25, var_smoothing=1e-05-> {'cohen_kappa': 0.6785263224646514, 'accuracy': 0.8409130971267407, 'precision': 0.8444281262372095, 'recall': 0.8409130971267407, 'f1': 0.8409791433018533, 'roc_auc': 0.8411579045801888}, tiempo_total=0.15 segundos
+
+
+------------------------------------------------------
+
+Resultados de Naive Bayes con validacion cruzada (5 folds) undersample:
+
+ var_smoothing=1e-09--> {'cohen_kappa': 0.6822702387019185, 'accuracy': 0.8414634146341463, 'precision': 0.8441385074052608, 'recall': 0.8414634146341463, 'f1': 0.8411951941109838, 'roc_auc': 0.8412615840450058}, tiempo_total=0.11 segundos
+
+ var_smoothing=1e-08--> {'cohen_kappa': 0.6822702387019185, 'accuracy': 0.8414634146341463, 'precision': 0.8441385074052608, 'recall': 0.8414634146341463, 'f1': 0.8411951941109838, 'roc_auc': 0.8412615840450058}, tiempo_total=0.11 segundos
+
+ var_smoothing=1e-07--> {'cohen_kappa': 0.6822702387019185, 'accuracy': 0.8414634146341463, 'precision': 0.8441385074052608, 'recall': 0.8414634146341463, 'f1': 0.8411951941109838, 'roc_auc': 0.8412615840450058}, tiempo_total=0.11 segundos
+
+ var_smoothing=1e-06--> {'cohen_kappa': 0.6822702387019185, 'accuracy': 0.8414634146341463, 'precision': 0.8441385074052608, 'recall': 0.8414634146341463, 'f1': 0.8411951941109838, 'roc_auc': 0.8412615840450058}, tiempo_total=0.10 segundos
+
+ var_smoothing=1e-05--> {'cohen_kappa': 0.6822702387019185, 'accuracy': 0.8414634146341463, 'precision': 0.8441385074052608, 'recall': 0.8414634146341463, 'f1': 0.8411951941109838, 'roc_auc': 0.8412615840450058}, tiempo_total=0.10 segundos
