@@ -23,6 +23,13 @@
 \usepackage{cleveref}
 \usepackage{xcolor}
 \usepackage{titlepic}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{booktabs}
+
+
 
 \usepackage{listings}
 \lstset{ %
@@ -107,6 +114,424 @@ Describir los métodos utilizados, si corresponde.
 \chapter{Resultados}
 
 Mostrr los resultados obtenidos utilizando gráficos, tablas, figuras, etc
+
+\section{Introducción}
+Primera aproximación a resultados.
+
+
+
+\section{Métricas de Evaluación}
+A continuación se muestran las mejores métricas obtenidas, ademas del grid utilizado.
+
+\subsection{Dataset Binario}
+
+\subsection{Regresión Logística}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.84
+    \item \textbf{F1 Score:} 0.84
+    \item \textbf{ROC AUC:} 0.90
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item $C = [0, 0.1, 0.01]$
+    \item \textbf{Penalty:} None, l1, l2, elasticnet
+    \item \textbf{Solver:} lbfgs, saga, newton-s
+    \item \textbf{Multiclass:} ovr, multinomial
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+    \item $C = 1$, Penalty = l1, Solver = lbfgs, saga, $[Multiclass = ovr, multinomial]$
+\end{itemize}
+
+\subsection{Máquinas de Soporte Vectorial (SVM)}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.861
+    \item \textbf{F1 Score:} 0.86
+    \item \textbf{Recall:} 0.86
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item $C = [0.001, 0.01, 0.1, 1, 10, 15, 20, 25]$
+    \item \textbf{Kernel:} $[linear, poly, rb", sigmoid] $
+    \item \textbf{Gamma:} $ [scale, auto, 0.001, 0.01, 0.1, 1] $
+    \item \textbf{Degree:} $ [2,3,4,5,6,7,8,9,10] $
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+    \item $C = 1$, kernel = rbf, gamma = scale
+\end{itemize}
+
+\subsection{Naive Bayes Gaussiano}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.84
+    \item \textbf{F1 Score:} 0.84
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item \textbf{Suavizado:} Cualquier suavizado
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+        \item Suavizado: Cualquiera
+\end{itemize}
+
+\subsection{Random Forest}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.878
+    \item \textbf{F1 Score:} 0.877
+    \item \textbf{ROC AUC:} 0.92
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item \textbf{Criterion:} $[gini, entropy]$
+    \item \textbf{Max Depth:} $ [None, 3, 5, 7, 9] $
+    \item \textbf{Min Samples Split:} $ [2, 5, 10]$
+    \item \textbf{Min Samples Leaf:} $[1, 2, 4] $
+    \item \textbf{Max Features:} $ [None, sqrt, log2] $
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+        \item Criterion: entropy, Maxdeph = 7, min samples split = 5, min samples leaf 1, max features = sqrt, log2.
+\end{itemize}
+
+\section{Importancia de las Características}
+La importancia de las características de las mejores configuraciones.
+
+\subsection{Random Forest}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia} \\
+\hline
+ST\_Slope & 0.254265 \\
+ChestPainType & 0.127319 \\
+Oldpeak & 0.113156 \\
+ExerciseAngina & 0.105952 \\
+Cholesterol & 0.099872 \\
+MaxHR & 0.088635 \\
+Age & 0.065807 \\
+RestingBP & 0.055053 \\
+Sex & 0.040916 \\
+FastingBS & 0.030069 \\
+RestingECG & 0.018956 \\
+\hline
+\end{longtable}
+
+\subsection{Regresión Logística}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+Oldpeak & 0.045643 \\
+ChestPainType & 0.036383 \\
+MaxHR & 0.030174 \\
+Cholesterol & 0.026797 \\
+ST\_Slope & 0.026580 \\
+ExerciseAngina & 0.013181 \\
+Age & 0.008279 \\
+Sex & 0.002941 \\
+RestingECG & 0.002179 \\
+RestingBP & 0.001634 \\
+FastingBS & 0.001525 \\
+\hline
+\end{longtable}
+
+\subsection{SVM}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+MaxHR & 0.103704 \\
+Cholesterol & 0.070915 \\
+Age & 0.007081 \\
+RestingBP & 0.002723 \\
+Oldpeak & 0.000871 \\
+ChestPainType & 0.000218 \\
+Sex & 0.000000 \\
+RestingECG & 0.000000 \\
+FastingBS & 0.000000 \\
+ExerciseAngina & 0.000000 \\
+ST\_Slope & -0.000218 \\
+\hline
+\end{longtable}
+
+\subsection{Naive Bayes Gaussiano}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+ST\_Slope & 0.027015 \\
+ExerciseAngina & 0.023747 \\
+Oldpeak & 0.018736 \\
+ChestPainType & 0.018519 \\
+Cholesterol & 0.014815 \\
+Sex & 0.014270 \\
+FastingBS & 0.004575 \\
+RestingBP & 0.001852 \\
+MaxHR & -0.000218 \\
+RestingECG & -0.001198 \\
+Age & -0.003595 \\
+\hline
+\end{longtable}
+
+\subsection{Importancia de las Características (Coeficientes Absolutos de Regresión Logística)}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Coeficientes)} \\
+\hline
+Oldpeak & 0.399451 \\
+ChestPainType & 0.397051 \\
+ST\_Slope & 0.386263 \\
+ExerciseAngina & 0.268956 \\
+Sex & 0.150576 \\
+FastingBS & 0.119947 \\
+RestingECG & 0.034868 \\
+Age & 0.024577 \\
+MaxHR & 0.019045 \\
+RestingBP & 0.007427 \\
+Cholesterol & 0.003631 \\
+\hline
+\end{longtable}
+
+
+\subsection{Dataset Multiclase}
+
+\subsection{Regresión Logística}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.897
+    \item \textbf{F1 Score:} 0.0.8956
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item $C = [0, 0.1, 0.01]$
+    \item \textbf{Penalty:} None, l1, l2, elasticnet
+    \item \textbf{Solver:} lbfgs, saga, newton-s
+    \item \textbf{Multiclass:} ovr, multinomial
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+    \item $C = [0.01, 0.1, 10] $, Penalty = $[None,l2(C=10),elasticnet(C=10)] $ , Solver = $[ lbfgs, saga, newton-s]$ , $[Multiclass = ovr]$
+\end{itemize}
+
+\subsection{Máquinas de Soporte Vectorial (SVM)}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.0.861
+    \item \textbf{F1 Score:} 0.86
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item $C = [0.001, 0.01, 0.1, 1, 10, 15, 20, 25]$
+    \item \textbf{Kernel:} $[linear, poly, rb", sigmoid] $
+    \item \textbf{Gamma:} $ [scale, auto, 0.001, 0.01, 0.1, 1] $
+    \item \textbf{Degree:} $ [2,3,4,5,6,7,8,9,10] $
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+    \item $C = 1$, kernel = rbf, gamma = scale
+\end{itemize}
+
+\subsection{Naive Bayes Gaussiano}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.822
+    \item \textbf{F1 Score:} 0.83
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item \textbf{Suavizado:} Cualquier suavizado
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+        \item Suavizado: Cualquiera
+\end{itemize}
+
+\subsection{Random Forest}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.943
+    \item \textbf{F1 Score:} 0.94
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item \textbf{Criterion:} $[gini, entropy]$
+    \item \textbf{Max Depth:} $ [None, 3, 5, 7, 9] $
+    \item \textbf{Min Samples Split:} $ [2, 5, 10]$
+    \item \textbf{Min Samples Leaf:} $[1, 2, 4] $
+    \item \textbf{Max Features:} $ [None, sqrt, log2] $
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+        \item Criterion: $[entropy, gini]$, Maxdeph = $None$, min samples split = $[2,5] $, min samples leaf 1, max features = $[sqrt, log2]$.
+\end{itemize}
+
+\section{Importancia de las Características}
+La importancia de las características de las mejores configuraciones.
+
+\subsection{Random Forest}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia} \\
+\hline
+
+ASTV      &  0.139807\\
+ALTV      &  0.109941\\
+MSTV      &  0.104823\\
+Mean      &  0.091579\\
+AC        &  0.063645\\
+Mode       & 0.061986\\
+Median      &0.060633\\
+DP        &  0.047945\\
+LB        &  0.045324\\
+MLTV      &  0.045132\\
+Variance  &  0.040531\\
+UC        &  0.039166\\
+Width     &  0.030551\\
+Min       &  0.030109\\
+Max       &  0.027147\\
+FM        &  0.020801\\
+Nmax      &  0.018407\\
+DL        &  0.011128\\
+Tendency  &  0.007652\\
+Nzeros    &  0.003405\\
+DS        &  0.000287\\
+
+\hline
+\end{longtable}
+
+\textbf{Atributos que mejoran accuracy:} $ [][ASTV,ALTV,MSTV,Mean,AC,Mode,Median,DP,LB,Variance] $
+
+\subsection{Regresión Logística}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+
+Mean    &    0.098487\\
+AC       &   0.084113\\
+ASTV     &   0.057069\\
+Median   &   0.031631\\
+DP       &   0.029740\\
+LB       &   0.023404\\
+Variance &   0.022270\\
+UC       &   0.022080\\
+ALTV     &   0.019243\\
+Max      &   0.018109\\
+Nmax     &   0.014374\\
+Mode     &   0.011348\\
+Min      &   0.005910\\
+MSTV     &   0.004208\\
+FM       &   0.003830\\
+Tendency &   0.003546\\
+MLTV     &   0.002979\\
+Nzeros   &   0.002837\\
+DL       &   0.001655\\
+Width    &   0.000189\\
+DS       &   0.000000\\
+
+\hline
+\end{longtable}
+
+\subsection{SVM}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+ASTV     &   0.050355\\
+ALTV     &   0.037069\\
+UC       &   0.030638\\
+AC       &   0.026903\\
+DP       &   0.018345\\
+Mean     &   0.015887\\
+Mode     &   0.014988\\
+Median   &   0.014043\\
+Nmax     &   0.011915\\
+MSTV     &   0.009125\\
+DL       &   0.005059\\
+Variance &   0.004775\\
+Nzeros   &   0.004586\\
+Min      &   0.004444\\
+Max      &   0.004350\\
+MLTV     &   0.003357\\
+Tendency &   0.003026\\
+FM       &   0.002459\\
+Width    &   0.001418\\
+DS       &   0.000000\\
+LB       &  -0.000804\\
+
+\hline
+\end{longtable}
+
+\subsection{Naive Bayes Gaussiano}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+AC      &    0.057163\\
+DP       &   0.018676\\
+ALTV     &   0.015461\\
+ASTV     &   0.005106\\
+DS       &   0.002695\\
+UC       &   0.002364\\
+FM       &   0.001371\\
+Variance &   0.001087\\
+Nzeros   &   0.001040\\
+Nmax     &  -0.000993\\
+Tendency &  -0.001040\\
+Mode     &  -0.001324\\
+Max      &  -0.001371\\
+Min      &  -0.001986\\
+LB       &  -0.001986\\
+MLTV     &  -0.002222\\
+Width    &  -0.002459\\
+Median   &  -0.003310\\
+MSTV     &  -0.004965\\
+Mean     &  -0.005768\\
+DL       &  -0.006809\\
+
+\hline
+\end{longtable}
+
+\subsection{Importancia de las Características (Coeficientes Absolutos de Regresión Logística)}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Coeficientes)} \\
+\hline
+AC         & 3.619754\\
+Mean      &  2.520677\\
+LB        &  1.134264\\
+ASTV      &  0.867591\\
+Variance  &  0.547877\\
+Nmax      &  0.522037\\
+UC        &  0.514121\\
+Max       &  0.468159\\
+DP        &  0.309519\\
+Min       &  0.245054\\
+MSTV      &  0.233617\\
+Mode      &  0.216870\\
+Median    &  0.143711\\
+MLTV      &  0.121284\\
+Nzeros    &  0.103791\\
+DL        &  0.076451\\
+Tendency  &  0.071444\\
+Width     & 0.029727\\
+ALTV      &  0.025537\\
+FM        &  0.024773\\
+DS        &  0.000035\\
+\hline
+\end{longtable}
 
 \chapter{Conclusiones}
 
