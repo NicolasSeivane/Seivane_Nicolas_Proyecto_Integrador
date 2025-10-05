@@ -71,8 +71,9 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 
 \restylefloat{table}
 
-\title{Título}
-\author{Autor: \\ Tutor:}
+\title{Comparación de Técnicas de Aprendizaje
+	Automático Supervisado}
+\author{Autor: Nicolás Seivane \\ Tutor: Andrea Rey}
 \date{Fecha \\ Universidad Nacional de Hurlingham}
 \titlepic{\vspace{12cm}\includegraphics[width=0.15\textwidth]{logo.jpg}}
 
@@ -103,7 +104,312 @@ Explicar porqué estudiamos este problema, para qué sirve, cuál es el impacto 
 En esta sección se realiza una descripción de algunos de los métodos más importantes existentes en la bibliografía describiendo el problema y el método utilizado por cada autor. Se cita la bibliografía. 
  
 \section{Conjuntos de datos Utilizados}
-Se describen los datos utilizados y de donde fueron extraídos, si corresponde. En caso de que los datos sean propios, describir como fueron tomados
+
+Se realiza este informe de registros, atributos y métricas relevantes luego de eliminar duplicados, datos faltantes y anormales.
+
+\subsection{Dataset Binario: Insuficiencia  Cardíaca Predicción}
+
+\vspace{0.2cm}
+\begin{flushleft}
+	\textbf{Titulo Original}:  Heart Failure Prediction Dataset \\
+	\textbf{Citación}: fedesoriano. (September 2021). Heart Failure Prediction Dataset. Retrieved [Date Retrieved] from \underline{\href{https://www.kaggle.com/fedesoriano/heart-failure-prediction}{https://www.kaggle.com/fedesoriano/heart-failure-prediction}}
+	
+\end{flushleft}
+
+\begin{flushleft}
+	\textbf{Descripción}: Enfermedades cardiovasculares son la causa numero uno de muerte globalmente, tomando un estimado de 17.9 millones de vidas cada año, que son aproximadamente 31\% de todas las muertes globales.\\
+	\vspace{0.2cm}
+	Este dataset fue creado mediante la combinación de distintos dataset disponibles independientes pero no combinados anteriormente. 5 datasets de información cardíaca están combinados en 11 atributos comunes logrando el dataset mas grande de informacion de enfermedades cardiovasculares utilizado para investigación. Los 5 datasets utilizados para la creación de este son:\\
+	\begin{itemize}
+		\item Cleveland: 303 observaciones
+		\item Hungarian: 294 observaciones
+		\item Switzerland: 123 observaciones
+		\item Long Beach VA: 200 observaciones 
+		\item Stalog (Heart) Data Set: 270 observaciones
+	\end{itemize}
+	
+	
+\end{flushleft}
+
+
+\begin{flushleft}
+	\textbf{Cantidad de registros}: 918\\
+	\textbf{Cantidad de registros valiosos}: 743\\
+	\textbf{Cantidad de atributos}: 11\\
+	\textbf{Atributos Categóricos}: 5\\
+	\textbf{Atributos Numéricos}: 6\\
+	
+\end{flushleft}
+
+\begin{flushleft}
+	Los atributos son (Algunos son numéricos en el dataset pero son codificaciones de categóricos):
+	
+	
+	\vspace{0.2cm}
+	\centering
+	\begin{tabular}{|l|c|c|c|}
+		\hline
+		\textbf{Atributo} & \textbf{Tipo de dato} & \textbf{¿Esta codificado?} & \textbf{Unidad} \\
+		\hline
+		Age        & Numérico (int) & No & Años \\
+		\hline
+		Sex             & Categorico (string) & No & -\\
+		\hline
+		ChestPainType               & Categorico (string) & No & -\\
+		\hline
+		RestingBP     & Numérico (int) & No & mm Hg\\
+		\hline
+		Cholesterol    & Numérico (int) & No & mm/dl\\
+		\hline
+		FastingBS                 & Numérico (int) & Si & "mg/dl"\\
+		\hline
+		RestingECG                      & Categorico (string) & No & -\\
+		\hline
+		MaxHR    & Numérico (int) & No & -\\
+		\hline
+		ExerciseAngina               & Categorico (string) & No & -\\
+		\hline
+		Oldpeak                 & Numérico (float) & No & ST en depresión\\
+		\hline
+		$ST\_Slope$                 & Categorico (string) & No & -\\
+		\hline
+		HeartDisease                 & Numérico (int)     & Si & -\\
+		\hline
+		\hline
+	\end{tabular}
+\end{flushleft}
+
+\begin{flushleft}
+	
+	\underline{\textbf{Descripción atributos:}}\\
+	\vspace{0.2cm}
+	
+	\textbf{Age}: Edad de los pacientes. Tiene media: 53 años, valor máximo: 77 y valor mínimo: 28, con proporciones de edad bastante bien distribuidas, siendo la menor de 0.11\% para algunas edades y la mayor de 4.14\% para otras edades, teniendo otras distribuciones entre estos dos rangos\\
+	\vspace{0.2cm}
+	\textbf{Sex}: Sexo de los pacientes; hay 78.98\% M (masculinos) y  hay 21.02\%  F (femeninos)\\
+	\vspace{0.2cm}
+	\textbf{ChestPainType}: Tipo del dolor en el pecho;    Hay 18.85\% ATA, hay 22.11\% NAP, hay 54.03\% ASY, hay 5.01\% TA. [TA: Typical Angina, ATA: Atypical Angina, NAP: Non-Anginal Pain, ASY: Asymptomatic]\\
+	\vspace{0.2cm}
+	\textbf{RestingBP}: Presión sanguínea en reposo, donde hay 51.09\% de mujeres, codificadas en 1 y 48.91\% de hombres, codificados en 0.\\
+	\vspace{0.2cm}
+	\textbf{Cholesterol}: Colesterol serico, la medida total de colesterol en sangre; tiene media: 199.02, valor máximo: 603.00 y valor mínimo: 0.00. Miligramos por decilitro \\
+	\vspace{0.2cm}
+	\textbf{FastingBS}: Glucosa en sangre en ayuno; hay 76.66\% Glucosa en sangre < 120 mg/dl codificado en 0 y hay 23.34\% Glucosa en sangre > 120 mg/dl codificado en 1\\
+	\vspace{0.2cm}
+	\textbf{RestingECG}: Resultados de electrocardiogramas en reposo; hay 60.09\% codificado en Normal, hay 19.41\% codificado en ST y hay 20.50\% codificado en LVH  [Normal: Normal, ST: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV), LVH: showing probable or definite left ventricular hypertrophy by Estes' criteria] \\
+	\vspace{0.2cm}
+	\textbf{MaxHR}: Máximo ritmo cardíaco registrado, tiene media: 136.79, valor maximo: 202.00 y valor minimo: 60.00 \\
+	\vspace{0.2cm}
+	\textbf{ExerciseAngina}:Angina producido por ejercicio, dolor en el pecho; hay 59.54\% No codificado en N y hay 40.46\% Si codificado en Y \\
+	\vspace{0.2cm}
+	\textbf{Oldpeak}: Valor máximo de depresión del segmento ST (en milímetros) registrado en todas las derivaciones contiguas durante una prueba de esfuerzo. Forma parte del cálculo del riesgo de un paciente de isquemia o infarto de miocardio; valores más altos indican un mayor riesgo de enfermedad coronaria; tiene media: 0.90, valor maximo: 6.20 y valor minimo: -0.10 \\
+	\vspace{0.2cm}
+	\textbf{ST\_Slope}: The slope of the peak exercise ST segment; hay 43.08\%, hay 50.05\% Flat y hay 6.87\% Down [Up: upsloping, Flat: flat, Down: downsloping]\\
+	\vspace{0.2cm}
+	\textbf{HeartDisease}:Variable de salida de si posee una enfermedad cardíaca; hay 44.71\% No codificado en 0 y hay 55.29\% Si codificado en 1\\
+	
+\end{flushleft}
+
+\textbf{Función Objetivo Inicial}: Donde la variable salida es $HeartDisease$, no hay una variable que se use como condición:
+
+\[
+f(x)  =
+\begin{cases}
+	\text{'1'} & \text{si ??} \\
+	\text{'0'} & \text{si ??} \\
+	
+\end{cases}
+\]
+
+\subsection{Dataset Multiclase: Cardiotocografía Predicción}
+
+\begin{flushleft}
+	\textbf{Titulo Original}: Cardiotocography\\
+	\textbf{Cita}: Campos, D. \& Bernardes, J. (2000). Cardiotocography [Dataset]. UCI Machine Learning Repository.  \underline{\href{https://doi.org/10.24432/C51S4N.}{https://doi.org/10.24432/C51S4N.}}\\
+	
+\end{flushleft}
+
+\begin{flushleft}
+	
+	\textbf{Descripción}: La cardiotocografía (CTG) es un registro continuo de la frecuencia cardíaca fetal que se obtiene mediante un transductor de ultrasonidos colocado en el abdomen materno. La CTG se utiliza ampliamente durante el embarazo como método para evaluar el bienestar fetal, sobre todo en embarazos con mayor riesgo de complicaciones.\\
+	\vspace{0.2cm}
+	Se procesaron automáticamente 2126 cardiotocogramas fetales (CTG) y se midieron sus características diagnósticas. Tres obstetras expertos clasificaron los CTG y se les asignó una etiqueta de clasificación consensuada. La clasificación se realizó tanto con respecto a un patrón morfológico (A, B, C...) como al estado fetal (N, S, P).\\
+	
+	
+	
+\end{flushleft}
+
+
+\begin{flushleft}
+	\textbf{Cantidad de registros}: 2126\\
+	\textbf{Cantidad de registros valiosos}: 2115\\
+	\textbf{Cantidad de atributos}: 21\\
+	\textbf{Atributos Categóricos}: 0\\
+	\textbf{Atributos Numéricos}: 21\\
+	
+\end{flushleft}
+
+\begin{flushleft}
+	Los atributos son (Algunos son numéricos en el dataset pero son codificaciones de categóricos):
+	
+	
+	\vspace{0.2cm}
+	\centering
+	\begin{tabular}{|l|c|}
+		\hline
+		\textbf{Atributo} & \textbf{Tipo de dato} \\
+		\hline
+		LB        & Numérico (int)\\
+		\hline
+		AC             & Numérico \\
+		\hline
+		FM               & Numérico (float)\\
+		\hline
+		UC     & Numérico (float) \\
+		\hline
+		DL    & Numérico (float)\\
+		\hline
+		DS                 & Numérico (float)\\
+		\hline
+		DP                      & Numérico (float)\\
+		\hline
+		ASTV    & Numérico (int) \\
+		\hline
+		MSTV               & Numérico (float) \\
+		\hline
+		ALTV                 & Numérico (int) \\
+		\hline
+		MLTV                 & Numérico (float)\\
+		\hline
+		Width                 & Numérico (int) \\
+		\hline
+		Min                 & Numérico (int) \\
+		\hline
+		Max                 & Numérico (int)  \\
+		\hline
+		Nmax                 & Numérico (int)  \\
+		\hline
+		Nzeros                 & Numérico (int)  \\
+		\hline
+		Mode                 & Numérico (int)  \\
+		\hline
+		Mean                 & Numérico (int) \\
+		\hline
+		Median                 & Numérico (int)  \\
+		\hline
+		Variance                 & Numérico (int) \\
+		\hline
+		Tendency                 & Numérico (int) \\
+		\hline
+		NSP                 & Categórico (string) \\
+		\hline
+	\end{tabular}
+\end{flushleft}
+
+
+\begin{flushleft}
+	\underline{\textbf{Descripción atributos:}}\\
+	
+	\vspace{0.2cm}
+	
+	\textbf{LB}:Frecuencia cardíaca fetal basal (latidos por minuto). Tiene media: 133.30, valor máximo: 160.00 y valor mínimo: 106.00\\
+	
+	
+	\vspace{0.2cm}
+	\textbf{AC}: Número de aceleraciones por segundo. Tiene media: 0.00, valor máximo: 0.02 y valor mínimo: 0.00 \\
+	\vspace{0.2cm}
+	
+	
+	\textbf{FM}:Número de movimientos fetales por segundo. Tiene media: 0.01, valor máximo: 0.48 y valor mínimo: 0.00 \\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{UC}: Número de contracciones uterinas por segundo.  Tiene media: 0.00, valor máximo: 0.01 y valor mínimo: 0.00\\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{DL}:Número de desaceleraciones leves por segundo. Tiene media: 0.00, valor máximo: 0.01 y valor mínimo: 0.00  \\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{DS}: Número de desaceleraciones severas por segundo. Hay un 99.67\% con valor 0.0 y un 0.33\% con un valor 0.001\\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{DP}:Número de desaceleraciones prolongadas por segundo.  Hay un 91.58\% con valor 0.0, 3.40\% con un valor 0.002, 1.13\% con un valor 0.003, 3.31\% con un valor 0.001, 0.43\% con un valor 0.004 y 0.14\% con un valor 0.005\\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{ASTV}: Porcentaje de tiempo con variabilidad anormal a corto plazo. Tiene media: 46.98, valor máximo: 87.00 y valor mínimo: 12.00 \\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{MSTV}: Valor medio de la variabilidad a corto plazo. Tiene media: 1.34, valor máximo: 7.00 y valor mínimo: 0.20 \\
+	\vspace{0.2cm}
+	
+	
+	\textbf{ALTV}: Porcentaje de tiempo con variabilidad anormal a largo plazo. Tiene media: 9.79, valor máximo: 91.00 y valor mínimo: 0.00 \\
+	\vspace{0.2cm}
+	
+	
+	\textbf{MLTV}: Valor medio de la variabilidad a largo plazo. Tiene media: 8.17, valor máximo: 50.70 y valor mínimo: 0.00\\
+	\vspace{0.2cm}
+	
+	
+	\textbf{Width}: Ancho del histograma de FCF. Tiene media: 70.51, valor máximo: 180.00 y valor mínimo: 3.00\\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{Min}: Mínimo del histograma de FCF. Tiene media: 93.57, valor máximo: 159.00 y valor mínimo: 50.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Max}: Máximo del histograma de FCF. Tiene media: 164.09, valor máximo: 238.00 y valor mínimo: 122.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Nmax}: Número de picos del histograma. Tiene media: 4.08, valor máximo: 18.00 y valor mínimo: 0.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Nzeros}: Número de ceros del histograma.  Hay un 76.26\% con valor 0, 17.30\% con un valor 1, 0.99\% con un valor 3, 5.11\% con un valor 2, 0.09\% con un valor 4, 0.05\% con un valor 10, 0.09\% con un valor 5, 0.05\% con un valor 8, y  0.05\% con un valor 7. \\
+	\vspace{0.2cm}
+	
+	\textbf{Mode}: Moda del histograma. Tiene media: 137.45, valor máximo: 187.00 y valor mínimo: 60.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Mean}: Promedio del histograma. Tiene media: 134.60, valor máximo: 182.00 y valor mínimo: 73.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Median}: Media del histograma. Tiene media: 138.08, valor máximo: 186.00 y valor mínimo: 77.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Variance}: Varianza del histograma. Tiene media: 18.89, valor máximo: 269.00 y valor mínimo: 0.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Tendency}: Tendencia del histograma.  Hay un 39.67\% con valor 1, 52.53\% con un valor 0 y 8.27\% con un valor -1\\
+	\vspace{0.2cm}
+	
+	\textbf{CLASS}:código de clasificación del estado fetal (N=normal; S=sospechoso; P=patológico).  Hay un 13.81\% con valor Sospechoso, 77.92\% con un valor Normal, 8.27\% con un valor Patológico.\\
+	\vspace{0.2cm}
+	
+\end{flushleft}
+
+\textbf{Función Objetivo Inicial}: Donde la variable salida es $CLASS$:
+
+\[
+f(x)  =
+\begin{cases}
+	\text{'Sospechoso'} & \text{si ??} \\
+	\text{'Normal'} & \text{si ??} \\
+	\text{'Patológico'} & \text{si ??} \\
+	
+\end{cases}
+\]
 
 \chapter{Descripción de los Métodos Utilizados}
 
