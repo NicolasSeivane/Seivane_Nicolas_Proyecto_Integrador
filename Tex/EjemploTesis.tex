@@ -28,6 +28,9 @@
 \usepackage{longtable}
 \usepackage{float}
 \usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{multirow}
 
 
 
@@ -70,6 +73,12 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 \pagestyle{fancy}
 
 \restylefloat{table}
+
+
+\definecolor{TPcolor}{HTML}{A9D18E} % Verde claro para TP
+\definecolor{TNcolor}{HTML}{D9EAD3} % Verde muy claro para TN
+\definecolor{FPcolor}{HTML}{F4CCCC} % Rojo muy claro para FP
+\definecolor{FNcolor}{HTML}{E06666} % Rojo claro para FN
 
 \title{Comparación de Técnicas de Aprendizaje
 	Automático Supervisado}
@@ -411,9 +420,73 @@ f(x)  =
 \end{cases}
 \]
 
+
+
+\chapter{Métricas de Rendimiento Utilizadas}
+
+\section{Introducción}
+
+Dentro del objetivo de este trabajo es evaluar el desempeño calificador de cada modelo de \textit{Machine Learning}. Para alcanzar este objetivo, se utilizaran \textbf{métricas de rendimiento} que permiten cuantificar la capacidad del algoritmo de clasificar.
+
+\textbf{La importancia de las métricas} se ubica en que el objetivo central de estos algoritmos no es simplemente obtener un buen rendimiento en los datos utilizados para construir el modelo, sino en su \textbf{capacidad de generalización}, su habilidad para funcionar correctamente con entradas nuevas y previamente no observadas (no utilizadas en el entrenamiento).
+
+Para la obtención de las métricas y entrenamiento de algoritmo se utilizara la estrategia de \textbf{Validación Cruzada $k$-fold}, donde el conjunto de datos se divide en $k$ grupos (o pliegues, en una traducción más fiel) del mismo tamaño, donde en cada iteración un grupo $k$ es utilizado para entrenar y el resto para evaluar, repitiéndose el proceso $k$ veces, donde un grupo $k_i$ es utilizado solo una vez para entrenar. El valor final estimado de la métrica es el promedio de los valores obtenidos de cada grupo.   
+
+$$\hat{M} = \frac{1}{k} \sum_{i=1}^{k} M_i$$
+
+Donde:
+
+
+• $\hat{M}$ es el valor estimado de la métrica de evaluación.
+
+• $k$ es la cantidad de grupos en los que se dividió el conjunto de datos.
+
+• $M_i$ es el valor de la métrica de evaluación obtenido en el $i$-ésimo grupo utilizado como conjunto de prueba.
+
+Dentro de este trabajo no sólo se evaluaran distintos modelos, sino que se utilizaran distintos \textit{datasets} para lograrlos.
+
+\section{Métricas para caso Binario}
+
+\subsection{Matriz de Confusión}
+
+Una matriz de confusión es una forma simple de saber de que forma esta clasificando el algoritmo, donde una clase es considerada \textbf{positiva $P$} y la otra \textbf{negativa $N$}. La matriz de confusión clasifica las predicciones en:
+
+\begin{itemize}
+	\item \textbf{Verdaderos Positivos (TP):} Casos positivos clasificados correctamente.\\
+	\item \textbf{Verdaderos Negativos (TN):} Casos negativos clasificados correctamente.\\
+	\item \textbf{Falsos Positivos (FP):} Casos negativos clasificados incorrectamente como positivos.\\
+	\item \textbf{Falsos Negativos (FN):} Casos positivos clasificados incorrectamente como positivos. \\
+\end{itemize}
+
+
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.5} 
+	\begin{tabular}{|c|c|c|c|}
+		\cline{3-4}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{Predicción}} \\
+		\cline{3-4}
+		\multicolumn{2}{c|}{} & \textbf{Positivo} & \textbf{Negativo} \\
+		\hline
+		\multirow{2}{*}{\textbf{Verdad}} & \textbf{Positivo} & \cellcolor{TPcolor} \textbf{Verdadero Positivo (TP)} & \cellcolor{FNcolor} \textbf{Falso Negativo (FN)} \\
+		\cline{2-4}
+		& \textbf{Negativo} & \cellcolor{FNcolor} \textbf{Falso Positivo (FP)} & \cellcolor{TPcolor} \textbf{Verdadero Negativo (TN)} \\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+
+
+
+
 \chapter{Descripción de los Métodos Utilizados}
 
-Describir los métodos utilizados, si corresponde. 
+
+
+
+
+
 
 {\color{blue}
 \section{Regresión Logística}
@@ -429,7 +502,7 @@ $\mathcal{C} C$}
 
 \chapter{Resultados}
 
-Mostrr los resultados obtenidos utilizando gráficos, tablas, figuras, etc
+Mostrar los resultados obtenidos utilizando gráficos, tablas, figuras, etc
 
 \section{Introducción}
 Primera aproximación a resultados.
