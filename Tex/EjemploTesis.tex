@@ -443,6 +443,7 @@ Donde:
 
 • $M_i$ es el valor de la métrica de evaluación obtenido en el $i$-ésimo grupo utilizado como conjunto de prueba.
 
+
 Dentro de este trabajo no sólo se evaluaran distintos modelos, sino que se utilizaran distintos \textit{datasets} para lograrlos.
 
 \section{Métricas para caso Binario}
@@ -474,6 +475,188 @@ Una matriz de confusión es una forma simple de saber de que forma esta clasific
 		\hline
 	\end{tabular}
 \end{center}
+
+\subsection{\textit{Accuracy}}
+
+El \textit{Accuracy} es la proporción de instancias clasificadas correctamente, es una medida "ingenua" que puede ser engañosa si existe un gran desbalance entre clases.
+
+En términos de la Matriz de Confusión:
+
+$$\text{Accuracy} = \frac{TP + TN}{TP + FP + TN + FN} = \frac{TP + TN}{\text{Total}}$$
+
+En términos del conjunto de predicciones y valores verdaderos:
+
+$$\texttt{accuracy}(y, \hat{y}) = \frac{1}{n_\text{samples}} \sum_{i=0}^{n_\text{samples}-1} 1(\hat{y}_i = y_i) $$
+
+Donde:
+
+• $n_{\text{samples}}$: Representa la cantidad total de ejemplos en la muestra
+
+•  $\hat{y}_i$ y $y_i$: $\hat{y}_i$ es el valor predicho del $i$-ésimo ejemplo, y $y_i$ es el valor verdadero correspondiente
+
+por lo tanto, calcula:
+
+$$\text{Accuracy} = \frac{\text{Número de predicciones correctas}}{\text{Número total de muestras}}$$
+
+\subsection{\textit{Precision}}
+
+El \textit{Precision} mide la probabilidad de que la predicción positiva del clasificador sea correcta.
+
+En términos de la Matriz de Confusión:
+
+$$ \text{Precision} = \frac{TP}{TP + FP} $$
+
+\subsection{\textit{Recall}}
+
+El \textit{Recall} o también conocido como Sensibilidad o Tasa de Verdaderos Negativos (TPR). Mide la probabilidad de que el clasificador detecte un caso positivo cuando en verdad lo es.
+
+En términos de la Matriz de Confusión:
+
+$$ \text{Recall} = TPR = \frac{TP}{TP + FN} = \frac{TP}{P} $$
+
+\subsection{\textit{F-measure}}
+
+El \textit{F-measure} es la media armónica ponderada de \textit{precision} y \textit{recall}. La versión más común es el \textbf{F1-score}, donde el parámetro de ponderación $\beta$ es igual a 1. Un clasificador perfecto tiene un valor $F1 = 1$.
+
+
+Fórmula General ($F_{\beta}$):
+
+$$F_{\beta} = \frac{(1 + \beta^2) \text{precision} \times \text{recall}}{\beta^2 \text{precision} + \text{recall}}$$
+
+Fórmula del F1-score ($\beta=1$) en términos de Precision y Recall: 
+
+$$F1 = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}$$
+
+En términos de la Matriz de Confusión:
+
+$$ F1 = \frac{2TP}{2TP + FP + FN} $$
+
+\subsection{\textit{Recall}}
+
+El \textit{Recall} o también conocido como Sensibilidad o Tasa de Verdaderos Negativos (TPR). Mide la probabilidad de que el clasificador detecte un caso positivo cuando en verdad lo es.
+
+En términos de la Matriz de Confusión:
+
+$$ \text{Recall} = TPR = \frac{TP}{TP + FN} = \frac{TP}{P} $$
+
+\subsection{\textit{Área Bajo la Curva ROC (ROC AUC)}}
+
+La métrica \textit{ROC AUC} es un valor que resume la capacidad de un clasificador para distinguir entre clases.
+
+\textbf{La Curva ROC} es un gráfico que ilustra el rendimiento de un clasificador binario a media que se varia su umbral de discriminación Se crea graficando la \textbf{Tasa de Verdaderos Positivos (TPR)} versus la \textbf{Tasa de Falsos Positivos (FPR)} en varios umbrales.
+
+Ejes utlizados para el gráfico:
+
+• \textbf{Eje Y:} TPR
+
+• \textbf{Eje X:} FPR
+
+El \textbf{AUC} mide justamente el área debajo de la Curva ROC. El AUC se utiliza para comparar el desempeño de diferentes modelos de clasificación.
+
+Interpretación de valores:
+
+• Un clasificador ideal se ubica en el punto $(0, 1)$, donde $TPR=1$ y $FPR=0$, lo que resulta en un \textbf{$AUC = 1$} 
+
+• Un clasificador aleatorio se sitúa sobre la línea $TPR = FPR$, lo que resulta en un \textbf{$AUC = 0.5$}
+
+•  Un clasificador se considera razonable si \textbf{ $0.5 < AUC \leq 1$}
+
+
+
+\section{Métricas para caso Multiclase}
+
+En este caso se utiliza el método \textit{"weighted"}, el cual computa el desequilibrio de clases calculando el promedio de métricas binarias en las que la puntuación de cada clase se pondera según su presencia en la muestra de datos reales.
+
+La métrica ponderada por la presencia de la clase, $\text{M}_{\text{weighted}}$, se calcula como el promedio de la métrica por clase $\text{M}_l$, donde cada contribución es ponderada por el tamaño de la clase $|y_l|$:
+
+
+$$\hat{M}_{\text{weighted}} = \frac{1}{\sum{l \in L} |y_l|} \sum_{l \in L} |y_l| \cdot \text{M}_l$$
+
+Donde:
+
+• $\hat{M}_{\text{weighted}}$ es el valor estimado de la métrica promedio ponderada.
+
+• $L$ es el conjunto de etiquetas o clases.
+
+• $|y_l|$ es el soporte o cantidad de muestras verdaderas que tienen la etiqueta $l$.
+
+• $\sum_{l \in L} |y_l|$ representa el número total de pares (muestra, etiqueta) verdaderos en el conjunto de datos.
+
+• $\text{M}l$ es el valor de la métrica binaria (como Precisión,  o $F{\beta}$-score) calculado para la clase individual $l$
+
+\subsection{Matriz de Confusión (Multiclase)}
+
+La matriz de confusión multiclase es una matriz cuadrada de tamaño $L \times L$, donde $L$ es el número de clases. Cada celda $C_{ij}$ representa la cantidad de muestras verdaderamente pertenecientes a la clase $i$ que fueron clasificadas como clase $j$.
+
+Para cada clase $l$ se definen los valores:
+
+\begin{align*} TP_l &= C_{ll} \ FP_l &= \sum_{i \neq l} C_{il} \ FN_l &= \sum_{j \neq l} C_{lj} \ TN_l &= N - TP_l - FP_l - FN_l \end{align*}
+
+
+\subsection{\textit{Precision}}
+
+La \textit{Precision} por clase $l$ mide la proporción de muestras clasificadas como positivas que realmente pertenecen a la clase $l$:
+
+En términos de la Matriz de Confusión:
+
+
+$$\text{Precision}_l = \frac{TP_l}{TP_l + FP_l}$$
+
+\subsection{\textit{Recall}}
+
+El \textit{Recall} por clase $l$ mide la proporción de muestras verdaderamente positivas de la clase $l$ que fueron correctamente identificadas:
+
+En términos de la Matriz de Confusión:
+
+$$ \text{Recall}_l = \frac{TP_l}{TP_l + FN_l} $$
+
+\subsection{\textit{F-measure}}
+
+El \textit{F-measure} es la media armónica ponderada de \textit{precision} y \textit{recall}. La versión más común es el \textbf{F1-score}, donde el parámetro de ponderación $\beta$ es igual a 1. Un clasificador perfecto tiene un valor $F1 = 1$.
+
+
+Fórmula del F1-score ($\beta=1$) en términos de Precision y Recall: 
+
+$$F1 = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}$$
+
+El valor global ponderado se obtiene aplicando la fórmula de $M_{\text{weighted}}$ sobre los $F_{1,l}$:
+
+$$ F_{1,\text{weighted}} = \sum_{l \in L} w_l \, F_{1,l}, \quad 
+\text{con } w_l = \frac{n_l}{\sum_{i \in L} n_i} $$
+
+
+\subsection{\textit{Área Bajo la Curva ROC (ROC AUC)}}
+
+Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoque \textbf{One-vs-Rest (OVR)}:
+
+\begin{itemize}
+	\item Para cada clase $l$, se considera la clase $l$ como positiva y el resto como negativas.
+	\item Se calcula el AUC correspondiente ($\text{AUC}_l$) sobre la curva ROC de esa clasificación binaria.
+	\item Finalmente, se obtiene un promedio ponderado por el soporte de cada clase:
+\end{itemize}
+
+$$ \text{AUC}_{\text{OVR, weighted}} = \sum_{l \in L} w_l \, \text{AUC}_l $$
+
+donde:
+
+$$ w_l = \frac{n_l}{\sum_{i \in L} n_i}  $$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
