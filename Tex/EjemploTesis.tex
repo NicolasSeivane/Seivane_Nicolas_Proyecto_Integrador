@@ -590,8 +590,34 @@ La matriz de confusión multiclase es una matriz cuadrada de tamaño $L \times L
 
 Para cada clase $l$ se definen los valores:
 
-\begin{align*} TP_l &= C_{ll} \ FP_l &= \sum_{i \neq l} C_{il} \ FN_l &= \sum_{j \neq l} C_{lj} \ TN_l &= N - TP_l - FP_l - FN_l \end{align*}
 
+
+\begin{itemize}
+	\item $TP_l = C_{ll}$ 
+	\item $FP_l = \sum_{i \neq l} C_{il}$
+	\item $FN_l = \sum_{j \neq l} C_{lj}$
+	\item $TN_l = N - TP_l - FP_l - FN_l$
+\end{itemize}
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{4}{c|}{\textbf{Predicción}} \\
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \textbf{Clase $C_1$} & \textbf{Clase $C_2$} & \textbf{$\cdots$} & \textbf{Clase $C_l$} \\
+		\hline
+		\multirow{4}{*}{\textbf{Verdad}} 
+		& \textbf{Clase $C_1$} & \cellcolor{TPcolor} TN$_l$ & \cellcolor{TPcolor} $\cdots$ & \cellcolor{TPcolor} TN$_l$ & \cellcolor{FNcolor} FP$_l$ \\
+		\cline{2-6}
+		& \textbf{Clase $C_2$} & \cellcolor{TPcolor} TN$_l$ & \cellcolor{TPcolor} TN$_l$ & \cellcolor{TPcolor} $\cdots$ & \cellcolor{FNcolor} FP$_l$ \\
+		\cline{2-6}
+		& $\vdots$ & \cellcolor{TPcolor} $\vdots$ & \cellcolor{TPcolor} $\vdots$ & \cellcolor{TPcolor} $\ddots$ & \cellcolor{FNcolor} $\vdots$ \\
+		\cline{2-6}
+		& \textbf{Clase $C_l$} & \cellcolor{FNcolor} FN$_l$ & \cellcolor{FNcolor} $\cdots$ & \cellcolor{FNcolor} FN$_l$ & \cellcolor{TPcolor} TP$_l$ \\
+		\hline
+	\end{tabular}
+\end{center}
 
 \subsection{\textit{Precision}}
 
@@ -668,10 +694,6 @@ $$ w_l = \frac{n_l}{\sum_{i \in L} n_i}  $$
 
 
 
-
-
-
-{\color{blue}
 \section{Regresión Logística}
 El modelo de Regresión Logística (LR, por su equivalente en inglés \emph{Logistic Regresion}).....
 
@@ -679,7 +701,20 @@ Se consideraron los siguientes valores para los hiperparámetros....
 
 El mejor rendimiento se obtuvo con... Notamos este modelo como $\text{RL}^{\text{opt}}$.
 
-$\mathcal{C} C$} 
+$\mathcal{C} C$
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
