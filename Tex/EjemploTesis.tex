@@ -119,16 +119,17 @@ Se realiza este informe de registros, atributos y métricas relevantes luego de 
 \subsection{Dataset Binario: Insuficiencia  Cardíaca Predicción}
 
 \vspace{0.2cm}
-\begin{flushleft}
+%\begin{flushleft}
 	\textbf{Titulo Original}:  Heart Failure Prediction Dataset \\
-	\textbf{Citación}: fedesoriano. (September 2021). Heart Failure Prediction Dataset. Retrieved [Date Retrieved] from \underline{\href{https://www.kaggle.com/fedesoriano/heart-failure-prediction}{https://www.kaggle.com/fedesoriano/heart-failure-prediction}}
+	\textbf{Citación}: fedesoriano. (September 2021). Heart Failure Prediction Dataset. Retrieved [Date Retrieved] from \href{https://www.kaggle.com/fedesoriano/heart-failure-prediction}{https://www.kaggle.com/fedesoriano/heart-failure-prediction}
 	
-\end{flushleft}
+%\end{flushleft}
 
-\begin{flushleft}
+%\begin{flushleft}
+\noindent
 	\textbf{Descripción}: Enfermedades cardiovasculares son la causa numero uno de muerte globalmente, tomando un estimado de 17.9 millones de vidas cada año, que son aproximadamente 31\% de todas las muertes globales.\\
 	\vspace{0.2cm}
-	Este dataset fue creado mediante la combinación de distintos dataset disponibles independientes pero no combinados anteriormente. 5 datasets de información cardíaca están combinados en 11 atributos comunes logrando el dataset mas grande de informacion de enfermedades cardiovasculares utilizado para investigación. Los 5 datasets utilizados para la creación de este son:\\
+	Este dataset fue creado mediante la combinación de distintos datasets disponibles independientes pero no combinados anteriormente. Cinco datasets de información cardíaca están combinados en 11 atributos comunes logrando el dataset mas grande de informacion de enfermedades cardiovasculares utilizado para investigación. Los 5 datasets utilizados para la creación de este son:\\
 	\begin{itemize}
 		\item Cleveland: 303 observaciones
 		\item Hungarian: 294 observaciones
@@ -138,7 +139,7 @@ Se realiza este informe de registros, atributos y métricas relevantes luego de 
 	\end{itemize}
 	
 	
-\end{flushleft}
+%\end{flushleft}
 
 
 \begin{flushleft}
@@ -258,11 +259,13 @@ f(x)  =
 	
 \end{flushleft}
 
-\begin{flushleft}
+
 	Los atributos son (Algunos son numéricos en el dataset pero son codificaciones de categóricos):
 	
 	
-	\vspace{0.2cm}
+\begin{table}
+\caption{Tipo de atributo del conjunto.}
+\label{tab:tablaej}
 	\centering
 	\begin{tabular}{|l|c|}
 		\hline
@@ -313,9 +316,9 @@ f(x)  =
 		NSP                 & Categórico (string) \\
 		\hline
 	\end{tabular}
-\end{flushleft}
+\end{table}
 
-
+En la Tabla~\ref{tab:tablaej} se muestran los tipos de las siguientes variables: 
 \begin{flushleft}
 	\underline{\textbf{Descripción atributos:}}\\
 	
@@ -430,18 +433,12 @@ Dentro del objetivo de este trabajo es evaluar el desempeño calificador de cada
 
 \textbf{La importancia de las métricas} se ubica en que el objetivo central de estos algoritmos no es simplemente obtener un buen rendimiento en los datos utilizados para construir el modelo, sino en su \textbf{capacidad de generalización}, su habilidad para funcionar correctamente con entradas nuevas y previamente no observadas (no utilizadas en el entrenamiento).
 
-Para la obtención de las métricas y entrenamiento de algoritmo se utilizara la estrategia de \textbf{Validación Cruzada $k$-fold}, donde el conjunto de datos se divide en $k$ grupos (o pliegues, en una traducción más fiel) del mismo tamaño, donde en cada iteración un grupo $k$ es utilizado para entrenar y el resto para evaluar, repitiéndose el proceso $k$ veces, donde un grupo $k_i$ es utilizado solo una vez para entrenar. El valor final estimado de la métrica es el promedio de los valores obtenidos de cada grupo.   
-
-$$\hat{M} = \frac{1}{k} \sum_{i=1}^{k} M_i$$
-
-Donde:
-
-
-• $\hat{M}$ es el valor estimado de la métrica de evaluación.
-
-• $k$ es la cantidad de grupos en los que se dividió el conjunto de datos.
-
-• $M_i$ es el valor de la métrica de evaluación obtenido en el $i$-ésimo grupo utilizado como conjunto de prueba.
+Para la obtención de las métricas y entrenamiento de algoritmo se utilizara la estrategia de \textbf{Validación Cruzada $k$-fold}, donde el conjunto de datos se divide en $k$ grupos (o pliegues, en una traducción más fiel) del mismo tamaño, donde en cada iteración un grupo $k$ es utilizado para entrenar y el resto para evaluar, repitiéndose el proceso $k$ veces, donde un grupo $k_i$ es utilizado solo una vez para entrenar. El valor final estimado de la métrica, denotado por $\widehat{M}$,  es el promedio de los valores obtenidos de cada grupo, es decir,
+\begin{equation}
+\label{eq:metrica}
+\hat{M} = \frac{1}{k} \sum_{i=1}^{k} M_i,
+\end{equation}
+donde $M_i$ es el valor de la métrica de evaluación obtenido en el $i$-ésimo grupo utilizado como conjunto de prueba, para $i=1,2, \dots, k$.
 
 
 Dentro de este trabajo no sólo se evaluaran distintos modelos, sino que se utilizaran distintos \textit{datasets} para lograrlos.
