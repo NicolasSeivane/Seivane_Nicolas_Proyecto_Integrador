@@ -695,15 +695,55 @@ $$ w_l = \frac{n_l}{\sum_{i \in L} n_i}  $$
 
 
 \section{Regresión Logística}
-El modelo de Regresión Logística (LR, por su equivalente en inglés \emph{Logistic Regresion}).....
+El modelo de Regresión Logística (LR, por su equivalente en inglés \emph{Logistic Regresion}) es una técnica en el análisis de datos que establece relaciones entre variables y las clases reales a las cuales pertenecen los registros, para luego predecir a que clase es más probable de pertenecer un registro dado. La respuesta predicha es una probabilidad, a diferencia a de la regresión lineal múltiple, siendo el caso que ambos son modelos lineales. Como un modelo de regresión lineal, busca la optimización de los coeficientes de regresión.
 
-Se consideraron los siguientes valores para los hiperparámetros....
+El modelo se basa en el supuesto que modelar la siguiente probabilidad condicional  $P(y_i = 1|\mathbf{x}_i)$. Este mismo se basa en la función $logit()$, que es el logaritmo de la \textit{odss} $\text{odss} = p/(1-p) $. La función de probabilidad para una observación $i$ dado su vector de características $\mathbf{x}i = (x{i1}, x_{i2}, \dots, x_{ik})$ es:
 
-El mejor rendimiento se obtuvo con... Notamos este modelo como $\text{RL}^{\text{opt}}$.
+%\[
+%p(\mathbf{x}_i) = P\Big(y_i = 1 \;\big|\; \mathbf{x}_i\Big) 
+%= \frac{\exp\Big(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}\Big)}
+%{1 + \exp\Big(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}\Big)}
+%\] 
 
-$\mathcal{C} C$
+La inversa de esta función, la función $logit()$, relaciona el logaritmo de las \textit{odss} con un modelo de regresión lineal:
+
+%$$ \ln\left[\frac{p(\mathbf{x}i)}{1-p(\mathbf{x}{j=1}^k \beta_j x{ij} $$
+	
+	
+Los coeficientes de regresión $\beta_0, \beta_1, \dots, \beta_k$ se estiman generalmente mediante el método de Máxima Verosimilitud (MLE). Para observaciones independientes e idénticamente distribuidas, la función de $Log-Verosimilitud$ a maximizar es:
 
 
+%$$ \ell(\beta_0, \beta_1, \dots, \beta_k) = \sum_{i=1}^n \left{y_i \ln[p(\mathbf{x}_i)] + (1-y_i) %\ln[1-p(\mathbf{x}_i)]\right} $$
+
+La solución para el estimador de máxima verosimilitud no tiene una expresión cerrada, por lo que se recurre a métodos numéricos para encontrar los valores que maximizan la log-verosimilitud.
+
+\subsection{Hiperparámetros}
+
+\begin{itemize}
+
+\item \textbf{Parámetro de Regularización (C):} Este valor controla la complejidad del modelo, es un factor de ponderación. Busca reducir el error de generalización, evitando errores de $overfitting$.
+
+\item \textbf{Penalización (\textit{penalty}):} En un término regulador ($\Omega$) que se agrega a la función de coste original ($J$) para crear una nueva función ajustada. Es utilizado para controlar la capacidad del modelo y reducir su error de generalización.\
+
+\textbf{L1:} $ \text{Minimizar: } \tilde{J}{L1}(\mathbf{\beta}) = J(\mathbf{\beta}) + \alpha \sum{j=1}^k |\beta_j| $   \
+
+\textbf{L2:} $ \text{Minimizar: } \tilde{J}{L2}(\mathbf{\beta}) = J(\mathbf{\beta}) + \frac{1}{2} \alpha \sum{j=1}^k \beta_j^2 $     \
+
+\textbf{elasticnet}: $ \text{Minimizar: } \tilde{J}{EN}(\mathbf{\beta}) = J(\mathbf{\beta}) + \alpha \left[ \rho \sum{j=1}^k |\beta_j| + \frac{1}{2}(1-\rho) \sum_{j=1}^k \beta_j^2 \right] $
+
+
+\item \textbf{Algoritmo de Optimización (\textit{solver}):} La tarea del solver es minimizar la función de coste regularizada ($\tilde{J}(\mathbf{\beta})$) para obtener el conjunto óptimo de coeficientes $\mathbf{\beta}^*$:\
+
+\textbf{\textit{newton-cg}:}  $ \mathbf{\beta}^{(t+1)} \leftarrow \mathbf{\beta}^{(t)} - \mathbf{H}^{-1} \nabla_{\mathbf{\beta}} \tilde{J}(\mathbf{\beta}^{(t)}) \quad [\text{CH}, 143] $\
+
+\textbf{\textit{bfgs}:}  $ \mathbf{\beta}^* = \mathbf{\beta}^{(t)} - \mathbf{H}^{-1} \nabla_{\mathbf{\beta}} \tilde{J}(\mathbf{\beta}^{(t)}) \quad [\text{basado en } 143] $\
+
+\textbf{\textit{saga}:}  ...%% No encontre en mis libros
+
+
+\item \textbf{Estrategia Multiclase (\textit{multi\_class}):} La Regresión Logística está diseñada fundamentalmente para problemas de clasificación binaria (dos clases, 0 o 1). Cuando se tienen más de dos clases, se requieren estrategias de extensión. %% No se si es necesario
+
+\end{itemize}
 
 
 
