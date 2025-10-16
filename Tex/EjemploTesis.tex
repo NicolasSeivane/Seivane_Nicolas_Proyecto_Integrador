@@ -2,6 +2,7 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
 %\usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
@@ -31,6 +32,9 @@
 \usepackage{xcolor}
 \usepackage{colortbl}
 \usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{etoolbox}
 
 
 
@@ -53,6 +57,14 @@ breakatwhitespace=false,    % sets if automatic breaks should only happen at whi
 escapeinside={\%*}{*)}          % if you want to add a comment within your code
 }
 
+
+% Macro personalizada para poner texto descriptivo bajo las ecuaciones
+\newcommand{\eqcaption}[2]{
+	\vspace{-0.6em} % ajusta espacio vertical si queda muy separado
+	\begin{center}
+		\small\textit{\textbf{Ecuación \ref{#1}.} #2}
+	\end{center}
+}
 \usetikzlibrary{arrows}
 
 \captionsetup[subfigure]{subrefformat=simple,labelformat=simple}
@@ -81,19 +93,42 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 \definecolor{FNcolor}{HTML}{E06666} % Rojo claro para FN
 
 \title{Comparación de Técnicas de Aprendizaje
-	Automático Supervisado}
-\author{Autor: Nicolás Seivane \\ Tutor: Andrea Rey}
+	Automático Supervisado Aplicados a Datos Cardiólogos}
+\author{Autor: Nicolás Seivane \\ Tutora: Andrea Rey}
 \date{Fecha \\ Universidad Nacional de Hurlingham}
 \titlepic{\vspace{12cm}\includegraphics[width=0.15\textwidth]{logo.jpg}}
 
+\usepackage{titlesec}
+
+% Chapters justificados
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\justifying} % estilo del capítulo
+{\chaptername\ \thechapter}{20pt}{\Huge}
+
+% Sections justificados
+\titleformat{\section}
+{\normalfont\Large\bfseries\justifying} % estilo de la sección
+{\thesection}{1em}{}
+
+% Subsections justificados
+\titleformat{\subsection}
+{\normalfont\large\bfseries\justifying}
+{\thesubsection}{1em}{}
+
 \begin{document}
+
+
 
 \maketitle
 
 
-\tableofcontents
-\listoffigures
-\listoftables
+{\justifying
+	\tableofcontents
+	\listoffigures
+	\listoftables
+}
+
+
 
 \chapter*{Resumen}
 
@@ -140,85 +175,99 @@ Se realiza este informe de registros, atributos y métricas relevantes luego de 
 	
 	
 %\end{flushleft}
-
-
-\begin{flushleft}
+\noindent
 	\textbf{Cantidad de registros}: 918\\
-	\textbf{Cantidad de registros valiosos}: 743\\
 	\textbf{Cantidad de atributos}: 11\\
 	\textbf{Atributos Categóricos}: 5\\
 	\textbf{Atributos Numéricos}: 6\\
 	
-\end{flushleft}
-
-\begin{flushleft}
 	Los atributos son (Algunos son numéricos en el dataset pero son codificaciones de categóricos):
 	
 	
 	\vspace{0.2cm}
-	\centering
-	\begin{tabular}{|l|c|c|c|}
-		\hline
-		\textbf{Atributo} & \textbf{Tipo de dato} & \textbf{¿Esta codificado?} & \textbf{Unidad} \\
-		\hline
-		Age        & Numérico (int) & No & Años \\
-		\hline
-		Sex             & Categorico (string) & No & -\\
-		\hline
-		ChestPainType               & Categorico (string) & No & -\\
-		\hline
-		RestingBP     & Numérico (int) & No & mm Hg\\
-		\hline
-		Cholesterol    & Numérico (int) & No & mm/dl\\
-		\hline
-		FastingBS                 & Numérico (int) & Si & "mg/dl"\\
-		\hline
-		RestingECG                      & Categorico (string) & No & -\\
-		\hline
-		MaxHR    & Numérico (int) & No & -\\
-		\hline
-		ExerciseAngina               & Categorico (string) & No & -\\
-		\hline
-		Oldpeak                 & Numérico (float) & No & ST en depresión\\
-		\hline
-		$ST\_Slope$                 & Categorico (string) & No & -\\
-		\hline
-		HeartDisease                 & Numérico (int)     & Si & -\\
-		\hline
-		\hline
-	\end{tabular}
-\end{flushleft}
+	
+	\begin{table}
+		\caption{Tipo de atributo del conjunto Binario.} 
+		\centering
+		\label{tab:tablebinario}
+			\begin{tabular}{|l|c|c|c|}
+			\hline
+			\textbf{Atributo} & \textbf{Tipo de dato} & \textbf{¿Esta codificado?} & \textbf{Unidad} \\
+			\hline
+			Age        & Numérico (int) & No & Años \\
+			\hline
+			Sex             & Categorico (string) & No & -\\
+			\hline
+			ChestPainType               & Categorico (string) & No & -\\
+			\hline
+			RestingBP     & Numérico (int) & No & mm Hg\\
+			\hline
+			Cholesterol    & Numérico (int) & No & mm/dl\\
+			\hline
+			FastingBS                 & Numérico (int) & Si & "mg/dl"\\
+			\hline
+			RestingECG                      & Categorico (string) & No & -\\
+			\hline
+			MaxHR    & Numérico (int) & No & -\\
+			\hline
+			ExerciseAngina               & Categorico (string) & No & -\\
+			\hline
+			Oldpeak                 & Numérico (float) & No & ST en depresión\\
+			\hline
+			$ST\_Slope$                 & Categorico (string) & No & -\\
+			\hline
+			HeartDisease                 & Numérico (int)     & Si & -\\
+			\hline
+			\hline
+		\end{tabular}
+				
+	\end{table}
 
-\begin{flushleft}
+	
+	
 	
 	\underline{\textbf{Descripción atributos:}}\\
 	\vspace{0.2cm}
 	
+	\noindent
+	
 	\textbf{Age}: Edad de los pacientes. Tiene media: 53 años, valor máximo: 77 y valor mínimo: 28, con proporciones de edad bastante bien distribuidas, siendo la menor de 0.11\% para algunas edades y la mayor de 4.14\% para otras edades, teniendo otras distribuciones entre estos dos rangos\\
 	\vspace{0.2cm}
+	
+	\noindent
+	
 	\textbf{Sex}: Sexo de los pacientes; hay 78.98\% M (masculinos) y  hay 21.02\%  F (femeninos)\\
 	\vspace{0.2cm}
+	\noindent
 	\textbf{ChestPainType}: Tipo del dolor en el pecho;    Hay 18.85\% ATA, hay 22.11\% NAP, hay 54.03\% ASY, hay 5.01\% TA. [TA: Typical Angina, ATA: Atypical Angina, NAP: Non-Anginal Pain, ASY: Asymptomatic]\\
 	\vspace{0.2cm}
+	\noindent
 	\textbf{RestingBP}: Presión sanguínea en reposo, donde hay 51.09\% de mujeres, codificadas en 1 y 48.91\% de hombres, codificados en 0.\\
 	\vspace{0.2cm}
+	\noindent
 	\textbf{Cholesterol}: Colesterol serico, la medida total de colesterol en sangre; tiene media: 199.02, valor máximo: 603.00 y valor mínimo: 0.00. Miligramos por decilitro \\
 	\vspace{0.2cm}
+	\noindent
 	\textbf{FastingBS}: Glucosa en sangre en ayuno; hay 76.66\% Glucosa en sangre < 120 mg/dl codificado en 0 y hay 23.34\% Glucosa en sangre > 120 mg/dl codificado en 1\\
 	\vspace{0.2cm}
+	\noindent
 	\textbf{RestingECG}: Resultados de electrocardiogramas en reposo; hay 60.09\% codificado en Normal, hay 19.41\% codificado en ST y hay 20.50\% codificado en LVH  [Normal: Normal, ST: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV), LVH: showing probable or definite left ventricular hypertrophy by Estes' criteria] \\
 	\vspace{0.2cm}
+	\noindent
 	\textbf{MaxHR}: Máximo ritmo cardíaco registrado, tiene media: 136.79, valor maximo: 202.00 y valor minimo: 60.00 \\
 	\vspace{0.2cm}
+	\noindent
 	\textbf{ExerciseAngina}:Angina producido por ejercicio, dolor en el pecho; hay 59.54\% No codificado en N y hay 40.46\% Si codificado en Y \\
 	\vspace{0.2cm}
+	\noindent
 	\textbf{Oldpeak}: Valor máximo de depresión del segmento ST (en milímetros) registrado en todas las derivaciones contiguas durante una prueba de esfuerzo. Forma parte del cálculo del riesgo de un paciente de isquemia o infarto de miocardio; valores más altos indican un mayor riesgo de enfermedad coronaria; tiene media: 0.90, valor maximo: 6.20 y valor minimo: -0.10 \\
 	\vspace{0.2cm}
+	\noindent
 	\textbf{ST\_Slope}: The slope of the peak exercise ST segment; hay 43.08\%, hay 50.05\% Flat y hay 6.87\% Down [Up: upsloping, Flat: flat, Down: downsloping]\\
 	\vspace{0.2cm}
+	\noindent
 	\textbf{HeartDisease}:Variable de salida de si posee una enfermedad cardíaca; hay 44.71\% No codificado en 0 y hay 55.29\% Si codificado en 1\\
 	
-\end{flushleft}
 
 \textbf{Función Objetivo Inicial}: Donde la variable salida es $HeartDisease$, no hay una variable que se use como condición:
 
@@ -231,40 +280,33 @@ f(x)  =
 \end{cases}
 \]
 
+
+
 \subsection{Dataset Multiclase: Cardiotocografía Predicción}
 
-\begin{flushleft}
+
 	\textbf{Titulo Original}: Cardiotocography\\
 	\textbf{Cita}: Campos, D. \& Bernardes, J. (2000). Cardiotocography [Dataset]. UCI Machine Learning Repository.  \underline{\href{https://doi.org/10.24432/C51S4N.}{https://doi.org/10.24432/C51S4N.}}\\
 	
-\end{flushleft}
 
-\begin{flushleft}
 	
 	\textbf{Descripción}: La cardiotocografía (CTG) es un registro continuo de la frecuencia cardíaca fetal que se obtiene mediante un transductor de ultrasonidos colocado en el abdomen materno. La CTG se utiliza ampliamente durante el embarazo como método para evaluar el bienestar fetal, sobre todo en embarazos con mayor riesgo de complicaciones.\\
 	\vspace{0.2cm}
 	Se procesaron automáticamente 2126 cardiotocogramas fetales (CTG) y se midieron sus características diagnósticas. Tres obstetras expertos clasificaron los CTG y se les asignó una etiqueta de clasificación consensuada. La clasificación se realizó tanto con respecto a un patrón morfológico (A, B, C...) como al estado fetal (N, S, P).\\
 	
-	
-	
-\end{flushleft}
-
-
-\begin{flushleft}
-	\textbf{Cantidad de registros}: 2126\\
-	\textbf{Cantidad de registros valiosos}: 2115\\
+	\noindent
+	\textbf{Cantidad de registros}: 2115\\
 	\textbf{Cantidad de atributos}: 21\\
 	\textbf{Atributos Categóricos}: 0\\
 	\textbf{Atributos Numéricos}: 21\\
 	
-\end{flushleft}
 
 
 	Los atributos son (Algunos son numéricos en el dataset pero son codificaciones de categóricos):
 	
 	
 \begin{table}
-\caption{Tipo de atributo del conjunto.}
+\caption{Tipo de atributo del conjunto Multiclae.}
 \label{tab:tablaej}
 	\centering
 	\begin{tabular}{|l|c|}
@@ -318,8 +360,10 @@ f(x)  =
 	\end{tabular}
 \end{table}
 
+
 En la Tabla~\ref{tab:tablaej} se muestran los tipos de las siguientes variables: 
-\begin{flushleft}
+
+
 	\underline{\textbf{Descripción atributos:}}\\
 	
 	\vspace{0.2cm}
@@ -409,7 +453,7 @@ En la Tabla~\ref{tab:tablaej} se muestran los tipos de las siguientes variables:
 	\textbf{CLASS}:código de clasificación del estado fetal (N=normal; S=sospechoso; P=patológico).  Hay un 13.81\% con valor Sospechoso, 77.92\% con un valor Normal, 8.27\% con un valor Patológico.\\
 	\vspace{0.2cm}
 	
-\end{flushleft}
+
 
 \textbf{Función Objetivo Inicial}: Donde la variable salida es $CLASS$:
 
@@ -692,59 +736,412 @@ $$ w_l = \frac{n_l}{\sum_{i \in L} n_i}  $$
 
 
 \section{Regresión Logística}
-El modelo de Regresión Logística (LR, por su equivalente en inglés \emph{Logistic Regresion}) es una técnica en el análisis de datos que establece relaciones entre variables y las clases reales a las cuales pertenecen los registros, para luego predecir a que clase es más probable de pertenecer un registro dado. La respuesta predicha es una probabilidad, a diferencia a de la regresión lineal múltiple, siendo el caso que ambos son modelos lineales. Como un modelo de regresión lineal, busca la optimización de los coeficientes de regresión.
 
-El modelo se basa en el supuesto que modelar la siguiente probabilidad condicional  $P(y_i = 1|\mathbf{x}_i)$. Este mismo se basa en la función $logit()$, que es el logaritmo de la \textit{odss} $\text{odss} = p/(1-p) $. La función de probabilidad para una observación $i$ dado su vector de características $\mathbf{x}i = (x{i1}, x_{i2}, \dots, x_{ik})$ es:
+El modelo de \textbf{Regresión Logística} (LR, por su equivalente en inglés \emph{Logistic Regression}) es una técnica del análisis de datos utilizada para establecer relaciones entre las variables predictoras y la clase a la cual pertenece cada registro. Posteriormente, el modelo permite predecir la probabilidad de que un nuevo registro pertenezca a una clase determinada.
 
-%\[
-%p(\mathbf{x}_i) = P\Big(y_i = 1 \;\big|\; \mathbf{x}_i\Big) 
-%= \frac{\exp\Big(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}\Big)}
-%{1 + \exp\Big(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}\Big)}
-%\] 
+A diferencia de la regresión lineal múltiple, la regresión logística predice una probabilidad (valor entre 0 y 1). Ambos modelos son lineales en sus parámetros, pero difieren en la naturaleza de la variable dependiente. El objetivo es estimar los coeficientes de regresión que maximizan la verosimilitud de los datos observados.
 
-La inversa de esta función, la función $logit()$, relaciona el logaritmo de las \textit{odss} con un modelo de regresión lineal:
+El modelo busca modelar la probabilidad condicional de que una observación pertenezca a la clase objetivo $y_{i}$:
 
-%$$ \ln\left[\frac{p(\mathbf{x}i)}{1-p(\mathbf{x}{j=1}^k \beta_j x{ij} $$
-	
-	
-Los coeficientes de regresión $\beta_0, \beta_1, \dots, \beta_k$ se estiman generalmente mediante el método de Máxima Verosimilitud (MLE). Para observaciones independientes e idénticamente distribuidas, la función de $Log-Verosimilitud$ a maximizar es:
+\begin{equation}
+	P(y_i = 1 \mid \mathbf{x}_i)
+	\label{eq:probabilidad_condicional}
+\end{equation}
+
+donde $\mathbf{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$.
+
+\subsection{Función de Probabilidad}
+
+La función logística define la probabilidad de pertenencia de $x_{i}$ a la clase $1$ como:
+
+\begin{equation}
+	p(\mathbf{x}_i) = P(y_i = 1 \mid \mathbf{x}_i) =
+	\frac{\exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
+	{1 + \exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
+	\label{eq:funcion_logistica}
+\end{equation}
+
+donde $\beta_0$ es el intercepto y $\beta_j$ los coeficientes asociados a cada predictor.
+
+\subsection{Función Logit}
+
+La función inversa del modelo logístico, denominada \textit{logit}, relaciona el logaritmo de las \emph{odds} con un modelo lineal, siendo \emph{odds} lo que se utiliza para analizar si la probabilidad de ocurrencia de un evento -caso/no caso- difiere o no en distintos grupos:
+
+\begin{equation}
+	\text{logit}(\textbf{antilogic}(x)) = x
+	\label{eq:logit}
+\end{equation}
 
 
-%$$ \ell(\beta_0, \beta_1, \dots, \beta_k) = \sum_{i=1}^n \left{y_i \ln[p(\mathbf{x}_i)] + (1-y_i) %\ln[1-p(\mathbf{x}_i)]\right} $$
+\begin{equation}
+	\text{odds} =
+	\frac{p}{1 - p} 
+	\label{eq:odds}
+\end{equation}
 
-La solución para el estimador de máxima verosimilitud no tiene una expresión cerrada, por lo que se recurre a métodos numéricos para encontrar los valores que maximizan la log-verosimilitud.
+
+\begin{equation}
+	\text{logit}(p(\mathbf{x}_i)) =
+	\ln \left( \frac{p(\mathbf{x}_i)}{1 - p(\mathbf{x}_i)} \right)
+	= \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}
+	\label{eq:funcion_logit}
+\end{equation}
+
+Esta transformación asegura que las probabilidades estén acotadas entre 0 y 1, mientras que la combinación lineal de predictores puede tomar cualquier valor real.
+
+\subsection{Estimación por Máxima Verosimilitud}
+
+Los coeficientes de regresión se estiman mediante el método de \textbf{Máxima Verosimilitud} (MLE).  
+La función de log-verosimilitud a maximizar es:
+
+\begin{equation}
+	\ell(\beta_0, \beta_1, \dots, \beta_k) =
+	\sum_{i=1}^{n} \left[
+	y_i \ln(p(\mathbf{x}_i)) +
+	(1 - y_i) \ln(1 - p(\mathbf{x}_i))
+	\right]
+	\label{eq:log_verosimilitud}
+\end{equation}
+
+La solución analítica no existe, por lo que se utilizan métodos numéricos iterativos para obtener los parámetros óptimos.
 
 \subsection{Hiperparámetros}
 
 \begin{itemize}
-
-\item \textbf{Parámetro de Regularización (C):} Este valor controla la complejidad del modelo, es un factor de ponderación. Busca reducir el error de generalización, evitando errores de $overfitting$.
-
-\item \textbf{Penalización (\textit{penalty}):} En un término regulador ($\Omega$) que se agrega a la función de coste original ($J$) para crear una nueva función ajustada. Es utilizado para controlar la capacidad del modelo y reducir su error de generalización.\
-
-\textbf{L1:} $ \text{Minimizar: } \tilde{J}{L1}(\mathbf{\beta}) = J(\mathbf{\beta}) + \alpha \sum{j=1}^k |\beta_j| $   \
-
-\textbf{L2:} $ \text{Minimizar: } \tilde{J}{L2}(\mathbf{\beta}) = J(\mathbf{\beta}) + \frac{1}{2} \alpha \sum{j=1}^k \beta_j^2 $     \
-
-\textbf{elasticnet}: $ \text{Minimizar: } \tilde{J}{EN}(\mathbf{\beta}) = J(\mathbf{\beta}) + \alpha \left[ \rho \sum{j=1}^k |\beta_j| + \frac{1}{2}(1-\rho) \sum_{j=1}^k \beta_j^2 \right] $
-
-
-\item \textbf{Algoritmo de Optimización (\textit{solver}):} La tarea del solver es minimizar la función de coste regularizada ($\tilde{J}(\mathbf{\beta})$) para obtener el conjunto óptimo de coeficientes $\mathbf{\beta}^*$:\
-
-\textbf{\textit{newton-cg}:}  $ \mathbf{\beta}^{(t+1)} \leftarrow \mathbf{\beta}^{(t)} - \mathbf{H}^{-1} \nabla_{\mathbf{\beta}} \tilde{J}(\mathbf{\beta}^{(t)}) \quad [\text{CH}, 143] $\
-
-\textbf{\textit{bfgs}:}  $ \mathbf{\beta}^* = \mathbf{\beta}^{(t)} - \mathbf{H}^{-1} \nabla_{\mathbf{\beta}} \tilde{J}(\mathbf{\beta}^{(t)}) \quad [\text{basado en } 143] $\
-
-\textbf{\textit{saga}:}  ...%% No encontre en mis libros
-
-
-\item \textbf{Estrategia Multiclase (\textit{multi\_class}):} La Regresión Logística está diseñada fundamentalmente para problemas de clasificación binaria (dos clases, 0 o 1). Cuando se tienen más de dos clases, se requieren estrategias de extensión. %% No se si es necesario
-
+	\item \textbf{Parámetro de Regularización ($C$):} Controla la complejidad del modelo. Valores pequeños de $C$ implican mayor regularización (menor sobreajuste), mientras que valores grandes permiten mayor flexibilidad del modelo.
+	
+	\item \textbf{Penalización (\textit{penalty}):} Es un término regulador ($\Omega$) que se suma a la función de coste original ($J$) para formar una función ajustada $\tilde{J}$. Controla la capacidad del modelo y reduce el error de generalización.
+	
+	\begin{equation}
+		\tilde{J}_{L1}(\boldsymbol{\beta}) =
+		J(\boldsymbol{\beta}) +
+		\alpha \sum_{j=1}^{k} |\beta_j|
+		\label{eq:l1_penalty}
+	\end{equation}
+	\eqcaption{eq:l1_penalty}{Regularización L1 (Lasso).}
+	
+	\begin{equation}
+		\tilde{J}_{L2}(\boldsymbol{\beta}) =
+		J(\boldsymbol{\beta}) +
+		\frac{1}{2}\alpha \sum_{j=1}^{k} \beta_j^2
+		\label{eq:l2_penalty}
+	\end{equation}
+	\eqcaption{eq:l2_penalty}{Regularización L2 (Ridge)}
+	
+	\begin{equation}
+		\tilde{J}_{EN}(\boldsymbol{\beta}) =
+		J(\boldsymbol{\beta}) +
+		\alpha \left[
+		\rho \sum_{j=1}^{k} |\beta_j| +
+		\frac{1 - \rho}{2} \sum_{j=1}^{k} \beta_j^2
+		\right]
+		\label{eq:elasticnet_penalty}
+	\end{equation}
+	\eqcaption{eq:elasticnet_penalty}{Regularización Elastic Net}
+	
+	\item \textbf{Algoritmo de Optimización (\textit{solver}):}  
+	El \textit{solver} es el algoritmo numérico encargado de minimizar la función de coste regularizada $\tilde{J}(\boldsymbol{\beta})$.
+	
+	\begin{itemize}
+		\begin{equation}
+			\boldsymbol{\beta}^{(t+1)} \leftarrow
+			\boldsymbol{\beta}^{(t)} -
+			\mathbf{H}^{-1}
+			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)})
+			\label{eq:newtoncg}
+		\end{equation}
+		\eqcaption{eq:newtoncg}{Método Newton-CG (basado en segunda derivada)}
+		
+		\begin{equation}
+			\boldsymbol{\beta}^{(t+1)} \leftarrow
+			\boldsymbol{\beta}^{(t)} -
+			\mathbf{B}^{-1}
+			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)})
+			\label{eq:bfgs}
+		\end{equation}
+		\eqcaption{eq:bfgs}{Método BFGS (quasi-Newton)}
+	\end{itemize}
+	
+	\item \textbf{Estrategia Multiclase (\textit{multi\_class}):}
+	La regresión logística está diseñada originalmente para clasificación binaria. Para extenderla a múltiples clases se emplean estrategias como:
+	\begin{itemize}
+		\item \textit{one-vs-rest} (OvR): Entrena un clasificador por clase.
+		\item \textit{multinomial}: Optimiza una única función de verosimilitud multinomial conjunta.
+	\end{itemize}
 \end{itemize}
 
+\section{Árboles de Decisión}
 
+El aprendizaje mediante \textbf{Árboles de Decisión}(RF, por su equivalente en inglés \emph{Random Forest}) es un método no paramétrico que utiliza divisiones jerárquicas sobre los atributos de los datos, construyendo reglas de decisión del tipo \textit{if-else} para predecir el valor de una variable objetivo.  
+El objetivo principal es encontrar las divisiones (particiones) que maximicen la pureza de los nodos hijos, es decir, que minimicen la impureza del nodo resultante.
 
+\subsection{Conceptos Fundamentales}
 
+La probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_k$ se define como:
+
+\begin{equation}
+	p(k|t) = \frac{N_k(t)}{N(t)}
+	\label{eq:probabilidad_clase_nodo}
+\end{equation}
+\eqcaption{eq:probabilidad_clase_nodo}{Probabilidad de pertenencia a la clase $C_k$ en el nodo $t$}
+
+donde $N(t)$ es la cantidad total de ejemplos en el nodo $t$, y $N_k(t)$ la cantidad de ejemplos de la clase $C_k$.
+
+\subsubsection{Impureza del Nodo}
+
+La impureza de un nodo $t$ se mide mediante una función $\phi$ que depende de las probabilidades de clase en dicho nodo:
+
+\begin{equation}
+	i(t) = \phi \big( p(1|t), p(2|t), \ldots, p(K|t) \big)
+	\label{eq:impureza_general}
+\end{equation}
+\eqcaption{eq:impureza_general}{Impureza general de un nodo $t$ en función de las probabilidades de clase}
+
+La impureza es máxima cuando las clases están perfectamente mezcladas y mínima (cero) cuando el nodo contiene solo una clase.
+
+\paragraph{Entropía de Shannon}
+
+\begin{equation}
+	H(D) = - \sum_{k=1}^K 
+	\frac{N_k(D)}{N(D)} 
+	\log_2 \left( \frac{N_k(D)}{N(D)} \right)
+	\label{eq:entropia_shannon}
+\end{equation}
+\eqcaption{eq:entropia_shannon}{Entropía de Shannon de un conjunto de datos $D$}
+
+\paragraph{Ganancia de Información}
+
+\begin{equation}
+	IG(A) = H(D) - H(D|A)
+	= H(D) - \sum_{a \in \text{val}(A)}
+	\frac{N(D_a)}{N(D)} H(D_a)
+	\label{eq:ganancia_informacion}
+\end{equation}
+\eqcaption{eq:ganancia_informacion}{Ganancia de información de un atributo $A$}
+
+\paragraph{Índice de Gini}
+
+\begin{equation}
+	\text{Gini}(t) = 
+	1 - \sum_{k=1}^K \big[p(k|t)\big]^2 =
+	1 - \sum_{k=1}^K \left(\frac{N_k(t)}{N(t)}\right)^2
+	\label{eq:indice_gini}
+\end{equation}
+\eqcaption{eq:indice_gini}{Índice de Gini de un nodo $t$}
+
+\subsubsection{Disminución de Impureza}
+
+La reducción de impureza generada al dividir el nodo $t$ en dos nodos hijos $t_1$ y $t_2$ mediante una partición $s$ se calcula como:
+
+\begin{equation}
+	\Delta i(s, t) = i(t) - q_1 i(t_1) - q_2 i(t_2)
+	\label{eq:disminucion_impureza}
+\end{equation}
+\eqcaption{eq:disminucion_impureza}{Disminución de impureza asociada a una partición $s$ del nodo $t$}
+
+donde $q_j = \frac{N(t_j)}{N(t)}$ para $j = 1, 2$.
+
+\subsection{Bosques Aleatorios (Random Forest)}
+
+El algoritmo de \textbf{Random Forest} (RF) combina múltiples árboles de decisión independientes construidos sobre subconjuntos aleatorios de los datos (muestreo con reemplazo o \emph{bootstrap}).  
+Cada árbol se entrena sobre un subconjunto de atributos aleatorios en cada división, lo que introduce diversidad y reduce la varianza.
+
+La predicción final para clasificación se obtiene mediante el voto mayoritario de los árboles:
+
+\begin{equation}
+	\hat{y} = 
+	\underset{c \in \mathcal{C}}{\operatorname{argmax}}
+	\sum_{m=1}^{M} \mathbb{I}
+	\big( h_m(\mathbf{x}) = c \big)
+	\label{eq:voto_random_forest}
+\end{equation}
+\eqcaption{eq:voto_random_forest}{Predicción final en Random Forest mediante voto mayoritario}
+
+donde $h_m(\mathbf{x})$ es la predicción del árbol $m$.
+
+\subsection{Hiperparámetros}
+
+\begin{itemize}
+	\item \textbf{Criterio de Partición:} Función de impureza utilizada (e.g., Índice de Gini o Entropía de Shannon).
+	\item \textbf{Algoritmo de Construcción:} 
+	\textit{ID3} emplea la ganancia de información (entropía), mientras que \textit{CART} utiliza el índice de Gini y genera árboles binarios.
+	\item \textbf{Número de Atributos Muestreados (RF):} 
+	En Random Forest, típicamente se seleccionan $\sqrt{a}$ o $\ln(a)$ atributos por partición, donde $a$ es la cantidad total de atributos.
+	\item \textbf{Número de Árboles (RF):} 
+	Cantidad de árboles a construir en el bosque.
+\end{itemize}
+
+\section{Clasificador Naïve Bayes}
+
+El \textbf{Clasificador Naïve Bayes} (CNB) es un método supervisado probabilístico basado en el \textit{Teorema de Bayes}, que asume independencia condicional entre los atributos dado la clase.
+
+\subsection{Regla de Clasificación}
+
+\begin{equation}
+	P(Y = C_k \mid X_1 = x_1, \ldots, X_d = x_d)
+	= \frac{
+		P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_k) \, P(Y = C_k)
+	}{
+		P(X_1 = x_1, \ldots, X_d = x_d)
+	}
+	\label{eq:bayes_general}
+\end{equation}
+\eqcaption{eq:bayes_general}{Teorema de Bayes aplicado a clasificación}
+
+Bajo el supuesto de independencia condicional:
+
+\begin{equation}
+	P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_k)
+	= \prod_{j=1}^{d} P(X_j = x_j \mid Y = C_k)
+	\label{eq:independencia_condicional}
+\end{equation}
+\eqcaption{eq:independencia_condicional}{Factorización de la verosimilitud bajo independencia}
+
+La clase predicha maximiza la probabilidad a posteriori:
+
+\begin{equation}
+	\hat{Y} = 
+	\underset{C_k}{\operatorname{argmax}}
+	\left[
+	P(Y = C_k)
+	\prod_{j=1}^{d} P(X_j = x_j \mid Y = C_k)
+	\right]
+	\label{eq:regla_clasificacion_nb}
+\end{equation}
+\eqcaption{eq:regla_clasificacion_nb}{Regla de decisión de Naïve Bayes}
+
+\subsection{Estimación de Probabilidades}
+
+\paragraph{Probabilidad a Priori:}
+
+\begin{equation}
+	\hat{\pi}_k = P(Y = C_k) =
+	\frac{\#\{Y = C_k\}}{N}
+	\label{eq:probabilidad_priori}
+\end{equation}
+\eqcaption{eq:probabilidad_priori}{Estimador de máxima verosimilitud para la probabilidad a priori}
+
+\paragraph{Probabilidad Condicional:}
+
+\begin{equation}
+	\hat{\theta}_{jmk} =
+	P(X_j = x_{jm} \mid Y = C_k) =
+	\frac{\#\{X_j = x_{jm} \wedge Y = C_k\}}{\#\{Y = C_k\}}
+	\label{eq:probabilidad_condicional}
+\end{equation}
+\eqcaption{eq:probabilidad_condicional}{Estimador de máxima verosimilitud para la probabilidad condicional}
+
+\subsection{Caso Continuo (Naïve Bayes Gaussiano)}
+
+Cuando los atributos son continuos y se asume distribución normal, las verosimilitudes se estiman con la función de densidad Gaussiana:
+
+\begin{equation}
+	f(x) =
+	\frac{1}{\sigma \sqrt{2\pi}}
+	\exp \left[
+	-\frac{1}{2} \left(
+	\frac{x - \mu}{\sigma}
+	\right)^2
+	\right]
+	\label{eq:densidad_gaussiana}
+\end{equation}
+\eqcaption{eq:densidad_gaussiana}{Función de densidad de probabilidad Gaussiana}
+
+La decisión final se obtiene como:
+
+\begin{equation}
+	\hat{Y} = 
+	\underset{C_k}{\operatorname{argmax}}
+	\left[
+	\log P(Y = C_k) +
+	\sum_{j=1}^{d}
+	\log f(x_j \mid \mu_{jk}, \sigma_{jk}^2)
+	\right]
+	\label{eq:decision_gaussiana}
+\end{equation}
+\eqcaption{eq:decision_gaussiana}{Regla de decisión para Naïve Bayes Gaussiano}
+
+\section{Máquinas de Soporte Vectorial (SVM)}
+
+Las \textbf{Máquinas de Soporte Vectorial} (SVM) buscan encontrar el hiperplano que mejor separa las clases, maximizando el margen $M$ (la distancia mínima entre el hiperplano y las observaciones más cercanas, llamadas vectores de soporte).
+
+\subsection{Margen Rígido (Hard Margin)}
+
+\begin{equation}
+	\text{Minimizar } 
+	\frac{1}{2} \|\mathbf{w}\|^2
+	\quad \text{sujeto a } 
+	y_i (\langle \mathbf{w}, \mathbf{x}_i \rangle + \beta) \ge 1
+	\label{eq:hard_margin}
+\end{equation}
+\eqcaption{eq:hard_margin}{Problema de optimización para margen rígido}
+
+\subsection{Margen Suave (Soft Margin)}
+
+\begin{equation}
+	\text{Minimizar } 
+	\frac{1}{2} \|\mathbf{w}\|^2 +
+	C \sum_{i=1}^n \xi_i
+	\quad \text{sujeto a }
+	\begin{cases}
+		y_i(\langle \mathbf{w}, \mathbf{x}_i \rangle + \beta) \ge 1 - \xi_i \\
+		\xi_i \ge 0
+	\end{cases}
+	\label{eq:soft_margin}
+\end{equation}
+\eqcaption{eq:soft_margin}{Problema de optimización para margen suave}
+
+\subsection{Formulación Dual y Kernel Trick}
+
+\begin{equation}
+	\text{Maximizar }
+	-\frac{1}{2} \sum_{i,\ell=1}^{n}
+	\alpha_i \alpha_\ell y_i y_\ell
+	K(\mathbf{x}_i, \mathbf{x}_\ell)
+	+ \sum_{i=1}^{n} \alpha_i
+	\label{eq:dualsvm}
+\end{equation}
+\eqcaption{eq:dualsvm}{Formulación dual de SVM}
+
+\begin{equation}
+	\text{sujeto a } 
+	0 \le \alpha_i \le C, \quad
+	\sum_{i=1}^{n} \alpha_i y_i = 0
+\end{equation}
+
+\subsubsection{Funciones Kernel Comunes}
+
+\paragraph{Kernel Lineal:}
+\begin{equation}
+	K(\mathbf{a}, \mathbf{b}) =
+	\langle \mathbf{a}, \mathbf{b} \rangle
+	\label{eq:kernel_lineal}
+\end{equation}
+\eqcaption{eq:kernel_lineal}{Kernel lineal}
+
+\paragraph{Kernel Radial (RBF o Gaussiano):}
+\begin{equation}
+	K(\mathbf{a}, \mathbf{b}) =
+	\exp \left( -\gamma \|\mathbf{a} - \mathbf{b}\|^2 \right)
+	\label{eq:kernel_rbf}
+\end{equation}
+\eqcaption{eq:kernel_rbf}{Kernel radial o gaussiano}
+
+\paragraph{Kernel Polinómico:}
+\begin{equation}
+	K(\mathbf{a}, \mathbf{b}) =
+	(\langle \mathbf{a}, \mathbf{b} \rangle + r)^d
+	\label{eq:kernel_polinomico}
+\end{equation}
+\eqcaption{eq:kernel_polinomico}{Kernel polinómico de grado $d$}
+
+\subsection{Hiperparámetros}
+
+\begin{itemize}
+	\item \textbf{Parámetro de Regularización ($C$):} Controla el equilibrio entre la maximización del margen y la penalización de errores de clasificación.
+	\item \textbf{Tipo de Kernel:} Lineal, Polinómico, Radial (RBF) o Sigmoideo.
+	\item \textbf{Parámetros del Kernel:} Por ejemplo, $\gamma$ o $\sigma^2$ en RBF; grado $d$ y coeficiente $r$ en el kernel polinómico.
+\end{itemize}
 
 
 
