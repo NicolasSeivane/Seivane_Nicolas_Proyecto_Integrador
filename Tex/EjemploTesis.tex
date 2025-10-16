@@ -32,8 +32,8 @@
 \usepackage{multirow}
 \usepackage{amsmath}
 \usepackage{etoolbox}
-\usepackage{cite}    
-
+%\usepackage{cite}    
+\usepackage{bm}
 
 
 \usepackage{listings}
@@ -155,7 +155,7 @@ Se realiza este informe de registros, atributos y métricas relevantes luego de 
 Las enfermedades cardiovasculares son la causa número uno de muerte globalmente, con un estimado de 17.9 millones de vidas cada año, aproximadamente 31\% de todas las muertes globales.
 
 
-Este dataset~\cite{Heart_Failure}~ fue creado mediante la combinación de cinco datasets independientes en 11 atributos comunes, logrando el dataset más grande de información de enfermedades cardiovasculares utilizado para investigación. Los cinco datasets utilizados son:
+Este dataset~\cite{HeartFailure} fue creado mediante la combinación de cinco datasets independientes en 11 atributos comunes, logrando el dataset más grande de información de enfermedades cardiovasculares utilizado para investigación. Los cinco datasets utilizados son:
 
 \begin{itemize}
 	\item Cleveland: 303 observaciones
@@ -288,10 +288,10 @@ La cantidad de registros y los tipos de atributos utilizados para este trabajo f
 	
 
 
-	Los atributos son (Algunos son numéricos en el dataset pero son codificaciones de categóricos):
+%	Los atributos son (Algunos son numéricos en el dataset pero son codificaciones de categóricos):
 	
 	
-\begin{table}
+\begin{table}[htb]
 \caption{Tipo de atributo del conjunto Multiclae.}
 \label{tab:tablaej}
 	\centering
@@ -349,8 +349,9 @@ La cantidad de registros y los tipos de atributos utilizados para este trabajo f
 
 En la Tabla~\ref{tab:tablaej} se muestran los tipos de las siguientes variables: 
 
+\subsubsection{Descripción atributos}
 
-\underline{\textbf{Descripción atributos:}} A continuación se realizara una pequeña descripción de cada atributo anteriormente señalado. Si el atributo es categórico, se informara la distribución de los valores que posee dicho atributo y en caso de resultar ser un atributo numérico, se informara la media de los valores de dicho atributo, junto al valor máximo y mínimo que posee. Se realiza lo anterior para contextualizar los atributos y ver los rangos de valores con que se trabajara. \\
+\underline{\textbf{Descripción atributos:}} A continuación se realizara una pequeña descripción de cada atributo anteriormente señalado. Si el atributo es categórico, se informara la distribución de los valores que posee dicho atributo y en caso de resultar ser un atributo numérico, se informara la media de los valores de dicho atributo, junto al valor máximo y mínimo que posee. Se realiza lo anterior para contextualizar los atributos y ver los rangos de valores con que se trabajará. \\
 	
 	\vspace{0.2cm}
 	
@@ -382,7 +383,7 @@ En la Tabla~\ref{tab:tablaej} se muestran los tipos de las siguientes variables:
 	
 	
 	
-	\textbf{DP}:Número de desaceleraciones prolongadas por segundo.  Hay un 91.58\% con valor 0.0, 3.40\% con un valor 0.002, 1.13\% con un valor 0.003, 3.31\% con un valor 0.001, 0.43\% con un valor 0.004 y 0.14\% con un valor 0.005\\
+	\textbf{DP}: Número de desaceleraciones prolongadas por segundo.  Hay un 91.58\% con valor 0.0, 3.40\% con un valor 0.002, 1.13\% con un valor 0.003, 3.31\% con un valor 0.001, 0.43\% con un valor 0.004 y 0.14\% con un valor 0.005\\
 	\vspace{0.2cm}
 	
 	
@@ -465,7 +466,7 @@ Dentro del objetivo de este trabajo es evaluar el desempeño calificador de cada
 
 Para la obtención de las métricas y entrenamiento de algoritmo se utilizara la estrategia de \textbf{Validación Cruzada $k$-fold}, donde el conjunto de datos se divide en $k$ grupos (o pliegues, en una traducción más fiel) del mismo tamaño, donde en cada iteración un grupo $k$ es utilizado para entrenar y el resto para evaluar, repitiéndose el proceso $k$ veces, donde un grupo $k_i$ es utilizado solo una vez para entrenar. El valor final estimado de la métrica, denotado por $\widehat{M}$,  es el promedio de los valores obtenidos de cada grupo, es decir,
 \begin{equation}
-\label{eq:metrica}
+%\label{eq:metrica}
 \hat{M} = \frac{1}{k} \sum_{i=1}^{k} M_i,
 \label{eq:kfolds}
 \end{equation}
@@ -619,11 +620,13 @@ La métrica ponderada por la presencia de la clase, $\text{M}_{\text{weighted}}$
 La matriz de confusión multiclase es una matriz cuadrada de tamaño $L \times L$, donde $L$ es el número de clases. Cada celda $C_{ij}$ representa la cantidad de muestras verdaderamente pertenecientes a la clase $i$ que fueron clasificadas como clase $j$.
 
 Para cada clase $l$ se definen los valores:
-
+\begin{itemize}
 \item $TP_l = C_{ll}$ 
 \item $FP_l = \sum_{i \neq l} C_{il}$
 \item $FN_l = \sum_{j \neq l} C_{lj}$
 \item $TN_l = N - TP_l - FP_l - FN_l$
+\end{itemize}
+
 
 \begin{table}[]
     \centering
@@ -747,18 +750,18 @@ A diferencia de la regresión lineal múltiple, la regresión logística predice
 El modelo busca modelar la probabilidad condicional de que una observación pertenezca a la clase objetivo $y_{i}$:
 
 \begin{equation}
-	P(y_i = 1 \mid \mathbf{x}_i)
+	P(y_i = 1 \mid \bm{x}_i)
 	\label{eq:probabilidad_condicional}
 \end{equation}
 
-donde $\mathbf{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$.
+donde $\bm{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$.
 
 \subsection{Función de Probabilidad}
 
 La función logística define la probabilidad de pertenencia de $x_{i}$ a la clase $1$ como:
 
 \begin{equation}
-	p(\mathbf{x}_i) = P(y_i = 1 \mid \mathbf{x}_i) =
+	p(\bm{x}_i) = P(y_i = 1 \mid \bm{x}_i) =
 	\frac{\exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
 	{1 + \exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
 	\label{eq:funcion_logistica}
@@ -768,7 +771,7 @@ donde $\beta_0$ es el intercepto y $\beta_j$ los coeficientes asociados a cada p
 
 \subsection{Función Logit}
 
-La función inversa del modelo logístico, denominada \textit{logit}, relaciona el logaritmo de las \emph{odds} con un modelo lineal, siendo \emph{odds} lo que se utiliza para analizar si la probabilidad de ocurrencia de un evento -caso/no caso- difiere o no en distintos grupos:
+La función inversa de la función logística, denominada \textit{logit}, relaciona el logaritmo de las \emph{odds} con un modelo lineal, siendo \emph{odds} lo que se utiliza para analizar si la probabilidad de ocurrencia de un evento -caso/no caso- difiere o no en distintos grupos:
 
 \begin{equation}
 	\text{logit}(\textbf{antilogic}(x)) = x
@@ -784,8 +787,8 @@ La función inversa del modelo logístico, denominada \textit{logit}, relaciona 
 
 
 \begin{equation}
-	\text{logit}(p(\mathbf{x}_i)) =
-	\ln \left( \frac{p(\mathbf{x}_i)}{1 - p(\mathbf{x}_i)} \right)
+	\text{logit}(p(\bm{x}_i)) =
+	\ln \left( \frac{p(\bm{x}_i)}{1 - p(\bm{x}_i)} \right)
 	= \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}
 	\label{eq:funcion_logit}
 \end{equation}
@@ -800,8 +803,8 @@ La función de log-verosimilitud a maximizar es:
 \begin{equation}
 	\ell(\beta_0, \beta_1, \dots, \beta_k) =
 	\sum_{i=1}^{n} \left[
-	y_i \ln(p(\mathbf{x}_i)) +
-	(1 - y_i) \ln(1 - p(\mathbf{x}_i))
+	y_i \ln(p(\bm{x}_i)) +
+	(1 - y_i) \ln(1 - p(\bm{x}_i))
 	\right]
 	\label{eq:log_verosimilitud}
 \end{equation}
@@ -845,27 +848,28 @@ La solución analítica no existe, por lo que se utilizan métodos numéricos it
 	\item \textbf{Algoritmo de Optimización (\textit{solver}):}  
 	El \textit{solver} es el algoritmo numérico encargado de minimizar la función de coste regularizada $\tilde{J}(\boldsymbol{\beta})$.
 	
-	\begin{itemize}
+%	\begin{itemize}
 		\begin{equation}
 			\boldsymbol{\beta}^{(t+1)} \leftarrow
 			\boldsymbol{\beta}^{(t)} -
-			\mathbf{H}^{-1}
+			\bm{H}^{-1}
 			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)})
 			\label{eq:newtoncg}
 		\end{equation}
-		\eqcaption{eq:newtoncg}{Método Newton-CG (basado en segunda derivada)}
+%		\eqcaption{eq:newtoncg}{Método Newton-CG (basado en segunda derivada)}
 		
 		\begin{equation}
 			\boldsymbol{\beta}^{(t+1)} \leftarrow
 			\boldsymbol{\beta}^{(t)} -
-			\mathbf{B}^{-1}
+			\bm{B}^{-1}
 			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)})
 			\label{eq:bfgs}
 		\end{equation}
-		\eqcaption{eq:bfgs}{Método BFGS (quasi-Newton)}
-	\end{itemize}
+%		\eqcaption{eq:bfgs}{Método BFGS (quasi-Newton)}
+%	\end{itemize}
 	
-	\item \textbf{Estrategia Multiclase (\textit{multi\_class}):}
+	\item 
+\textbf{Estrategia Multiclase (\textit{multi\_class}):}
 	La regresión logística está diseñada originalmente para clasificación binaria. Para extenderla a múltiples clases se emplean estrategias como:
 	\begin{itemize}
 		\item \textit{one-vs-rest} (OvR): Entrena un clasificador por clase.
@@ -883,11 +887,10 @@ El objetivo principal es encontrar las divisiones (particiones) que maximicen la
 La probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_k$ se define como:
 
 \begin{equation}
-	p(k|t) = \frac{N_k(t)}{N(t)}
+	p(k|t) = \frac{N_k(t)}{N(t)},
 	\label{eq:probabilidad_clase_nodo}
 \end{equation}
-\eqcaption{eq:probabilidad_clase_nodo}{Probabilidad de pertenencia a la clase $C_k$ en el nodo $t$}
-
+%\eqcaption{eq:probabilidad_clase_nodo}{Probabilidad de pertenencia a la clase $C_k$ en el nodo $t$}
 donde $N(t)$ es la cantidad total de ejemplos en el nodo $t$, y $N_k(t)$ la cantidad de ejemplos de la clase $C_k$.
 
 \subsubsection{Impureza del Nodo}
@@ -895,10 +898,10 @@ donde $N(t)$ es la cantidad total de ejemplos en el nodo $t$, y $N_k(t)$ la cant
 La impureza de un nodo $t$ se mide mediante una función $\phi$ que depende de las probabilidades de clase en dicho nodo:
 
 \begin{equation}
-	i(t) = \phi \big( p(1|t), p(2|t), \ldots, p(K|t) \big)
+	i(t) = \phi \big( p(1|t), p(2|t), \ldots, p(K|t) \big).
 	\label{eq:impureza_general}
 \end{equation}
-\eqcaption{eq:impureza_general}{Impureza general de un nodo $t$ en función de las probabilidades de clase}
+%\eqcaption{eq:impureza_general}{Impureza general de un nodo $t$ en función de las probabilidades de clase}
 
 La impureza es máxima cuando las clases están perfectamente mezcladas y mínima (cero) cuando el nodo contiene solo una clase.
 
@@ -910,7 +913,7 @@ La impureza es máxima cuando las clases están perfectamente mezcladas y mínim
 	\log_2 \left( \frac{N_k(D)}{N(D)} \right)
 	\label{eq:entropia_shannon}
 \end{equation}
-\eqcaption{eq:entropia_shannon}{Entropía de Shannon de un conjunto de datos $D$}
+%\eqcaption{eq:entropia_shannon}{Entropía de Shannon de un conjunto de datos $D$}
 
 \paragraph{Ganancia de Información}
 
@@ -920,7 +923,7 @@ La impureza es máxima cuando las clases están perfectamente mezcladas y mínim
 	\frac{N(D_a)}{N(D)} H(D_a)
 	\label{eq:ganancia_informacion}
 \end{equation}
-\eqcaption{eq:ganancia_informacion}{Ganancia de información de un atributo $A$}
+%\eqcaption{eq:ganancia_informacion}{Ganancia de información de un atributo $A$}
 
 \paragraph{Índice de Gini}
 
@@ -930,7 +933,7 @@ La impureza es máxima cuando las clases están perfectamente mezcladas y mínim
 	1 - \sum_{k=1}^K \left(\frac{N_k(t)}{N(t)}\right)^2
 	\label{eq:indice_gini}
 \end{equation}
-\eqcaption{eq:indice_gini}{Índice de Gini de un nodo $t$}
+%\eqcaption{eq:indice_gini}{Índice de Gini de un nodo $t$}
 
 \subsubsection{Disminución de Impureza}
 
@@ -940,7 +943,7 @@ La reducción de impureza generada al dividir el nodo $t$ en dos nodos hijos $t_
 	\Delta i(s, t) = i(t) - q_1 i(t_1) - q_2 i(t_2)
 	\label{eq:disminucion_impureza}
 \end{equation}
-\eqcaption{eq:disminucion_impureza}{Disminución de impureza asociada a una partición $s$ del nodo $t$}
+%\eqcaption{eq:disminucion_impureza}{Disminución de impureza asociada a una partición $s$ del nodo $t$}
 
 donde $q_j = \frac{N(t_j)}{N(t)}$ para $j = 1, 2$.
 
@@ -955,12 +958,12 @@ La predicción final para clasificación se obtiene mediante el voto mayoritario
 	\hat{y} = 
 	\underset{c \in \mathcal{C}}{\operatorname{argmax}}
 	\sum_{m=1}^{M} \mathbb{I}
-	\big( h_m(\mathbf{x}) = c \big)
+	\big( h_m(\bm{x}) = c \big)
 	\label{eq:voto_random_forest}
 \end{equation}
-\eqcaption{eq:voto_random_forest}{Predicción final en Random Forest mediante voto mayoritario}
+%\eqcaption{eq:voto_random_forest}{Predicción final en Random Forest mediante voto mayoritario}
 
-donde $h_m(\mathbf{x})$ es la predicción del árbol $m$.
+donde $h_m(\bm{x})$ es la predicción del árbol $m$.
 
 \subsection{Hiperparámetros}
 
@@ -989,7 +992,7 @@ El \textbf{Clasificador Naïve Bayes} (CNB) es un método supervisado probabilí
 	}
 	\label{eq:bayes_general}
 \end{equation}
-\eqcaption{eq:bayes_general}{Teorema de Bayes aplicado a clasificación}
+%\eqcaption{eq:bayes_general}{Teorema de Bayes aplicado a clasificación}
 
 Bajo el supuesto de independencia condicional:
 
@@ -998,7 +1001,7 @@ Bajo el supuesto de independencia condicional:
 	= \prod_{j=1}^{d} P(X_j = x_j \mid Y = C_k)
 	\label{eq:independencia_condicional}
 \end{equation}
-\eqcaption{eq:independencia_condicional}{Factorización de la verosimilitud bajo independencia}
+%\eqcaption{eq:independencia_condicional}{Factorización de la verosimilitud bajo independencia}
 
 La clase predicha maximiza la probabilidad a posteriori:
 
@@ -1011,7 +1014,7 @@ La clase predicha maximiza la probabilidad a posteriori:
 	\right]
 	\label{eq:regla_clasificacion_nb}
 \end{equation}
-\eqcaption{eq:regla_clasificacion_nb}{Regla de decisión de Naïve Bayes}
+%\eqcaption{eq:regla_clasificacion_nb}{Regla de decisión de Naïve Bayes}
 
 \subsection{Estimación de Probabilidades}
 
@@ -1022,7 +1025,7 @@ La clase predicha maximiza la probabilidad a posteriori:
 	\frac{\#\{Y = C_k\}}{N}
 	\label{eq:probabilidad_priori}
 \end{equation}
-\eqcaption{eq:probabilidad_priori}{Estimador de máxima verosimilitud para la probabilidad a priori}
+%\eqcaption{eq:probabilidad_priori}{Estimador de máxima verosimilitud para la probabilidad a priori}
 
 \paragraph{Probabilidad Condicional:}
 
@@ -1032,7 +1035,7 @@ La clase predicha maximiza la probabilidad a posteriori:
 	\frac{\#\{X_j = x_{jm} \wedge Y = C_k\}}{\#\{Y = C_k\}}
 	\label{eq:probabilidad_condicional}
 \end{equation}
-\eqcaption{eq:probabilidad_condicional}{Estimador de máxima verosimilitud para la probabilidad condicional}
+%\eqcaption{eq:probabilidad_condicional}{Estimador de máxima verosimilitud para la probabilidad condicional}
 
 \subsection{Caso Continuo (Naïve Bayes Gaussiano)}
 
@@ -1048,7 +1051,7 @@ Cuando los atributos son continuos y se asume distribución normal, las verosimi
 	\right]
 	\label{eq:densidad_gaussiana}
 \end{equation}
-\eqcaption{eq:densidad_gaussiana}{Función de densidad de probabilidad Gaussiana}
+%\eqcaption{eq:densidad_gaussiana}{Función de densidad de probabilidad Gaussiana}
 
 La decisión final se obtiene como:
 
@@ -1062,7 +1065,7 @@ La decisión final se obtiene como:
 	\right]
 	\label{eq:decision_gaussiana}
 \end{equation}
-\eqcaption{eq:decision_gaussiana}{Regla de decisión para Naïve Bayes Gaussiano}
+%\eqcaption{eq:decision_gaussiana}{Regla de decisión para Naïve Bayes Gaussiano}
 
 \section{Máquinas de Soporte Vectorial (SVM)}
 
@@ -1072,27 +1075,27 @@ Las \textbf{Máquinas de Soporte Vectorial} (SVM) buscan encontrar el hiperplano
 
 \begin{equation}
 	\text{Minimizar } 
-	\frac{1}{2} \|\mathbf{w}\|^2
+	\frac{1}{2} \|\bm{w}\|^2
 	\quad \text{sujeto a } 
-	y_i (\langle \mathbf{w}, \mathbf{x}_i \rangle + \beta) \ge 1
+	y_i (\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1
 	\label{eq:hard_margin}
 \end{equation}
-\eqcaption{eq:hard_margin}{Problema de optimización para margen rígido}
+%\eqcaption{eq:hard_margin}{Problema de optimización para margen rígido}
 
 \subsection{Margen Suave (Soft Margin)}
 
 \begin{equation}
 	\text{Minimizar } 
-	\frac{1}{2} \|\mathbf{w}\|^2 +
+	\frac{1}{2} \|\bm{w}\|^2 +
 	C \sum_{i=1}^n \xi_i
 	\quad \text{sujeto a }
 	\begin{cases}
-		y_i(\langle \mathbf{w}, \mathbf{x}_i \rangle + \beta) \ge 1 - \xi_i \\
+		y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 - \xi_i \\
 		\xi_i \ge 0
 	\end{cases}
 	\label{eq:soft_margin}
 \end{equation}
-\eqcaption{eq:soft_margin}{Problema de optimización para margen suave}
+%\eqcaption{eq:soft_margin}{Problema de optimización para margen suave}
 
 \subsection{Formulación Dual y Kernel Trick}
 
@@ -1100,11 +1103,11 @@ Las \textbf{Máquinas de Soporte Vectorial} (SVM) buscan encontrar el hiperplano
 	\text{Maximizar }
 	-\frac{1}{2} \sum_{i,\ell=1}^{n}
 	\alpha_i \alpha_\ell y_i y_\ell
-	K(\mathbf{x}_i, \mathbf{x}_\ell)
+	K(\bm{x}_i, \bm{x}_\ell)
 	+ \sum_{i=1}^{n} \alpha_i
 	\label{eq:dualsvm}
 \end{equation}
-\eqcaption{eq:dualsvm}{Formulación dual de SVM}
+%\eqcaption{eq:dualsvm}{Formulación dual de SVM}
 
 \begin{equation}
 	\text{sujeto a } 
@@ -1116,27 +1119,27 @@ Las \textbf{Máquinas de Soporte Vectorial} (SVM) buscan encontrar el hiperplano
 
 \paragraph{Kernel Lineal:}
 \begin{equation}
-	K(\mathbf{a}, \mathbf{b}) =
-	\langle \mathbf{a}, \mathbf{b} \rangle
+	K(\bm{a}, \bm{b}) =
+	\langle \bm{a}, \bm{b} \rangle
 	\label{eq:kernel_lineal}
 \end{equation}
-\eqcaption{eq:kernel_lineal}{Kernel lineal}
+%\eqcaption{eq:kernel_lineal}{Kernel lineal}
 
 \paragraph{Kernel Radial (RBF o Gaussiano):}
 \begin{equation}
-	K(\mathbf{a}, \mathbf{b}) =
-	\exp \left( -\gamma \|\mathbf{a} - \mathbf{b}\|^2 \right)
+	K(\bm{a}, \bm{b}) =
+	\exp \left( -\gamma \|\bm{a} - \bm{b}\|^2 \right)
 	\label{eq:kernel_rbf}
 \end{equation}
-\eqcaption{eq:kernel_rbf}{Kernel radial o gaussiano}
+%\eqcaption{eq:kernel_rbf}{Kernel radial o gaussiano}
 
 \paragraph{Kernel Polinómico:}
 \begin{equation}
-	K(\mathbf{a}, \mathbf{b}) =
-	(\langle \mathbf{a}, \mathbf{b} \rangle + r)^d
+	K(\bm{a}, \bm{b}) =
+	(\langle \bm{a}, \bm{b} \rangle + r)^d
 	\label{eq:kernel_polinomico}
 \end{equation}
-\eqcaption{eq:kernel_polinomico}{Kernel polinómico de grado $d$}
+%\eqcaption{eq:kernel_polinomico}{Kernel polinómico de grado $d$}
 
 \subsection{Hiperparámetros}
 
@@ -2280,18 +2283,18 @@ A diferencia de la regresión lineal múltiple, la regresión logística predice
 El modelo busca modelar la probabilidad condicional de que una observación pertenezca a la clase objetivo $y_{i}$:
 
 \begin{equation}
-	P(y_i = 1 \mid \mathbf{x}_i)
+	P(y_i = 1 \mid \bm{x}_i)
 	\label{eq:probabilidad_condicional}
 \end{equation}
 
-donde $\mathbf{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$.
+donde $\bm{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$.
 
 \subsection{Función de Probabilidad}
 
 La función logística define la probabilidad de pertenencia de $x_{i}$ a la clase $1$ como:
 
 \begin{equation}
-	p(\mathbf{x}_i) = P(y_i = 1 \mid \mathbf{x}_i) =
+	p(\bm{x}_i) = P(y_i = 1 \mid \bm{x}_i) =
 	\frac{\exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
 	{1 + \exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
 	\label{eq:funcion_logistica}
@@ -2317,8 +2320,8 @@ La función inversa del modelo logístico, denominada \textit{logit}, relaciona 
 
 
 \begin{equation}
-	\text{logit}(p(\mathbf{x}_i)) =
-	\ln \left( \frac{p(\mathbf{x}_i)}{1 - p(\mathbf{x}_i)} \right)
+	\text{logit}(p(\bm{x}_i)) =
+	\ln \left( \frac{p(\bm{x}_i)}{1 - p(\bm{x}_i)} \right)
 	= \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}
 	\label{eq:funcion_logit}
 \end{equation}
@@ -2333,8 +2336,8 @@ La función de log-verosimilitud a maximizar es:
 \begin{equation}
 	\ell(\beta_0, \beta_1, \dots, \beta_k) =
 	\sum_{i=1}^{n} \left[
-	y_i \ln(p(\mathbf{x}_i)) +
-	(1 - y_i) \ln(1 - p(\mathbf{x}_i))
+	y_i \ln(p(\bm{x}_i)) +
+	(1 - y_i) \ln(1 - p(\bm{x}_i))
 	\right]
 	\label{eq:log_verosimilitud}
 \end{equation}
@@ -2382,7 +2385,7 @@ La solución analítica no existe, por lo que se utilizan métodos numéricos it
 		\begin{equation}
 			\boldsymbol{\beta}^{(t+1)} \leftarrow
 			\boldsymbol{\beta}^{(t)} -
-			\mathbf{H}^{-1}
+			\bm{H}^{-1}
 			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)})
 			\label{eq:newtoncg}
 		\end{equation}
@@ -2391,7 +2394,7 @@ La solución analítica no existe, por lo que se utilizan métodos numéricos it
 		\begin{equation}
 			\boldsymbol{\beta}^{(t+1)} \leftarrow
 			\boldsymbol{\beta}^{(t)} -
-			\mathbf{B}^{-1}
+			\bm{B}^{-1}
 			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)})
 			\label{eq:bfgs}
 		\end{equation}
@@ -2488,12 +2491,12 @@ La predicción final para clasificación se obtiene mediante el voto mayoritario
 	\hat{y} = 
 	\underset{c \in \mathcal{C}}{\operatorname{argmax}}
 	\sum_{m=1}^{M} \mathbb{I}
-	\big( h_m(\mathbf{x}) = c \big)
+	\big( h_m(\bm{x}) = c \big)
 	\label{eq:voto_random_forest}
 \end{equation}
 \eqcaption{eq:voto_random_forest}{Predicción final en Random Forest mediante voto mayoritario}
 
-donde $h_m(\mathbf{x})$ es la predicción del árbol $m$.
+donde $h_m(\bm{x})$ es la predicción del árbol $m$.
 
 \subsection{Hiperparámetros}
 
@@ -2605,9 +2608,9 @@ Las \textbf{Máquinas de Soporte Vectorial} (SVM) buscan encontrar el hiperplano
 
 \begin{equation}
 	\text{Minimizar } 
-	\frac{1}{2} \|\mathbf{w}\|^2
+	\frac{1}{2} \|\bm{w}\|^2
 	\quad \text{sujeto a } 
-	y_i (\langle \mathbf{w}, \mathbf{x}_i \rangle + \beta) \ge 1
+	y_i (\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1
 	\label{eq:hard_margin}
 \end{equation}
 \eqcaption{eq:hard_margin}{Problema de optimización para margen rígido}
@@ -2616,11 +2619,11 @@ Las \textbf{Máquinas de Soporte Vectorial} (SVM) buscan encontrar el hiperplano
 
 \begin{equation}
 	\text{Minimizar } 
-	\frac{1}{2} \|\mathbf{w}\|^2 +
+	\frac{1}{2} \|\bm{w}\|^2 +
 	C \sum_{i=1}^n \xi_i
 	\quad \text{sujeto a }
 	\begin{cases}
-		y_i(\langle \mathbf{w}, \mathbf{x}_i \rangle + \beta) \ge 1 - \xi_i \\
+		y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 - \xi_i \\
 		\xi_i \ge 0
 	\end{cases}
 	\label{eq:soft_margin}
@@ -2633,7 +2636,7 @@ Las \textbf{Máquinas de Soporte Vectorial} (SVM) buscan encontrar el hiperplano
 	\text{Maximizar }
 	-\frac{1}{2} \sum_{i,\ell=1}^{n}
 	\alpha_i \alpha_\ell y_i y_\ell
-	K(\mathbf{x}_i, \mathbf{x}_\ell)
+	K(\bm{x}_i, \bm{x}_\ell)
 	+ \sum_{i=1}^{n} \alpha_i
 	\label{eq:dualsvm}
 \end{equation}
@@ -2649,24 +2652,24 @@ Las \textbf{Máquinas de Soporte Vectorial} (SVM) buscan encontrar el hiperplano
 
 \paragraph{Kernel Lineal:}
 \begin{equation}
-	K(\mathbf{a}, \mathbf{b}) =
-	\langle \mathbf{a}, \mathbf{b} \rangle
+	K(\bm{a}, \bm{b}) =
+	\langle \bm{a}, \bm{b} \rangle
 	\label{eq:kernel_lineal}
 \end{equation}
 \eqcaption{eq:kernel_lineal}{Kernel lineal}
 
 \paragraph{Kernel Radial (RBF o Gaussiano):}
 \begin{equation}
-	K(\mathbf{a}, \mathbf{b}) =
-	\exp \left( -\gamma \|\mathbf{a} - \mathbf{b}\|^2 \right)
+	K(\bm{a}, \bm{b}) =
+	\exp \left( -\gamma \|\bm{a} - \bm{b}\|^2 \right)
 	\label{eq:kernel_rbf}
 \end{equation}
 \eqcaption{eq:kernel_rbf}{Kernel radial o gaussiano}
 
 \paragraph{Kernel Polinómico:}
 \begin{equation}
-	K(\mathbf{a}, \mathbf{b}) =
-	(\langle \mathbf{a}, \mathbf{b} \rangle + r)^d
+	K(\bm{a}, \bm{b}) =
+	(\langle \bm{a}, \bm{b} \rangle + r)^d
 	\label{eq:kernel_polinomico}
 \end{equation}
 \eqcaption{eq:kernel_polinomico}{Kernel polinómico de grado $d$}
@@ -3115,6 +3118,6 @@ DS        &  0.000035\\
 Explicar que aprendimos con la realización de este trabajo. Qué nos muestran los resultados. 
 
 \bibliographystyle{plain}
-\bibliography{Referencias}
+\bibliography{Referencias.bib}
 
 \end{document}
