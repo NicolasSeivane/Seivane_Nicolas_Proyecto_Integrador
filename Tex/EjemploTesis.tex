@@ -152,6 +152,1560 @@ Se realiza este informe de registros, atributos y métricas relevantes luego de 
 \subsection{Dataset Binario: Insuficiencia  Cardíaca Predicción}
 
 
+Las enfermedades cardiovasculares son la causa número uno de muerte globalmente, con un estimado de 17.9 millones de vidas cada año, aproximadamente 31\% de todas las muertes globales.
+
+
+Este dataset~\cite{Heart_Failure}~ fue creado mediante la combinación de cinco datasets independientes en 11 atributos comunes, logrando el dataset más grande de información de enfermedades cardiovasculares utilizado para investigación. Los cinco datasets utilizados son:
+
+\begin{itemize}
+	\item Cleveland: 303 observaciones
+	\item Hungarian: 294 observaciones
+	\item Switzerland: 123 observaciones
+	\item Long Beach VA: 200 observaciones
+	\item Stalog (Heart) Data Set: 270 observaciones
+\end{itemize}
+
+\noindent
+La cantidad de registros y los tipos de atributos utilizados para este trabajo fueron los siguientes, considerando que estos registros ya fueron previamente procesados para poder ser utilizados en las técnicas de aprendizaje automático.
+
+	\textbf{Cantidad de registros}: 918\\
+	\textbf{Cantidad de atributos}: 11\\
+	\textbf{Atributos Categóricos}: 5\\
+	\textbf{Atributos Numéricos}: 6\\
+	
+	Los atributos son (Algunos son numéricos en el dataset pero son codificaciones de categóricos):
+	
+	\begin{table}
+		\caption{Tipo de atributo del conjunto Binario.} 
+		\centering
+		\label{tab:tablebinario}
+			\begin{tabular}{|l|c|c|c|}
+			\hline
+			\textbf{Atributo} & \textbf{Tipo de dato} & \textbf{¿Esta codificado?} & \textbf{Unidad} \\
+			\hline
+			Age        & Numérico (int) & No & Años \\
+			\hline
+			Sex             & Categorico (string) & No & -\\
+			\hline
+			ChestPainType               & Categorico (string) & No & -\\
+			\hline
+			RestingBP     & Numérico (int) & No & mm Hg\\
+			\hline
+			Cholesterol    & Numérico (int) & No & mm/dl\\
+			\hline
+			FastingBS                 & Numérico (int) & Si & "mg/dl"\\
+			\hline
+			RestingECG                      & Categorico (string) & No & -\\
+			\hline
+			MaxHR    & Numérico (int) & No & -\\
+			\hline
+			ExerciseAngina               & Categorico (string) & No & -\\
+			\hline
+			Oldpeak                 & Numérico (float) & No & ST en depresión\\
+			\hline
+			$ST\_Slope$                 & Categorico (string) & No & -\\
+			\hline
+			HeartDisease                 & Numérico (int)     & Si & -\\
+			\hline
+			\hline
+		\end{tabular}
+				
+	\end{table}
+
+	
+	
+	
+	\underline{\textbf{Descripción atributos:}} A continuación se realizara una pequeña descripción de cada atributo anteriormente señalado. Si el atributo es categórico, se informara la distribución de los valores que posee dicho atributo y en caso de resultar ser un atributo numérico, se informara la media de los valores de dicho atributo, junto al valor máximo y mínimo que posee. Se realiza lo anterior para contextualizar los atributos y ver los rangos de valores con que se trabajara. \\
+	
+	\noindent
+	
+	\textbf{Age}: Edad de los pacientes. Tiene media: 53 años, valor máximo: 77 y valor mínimo: 28, con proporciones de edad bastante bien distribuidas, siendo la menor de 0.11\% para algunas edades y la mayor de 4.14\% para otras edades, teniendo otras distribuciones entre estos dos rangos\\
+	\vspace{0.2cm}
+	
+	\noindent
+	
+	\textbf{Sex}: Sexo de los pacientes; hay 78.98\% M (masculinos) y  hay 21.02\%  F (femeninos)\\
+	\vspace{0.2cm}
+	\noindent
+	\textbf{ChestPainType}: Tipo del dolor en el pecho;    Hay 18.85\% ATA, hay 22.11\% NAP, hay 54.03\% ASY, hay 5.01\% TA. [TA: Typical Angina, ATA: Atypical Angina, NAP: Non-Anginal Pain, ASY: Asymptomatic]\\
+	\vspace{0.2cm}
+	\noindent
+	\textbf{RestingBP}: Presión sanguínea en reposo, donde hay 51.09\% de mujeres, codificadas en 1 y 48.91\% de hombres, codificados en 0.\\
+	\vspace{0.2cm}
+	\noindent
+	\textbf{Cholesterol}: Colesterol serico, la medida total de colesterol en sangre; tiene media: 199.02, valor máximo: 603.00 y valor mínimo: 0.00. Miligramos por decilitro \\
+	\vspace{0.2cm}
+	\noindent
+	\textbf{FastingBS}: Glucosa en sangre en ayuno; hay 76.66\% Glucosa en sangre < 120 mg/dl codificado en 0 y hay 23.34\% Glucosa en sangre > 120 mg/dl codificado en 1\\
+	\vspace{0.2cm}
+	\noindent
+	\textbf{RestingECG}: Resultados de electrocardiogramas en reposo; hay 60.09\% codificado en Normal, hay 19.41\% codificado en ST y hay 20.50\% codificado en LVH  [Normal: Normal, ST: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV), LVH: showing probable or definite left ventricular hypertrophy by Estes' criteria] \\
+	\vspace{0.2cm}
+	\noindent
+	\textbf{MaxHR}: Máximo ritmo cardíaco registrado, tiene media: 136.79, valor maximo: 202.00 y valor minimo: 60.00 \\
+	\vspace{0.2cm}
+	\noindent
+	\textbf{ExerciseAngina}:Angina producido por ejercicio, dolor en el pecho; hay 59.54\% No codificado en N y hay 40.46\% Si codificado en Y \\
+	\vspace{0.2cm}
+	\noindent
+	\textbf{Oldpeak}: Valor máximo de depresión del segmento ST (en milímetros) registrado en todas las derivaciones contiguas durante una prueba de esfuerzo. Forma parte del cálculo del riesgo de un paciente de isquemia o infarto de miocardio; valores más altos indican un mayor riesgo de enfermedad coronaria; tiene media: 0.90, valor maximo: 6.20 y valor minimo: -0.10 \\
+	\vspace{0.2cm}
+	\noindent
+	\textbf{ST\_Slope}: The slope of the peak exercise ST segment; hay 43.08\%, hay 50.05\% Flat y hay 6.87\% Down [Up: upsloping, Flat: flat, Down: downsloping]\\
+	\vspace{0.2cm}
+	\noindent
+	\textbf{HeartDisease}:Variable de salida de si posee una enfermedad cardíaca; hay 44.71\% No codificado en 0 y hay 55.29\% Si codificado en 1\\
+	
+
+\textbf{Función Objetivo Inicial}: Donde la variable salida es $HeartDisease$, no hay una variable que se use como condición:
+
+\[
+f(x)  =
+\begin{cases}
+	\text{'1'} & \text{si ??} \\
+	\text{'0'} & \text{si ??} \\
+	
+\end{cases}
+\]
+
+
+
+\subsection{Dataset Multiclase: Cardiotocografía Predicción}
+	
+	\textbf{Descripción}: La cardiotocografía (CTG) es un registro continuo de la frecuencia cardíaca fetal que se obtiene mediante un transductor de ultrasonidos colocado en el abdomen materno. La CTG se utiliza ampliamente durante el embarazo como método para evaluar el bienestar fetal, sobre todo en embarazos con mayor riesgo de complicaciones.
+
+	En el dataset utilizado se procesaron automáticamente 2126 cardiotocogramas fetales (CTG) y se midieron sus características diagnósticas. Tres obstetras expertos clasificaron los CTG y se les asignó una etiqueta de clasificación consensuada. La clasificación se realizó tanto con respecto a un patrón morfológico (A, B, C...) como al estado fetal (N, S, P).\\
+
+    \noindent
+La cantidad de registros y los tipos de atributos utilizados para este trabajo fueron los siguientes, considerando que estos registros ya fueron previamente procesados para poder ser utilizados en las técnicas de aprendizaje automático.
+
+\noindent
+	\noindent
+	\textbf{Cantidad de registros}: 2115\\
+	\textbf{Cantidad de atributos}: 21\\
+	\textbf{Atributos Categóricos}: 0\\
+	\textbf{Atributos Numéricos}: 21\\
+	
+
+
+	Los atributos son (Algunos son numéricos en el dataset pero son codificaciones de categóricos):
+	
+	
+\begin{table}
+\caption{Tipo de atributo del conjunto Multiclae.}
+\label{tab:tablaej}
+	\centering
+	\begin{tabular}{|l|c|}
+		\hline
+		\textbf{Atributo} & \textbf{Tipo de dato} \\
+		\hline
+		LB        & Numérico (int)\\
+		\hline
+		AC             & Numérico \\
+		\hline
+		FM               & Numérico (float)\\
+		\hline
+		UC     & Numérico (float) \\
+		\hline
+		DL    & Numérico (float)\\
+		\hline
+		DS                 & Numérico (float)\\
+		\hline
+		DP                      & Numérico (float)\\
+		\hline
+		ASTV    & Numérico (int) \\
+		\hline
+		MSTV               & Numérico (float) \\
+		\hline
+		ALTV                 & Numérico (int) \\
+		\hline
+		MLTV                 & Numérico (float)\\
+		\hline
+		Width                 & Numérico (int) \\
+		\hline
+		Min                 & Numérico (int) \\
+		\hline
+		Max                 & Numérico (int)  \\
+		\hline
+		Nmax                 & Numérico (int)  \\
+		\hline
+		Nzeros                 & Numérico (int)  \\
+		\hline
+		Mode                 & Numérico (int)  \\
+		\hline
+		Mean                 & Numérico (int) \\
+		\hline
+		Median                 & Numérico (int)  \\
+		\hline
+		Variance                 & Numérico (int) \\
+		\hline
+		Tendency                 & Numérico (int) \\
+		\hline
+		NSP                 & Categórico (string) \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+En la Tabla~\ref{tab:tablaej} se muestran los tipos de las siguientes variables: 
+
+
+\underline{\textbf{Descripción atributos:}} A continuación se realizara una pequeña descripción de cada atributo anteriormente señalado. Si el atributo es categórico, se informara la distribución de los valores que posee dicho atributo y en caso de resultar ser un atributo numérico, se informara la media de los valores de dicho atributo, junto al valor máximo y mínimo que posee. Se realiza lo anterior para contextualizar los atributos y ver los rangos de valores con que se trabajara. \\
+	
+	\vspace{0.2cm}
+	
+	\textbf{LB}:Frecuencia cardíaca fetal basal (latidos por minuto). Tiene media: 133.30, valor máximo: 160.00 y valor mínimo: 106.00\\
+	
+	
+	\vspace{0.2cm}
+	\textbf{AC}: Número de aceleraciones por segundo. Tiene media: 0.00, valor máximo: 0.02 y valor mínimo: 0.00 \\
+	\vspace{0.2cm}
+	
+	
+	\textbf{FM}:Número de movimientos fetales por segundo. Tiene media: 0.01, valor máximo: 0.48 y valor mínimo: 0.00 \\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{UC}: Número de contracciones uterinas por segundo.  Tiene media: 0.00, valor máximo: 0.01 y valor mínimo: 0.00\\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{DL}:Número de desaceleraciones leves por segundo. Tiene media: 0.00, valor máximo: 0.01 y valor mínimo: 0.00  \\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{DS}: Número de desaceleraciones severas por segundo. Hay un 99.67\% con valor 0.0 y un 0.33\% con un valor 0.001\\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{DP}:Número de desaceleraciones prolongadas por segundo.  Hay un 91.58\% con valor 0.0, 3.40\% con un valor 0.002, 1.13\% con un valor 0.003, 3.31\% con un valor 0.001, 0.43\% con un valor 0.004 y 0.14\% con un valor 0.005\\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{ASTV}: Porcentaje de tiempo con variabilidad anormal a corto plazo. Tiene media: 46.98, valor máximo: 87.00 y valor mínimo: 12.00 \\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{MSTV}: Valor medio de la variabilidad a corto plazo. Tiene media: 1.34, valor máximo: 7.00 y valor mínimo: 0.20 \\
+	\vspace{0.2cm}
+	
+	
+	\textbf{ALTV}: Porcentaje de tiempo con variabilidad anormal a largo plazo. Tiene media: 9.79, valor máximo: 91.00 y valor mínimo: 0.00 \\
+	\vspace{0.2cm}
+	
+	
+	\textbf{MLTV}: Valor medio de la variabilidad a largo plazo. Tiene media: 8.17, valor máximo: 50.70 y valor mínimo: 0.00\\
+	\vspace{0.2cm}
+	
+	
+	\textbf{Width}: Ancho del histograma de FCF. Tiene media: 70.51, valor máximo: 180.00 y valor mínimo: 3.00\\
+	\vspace{0.2cm}
+	
+	
+	
+	\textbf{Min}: Mínimo del histograma de FCF. Tiene media: 93.57, valor máximo: 159.00 y valor mínimo: 50.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Max}: Máximo del histograma de FCF. Tiene media: 164.09, valor máximo: 238.00 y valor mínimo: 122.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Nmax}: Número de picos del histograma. Tiene media: 4.08, valor máximo: 18.00 y valor mínimo: 0.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Nzeros}: Número de ceros del histograma.  Hay un 76.26\% con valor 0, 17.30\% con un valor 1, 0.99\% con un valor 3, 5.11\% con un valor 2, 0.09\% con un valor 4, 0.05\% con un valor 10, 0.09\% con un valor 5, 0.05\% con un valor 8, y  0.05\% con un valor 7. \\
+	\vspace{0.2cm}
+	
+	\textbf{Mode}: Moda del histograma. Tiene media: 137.45, valor máximo: 187.00 y valor mínimo: 60.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Mean}: Promedio del histograma. Tiene media: 134.60, valor máximo: 182.00 y valor mínimo: 73.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Median}: Media del histograma. Tiene media: 138.08, valor máximo: 186.00 y valor mínimo: 77.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Variance}: Varianza del histograma. Tiene media: 18.89, valor máximo: 269.00 y valor mínimo: 0.00\\
+	\vspace{0.2cm}
+	
+	\textbf{Tendency}: Tendencia del histograma.  Hay un 39.67\% con valor 1, 52.53\% con un valor 0 y 8.27\% con un valor -1\\
+	\vspace{0.2cm}
+	
+	\textbf{CLASS}:código de clasificación del estado fetal (N=normal; S=sospechoso; P=patológico).  Hay un 13.81\% con valor Sospechoso, 77.92\% con un valor Normal, 8.27\% con un valor Patológico.\\
+	\vspace{0.2cm}
+	
+
+
+\textbf{Función Objetivo Inicial}: Donde la variable salida es $CLASS$:
+
+\[
+f(x)  =
+\begin{cases}
+	\text{'Sospechoso'} & \text{si ??} \\
+	\text{'Normal'} & \text{si ??} \\
+	\text{'Patológico'} & \text{si ??} \\
+	
+\end{cases}
+\]
+
+
+
+\chapter{Métricas de Rendimiento Utilizadas}
+
+\section{Introducción}
+
+Dentro del objetivo de este trabajo es evaluar el desempeño calificador de cada modelo de \textit{Machine Learning}. Para alcanzar este objetivo, se utilizaran \textbf{métricas de rendimiento} que permiten cuantificar la capacidad del algoritmo de clasificar.
+
+\textbf{La importancia de las métricas} se ubica en que el objetivo central de estos algoritmos no es simplemente obtener un buen rendimiento en los datos utilizados para construir el modelo, sino en su \textbf{capacidad de generalización}, su habilidad para funcionar correctamente con entradas nuevas y previamente no observadas (no utilizadas en el entrenamiento).
+
+Para la obtención de las métricas y entrenamiento de algoritmo se utilizara la estrategia de \textbf{Validación Cruzada $k$-fold}, donde el conjunto de datos se divide en $k$ grupos (o pliegues, en una traducción más fiel) del mismo tamaño, donde en cada iteración un grupo $k$ es utilizado para entrenar y el resto para evaluar, repitiéndose el proceso $k$ veces, donde un grupo $k_i$ es utilizado solo una vez para entrenar. El valor final estimado de la métrica, denotado por $\widehat{M}$,  es el promedio de los valores obtenidos de cada grupo, es decir,
+\begin{equation}
+\label{eq:metrica}
+\hat{M} = \frac{1}{k} \sum_{i=1}^{k} M_i,
+\label{eq:kfolds}
+\end{equation}
+donde $M_i$ es el valor de la métrica de evaluación obtenido en el $i$-ésimo grupo utilizado como conjunto de prueba, para $i=1,2, \dots, k$.
+
+
+Dentro de este trabajo no sólo se evaluaran distintos modelos, sino que se utilizaran distintos \textit{datasets} para lograrlos.
+
+\section{Métricas para caso Binario}
+
+\subsection{Matriz de Confusión}
+
+Una matriz de confusión es una forma simple de saber de que forma esta clasificando el algoritmo, donde una clase es considerada \textbf{positiva $P$} y la otra \textbf{negativa $N$}. La matriz de confusión clasifica las predicciones en:
+
+\begin{itemize}
+	\item \textbf{Verdaderos Positivos (TP):} Casos positivos clasificados correctamente.\\
+	\item \textbf{Verdaderos Negativos (TN):} Casos negativos clasificados correctamente.\\
+	\item \textbf{Falsos Positivos (FP):} Casos negativos clasificados incorrectamente como positivos.\\
+	\item \textbf{Falsos Negativos (FN):} Casos positivos clasificados incorrectamente como positivos. \\
+\end{itemize}
+
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+		\cline{3-4}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{Predicción}} \\
+		\cline{3-4}
+		\multicolumn{2}{c|}{} & \textbf{Positivo} & \textbf{Negativo} \\
+		\hline
+		\multirow{2}{*}{\textbf{Verdad}} & \textbf{Positivo} & \cellcolor{TPcolor} \textbf{Verdadero Positivo (TP)} & \cellcolor{FNcolor} \textbf{Falso Negativo (FN)} \\
+		\cline{2-4}
+		& \textbf{Negativo} & \cellcolor{FNcolor} \textbf{Falso Positivo (FP)} & \cellcolor{TPcolor} \textbf{Verdadero Negativo (TN)} \\
+		\hline
+	\end{tabular}
+    \caption{Matriz de Confusion}
+    \label{tab:matrizconfusionbinario}
+\end{table}
+
+
+
+
+\subsection{\textit{Accuracy}}
+
+El \textit{Accuracy} es la proporción de instancias clasificadas correctamente, es una medida "ingenua" que puede ser engañosa si existe un gran desbalance entre clases.
+
+En términos de la Matriz de Confusión:
+\begin{equation}
+    \text{Accuracy} = \frac{TP + TN}{TP + FP + TN + FN} = \frac{TP + TN}{\text{Total}}
+    \label{eq:accurcybinario}
+\end{equation}
+
+En términos del conjunto de predicciones y valores verdaderos, donde $n_{\text{samples}}$: Representa la cantidad total de ejemplos en la muestra. $\hat{y}_i$ y $y_i$: $\hat{y}_i$ es el valor predicho del $i$-ésimo ejemplo, y $y_i$ es el valor verdadero correspondiente:
+
+\begin{equation}
+    \texttt{accuracy}(y, \hat{y}) = \frac{1}{n_\text{samples}} \sum_{i=0}^{n_\text{samples}-1} 1(\hat{y}_i = y_i) 
+    \label{eq:accuracybinarioformula}
+\end{equation}
+
+por lo tanto, calcula:
+
+\begin{equation}
+    \text{Accuracy} = \frac{\text{Número de predicciones correctas}}{\text{Número total de muestras}}
+    \label{eq:accuracygeneral}
+\end{equation}
+
+
+\subsection{\textit{Precision}}
+
+El \textit{Precision} mide la probabilidad de que la predicción positiva del clasificador sea correcta.
+
+En términos de la Matriz de Confusión:
+\begin{equation}
+    \text{Precision} = \frac{TP}{TP + FP}
+    \label{eq:precisionbinario}
+\end{equation}
+
+
+\subsection{\textit{Recall}}
+
+El \textit{Recall} o también conocido como Sensibilidad o Tasa de Verdaderos Negativos (TPR). Mide la probabilidad de que el clasificador detecte un caso positivo cuando en verdad lo es.
+
+En términos de la Matriz de Confusión:
+
+\begin{equation}
+     \text{Recall} = TPR = \frac{TP}{TP + FN} = \frac{TP}{P} 
+     \label{eq:recallbinario}
+\end{equation}
+
+
+\subsection{\textit{F-measure}}
+
+El \textit{F-measure} es la media armónica ponderada de \textit{precision} y \textit{recall}. La versión más común es el \textbf{F1-score}, donde el parámetro de ponderación $\beta$ es igual a 1. Un clasificador perfecto tiene un valor $F1 = 1$.
+
+
+Fórmula General ($F_{\beta}$):
+
+\begin{equation}
+    F_{\beta} = \frac{(1 + \beta^2) \text{precision} \times \text{recall}}{\beta^2 \text{precision} + \text{recall}}
+    \label{eq:formulageneral}
+\end{equation}
+
+
+Fórmula del F1-score ($\beta=1$) en términos de Precision y Recall: 
+
+\begin{equation}
+    F1 = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
+    \label{eq:f1general}
+\end{equation}
+
+
+En términos de la Matriz de Confusión:
+
+\begin{equation}
+     F1 = \frac{2TP}{2TP + FP + FN} 
+        \label{eq:f1enmatriz}
+\end{equation}
+
+\subsection{\textit{Área Bajo la Curva ROC (ROC AUC)}}
+
+La métrica \textit{ROC AUC} es un valor que resume la capacidad de un clasificador para distinguir entre clases.
+
+
+\textbf{La Curva ROC} es un gráfico que ilustra el rendimiento de un clasificador binario a media que se varia su umbral de discriminación Se crea graficando la \textbf{Tasa de Verdaderos Positivos (TPR)} versus la \textbf{Tasa de Falsos Positivos (FPR)} en varios umbrales.
+
+Ejes utlizados para el gráfico:
+
+• \textbf{Eje Y:} TPR
+
+• \textbf{Eje X:} FPR
+
+El \textbf{AUC} mide justamente el área debajo de la Curva ROC. El AUC se utiliza para comparar el desempeño de diferentes modelos de clasificación.
+
+Interpretación de valores: Un clasificador \textbf{ideal} se ubica en el punto $(0, 1)$, donde $TPR=1$ y $FPR=0$, lo que resulta en un \textbf{$AUC = 1$}. Un clasificador \textbf{aleatorio} se sitúa sobre la línea $TPR = FPR$, lo que resulta en un \textbf{$AUC = 0.5$}. Un clasificador se considera \textbf{razonable} si \textbf{ $0.5 < AUC \leq 1$}
+
+
+
+\section{Métricas para caso Multiclase}
+
+En este caso se utiliza el método \textit{"weighted"}, el cual computa el desequilibrio de clases calculando el promedio de métricas binarias en las que la puntuación de cada clase se pondera según su presencia en la muestra de datos reales.
+
+La métrica ponderada por la presencia de la clase, $\text{M}_{\text{weighted}}$, se calcula como el promedio de la métrica por clase $\text{M}_l$, donde cada contribución es ponderada por el tamaño de la clase $|y_l|$, siendo $L$ es el conjunto de etiquetas o clases. Donde $\hat{M}_{\text{weighted}}$ es el valor estimado de la métrica promedio ponderada. :
+
+\begin{equation}
+    \hat{M}_{\text{weighted}} = \frac{1}{\sum{l \in L} |y_l|} \sum_{l \in L} |y_l| \cdot \text{M}_l
+    \label{eq:metricasponderadas}
+\end{equation}
+
+\subsection{Matriz de Confusión (Multiclase)}
+
+La matriz de confusión multiclase es una matriz cuadrada de tamaño $L \times L$, donde $L$ es el número de clases. Cada celda $C_{ij}$ representa la cantidad de muestras verdaderamente pertenecientes a la clase $i$ que fueron clasificadas como clase $j$.
+
+Para cada clase $l$ se definen los valores:
+
+\item $TP_l = C_{ll}$ 
+\item $FP_l = \sum_{i \neq l} C_{il}$
+\item $FN_l = \sum_{j \neq l} C_{lj}$
+\item $TN_l = N - TP_l - FP_l - FN_l$
+
+\begin{table}[]
+    \centering
+\begin{tabular}{|c|c|c|c|c|c|}
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \multicolumn{4}{c|}{\textbf{Predicción}} \\
+		\cline{3-6}
+		\multicolumn{2}{c|}{} & \textbf{Clase $C_1$} & \textbf{Clase $C_2$} & \textbf{$\cdots$} & \textbf{Clase $C_l$} \\
+		\hline
+		\multirow{4}{*}{\textbf{Verdad}} 
+		& \textbf{Clase $C_1$} & \cellcolor{TPcolor} TN$_l$ & \cellcolor{TPcolor} $\cdots$ & \cellcolor{TPcolor} TN$_l$ & \cellcolor{FNcolor} FP$_l$ \\
+		\cline{2-6}
+		& \textbf{Clase $C_2$} & \cellcolor{TPcolor} TN$_l$ & \cellcolor{TPcolor} TN$_l$ & \cellcolor{TPcolor} $\cdots$ & \cellcolor{FNcolor} FP$_l$ \\
+		\cline{2-6}
+		& $\vdots$ & \cellcolor{TPcolor} $\vdots$ & \cellcolor{TPcolor} $\vdots$ & \cellcolor{TPcolor} $\ddots$ & \cellcolor{FNcolor} $\vdots$ \\
+		\cline{2-6}
+		& \textbf{Clase $C_l$} & \cellcolor{FNcolor} FN$_l$ & \cellcolor{FNcolor} $\cdots$ & \cellcolor{FNcolor} FN$_l$ & \cellcolor{TPcolor} TP$_l$ \\
+		\hline
+	\end{tabular}
+    \caption{Matriz Confusion Multiclase}
+    \label{tab:matrizmulticlase}
+\end{table}
+
+
+
+\subsection{\textit{Precision}}
+
+La \textit{Precision} por clase $l$ mide la proporción de muestras clasificadas como positivas que realmente pertenecen a la clase $l$:
+
+En términos de la Matriz de Confusión:
+
+\begin{equation}
+    \text{Precision}_l = \frac{TP_l}{TP_l + FP_l}
+    \label{eq:precisionmulticlase}
+\end{equation}
+
+
+\subsection{\textit{Recall}}
+
+El \textit{Recall} por clase $l$ mide la proporción de muestras verdaderamente positivas de la clase $l$ que fueron correctamente identificadas:
+
+En términos de la Matriz de Confusión:
+
+\begin{equation}
+    \text{Recall}_l = \frac{TP_l}{TP_l + FN_l}
+    \label{eq:recallmulticlase}
+\end{equation}
+
+\subsection{\textit{F-measure}}
+
+El \textit{F-measure} es la media armónica ponderada de \textit{precision} y \textit{recall}. La versión más común es el \textbf{F1-score}, donde el parámetro de ponderación $\beta$ es igual a 1. Un clasificador perfecto tiene un valor $F1 = 1$.
+
+
+Fórmula del F1-score ($\beta=1$) en términos de Precision y Recall: 
+
+\begin{equation}
+    F1 = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
+    \label{eq:f1precision}
+\end{equation}
+
+
+El valor global ponderado se obtiene aplicando la fórmula de $M_{\text{weighted}}$ sobre los $F_{1,l}$:
+
+\begin{equation}
+    F_{1,\text{weighted}} = \sum_{l \in L} w_l \, F_{1,l}, \quad 
+\text{con } w_l = \frac{n_l}{\sum_{i \in L} n_i}
+    \label{eq:f1formula}
+\end{equation}
+
+
+
+\subsection{\textit{Área Bajo la Curva ROC (ROC AUC)}}
+
+Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoque \textbf{One-vs-Rest (OVR)}. Para cada clase $l$, se considera la clase $l$ como positiva y el resto como negativas, luego se calcula el AUC correspondiente ($\text{AUC}_l$) sobre la curva ROC de esa clasificación binaria. Finalmente, se obtiene un promedio ponderado por el soporte de cada clase:
+
+\begin{equation}
+     \text{AUC}_{\text{OVR, weighted}} = \sum_{l \in L} w_l \, \text{AUC}_l
+     \label{eq:onevsrest}
+\end{equation}
+\eqcaption{eq:onevsrest}{One-vs-Rest (OVR)}
+donde:
+
+\begin{equation}
+     w_l = \frac{n_l}{\sum_{i \in L} n_i}
+    \label{eq:wldenl}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Descripción de los Métodos Utilizados}
+
+
+
+
+\section{Regresión Logística}
+
+El modelo de \textbf{Regresión Logística} (LR, por su equivalente en inglés \emph{Logistic Regression}) es una técnica del análisis de datos utilizada para establecer relaciones entre las variables predictoras y la clase a la cual pertenece cada registro. Posteriormente, el modelo permite predecir la probabilidad de que un nuevo registro pertenezca a una clase determinada.
+
+A diferencia de la regresión lineal múltiple, la regresión logística predice una probabilidad (valor entre 0 y 1). Ambos modelos son lineales en sus parámetros, pero difieren en la naturaleza de la variable dependiente. El objetivo es estimar los coeficientes de regresión que maximizan la verosimilitud de los datos observados.
+
+El modelo busca modelar la probabilidad condicional de que una observación pertenezca a la clase objetivo $y_{i}$:
+
+\begin{equation}
+	P(y_i = 1 \mid \mathbf{x}_i)
+	\label{eq:probabilidad_condicional}
+\end{equation}
+
+donde $\mathbf{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$.
+
+\subsection{Función de Probabilidad}
+
+La función logística define la probabilidad de pertenencia de $x_{i}$ a la clase $1$ como:
+
+\begin{equation}
+	p(\mathbf{x}_i) = P(y_i = 1 \mid \mathbf{x}_i) =
+	\frac{\exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
+	{1 + \exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
+	\label{eq:funcion_logistica}
+\end{equation}
+
+donde $\beta_0$ es el intercepto y $\beta_j$ los coeficientes asociados a cada predictor.
+
+\subsection{Función Logit}
+
+La función inversa del modelo logístico, denominada \textit{logit}, relaciona el logaritmo de las \emph{odds} con un modelo lineal, siendo \emph{odds} lo que se utiliza para analizar si la probabilidad de ocurrencia de un evento -caso/no caso- difiere o no en distintos grupos:
+
+\begin{equation}
+	\text{logit}(\textbf{antilogic}(x)) = x
+	\label{eq:logit}
+\end{equation}
+
+
+\begin{equation}
+	\text{odds} =
+	\frac{p}{1 - p} 
+	\label{eq:odds}
+\end{equation}
+
+
+\begin{equation}
+	\text{logit}(p(\mathbf{x}_i)) =
+	\ln \left( \frac{p(\mathbf{x}_i)}{1 - p(\mathbf{x}_i)} \right)
+	= \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}
+	\label{eq:funcion_logit}
+\end{equation}
+
+Esta transformación asegura que las probabilidades estén acotadas entre 0 y 1, mientras que la combinación lineal de predictores puede tomar cualquier valor real.
+
+\subsection{Estimación por Máxima Verosimilitud}
+
+Los coeficientes de regresión se estiman mediante el método de \textbf{Máxima Verosimilitud} (MLE).  
+La función de log-verosimilitud a maximizar es:
+
+\begin{equation}
+	\ell(\beta_0, \beta_1, \dots, \beta_k) =
+	\sum_{i=1}^{n} \left[
+	y_i \ln(p(\mathbf{x}_i)) +
+	(1 - y_i) \ln(1 - p(\mathbf{x}_i))
+	\right]
+	\label{eq:log_verosimilitud}
+\end{equation}
+
+La solución analítica no existe, por lo que se utilizan métodos numéricos iterativos para obtener los parámetros óptimos.
+
+\subsection{Hiperparámetros}
+
+\begin{itemize}
+	\item \textbf{Parámetro de Regularización ($C$):} Controla la complejidad del modelo. Valores pequeños de $C$ implican mayor regularización (menor sobreajuste), mientras que valores grandes permiten mayor flexibilidad del modelo.
+	
+	\item \textbf{Penalización (\textit{penalty}):} Es un término regulador ($\Omega$) que se suma a la función de coste original ($J$) para formar una función ajustada $\tilde{J}$. Controla la capacidad del modelo y reduce el error de generalización.
+	
+	\begin{equation}
+		\tilde{J}_{L1}(\boldsymbol{\beta}) =
+		J(\boldsymbol{\beta}) +
+		\alpha \sum_{j=1}^{k} |\beta_j|
+		\label{eq:l1_penalty}
+	\end{equation}
+	\eqcaption{eq:l1_penalty}{Regularización L1 (Lasso).}
+	
+	\begin{equation}
+		\tilde{J}_{L2}(\boldsymbol{\beta}) =
+		J(\boldsymbol{\beta}) +
+		\frac{1}{2}\alpha \sum_{j=1}^{k} \beta_j^2
+		\label{eq:l2_penalty}
+	\end{equation}
+	\eqcaption{eq:l2_penalty}{Regularización L2 (Ridge)}
+	
+	\begin{equation}
+		\tilde{J}_{EN}(\boldsymbol{\beta}) =
+		J(\boldsymbol{\beta}) +
+		\alpha \left[
+		\rho \sum_{j=1}^{k} |\beta_j| +
+		\frac{1 - \rho}{2} \sum_{j=1}^{k} \beta_j^2
+		\right]
+		\label{eq:elasticnet_penalty}
+	\end{equation}
+	\eqcaption{eq:elasticnet_penalty}{Regularización Elastic Net}
+	
+	\item \textbf{Algoritmo de Optimización (\textit{solver}):}  
+	El \textit{solver} es el algoritmo numérico encargado de minimizar la función de coste regularizada $\tilde{J}(\boldsymbol{\beta})$.
+	
+	\begin{itemize}
+		\begin{equation}
+			\boldsymbol{\beta}^{(t+1)} \leftarrow
+			\boldsymbol{\beta}^{(t)} -
+			\mathbf{H}^{-1}
+			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)})
+			\label{eq:newtoncg}
+		\end{equation}
+		\eqcaption{eq:newtoncg}{Método Newton-CG (basado en segunda derivada)}
+		
+		\begin{equation}
+			\boldsymbol{\beta}^{(t+1)} \leftarrow
+			\boldsymbol{\beta}^{(t)} -
+			\mathbf{B}^{-1}
+			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)})
+			\label{eq:bfgs}
+		\end{equation}
+		\eqcaption{eq:bfgs}{Método BFGS (quasi-Newton)}
+	\end{itemize}
+	
+	\item \textbf{Estrategia Multiclase (\textit{multi\_class}):}
+	La regresión logística está diseñada originalmente para clasificación binaria. Para extenderla a múltiples clases se emplean estrategias como:
+	\begin{itemize}
+		\item \textit{one-vs-rest} (OvR): Entrena un clasificador por clase.
+		\item \textit{multinomial}: Optimiza una única función de verosimilitud multinomial conjunta.
+	\end{itemize}
+\end{itemize}
+
+\section{Árboles de Decisión}
+
+El aprendizaje mediante \textbf{Árboles de Decisión}(RF, por su equivalente en inglés \emph{Random Forest}) es un método no paramétrico que utiliza divisiones jerárquicas sobre los atributos de los datos, construyendo reglas de decisión del tipo \textit{if-else} para predecir el valor de una variable objetivo.  
+El objetivo principal es encontrar las divisiones (particiones) que maximicen la pureza de los nodos hijos, es decir, que minimicen la impureza del nodo resultante.
+
+\subsection{Conceptos Fundamentales}
+
+La probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_k$ se define como:
+
+\begin{equation}
+	p(k|t) = \frac{N_k(t)}{N(t)}
+	\label{eq:probabilidad_clase_nodo}
+\end{equation}
+\eqcaption{eq:probabilidad_clase_nodo}{Probabilidad de pertenencia a la clase $C_k$ en el nodo $t$}
+
+donde $N(t)$ es la cantidad total de ejemplos en el nodo $t$, y $N_k(t)$ la cantidad de ejemplos de la clase $C_k$.
+
+\subsubsection{Impureza del Nodo}
+
+La impureza de un nodo $t$ se mide mediante una función $\phi$ que depende de las probabilidades de clase en dicho nodo:
+
+\begin{equation}
+	i(t) = \phi \big( p(1|t), p(2|t), \ldots, p(K|t) \big)
+	\label{eq:impureza_general}
+\end{equation}
+\eqcaption{eq:impureza_general}{Impureza general de un nodo $t$ en función de las probabilidades de clase}
+
+La impureza es máxima cuando las clases están perfectamente mezcladas y mínima (cero) cuando el nodo contiene solo una clase.
+
+\paragraph{Entropía de Shannon}
+
+\begin{equation}
+	H(D) = - \sum_{k=1}^K 
+	\frac{N_k(D)}{N(D)} 
+	\log_2 \left( \frac{N_k(D)}{N(D)} \right)
+	\label{eq:entropia_shannon}
+\end{equation}
+\eqcaption{eq:entropia_shannon}{Entropía de Shannon de un conjunto de datos $D$}
+
+\paragraph{Ganancia de Información}
+
+\begin{equation}
+	IG(A) = H(D) - H(D|A)
+	= H(D) - \sum_{a \in \text{val}(A)}
+	\frac{N(D_a)}{N(D)} H(D_a)
+	\label{eq:ganancia_informacion}
+\end{equation}
+\eqcaption{eq:ganancia_informacion}{Ganancia de información de un atributo $A$}
+
+\paragraph{Índice de Gini}
+
+\begin{equation}
+	\text{Gini}(t) = 
+	1 - \sum_{k=1}^K \big[p(k|t)\big]^2 =
+	1 - \sum_{k=1}^K \left(\frac{N_k(t)}{N(t)}\right)^2
+	\label{eq:indice_gini}
+\end{equation}
+\eqcaption{eq:indice_gini}{Índice de Gini de un nodo $t$}
+
+\subsubsection{Disminución de Impureza}
+
+La reducción de impureza generada al dividir el nodo $t$ en dos nodos hijos $t_1$ y $t_2$ mediante una partición $s$ se calcula como:
+
+\begin{equation}
+	\Delta i(s, t) = i(t) - q_1 i(t_1) - q_2 i(t_2)
+	\label{eq:disminucion_impureza}
+\end{equation}
+\eqcaption{eq:disminucion_impureza}{Disminución de impureza asociada a una partición $s$ del nodo $t$}
+
+donde $q_j = \frac{N(t_j)}{N(t)}$ para $j = 1, 2$.
+
+\subsection{Bosques Aleatorios (Random Forest)}
+
+El algoritmo de \textbf{Random Forest} (RF) combina múltiples árboles de decisión independientes construidos sobre subconjuntos aleatorios de los datos (muestreo con reemplazo o \emph{bootstrap}).  
+Cada árbol se entrena sobre un subconjunto de atributos aleatorios en cada división, lo que introduce diversidad y reduce la varianza.
+
+La predicción final para clasificación se obtiene mediante el voto mayoritario de los árboles:
+
+\begin{equation}
+	\hat{y} = 
+	\underset{c \in \mathcal{C}}{\operatorname{argmax}}
+	\sum_{m=1}^{M} \mathbb{I}
+	\big( h_m(\mathbf{x}) = c \big)
+	\label{eq:voto_random_forest}
+\end{equation}
+\eqcaption{eq:voto_random_forest}{Predicción final en Random Forest mediante voto mayoritario}
+
+donde $h_m(\mathbf{x})$ es la predicción del árbol $m$.
+
+\subsection{Hiperparámetros}
+
+\begin{itemize}
+	\item \textbf{Criterio de Partición:} Función de impureza utilizada (e.g., Índice de Gini o Entropía de Shannon).
+	\item \textbf{Algoritmo de Construcción:} 
+	\textit{ID3} emplea la ganancia de información (entropía), mientras que \textit{CART} utiliza el índice de Gini y genera árboles binarios.
+	\item \textbf{Número de Atributos Muestreados (RF):} 
+	En Random Forest, típicamente se seleccionan $\sqrt{a}$ o $\ln(a)$ atributos por partición, donde $a$ es la cantidad total de atributos.
+	\item \textbf{Número de Árboles (RF):} 
+	Cantidad de árboles a construir en el bosque.
+\end{itemize}
+
+\section{Clasificador Naïve Bayes}
+
+El \textbf{Clasificador Naïve Bayes} (CNB) es un método supervisado probabilístico basado en el \textit{Teorema de Bayes}, que asume independencia condicional entre los atributos dado la clase.
+
+\subsection{Regla de Clasificación}
+
+\begin{equation}
+	P(Y = C_k \mid X_1 = x_1, \ldots, X_d = x_d)
+	= \frac{
+		P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_k) \, P(Y = C_k)
+	}{
+		P(X_1 = x_1, \ldots, X_d = x_d)
+	}
+	\label{eq:bayes_general}
+\end{equation}
+\eqcaption{eq:bayes_general}{Teorema de Bayes aplicado a clasificación}
+
+Bajo el supuesto de independencia condicional:
+
+\begin{equation}
+	P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_k)
+	= \prod_{j=1}^{d} P(X_j = x_j \mid Y = C_k)
+	\label{eq:independencia_condicional}
+\end{equation}
+\eqcaption{eq:independencia_condicional}{Factorización de la verosimilitud bajo independencia}
+
+La clase predicha maximiza la probabilidad a posteriori:
+
+\begin{equation}
+	\hat{Y} = 
+	\underset{C_k}{\operatorname{argmax}}
+	\left[
+	P(Y = C_k)
+	\prod_{j=1}^{d} P(X_j = x_j \mid Y = C_k)
+	\right]
+	\label{eq:regla_clasificacion_nb}
+\end{equation}
+\eqcaption{eq:regla_clasificacion_nb}{Regla de decisión de Naïve Bayes}
+
+\subsection{Estimación de Probabilidades}
+
+\paragraph{Probabilidad a Priori:}
+
+\begin{equation}
+	\hat{\pi}_k = P(Y = C_k) =
+	\frac{\#\{Y = C_k\}}{N}
+	\label{eq:probabilidad_priori}
+\end{equation}
+\eqcaption{eq:probabilidad_priori}{Estimador de máxima verosimilitud para la probabilidad a priori}
+
+\paragraph{Probabilidad Condicional:}
+
+\begin{equation}
+	\hat{\theta}_{jmk} =
+	P(X_j = x_{jm} \mid Y = C_k) =
+	\frac{\#\{X_j = x_{jm} \wedge Y = C_k\}}{\#\{Y = C_k\}}
+	\label{eq:probabilidad_condicional}
+\end{equation}
+\eqcaption{eq:probabilidad_condicional}{Estimador de máxima verosimilitud para la probabilidad condicional}
+
+\subsection{Caso Continuo (Naïve Bayes Gaussiano)}
+
+Cuando los atributos son continuos y se asume distribución normal, las verosimilitudes se estiman con la función de densidad Gaussiana:
+
+\begin{equation}
+	f(x) =
+	\frac{1}{\sigma \sqrt{2\pi}}
+	\exp \left[
+	-\frac{1}{2} \left(
+	\frac{x - \mu}{\sigma}
+	\right)^2
+	\right]
+	\label{eq:densidad_gaussiana}
+\end{equation}
+\eqcaption{eq:densidad_gaussiana}{Función de densidad de probabilidad Gaussiana}
+
+La decisión final se obtiene como:
+
+\begin{equation}
+	\hat{Y} = 
+	\underset{C_k}{\operatorname{argmax}}
+	\left[
+	\log P(Y = C_k) +
+	\sum_{j=1}^{d}
+	\log f(x_j \mid \mu_{jk}, \sigma_{jk}^2)
+	\right]
+	\label{eq:decision_gaussiana}
+\end{equation}
+\eqcaption{eq:decision_gaussiana}{Regla de decisión para Naïve Bayes Gaussiano}
+
+\section{Máquinas de Soporte Vectorial (SVM)}
+
+Las \textbf{Máquinas de Soporte Vectorial} (SVM) buscan encontrar el hiperplano que mejor separa las clases, maximizando el margen $M$ (la distancia mínima entre el hiperplano y las observaciones más cercanas, llamadas vectores de soporte).
+
+\subsection{Margen Rígido (Hard Margin)}
+
+\begin{equation}
+	\text{Minimizar } 
+	\frac{1}{2} \|\mathbf{w}\|^2
+	\quad \text{sujeto a } 
+	y_i (\langle \mathbf{w}, \mathbf{x}_i \rangle + \beta) \ge 1
+	\label{eq:hard_margin}
+\end{equation}
+\eqcaption{eq:hard_margin}{Problema de optimización para margen rígido}
+
+\subsection{Margen Suave (Soft Margin)}
+
+\begin{equation}
+	\text{Minimizar } 
+	\frac{1}{2} \|\mathbf{w}\|^2 +
+	C \sum_{i=1}^n \xi_i
+	\quad \text{sujeto a }
+	\begin{cases}
+		y_i(\langle \mathbf{w}, \mathbf{x}_i \rangle + \beta) \ge 1 - \xi_i \\
+		\xi_i \ge 0
+	\end{cases}
+	\label{eq:soft_margin}
+\end{equation}
+\eqcaption{eq:soft_margin}{Problema de optimización para margen suave}
+
+\subsection{Formulación Dual y Kernel Trick}
+
+\begin{equation}
+	\text{Maximizar }
+	-\frac{1}{2} \sum_{i,\ell=1}^{n}
+	\alpha_i \alpha_\ell y_i y_\ell
+	K(\mathbf{x}_i, \mathbf{x}_\ell)
+	+ \sum_{i=1}^{n} \alpha_i
+	\label{eq:dualsvm}
+\end{equation}
+\eqcaption{eq:dualsvm}{Formulación dual de SVM}
+
+\begin{equation}
+	\text{sujeto a } 
+	0 \le \alpha_i \le C, \quad
+	\sum_{i=1}^{n} \alpha_i y_i = 0
+\end{equation}
+
+\subsubsection{Funciones Kernel Comunes}
+
+\paragraph{Kernel Lineal:}
+\begin{equation}
+	K(\mathbf{a}, \mathbf{b}) =
+	\langle \mathbf{a}, \mathbf{b} \rangle
+	\label{eq:kernel_lineal}
+\end{equation}
+\eqcaption{eq:kernel_lineal}{Kernel lineal}
+
+\paragraph{Kernel Radial (RBF o Gaussiano):}
+\begin{equation}
+	K(\mathbf{a}, \mathbf{b}) =
+	\exp \left( -\gamma \|\mathbf{a} - \mathbf{b}\|^2 \right)
+	\label{eq:kernel_rbf}
+\end{equation}
+\eqcaption{eq:kernel_rbf}{Kernel radial o gaussiano}
+
+\paragraph{Kernel Polinómico:}
+\begin{equation}
+	K(\mathbf{a}, \mathbf{b}) =
+	(\langle \mathbf{a}, \mathbf{b} \rangle + r)^d
+	\label{eq:kernel_polinomico}
+\end{equation}
+\eqcaption{eq:kernel_polinomico}{Kernel polinómico de grado $d$}
+
+\subsection{Hiperparámetros}
+
+\begin{itemize}
+	\item \textbf{Parámetro de Regularización ($C$):} Controla el equilibrio entre la maximización del margen y la penalización de errores de clasificación.
+	\item \textbf{Tipo de Kernel:} Lineal, Polinómico, Radial (RBF) o Sigmoideo.
+	\item \textbf{Parámetros del Kernel:} Por ejemplo, $\gamma$ o $\sigma^2$ en RBF; grado $d$ y coeficiente $r$ en el kernel polinómico.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+\chapter{Resultados}
+
+Mostrar los resultados obtenidos utilizando gráficos, tablas, figuras, etc
+
+\section{Introducción}
+Primera aproximación a resultados.
+
+
+
+\section{Métricas de Evaluación}
+A continuación se muestran las mejores métricas obtenidas, ademas del grid utilizado.
+
+\subsection{Dataset Binario}
+
+\subsection{Regresión Logística}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.84
+    \item \textbf{F1 Score:} 0.84
+    \item \textbf{ROC AUC:} 0.90
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item $C = [0, 0.1, 0.01]$
+    \item \textbf{Penalty:} None, l1, l2, elasticnet
+    \item \textbf{Solver:} lbfgs, saga, newton-s
+    \item \textbf{Multiclass:} ovr, multinomial
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+    \item $C = 1$, Penalty = l1, Solver = lbfgs, saga, $[Multiclass = ovr, multinomial]$
+\end{itemize}
+
+\subsection{Máquinas de Soporte Vectorial (SVM)}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.861
+    \item \textbf{F1 Score:} 0.86
+    \item \textbf{Recall:} 0.86
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item $C = [0.001, 0.01, 0.1, 1, 10, 15, 20, 25]$
+    \item \textbf{Kernel:} $[linear, poly, rb", sigmoid] $
+    \item \textbf{Gamma:} $ [scale, auto, 0.001, 0.01, 0.1, 1] $
+    \item \textbf{Degree:} $ [2,3,4,5,6,7,8,9,10] $
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+    \item $C = 1$, kernel = rbf, gamma = scale
+\end{itemize}
+
+\subsection{Naive Bayes Gaussiano}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.84
+    \item \textbf{F1 Score:} 0.84
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item \textbf{Suavizado:} Cualquier suavizado
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+        \item Suavizado: Cualquiera
+\end{itemize}
+
+\subsection{Random Forest}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.878
+    \item \textbf{F1 Score:} 0.877
+    \item \textbf{ROC AUC:} 0.92
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item \textbf{Criterion:} $[gini, entropy]$
+    \item \textbf{Max Depth:} $ [None, 3, 5, 7, 9] $
+    \item \textbf{Min Samples Split:} $ [2, 5, 10]$
+    \item \textbf{Min Samples Leaf:} $[1, 2, 4] $
+    \item \textbf{Max Features:} $ [None, sqrt, log2] $
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+        \item Criterion: entropy, Maxdeph = 7, min samples split = 5, min samples leaf 1, max features = sqrt, log2.
+\end{itemize}
+
+\section{Importancia de las Características}
+La importancia de las características de las mejores configuraciones.
+
+\subsection{Random Forest}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia} \\
+\hline
+ST\_Slope & 0.254265 \\
+ChestPainType & 0.127319 \\
+Oldpeak & 0.113156 \\
+ExerciseAngina & 0.105952 \\
+Cholesterol & 0.099872 \\
+MaxHR & 0.088635 \\
+Age & 0.065807 \\
+RestingBP & 0.055053 \\
+Sex & 0.040916 \\
+FastingBS & 0.030069 \\
+RestingECG & 0.018956 \\
+\hline
+\end{longtable}
+
+\subsection{Regresión Logística}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+Oldpeak & 0.045643 \\
+ChestPainType & 0.036383 \\
+MaxHR & 0.030174 \\
+Cholesterol & 0.026797 \\
+ST\_Slope & 0.026580 \\
+ExerciseAngina & 0.013181 \\
+Age & 0.008279 \\
+Sex & 0.002941 \\
+RestingECG & 0.002179 \\
+RestingBP & 0.001634 \\
+FastingBS & 0.001525 \\
+\hline
+\end{longtable}
+
+\subsection{SVM}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+MaxHR & 0.103704 \\
+Cholesterol & 0.070915 \\
+Age & 0.007081 \\
+RestingBP & 0.002723 \\
+Oldpeak & 0.000871 \\
+ChestPainType & 0.000218 \\
+Sex & 0.000000 \\
+RestingECG & 0.000000 \\
+FastingBS & 0.000000 \\
+ExerciseAngina & 0.000000 \\
+ST\_Slope & -0.000218 \\
+\hline
+\end{longtable}
+
+\subsection{Naive Bayes Gaussiano}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+ST\_Slope & 0.027015 \\
+ExerciseAngina & 0.023747 \\
+Oldpeak & 0.018736 \\
+ChestPainType & 0.018519 \\
+Cholesterol & 0.014815 \\
+Sex & 0.014270 \\
+FastingBS & 0.004575 \\
+RestingBP & 0.001852 \\
+MaxHR & -0.000218 \\
+RestingECG & -0.001198 \\
+Age & -0.003595 \\
+\hline
+\end{longtable}
+
+\subsection{Importancia de las Características (Coeficientes Absolutos de Regresión Logística)}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Coeficientes)} \\
+\hline
+Oldpeak & 0.399451 \\
+ChestPainType & 0.397051 \\
+ST\_Slope & 0.386263 \\
+ExerciseAngina & 0.268956 \\
+Sex & 0.150576 \\
+FastingBS & 0.119947 \\
+RestingECG & 0.034868 \\
+Age & 0.024577 \\
+MaxHR & 0.019045 \\
+RestingBP & 0.007427 \\
+Cholesterol & 0.003631 \\
+\hline
+\end{longtable}
+
+
+\subsection{Dataset Multiclase}
+
+\subsection{Regresión Logística}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.897
+    \item \textbf{F1 Score:} 0.0.8956
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item $C = [0, 0.1, 0.01]$
+    \item \textbf{Penalty:} None, l1, l2, elasticnet
+    \item \textbf{Solver:} lbfgs, saga, newton-s
+    \item \textbf{Multiclass:} ovr, multinomial
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+    \item $C = [0.01, 0.1, 10] $, Penalty = $[None,l2(C=10),elasticnet(C=10)] $ , Solver = $[ lbfgs, saga, newton-s]$ , $[Multiclass = ovr]$
+\end{itemize}
+
+\subsection{Máquinas de Soporte Vectorial (SVM)}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.0.861
+    \item \textbf{F1 Score:} 0.86
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item $C = [0.001, 0.01, 0.1, 1, 10, 15, 20, 25]$
+    \item \textbf{Kernel:} $[linear, poly, rb", sigmoid] $
+    \item \textbf{Gamma:} $ [scale, auto, 0.001, 0.01, 0.1, 1] $
+    \item \textbf{Degree:} $ [2,3,4,5,6,7,8,9,10] $
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+    \item $C = 1$, kernel = rbf, gamma = scale
+\end{itemize}
+
+\subsection{Naive Bayes Gaussiano}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.822
+    \item \textbf{F1 Score:} 0.83
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item \textbf{Suavizado:} Cualquier suavizado
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+        \item Suavizado: Cualquiera
+\end{itemize}
+
+\subsection{Random Forest}
+\begin{itemize}
+    \item \textbf{Precisión (Acc):} 0.943
+    \item \textbf{F1 Score:} 0.94
+\end{itemize}
+
+\textbf{Grid de Hiperparámetros:}
+\begin{itemize}
+    \item \textbf{Criterion:} $[gini, entropy]$
+    \item \textbf{Max Depth:} $ [None, 3, 5, 7, 9] $
+    \item \textbf{Min Samples Split:} $ [2, 5, 10]$
+    \item \textbf{Min Samples Leaf:} $[1, 2, 4] $
+    \item \textbf{Max Features:} $ [None, sqrt, log2] $
+\end{itemize}
+
+\textbf{Mejor Configuración:}
+\begin{itemize}
+        \item Criterion: $[entropy, gini]$, Maxdeph = $None$, min samples split = $[2,5] $, min samples leaf 1, max features = $[sqrt, log2]$.
+\end{itemize}
+
+\section{Importancia de las Características}
+La importancia de las características de las mejores configuraciones.
+
+\subsection{Random Forest}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia} \\
+\hline
+
+ASTV      &  0.139807\\
+ALTV      &  0.109941\\
+MSTV      &  0.104823\\
+Mean      &  0.091579\\
+AC        &  0.063645\\
+Mode       & 0.061986\\
+Median      &0.060633\\
+DP        &  0.047945\\
+LB        &  0.045324\\
+MLTV      &  0.045132\\
+Variance  &  0.040531\\
+UC        &  0.039166\\
+Width     &  0.030551\\
+Min       &  0.030109\\
+Max       &  0.027147\\
+FM        &  0.020801\\
+Nmax      &  0.018407\\
+DL        &  0.011128\\
+Tendency  &  0.007652\\
+Nzeros    &  0.003405\\
+DS        &  0.000287\\
+
+\hline
+\end{longtable}
+
+\textbf{Atributos que mejoran accuracy:} $ [][ASTV,ALTV,MSTV,Mean,AC,Mode,Median,DP,LB,Variance] $
+
+\subsection{Regresión Logística}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+
+Mean    &    0.098487\\
+AC       &   0.084113\\
+ASTV     &   0.057069\\
+Median   &   0.031631\\
+DP       &   0.029740\\
+LB       &   0.023404\\
+Variance &   0.022270\\
+UC       &   0.022080\\
+ALTV     &   0.019243\\
+Max      &   0.018109\\
+Nmax     &   0.014374\\
+Mode     &   0.011348\\
+Min      &   0.005910\\
+MSTV     &   0.004208\\
+FM       &   0.003830\\
+Tendency &   0.003546\\
+MLTV     &   0.002979\\
+Nzeros   &   0.002837\\
+DL       &   0.001655\\
+Width    &   0.000189\\
+DS       &   0.000000\\
+
+\hline
+\end{longtable}
+
+\subsection{SVM}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+ASTV     &   0.050355\\
+ALTV     &   0.037069\\
+UC       &   0.030638\\
+AC       &   0.026903\\
+DP       &   0.018345\\
+Mean     &   0.015887\\
+Mode     &   0.014988\\
+Median   &   0.014043\\
+Nmax     &   0.011915\\
+MSTV     &   0.009125\\
+DL       &   0.005059\\
+Variance &   0.004775\\
+Nzeros   &   0.004586\\
+Min      &   0.004444\\
+Max      &   0.004350\\
+MLTV     &   0.003357\\
+Tendency &   0.003026\\
+FM       &   0.002459\\
+Width    &   0.001418\\
+DS       &   0.000000\\
+LB       &  -0.000804\\
+
+\hline
+\end{longtable}
+
+\subsection{Naive Bayes Gaussiano}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+\hline
+AC      &    0.057163\\
+DP       &   0.018676\\
+ALTV     &   0.015461\\
+ASTV     &   0.005106\\
+DS       &   0.002695\\
+UC       &   0.002364\\
+FM       &   0.001371\\
+Variance &   0.001087\\
+Nzeros   &   0.001040\\
+Nmax     &  -0.000993\\
+Tendency &  -0.001040\\
+Mode     &  -0.001324\\
+Max      &  -0.001371\\
+Min      &  -0.001986\\
+LB       &  -0.001986\\
+MLTV     &  -0.002222\\
+Width    &  -0.002459\\
+Median   &  -0.003310\\
+MSTV     &  -0.004965\\
+Mean     &  -0.005768\\
+DL       &  -0.006809\\
+
+\hline
+\end{longtable}
+
+\subsection{Importancia de las Características (Coeficientes Absolutos de Regresión Logística)}
+\begin{longtable}{|l|c|}
+\hline
+\textbf{Característica} & \textbf{Importancia (Coeficientes)} \\
+\hline
+AC         & 3.619754\\
+Mean      &  2.520677\\
+LB        &  1.134264\\
+ASTV      &  0.867591\\
+Variance  &  0.547877\\
+Nmax      &  0.522037\\
+UC        &  0.514121\\
+Max       &  0.468159\\
+DP        &  0.309519\\
+Min       &  0.245054\\
+MSTV      &  0.233617\\
+Mode      &  0.216870\\
+Median    &  0.143711\\
+MLTV      &  0.121284\\
+Nzeros    &  0.103791\\
+DL        &  0.076451\\
+Tendency  &  0.071444\\
+Width     & 0.029727\\
+ALTV      &  0.025537\\
+FM        &  0.024773\\
+DS        &  0.000035\\
+\hline
+\end{longtable}
+
+\chapter{Conclusiones}
+
+Explicar que aprendimos con la realización de este trabajo. Qué nos muestran los resultados. 
+
+\bibliographystyle{plain}
+\bibliography{Referencias}
+
+\end{document}
+\usepackage{etoolbox}
+\usepackage{cite}    
+
+
+
+\usepackage{listings}
+\lstset{ %
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=none,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+numbersep=10pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,           % adds a frame around the code
+tabsize=4,          % sets default tabsize to 2 spaces
+captionpos=b,           % sets the caption-position to bottom
+breaklines=true,        % sets automatic line breaking
+breakatwhitespace=false,    % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)}          % if you want to add a comment within your code
+}
+
+
+% Macro personalizada para poner texto descriptivo bajo las ecuaciones
+\newcommand{\eqcaption}[2]{
+	\vspace{-0.6em} % ajusta espacio vertical si queda muy separado
+	\begin{center}
+		\small\textit{\textbf{Ecuación \ref{#1}.} #2}
+	\end{center}
+}
+\usetikzlibrary{arrows}
+
+\captionsetup[subfigure]{subrefformat=simple,labelformat=simple}
+
+\renewcommand{\contentsname}{\'Indice General}
+\renewcommand{\listfigurename}{\'Indice de Figuras}
+\renewcommand{\listtablename}{\'Indice de Tablas}
+\renewcommand{\lstlistingname}{Salida}
+\renewcommand\tablename{Tabla}
+\renewcommand{\figurename}{Figura}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\renewcommand{\baselinestretch}{1.2} 
+
+\makeatletter
+\def\verbatim{\small\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}
+\makeatother
+
+\pagestyle{fancy}
+
+\restylefloat{table}
+
+
+\definecolor{TPcolor}{HTML}{A9D18E} % Verde claro para TP
+\definecolor{TNcolor}{HTML}{D9EAD3} % Verde muy claro para TN
+\definecolor{FPcolor}{HTML}{F4CCCC} % Rojo muy claro para FP
+\definecolor{FNcolor}{HTML}{E06666} % Rojo claro para FN
+
+\title{Comparación de Técnicas de Aprendizaje
+	Automático Supervisado Aplicados a Datos Cardiólogos}
+\author{Autor: Nicolás Seivane \\ Tutora: Andrea Rey}
+\date{Fecha \\ Universidad Nacional de Hurlingham}
+\titlepic{\vspace{12cm}\includegraphics[width=0.15\textwidth]{logo.jpg}}
+
+\usepackage{titlesec}
+
+% Chapters justificados
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\justifying} % estilo del capítulo
+{\chaptername\ \thechapter}{20pt}{\Huge}
+
+% Sections justificados
+\titleformat{\section}
+{\normalfont\Large\bfseries\justifying} % estilo de la sección
+{\thesection}{1em}{}
+
+% Subsections justificados
+\titleformat{\subsection}
+{\normalfont\large\bfseries\justifying}
+{\thesubsection}{1em}{}
+
+\begin{document}
+
+
+
+\maketitle
+
+
+{\justifying
+	\tableofcontents
+	\listoffigures
+	\listoftables
+}
+
+
+
+\chapter*{Resumen}
+
+\chapter{Introducción}
+
+
+Describir el problema que se desea resolver
+
+\section{Motivación}
+
+Explicar porqué estudiamos este problema, para qué sirve, cuál es el impacto y en qué áreas.
+
+
+\section{Estado del Arte}
+
+
+En esta sección se realiza una descripción de algunos de los métodos más importantes existentes en la bibliografía describiendo el problema y el método utilizado por cada autor. Se cita la bibliografía. 
+ 
+\section{Conjuntos de datos Utilizados}
+
+Se realiza este informe de registros, atributos y métricas relevantes luego de eliminar duplicados, datos faltantes y anormales.
+
+\subsection{Dataset Binario: Insuficiencia  Cardíaca Predicción}
+
+
 \textbf{Descripción}: Enfermedades cardiovasculares son la causa número uno de muerte globalmente, con un estimado de 17.9 millones de vidas cada año, aproximadamente 31\% de todas las muertes globales.
 
 
