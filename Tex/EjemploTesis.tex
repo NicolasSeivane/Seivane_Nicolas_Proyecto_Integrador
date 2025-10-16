@@ -20,7 +20,6 @@
 \usepackage{tikz}
 \usepackage{adjustbox}
 \usepackage{natbib}
-\usepackage{subcaption}
 \usepackage{xcolor}
 \usepackage{titlepic}
 \usepackage{amsmath}
@@ -29,12 +28,11 @@
 \usepackage{longtable}
 \usepackage{float}
 \usepackage{booktabs}
-\usepackage{xcolor}
 \usepackage{colortbl}
 \usepackage{multirow}
 \usepackage{amsmath}
-\usepackage{caption}
 \usepackage{etoolbox}
+\usepackage{cite}    
 
 
 
@@ -153,38 +151,29 @@ Se realiza este informe de registros, atributos y métricas relevantes luego de 
 
 \subsection{Dataset Binario: Insuficiencia  Cardíaca Predicción}
 
-\vspace{0.2cm}
-%\begin{flushleft}
-	\textbf{Titulo Original}:  Heart Failure Prediction Dataset \\
-	\textbf{Citación}: fedesoriano. (September 2021). Heart Failure Prediction Dataset. Retrieved [Date Retrieved] from \href{https://www.kaggle.com/fedesoriano/heart-failure-prediction}{https://www.kaggle.com/fedesoriano/heart-failure-prediction}
-	
-%\end{flushleft}
 
-%\begin{flushleft}
+\textbf{Descripción}: Enfermedades cardiovasculares son la causa número uno de muerte globalmente, con un estimado de 17.9 millones de vidas cada año, aproximadamente 31\% de todas las muertes globales.
+
+
+Este dataset~\cite{Heart_Failure}~ fue creado mediante la combinación de cinco datasets independientes en 11 atributos comunes, logrando el dataset más grande de información de enfermedades cardiovasculares utilizado para investigación. Los cinco datasets utilizados son:
+
+\begin{itemize}
+	\item Cleveland: 303 observaciones
+	\item Hungarian: 294 observaciones
+	\item Switzerland: 123 observaciones
+	\item Long Beach VA: 200 observaciones
+	\item Stalog (Heart) Data Set: 270 observaciones
+\end{itemize}
+
 \noindent
-	\textbf{Descripción}: Enfermedades cardiovasculares son la causa numero uno de muerte globalmente, tomando un estimado de 17.9 millones de vidas cada año, que son aproximadamente 31\% de todas las muertes globales.\\
-	\vspace{0.2cm}
-	Este dataset fue creado mediante la combinación de distintos datasets disponibles independientes pero no combinados anteriormente. Cinco datasets de información cardíaca están combinados en 11 atributos comunes logrando el dataset mas grande de informacion de enfermedades cardiovasculares utilizado para investigación. Los 5 datasets utilizados para la creación de este son:\\
-	\begin{itemize}
-		\item Cleveland: 303 observaciones
-		\item Hungarian: 294 observaciones
-		\item Switzerland: 123 observaciones
-		\item Long Beach VA: 200 observaciones 
-		\item Stalog (Heart) Data Set: 270 observaciones
-	\end{itemize}
-	
-	
-%\end{flushleft}
-\noindent
+La cantidad de registros y los tipos de atributos utilizados para este trabajo fueron los siguientes, considerando que estos registros ya fueron previamente procesados para poder ser utilizados en las técnicas de aprendizaje automático.
+
 	\textbf{Cantidad de registros}: 918\\
 	\textbf{Cantidad de atributos}: 11\\
 	\textbf{Atributos Categóricos}: 5\\
 	\textbf{Atributos Numéricos}: 6\\
 	
 	Los atributos son (Algunos son numéricos en el dataset pero son codificaciones de categóricos):
-	
-	
-	\vspace{0.2cm}
 	
 	\begin{table}
 		\caption{Tipo de atributo del conjunto Binario.} 
@@ -226,8 +215,7 @@ Se realiza este informe de registros, atributos y métricas relevantes luego de 
 	
 	
 	
-	\underline{\textbf{Descripción atributos:}}\\
-	\vspace{0.2cm}
+	\underline{\textbf{Descripción atributos:}} A continuación se realizara una pequeña descripción de cada atributo anteriormente señalado. Si el atributo es categórico, se informara la distribución de los valores que posee dicho atributo y en caso de resultar ser un atributo numérico, se informara la media de los valores de dicho atributo, junto al valor máximo y mínimo que posee. Se realiza lo anterior para contextualizar los atributos y ver los rangos de valores con que se trabajara. \\
 	
 	\noindent
 	
@@ -283,16 +271,10 @@ f(x)  =
 
 
 \subsection{Dataset Multiclase: Cardiotocografía Predicción}
-
-
-	\textbf{Titulo Original}: Cardiotocography\\
-	\textbf{Cita}: Campos, D. \& Bernardes, J. (2000). Cardiotocography [Dataset]. UCI Machine Learning Repository.  \underline{\href{https://doi.org/10.24432/C51S4N.}{https://doi.org/10.24432/C51S4N.}}\\
 	
+	\textbf{Descripción}: La cardiotocografía (CTG) es un registro continuo de la frecuencia cardíaca fetal que se obtiene mediante un transductor de ultrasonidos colocado en el abdomen materno. La CTG se utiliza ampliamente durante el embarazo como método para evaluar el bienestar fetal, sobre todo en embarazos con mayor riesgo de complicaciones.
 
-	
-	\textbf{Descripción}: La cardiotocografía (CTG) es un registro continuo de la frecuencia cardíaca fetal que se obtiene mediante un transductor de ultrasonidos colocado en el abdomen materno. La CTG se utiliza ampliamente durante el embarazo como método para evaluar el bienestar fetal, sobre todo en embarazos con mayor riesgo de complicaciones.\\
-	\vspace{0.2cm}
-	Se procesaron automáticamente 2126 cardiotocogramas fetales (CTG) y se midieron sus características diagnósticas. Tres obstetras expertos clasificaron los CTG y se les asignó una etiqueta de clasificación consensuada. La clasificación se realizó tanto con respecto a un patrón morfológico (A, B, C...) como al estado fetal (N, S, P).\\
+	En el dataset utilizado se procesaron automáticamente 2126 cardiotocogramas fetales (CTG) y se midieron sus características diagnósticas. Tres obstetras expertos clasificaron los CTG y se les asignó una etiqueta de clasificación consensuada. La clasificación se realizó tanto con respecto a un patrón morfológico (A, B, C...) como al estado fetal (N, S, P).\\
 	
 	\noindent
 	\textbf{Cantidad de registros}: 2115\\
@@ -1579,6 +1561,6 @@ DS        &  0.000035\\
 Explicar que aprendimos con la realización de este trabajo. Qué nos muestran los resultados. 
 
 \bibliographystyle{plain}
-\bibliography{References}
+\bibliography{Referencias}
 
 \end{document}
