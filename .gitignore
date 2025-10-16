@@ -172,5 +172,9 @@ Text Files/LaTeX Source/On-the-Distribution-of-Complexity.pdf
 *.log
 *.out
 *.gz
+*.lof
+*.lot
+*.toc
+
 Text Files/LaTeX Source/Asymptotic-Distribution-of-the-Statistical-Complexity-under-the-Multinomial-Law-R0.pdf
 Text/SARImageSegmentationUsingNeuralNetworksTrainedWithGI0Data.pdf
