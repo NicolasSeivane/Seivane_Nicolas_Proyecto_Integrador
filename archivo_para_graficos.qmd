@@ -1,0 +1,287 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+```
+
+You can add options to executable code like this
+
+```{r}
+# Definimos los modelos y métricas
+modelos <- c("RL", "SVM", "NB", "RF")
+metricas <- c("Accuracy","F1", "ROC AUC")
+
+# Creamos un data frame con todos los valores simulados
+# Creamos un data frame vacío con todas las combinaciones
+data <- expand.grid(modelo = modelos, metrica = metricas)
+data$valor <- NA  # aquí completás los valores reales
+
+# Ejemplo de cómo asignar valores manualmente:
+data$valor[data$modelo=="RL" & data$metrica=="Accuracy"] <- 0.84
+data$valor[data$modelo=="RL" & data$metrica=="ROC AUC"] <- 0.90
+data$valor[data$modelo=="RL" & data$metrica=="F1"] <- 0.84
+
+
+data$valor[data$modelo=="SVM" & data$metrica=="Accuracy"] <- 0.86
+data$valor[data$modelo=="SVM" & data$metrica=="ROC AUC"] <- 0.86
+data$valor[data$modelo=="SVM" & data$metrica=="F1"] <- 0.86
+
+
+data$valor[data$modelo=="NB" & data$metrica=="Accuracy"] <- 0.84
+data$valor[data$modelo=="NB" & data$metrica=="ROC AUC"] <- 0.84
+data$valor[data$modelo=="NB" & data$metrica=="F1"] <- 0.84
+
+
+data$valor[data$modelo=="RF" & data$metrica=="Accuracy"] <- 0.87
+data$valor[data$modelo=="RF" & data$metrica=="ROC AUC"] <- 0.87
+data$valor[data$modelo=="RF" & data$metrica=="F1"] <- 0.92
+
+```
+
+```{r}
+ggplot(data, aes(x = modelo, y = valor, fill = metrica)) +
+  
+  # geom_bar con stat="identity" dibuja las barras con alturas según 'valor'
+  # position="dodge" separa las barras de distintas métricas dentro de cada modelo
+  geom_bar(stat = "identity", position = "dodge") +
+  
+  # Personalización de títulos y etiquetas
+  labs(
+    title = "Valores de distintas métricas por modelo (Caso Binario)",  # Título del gráfico
+    x = "Modelo",  # Etiqueta del eje X
+    y = "Valor"    # Etiqueta del eje Y
+  ) +
+  
+  # Ajustar eje Y para que vaya de 0 a 1
+  scale_y_continuous(limits = c(0, 1)) +
+  
+  # Cambiar manualmente los colores de cada métrica
+  scale_fill_manual(
+    values = c(
+      "Accuracy" = "#1f77b4",   # azul
+      "ROC AUC" = "#ff7f0e",     # verde
+      "F1" = "#d62728"          # rojo
+    )
+  ) +
+  
+  # Tema minimalista (limpio) y ajustes de texto
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14, face = "bold"),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12)
+  )
+
+ggsave(
+  filename = "mejores_modelos_barras_binario.png", # <--- extensión explícita
+  plot = last_plot(),                      # o plot = p si lo guardaste en p <- ggplot(...)
+  width = 10, height = 6,                  # tamaño en pulgadas
+  dpi = 300                                # resolución
+)
+```
+
+```{r}
+# Definimos los modelos y métricas
+modelos <- c("RL", "SVM", "NB", "RF")
+metricas <- c("Accuracy","F1", "ROC AUC")
+
+# Creamos un data frame con todos los valores simulados
+# Creamos un data frame vacío con todas las combinaciones
+data2 <- expand.grid(modelo = modelos, metrica = metricas)
+data2$valor <- NA  # aquí completás los valores reales
+
+# Ejemplo de cómo asignar valores manualmente:
+data2$valor[data$modelo=="RL" & data$metrica=="Accuracy"] <- 0.87
+data2$valor[data$modelo=="RL" & data$metrica=="ROC AUC"] <- 0.96
+data2$valor[data$modelo=="RL" & data$metrica=="F1"] <- 0.89
+
+
+data2$valor[data$modelo=="SVM" & data$metrica=="Accuracy"] <- 0.90
+data2$valor[data$modelo=="SVM" & data$metrica=="ROC AUC"] <- 0.89
+data2$valor[data$modelo=="SVM" & data$metrica=="F1"] <- 0.89
+
+
+data2$valor[data$modelo=="NB" & data$metrica=="Accuracy"] <- 0.82
+data2$valor[data$modelo=="NB" & data$metrica=="ROC AUC"] <- 0.91
+data2$valor[data$modelo=="NB" & data$metrica=="F1"] <- 0.83
+
+
+data2$valor[data$modelo=="RF" & data$metrica=="Accuracy"] <- 0.94
+data2$valor[data$modelo=="RF" & data$metrica=="ROC AUC"] <- 0.94
+data2$valor[data$modelo=="RF" & data$metrica=="F1"] <- 0.98
+```
+
+```{r}
+ggplot(data2, aes(x = modelo, y = valor, fill = metrica)) +
+  
+  # geom_bar con stat="identity" dibuja las barras con alturas según 'valor'
+  # position="dodge" separa las barras de distintas métricas dentro de cada modelo
+  geom_bar(stat = "identity", position = "dodge") +
+  
+  # Personalización de títulos y etiquetas
+  labs(
+    title = "Valores de distintas métricas por modelo (Caso Multiclase)",  # Título del gráfico
+    x = "Modelo",  # Etiqueta del eje X
+    y = "Valor"    # Etiqueta del eje Y
+  ) +
+  
+  # Ajustar eje Y para que vaya de 0 a 1
+  scale_y_continuous(limits = c(0, 1)) +
+  
+  # Cambiar manualmente los colores de cada métrica
+  scale_fill_manual(
+    values = c(
+      "Accuracy" = "#1f77b4",   # azul
+      "ROC AUC" = "#ff7f0e",     # verde
+      "F1" = "#d62728"          # rojo
+    )
+  ) +
+  
+  # Tema minimalista (limpio) y ajustes de texto
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14, face = "bold"),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12)
+  )
+```
+
+```{r}
+df_metricas <- data.frame(
+  n_features = c(1,2,3,4,5,6,7,8,9,10,11),
+  
+  RL = c(0.625, 0.684, 0.772, 0.771, 0.774, 0.776, 0.775, 0.770, 0.798, 0.819, 0.848),
+  
+  
+  SVM = c(0.813, 0.835, 0.836, 0.839, 0.845, 0.856, 0.866, 0.860, 0.861, 0.864, 0.861),
+  
+  
+  NB = c(0.813, 0.820, 0.767, 0.830, 0.829, 0.852, 0.837, 0.846, 0.846, 0.847, 0.842),
+  
+  
+  RF = c(0.813, 0.810, 0.825, 0.831, 0.850, 0.851, 0.852, 0.863, 0.869, 0.871, 0.876)
+)
+
+df_largo <- df_metricas %>%
+  pivot_longer(cols = -n_features, names_to = "modelo", values_to = "valor")
+
+
+ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_color_manual(values = c("RL" = "#0072B2", "SVM" = "#E69F00",
+                                "NB" = "#009E73", "RF" = "#D55E00")) +
+  scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
+  labs(
+    title = "Evolución de las métricas (Caso Binario)",
+    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
+    x = "Cantidad de características utilizadas",
+    y = "Valor de la métrica Accuracy",
+    color = "Modelo"
+  ) +
+  theme_minimal(base_size = 13) +
+ theme(
+    plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom"
+  )
+```
+
+```{r}
+df_metricas <- data.frame(
+  n_features = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21),
+  
+  RL = c(0.70, 0.856, 0.859, 0.860, 0.892, 0.902, 0.907, 0.908, 0.914, 0.914, 0.914, 0.914, 0.913, 0.913, 0.912, 0.910, 0.911, 0.913, 0.915, 0.915, 0.913 ),
+  
+  
+  SVM = c(0.772, 0.808, 0.814, 0.825, 0.821, 0.821, 0.854, 0.865, 0.865, 0.876, 0.877, 0.878, 0.879, 0.879, 0.883, 0.883, 0.895, 0.896, 0.897, 0.896, 0.897 ),
+  
+  
+  NB = c(0.660, 0.803, 0.831, 0.838, 0.837, 0.834, 0.829, 0.824, 0.826, 0.827, 0.827, 0.838, 0.836, 0.837, 0.838, 0.833, 0.830, 0.831, 0.826, 0.828, 0.822 ),
+  
+  
+  RF = c(0.802, 0.868, 0.885, 0.926, 0.937, 0.940, 0.939, 0.938, 0.941, 0.939, 0.940, 0.940, 0.942, 0.941, 0.939, 0.944, 0.943, 0.945, 0.941, 0.941, 0.942 )
+)
+
+df_largo <- df_metricas %>%
+  pivot_longer(cols = -n_features, names_to = "modelo", values_to = "valor")
+
+
+ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_color_manual(values = c("RL" = "#0072B2", "SVM" = "#E69F00",
+                                "NB" = "#009E73", "RF" = "#D55E00")) +
+  scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
+  labs(
+    title = "Evolución de las métricas (Caso Multiclase)",
+    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
+    x = "Cantidad de características utilizadas",
+    y = "Valor de la métrica Accuracy",
+    color = "Modelo"
+  ) +
+  theme_minimal(base_size = 13) +
+ theme(
+    plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom"
+  )
+```
+
+```{r}
+df_box <- data.frame(
+  grupo = rep(c("A", "B", "C"), each = 50),
+  valor = c(rnorm(50, 5), rnorm(50, 7), rnorm(50, 9))
+)
+
+ggplot(df_box, aes(x = grupo, y = valor, fill = grupo)) +
+  geom_boxplot() +
+  labs(title = "Diagrama de caja", x = "Grupo", y = "Valor") +
+  theme_minimal()
+
+```
+
+```{r}
+ggplot(data, aes(x = "", y = valor, fill = categoria)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  labs(title = "Gráfico de pastel") +
+  theme_void()
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).

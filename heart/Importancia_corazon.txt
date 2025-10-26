@@ -1,0 +1,46 @@
+La importancia de las features:
+Random Forest Importancia atributos:ST_Slope          0.254265
+ChestPainType     0.127319
+Oldpeak           0.113156
+ExerciseAngina    0.105952
+Cholesterol       0.099872
+MaxHR             0.088635
+Age               0.065807
+RestingBP         0.055053
+Sex               0.040916
+FastingBS         0.030069
+RestingECG        0.018956
+dtype: float64------------------------------Logistic Regression Importancia Permutacion:ST_Slope          0.072440
+ExerciseAngina    0.026797
+ChestPainType     0.020806
+Sex               0.011329
+FastingBS         0.010240
+Cholesterol       0.009150
+Oldpeak           0.006100
+Age               0.003922
+MaxHR             0.003268
+RestingBP         0.000545
+RestingECG        0.000218
+dtype: float64------------------------------SVM Importancia Permutacion:ST_Slope          0.106209
+Cholesterol       0.031808
+Oldpeak           0.024510
+ChestPainType     0.023312
+Sex               0.011438
+MaxHR             0.008715
+ExerciseAngina    0.008388
+Age               0.007952
+RestingBP         0.005773
+RestingECG        0.004902
+FastingBS         0.004575
+dtype: float64------------------------------Gaussiano Naive Bayes Importancia Permutacion:ST_Slope          0.027015
+ExerciseAngina    0.023747
+Oldpeak           0.018736
+ChestPainType     0.018519
+Cholesterol       0.014815
+Sex               0.014270
+FastingBS         0.004575
+RestingBP         0.001852
+MaxHR            -0.000218
+RestingECG       -0.001198
+Age              -0.003595
+dtype: float64------------------------------

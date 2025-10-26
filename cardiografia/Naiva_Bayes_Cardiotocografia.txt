@@ -1,14 +1,14 @@
 Resultados de Naive Bayes con validacion cruzada (5 folds):
 
- var_smoothing=1e-09--> {'cohen_kappa': 0.5938560949395839, 'accuracy': 0.8222222222222223, 'precision': 0.8767977131604818, 'recall': 0.8222222222222223, 'f1': 0.8380614383898563, 'roc_auc': 0.9109408354075471}, tiempo_total=0.13 segundos
+ var_smoothing=1e-09--> {'cohen_kappa': 0.5938560949395839, 'accuracy': 0.8222222222222223, 'precision': 0.8767977131604818, 'recall': 0.8222222222222223, 'f1': 0.8380614383898563, 'roc_auc': 0.9109408354075471}, tiempo_total=0.11 segundos
 
- var_smoothing=1e-08--> {'cohen_kappa': 0.5913609940601305, 'accuracy': 0.8208037825059102, 'precision': 0.8748213862275103, 'recall': 0.8208037825059102, 'f1': 0.8366564224139426, 'roc_auc': 0.9112240664936955}, tiempo_total=0.12 segundos
+ var_smoothing=1e-08--> {'cohen_kappa': 0.5913609940601305, 'accuracy': 0.8208037825059102, 'precision': 0.8748213862275103, 'recall': 0.8208037825059102, 'f1': 0.8366564224139426, 'roc_auc': 0.9112240664936955}, tiempo_total=0.11 segundos
 
- var_smoothing=1e-07--> {'cohen_kappa': 0.5920288211972023, 'accuracy': 0.8208037825059102, 'precision': 0.8747784486821597, 'recall': 0.8208037825059102, 'f1': 0.8366271367836807, 'roc_auc': 0.9110660824857375}, tiempo_total=0.12 segundos
+ var_smoothing=1e-07--> {'cohen_kappa': 0.5920288211972023, 'accuracy': 0.8208037825059102, 'precision': 0.8747784486821597, 'recall': 0.8208037825059102, 'f1': 0.8366271367836807, 'roc_auc': 0.9110660824857375}, tiempo_total=0.11 segundos
 
- var_smoothing=1e-06--> {'cohen_kappa': 0.5912288710063892, 'accuracy': 0.8203309692671394, 'precision': 0.8745014251171013, 'recall': 0.8203309692671394, 'f1': 0.8362107305078716, 'roc_auc': 0.911029602159332}, tiempo_total=0.12 segundos
+ var_smoothing=1e-06--> {'cohen_kappa': 0.5912288710063892, 'accuracy': 0.8203309692671394, 'precision': 0.8745014251171013, 'recall': 0.8203309692671394, 'f1': 0.8362107305078716, 'roc_auc': 0.911029602159332}, tiempo_total=0.13 segundos
 
- var_smoothing=1e-05--> {'cohen_kappa': 0.5912288710063892, 'accuracy': 0.8203309692671394, 'precision': 0.8745014251171013, 'recall': 0.8203309692671394, 'f1': 0.8362107305078716, 'roc_auc': 0.9110234244058775}, tiempo_total=0.12 segundos
+ var_smoothing=1e-05--> {'cohen_kappa': 0.5912288710063892, 'accuracy': 0.8203309692671394, 'precision': 0.8745014251171013, 'recall': 0.8203309692671394, 'f1': 0.8362107305078716, 'roc_auc': 0.9110234244058775}, tiempo_total=0.10 segundos
 
 
 ------------------------------------------------------
@@ -21,6 +21,6 @@ Resultados de Naive Bayes con validacion cruzada (5 folds) undersample:
 
  var_smoothing=1e-07--> {'cohen_kappa': 0.6714285714285714, 'accuracy': 0.780952380952381, 'precision': 0.8052914662446046, 'recall': 0.780952380952381, 'f1': 0.7814058706406086, 'roc_auc': 0.8862993197278911}, tiempo_total=0.12 segundos
 
- var_smoothing=1e-06--> {'cohen_kappa': 0.6714285714285714, 'accuracy': 0.780952380952381, 'precision': 0.8052914662446046, 'recall': 0.780952380952381, 'f1': 0.7814058706406086, 'roc_auc': 0.8864081632653061}, tiempo_total=0.18 segundos
+ var_smoothing=1e-06--> {'cohen_kappa': 0.6714285714285714, 'accuracy': 0.780952380952381, 'precision': 0.8052914662446046, 'recall': 0.780952380952381, 'f1': 0.7814058706406086, 'roc_auc': 0.8864081632653061}, tiempo_total=0.12 segundos
 
- var_smoothing=1e-05--> {'cohen_kappa': 0.6714285714285714, 'accuracy': 0.780952380952381, 'precision': 0.8052914662446046, 'recall': 0.780952380952381, 'f1': 0.7814058706406086, 'roc_auc': 0.8864353741496599}, tiempo_total=0.23 segundos
+ var_smoothing=1e-05--> {'cohen_kappa': 0.6714285714285714, 'accuracy': 0.780952380952381, 'precision': 0.8052914662446046, 'recall': 0.780952380952381, 'f1': 0.7814058706406086, 'roc_auc': 0.8864353741496599}, tiempo_total=0.15 segundos
