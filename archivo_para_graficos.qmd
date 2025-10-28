@@ -162,6 +162,13 @@ ggplot(data2, aes(x = modelo, y = valor, fill = metrica)) +
     legend.title = element_text(size = 13),
     legend.text = element_text(size = 12)
   )
+
+ggsave(
+  filename = "mejores_modelos_barras_multiclase.png", # <--- extensión explícita
+  plot = last_plot(),                      # o plot = p si lo guardaste en p <- ggplot(...)
+  width = 10, height = 6,                  # tamaño en pulgadas
+  dpi = 300                                # resolución
+)
 ```
 
 ```{r}
@@ -203,6 +210,15 @@ ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
     plot.subtitle = element_text(hjust = 0.5),
     legend.position = "bottom"
   )
+
+ggsave(
+  filename = "evolucion_metrica_binario.png", # <--- extensión explícita
+  plot = last_plot(),                      # o plot = p si lo guardaste en p <- ggplot(...)
+  width = 10, height = 6,                  # tamaño en pulgadas
+  dpi = 300                                # resolución
+)
+
+
 ```
 
 ```{r}
@@ -244,6 +260,13 @@ ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
     plot.subtitle = element_text(hjust = 0.5),
     legend.position = "bottom"
   )
+
+ggsave(
+  filename = "evolucion_metrica_multiclase.png", # <--- extensión explícita
+  plot = last_plot(),                      # o plot = p si lo guardaste en p <- ggplot(...)
+  width = 10, height = 6,                  # tamaño en pulgadas
+  dpi = 300                                # resolución
+)
 ```
 
 ```{r}
