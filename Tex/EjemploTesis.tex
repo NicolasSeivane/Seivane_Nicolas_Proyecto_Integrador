@@ -10,7 +10,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
 \usepackage{incgraph,tikz}
-\usepackage{caption}
+%\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{amsfonts}
 \usepackage{babel}
@@ -26,7 +26,6 @@
 \usepackage{cleveref}
 \usepackage{graphicx}
 \usepackage{longtable}
-\usepackage{float}
 \usepackage{booktabs}
 \usepackage{colortbl}
 \usepackage{multirow}
@@ -76,7 +75,7 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 
 \pagestyle{fancy}
 
-\restylefloat{table}
+%\restylefloat{table}
 
 
 \definecolor{TPcolor}{HTML}{A9D18E} % Verde claro para TP
@@ -1743,7 +1742,8 @@ En la Figura \ref{fig:mejores_modelos_multiclase} se observa que Random Forest o
 
 
 \section{Importancia de las Características}
-La importancia de las características de las mejores configuraciones.
+La importancia de las características de las mejores configuraciones \textcolor{red}{agregar cómo se calcula}.
+Los resultados obtenidos se muestran en las Tablas~\ref{tab:rf_importancia},~\ref{tab:rl_importancia_}... para los modelos RF, RL,..., respectivamente. \textcolor{red}{Completar.}
 
 \subsection{Random Forest}
 
@@ -1783,7 +1783,7 @@ La importancia de las características de las mejores configuraciones.
 
 \subsection{Regresión Logística}
 
-\begin{table}[H]
+\begin{table}[htb]
 	\centering
 	\caption{Importancia de las características según permutación (RL)}
 	\label{tab:rl_importancia_multiclase}
