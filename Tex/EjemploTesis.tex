@@ -34,6 +34,7 @@
 %\usepackage{cite}    
 \usepackage{bm}
 \usepackage{makecell}
+\usepackage{placeins}
 
 \usepackage{listings}
 \lstset{ %
@@ -75,6 +76,9 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 
 \pagestyle{fancy}
 
+
+
+
 %\restylefloat{table}
 
 
@@ -106,6 +110,8 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 {\normalfont\large\bfseries\justifying}
 {\thesubsection}{1em}{}
 
+
+
 \begin{document}
 
 
@@ -125,28 +131,26 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 
 \chapter{Introducción}
 
-
-Describir el problema que se desea resolver
+El objetivo general de este trabajo es comparar el rendimiento de diversas técnicas de Aprendizaje Automático Supervisado con el fin de recomendar aquella que presente el mejor desempeño al aplicarse sobre un conjunto de datos cardiológicos. Se expondrán las técnicas empleadas y las métricas utilizadas para poder determinar cuál de las técnicas obtiene los valores más favorables y, en consecuencia, resulta más adecuada para el problema planteado.
 
 \section{Motivación}
 
-Explicar porqué estudiamos este problema, para qué sirve, cuál es el impacto y en qué áreas.
-
+El proceso de diagnóstico médico puede ser extenso, incluso contando con la mejor disposición del personal de salud, ya que con frecuencia requiere la recopilación y análisis de datos provenientes de distintos estudios. El propósito de este trabajo es contribuir a agilizar dicho proceso, identificando técnicas que puedan facilitar el diagnóstico médico. No solo resulta fundamental la posibilidad de obtener diagnósticos más ágiles, sino también la de reconocer qué atributos o características de los estudios resultan más significativos que otros para un diagnóstico determinado.
 
 \section{Estado del Arte}
 
 
-En esta sección se realiza una descripción de algunos de los métodos más importantes existentes en la bibliografía describiendo el problema y el método utilizado por cada autor. Se cita la bibliografía. 
+Las técnicas de Aprendizaje Automático (ML) se utilizan cada vez más en la investigación cardiovascular. El trabajo de Isaksen et al.~\cite{isaksen2025evaluating}(2025) presenta recomendaciones y orientaciones para la evaluación adecuada de modelos de aprendizaje automático supervisado en cardiología, destacando los problemas específicos asociados con estas técnicas, como la fuga de datos (\textit{data leakage}) y el desequilibrio de clases. Por su parte, el documento de Kumar y Kumar ~\cite{kumar2021machine}(2021) revisa las metodologías de ML para el diagnóstico de cardiopatías utilizando métodos no invasivos (NI), un área crucial dada la alta mortalidad anual (17.9 millones de personas) asociada con los problemas cardíacos.
  
 \section{Conjuntos de datos Utilizados}
 
-Para la realización de este trabajo se exploraron diversas plataformas en busca de conjuntos de datos reales que resultaran relevantes para el estudio mediante técnicas de aprendizaje automático. Durante esta búsqueda se identificaron múltiples \emph{datasets} de distinta naturaleza: algunos correspondientes a problemas de \textbf{clasificación binaria}, donde las observaciones se asocian a dos posibles clases, y otros de \textbf{clasificación multiclase}, con más de dos categorías posibles.\\
+Para la realización de este trabajo se exploraron diversas plataformas en busca de conjuntos de datos reales que resultaran relevantes para el estudio mediante técnicas de aprendizaje automático. Durante esta búsqueda se identificaron múltiples \emph{datasets} de distinta naturaleza: algunos correspondientes a problemas de \textbf{clasificación binaria}, donde las observaciones se asocian a dos posibles clases, y otro \emph{dataset} de \textbf{clasificación multiclase}, con más de dos categorías posibles.\\
 
 \noindent
 Se observó, además, una marcada predominancia de conjuntos de datos provenientes del ámbito \textbf{médico}, dentro de los cuales se seleccionaron aquellos considerados más adecuados para las pruebas de los métodos de aprendizaje automático, abarcando tanto casos binarios como multiclase.\\
 
 \noindent
-Todos estos \emph{datasets} fueron procesados anteriormente a las pruebas realizadas, en donde se eliminaron registros duplicados o con datos faltantes y también no se tuvieron en cuenta aquellos con datos atípicos a \textit{priori}, como un caso donde un paciente tiene colesterol 0.
+Todos estos \emph{datasets} fueron procesados anteriormente a las pruebas realizadas, en donde se eliminaron tanto registros duplicados como con datos faltantes, tampoco se tuvieron en cuenta aquellos con datos atípicos a \textit{priori}, como un caso donde un paciente tiene colesterol 0.
 
 \subsection{Dataset Binario: Insuficiencia  Cardíaca Predicción}
 
@@ -165,10 +169,7 @@ Este dataset~\cite{HeartFailure}, llamado \textit{HeartFailure} fue creado media
 \end{itemize}
 
 \noindent
-La cantidad de registros y los tipos de atributos utilizados para este trabajo fueron los siguientes, considerando que estos registros ya fueron previamente procesados para poder ser utilizados en las técnicas de aprendizaje automático. Se informara la distribución de los valores si el atributo es categórico, en caso de ser numérico, se informara la media de los valores, junto al valor máximo y mínimo que poseen.\\
-
-\noindent
-En la  Tabla~\ref{tab:tablebinario} se muestran que tipo de datos son los atributos del dataset que serán utilizados en este trabajo.
+En la  Tabla~\ref{tab:tablebinario} se muestran que tipo de datos son los atributos del dataset que serán utilizados en este trabajo, considerando que estos mismos ya fueron previamente procesados para poder ser utilizados en las técnicas de aprendizaje automático.\\
 
 \noindent
 	\textbf{Cantidad de registros}: 918\\
@@ -177,7 +178,7 @@ En la  Tabla~\ref{tab:tablebinario} se muestran que tipo de datos son los atribu
 	\textbf{Atributos Numéricos}: 6\\
 	
 	
-	\begin{table}
+	\begin{table}[htb]
 		\caption{Tipo de atributo del conjunto Binario.} 
 		\centering
 		\label{tab:tablebinario}
@@ -262,20 +263,8 @@ A continuación se realizara una pequeña descripción de cada atributo anterior
 	
 	%{0.2cm}
 	\noindent
-	\textbf{HeartDisease}: Variable de salida de si posee una enfermedad cardíaca; hay 44.71\% No codificado en 0 y hay 55.29\% Si codificado en 1\\
-	
-
-\textbf{Función Objetivo Inicial}: Donde la variable salida es $HeartDisease$, no hay una variable que se use como condición:
-
-\[
-f(x)  =
-\begin{cases}
-	\text{'1'} & \text{si ??} \\
-	\text{'0'} & \text{si ??} \\
-	
-\end{cases}
-\]
-
+	\textbf{HeartDisease}: Variable de salida de si posee una enfermedad cardíaca; hay 44.71\% No codificado en 0 y hay 55.29\% Si codificado en 1.
+	Siendo esta la \textbf{variables objetivo}.
 
 
 \subsection{Dataset Multiclase: Cardiotocografía Predicción}
@@ -421,28 +410,15 @@ A continuación se realizara una pequeña descripción de cada atributo anterior
 	\textbf{Tendency}: Tendencia del histograma.  Hay un 39.67\% con valor 1, 52.53\% con un valor 0 y 8.27\% con un valor -1\\
 	
 \noindent
-	\textbf{CLASS}:código de clasificación del estado fetal (N=normal; S=sospechoso; P=patológico).  Hay un 13.81\% con valor Sospechoso, 77.92\% con un valor Normal, 8.27\% con un valor Patológico.\\
+	\textbf{CLASS}: Código de clasificación del estado fetal (N=normal; S=sospechoso; P=patológico).  Hay un 13.81\% con valor Sospechoso, 77.92\% con un valor Normal, 8.27\% con un valor Patológico.
+	Siendo esta la \textbf{variables objetivo}.
 	
-\noindent
-\textbf{Función Objetivo Inicial}: Donde la variable salida es $CLASS$:
-
-\[
-f(x)  =
-\begin{cases}
-	\text{'Sospechoso'} & \text{si ??} \\
-	\text{'Normal'} & \text{si ??} \\
-	\text{'Patológico'} & \text{si ??} \\
-	
-\end{cases}
-\]
-
-
 
 \chapter{Métricas de Rendimiento Utilizadas}
 
 \section{Introducción}
 
-Dentro del objetivo de este trabajo es evaluar el desempeño calificador de cada modelo de Aprendizaje Automático. Para alcanzar este objetivo, se utilizaran \textbf{métricas de rendimiento} que permiten cuantificar la capacidad del algoritmo de clasificar, ergo son herramienta que utilizamos para saber que tan bien predice un modelo una clase o que tan bien puede clasificar entre varias clases.\\
+El objetivo de este trabajo es evaluar el desempeño calificador de cada modelo de Aprendizaje Automático. Para alcanzarlo, se utilizaran \textbf{métricas de rendimiento} que permiten cuantificar la capacidad del algoritmo de clasificar, ergo son herramienta que utilizamos para saber que tan bien predice un modelo a una clase o que tan bien puede clasificar entre varias clases.\\
 
 \noindent
 \textbf{La importancia de las métricas} se ubica en que el objetivo central de estos algoritmos no es simplemente obtener un buen rendimiento en los datos utilizados para construir el modelo, sino en su \textbf{capacidad de generalización}, su habilidad para funcionar correctamente con entradas nuevas y previamente no observadas (no utilizadas en el entrenamiento). Esto se debe a que es perfectamente normal y sumamente esperable que el modelo funcione correctamente con el conjunto de datos que se utiliza para el entrenamiento del modelo, la idea fundamental es poder tener el mismo rendimiento o incluso uno mejor que con el conjunto de entrenamiento.\\
@@ -473,7 +449,7 @@ Una matriz de confusión, que se puede observar en la Tabla~\ref{tab:matrizconfu
 \end{itemize}
 
 
-\begin{table}[]
+\begin{table}[htb]
     \centering
     \begin{tabular}{|c|c|c|c|}
 		\cline{3-4}
@@ -513,7 +489,7 @@ y en términos del conjunto de predicciones y valores verdaderos, se tiene que $
 por lo tanto, se puede simplificar como la siguiente formula:
 
 \begin{equation}
-    \text{Accuracy} = \frac{\text{Número de predicciones correctas}}{\text{Número total de muestras}}
+    \text{Accuracy} = \frac{\text{Número de predicciones correctas}}{\text{Número total de muestras}}.
     \label{eq:accuracygeneral}
 \end{equation}
 
@@ -524,7 +500,7 @@ El \textit{Precision} mide la probabilidad de que la predicción positiva del cl
 \noindent
 En términos de la Matriz de Confusión, se puede expresar lo anterior de la siguiente manera;
 \begin{equation}
-    \text{Precision} = \frac{TP}{TP + FP}
+    \text{Precision} = \frac{TP}{TP + FP}.
     \label{eq:precisionbinario}
 \end{equation}
 
@@ -536,7 +512,7 @@ El \textit{Recall} o también conocido como Sensibilidad o Tasa de Verdaderos Ne
 En términos de la Matriz de Confusión se puede entender a la \textit{Recall} de la siguiente manera:
 
 \begin{equation}
-     \text{Recall} = TPR = \frac{TP}{TP + FN} = \frac{TP}{P} 
+     \text{Recall} = TPR = \frac{TP}{TP + FN} = \frac{TP}{P}.
      \label{eq:recallbinario}
 \end{equation}
 
@@ -561,7 +537,7 @@ donde la fórmula del F1-score ($\beta=1$) en términos de Precision y Recall se
 \noindent
 o en términos de la Matriz de Confusión, de forma más simplificada:
 \begin{equation}
-     F1 = \frac{2TP}{2TP + FP + FN} 
+     F1 = \frac{2TP}{2TP + FP + FN}.
         \label{eq:f1enmatriz}
 \end{equation}
 
@@ -592,7 +568,7 @@ En este caso se utiliza el método \textit{"weighted"}, el cual computa o tiene 
 La métrica ponderada por la presencia de la clase, $\text{M}_{\text{weighted}}$, se calcula como el promedio de la métrica por clase $\text{M}_l$, donde cada contribución es ponderada por el tamaño de la clase $|y_l|$, siendo $L$ es el conjunto de etiquetas o clases. Donde $\hat{M}_{\text{weighted}}$ es el valor estimado de la métrica promedio ponderada.
 
 \begin{equation}
-    \hat{M}_{\text{weighted}} = \frac{1}{\sum{l \in L} |y_l|} \sum_{l \in L} |y_l| \cdot \text{M}_l
+    \hat{M}_{\text{weighted}} = \frac{1}{\sum{l \in L} |y_l|} \sum_{l \in L} |y_l| \cdot \text{M}_l.
     \label{eq:metricasponderadas}
 \end{equation}
 
@@ -610,7 +586,7 @@ Para cada clase $l$ se definen los valores que antes habíamos utilizados para l
 \end{itemize}
 
 
-\begin{table}[]
+\begin{table}[htb]%[htb][]
     \centering
 \begin{tabular}{|c|c|c|c|c|c|}
 		\cline{3-6}
@@ -642,7 +618,7 @@ La \textit{Precision} por clase $l$ mide la proporción de muestras clasificadas
 En términos más simple, utilizando la Matriz de Confusión:
 
 \begin{equation}
-    \text{Precision}_l = \frac{TP_l}{TP_l + FP_l}
+    \text{Precision}_l = \frac{TP_l}{TP_l + FP_l}.
     \label{eq:precisionmulticlase}
 \end{equation}
 
@@ -655,7 +631,7 @@ El \textit{Recall} por clase $l$ mide la proporción de muestras verdaderamente 
 En términos más simple, utilizando la Matriz de Confusión:
 
 \begin{equation}
-    \text{Recall}_l = \frac{TP_l}{TP_l + FN_l}
+    \text{Recall}_l = \frac{TP_l}{TP_l + FN_l}.
     \label{eq:recallmulticlase}
 \end{equation}
 
@@ -668,7 +644,7 @@ El valor global ponderado se obtiene aplicando la fórmula de $M_{\text{weighted
 
 \begin{equation}
     F_{1,\text{weighted}} = \sum_{l \in L} w_l \, F_{1,l}, \quad 
-\text{con } w_l = \frac{n_l}{\sum_{i \in L} n_i}
+\text{con } w_l = \frac{n_l}{\sum_{i \in L} n_i}.
     \label{eq:f1formula}
 \end{equation}
 
@@ -679,14 +655,48 @@ El valor global ponderado se obtiene aplicando la fórmula de $M_{\text{weighted
 Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoque \textbf{One-vs-Rest (OVR)}. Para cada clase $l$, se considera la clase $l$ como positiva y el resto como negativas, luego se calcula el AUC correspondiente ($\text{AUC}_l$) sobre la curva ROC de esa clasificación binaria. Finalmente, se obtiene un promedio ponderado por el soporte de cada clase:
 
 \begin{equation}
-     \text{AUC}_{\text{OVR, weighted}} = \sum_{l \in L} w_l \, \text{AUC}_l ,
+     \text{AUC}_{\text{OVR, weighted}} = \sum_{l \in L} w_l \, \text{AUC}_l.
      \label{eq:onevsrest}
 \end{equation}
 %{eq:onevsrest}{One-vs-Rest (OVR)}
 
 
 
+\section{Importancia de la característica}
 
+\noindent Sea un modelo predictivo $Modelo$ entrenado sobre un conjunto de datos tabular $X$ (ya sea de entrenamiento o validación), y sea $M$ la métrica de referencia del modelo sobre los datos originales. El procedimiento se detalla a continuación:
+
+\begin{enumerate}
+	\item Calcular el puntaje de referencia del modelo $M$ sobre $X$:
+	\begin{equation}
+		\text{M} = \text{calcular métrica}(Modelo, X).
+		\label{eq:puntaje_referencia}
+	\end{equation}
+
+	\item Para cada atributo $j$ del conjunto de datos:
+	\begin{enumerate}
+		\item Repetir el siguiente proceso $K$ veces (para reducir la varianza de la estimación):
+		\begin{enumerate}
+			\item Generar una versión alterada del conjunto de datos, $X^{(k,j)}$, en la que se permuta aleatoriamente, se intercambian de orden los datos de la columna correspondiente a la característica $j$, manteniendo las demás columnas sin cambios, para ver si el modelo empeora o no en su rendimiento.
+			
+			\item Calcular el puntaje del modelo sobre los datos permutados:
+			\begin{equation}
+				M_{k,j} = \text{calcular métrica}(Modelo, X^{(k,j)}).
+				\label{eq:puntaje_referencia_datos_permutados}
+			\end{equation}
+
+		\end{enumerate}
+		\item Calcular la importancia de la característica $j$ como la disminución promedio en el puntaje del modelo respecto del puntaje de referencia:
+		\begin{equation}
+			I_j = M - \frac{1}{K} \sum_{k=1}^{K} M_{k,j}.
+			\label{eq:puntaje_referencia_final}
+		\end{equation}
+
+	\end{enumerate}
+\end{enumerate}
+
+
+\noindent De esta manera, $I_j$ mide la pérdida de desempeño al romper la relación entre la característica $j$ y la variable objetivo. Valores más altos de $I_j$ indican características más relevantes para el modelo.\\
 
 
 
@@ -713,7 +723,7 @@ Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoq
 
 \section{Regresión Logística}
 
-El modelo de \textbf{Regresión Logística} (LR, por su equivalente en inglés \emph{Logistic Regression}) es una técnica del análisis de datos utilizada para establecer relaciones entre las variables predictoras y la clase a la cual pertenece cada registro. Posteriormente, el modelo permite predecir la probabilidad de que un nuevo registro pertenezca a una clase determinada. Este tipo de modelo de regresión es justamente utilizado para los problemas no linealmente separables, como la mayoría de problemas.\\
+El modelo de \textbf{Regresión Logística}~\cite{cramer2002origins} (LR, por su equivalente en inglés \emph{Logistic Regression}) es una técnica del análisis de datos utilizada para establecer relaciones entre las variables predictoras y la clase a la cual pertenece cada registro. Posteriormente, el modelo permite predecir la probabilidad de que un nuevo registro pertenezca a una clase determinada. Este tipo de modelo de regresión es justamente utilizado para los problemas no linealmente separables, como la mayoría de problemas.\\
 
 \noindent
 A diferencia de la regresión lineal múltiple, la regresión logística predice una probabilidad (valor entre 0 y 1). Ambos modelos son lineales en sus parámetros, pero difieren en la naturaleza de la variable dependiente. El objetivo es estimar los coeficientes de regresión que maximizan la verosimilitud de los datos observados, o encontrar los coeficientes que mejor funcionan para los datos de entrenamiento.\\
@@ -761,7 +771,7 @@ La función inversa de la función logística, denominada \textit{logit}, relaci
 \begin{equation}
 	\text{logit}(p(\bm{x}_i)) =
 	\ln \left( \frac{p(\bm{x}_i)}{1 - p(\bm{x}_i)} \right)
-	= \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}
+	= \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}.
 	\label{eq:funcion_logit}
 \end{equation}
 
@@ -797,7 +807,7 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 	\begin{equation}
 		\tilde{J}_{L1}(\boldsymbol{\beta}) =
 		J(\boldsymbol{\beta}) +
-		\alpha \sum_{j=1}^{k} |\beta_j|
+		\alpha \sum_{j=1}^{k} |\beta_j|.
 		\label{eq:l1_penalty}
 	\end{equation}
 	%{eq:l1_penalty}{}
@@ -806,7 +816,7 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 	\begin{equation}
 		\tilde{J}_{L2}(\boldsymbol{\beta}) =
 		J(\boldsymbol{\beta}) +
-		\frac{1}{2}\alpha \sum_{j=1}^{k} \beta_j^2
+		\frac{1}{2}\alpha \sum_{j=1}^{k} \beta_j^2.
 		\label{eq:l2_penalty}
 	\end{equation}
 	%{eq:l2_penalty}{}
@@ -818,7 +828,7 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 		\alpha \left[
 		\rho \sum_{j=1}^{k} |\beta_j| +
 		\frac{1 - \rho}{2} \sum_{j=1}^{k} \beta_j^2
-		\right]
+		\right].
 		\label{eq:elasticnet_penalty}
 	\end{equation}
 	%{eq:elasticnet_penalty}{}
@@ -834,7 +844,7 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 			\boldsymbol{\beta}^{(t+1)} \leftarrow
 			\boldsymbol{\beta}^{(t)} -
 			\bm{H}^{-1}
-			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)})
+			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)}).
 			\label{eq:newtoncg}
 		\end{equation}
 %		%{eq:newtoncg}{}
@@ -844,7 +854,7 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 			\boldsymbol{\beta}^{(t+1)} \leftarrow
 			\boldsymbol{\beta}^{(t)} -
 			\bm{B}^{-1}
-			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)})
+			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)}).
 			\label{eq:bfgs}
 		\end{equation}
 %		%{eq:bfgs}{}
@@ -895,7 +905,7 @@ La impureza es máxima cuando las clases están perfectamente mezcladas y mínim
 \begin{equation}
 	H(D) = - \sum_{k=1}^K 
 	\frac{N_k(D)}{N(D)} 
-	\log_2 \left( \frac{N_k(D)}{N(D)} \right)
+	\log_2 \left( \frac{N_k(D)}{N(D)} \right).
 	\label{eq:entropia_shannon}
 \end{equation}
 %%{eq:entropia_shannon}{Entropía de Shannon de un conjunto de datos $D$}
@@ -915,7 +925,7 @@ La impureza es máxima cuando las clases están perfectamente mezcladas y mínim
 \begin{equation}
 	\text{Gini}(t) = 
 	1 - \sum_{k=1}^K \big[p(k|t)\big]^2 =
-	1 - \sum_{k=1}^K \left(\frac{N_k(t)}{N(t)}\right)^2
+	1 - \sum_{k=1}^K \left(\frac{N_k(t)}{N(t)}\right)^2.
 	\label{eq:indice_gini}
 \end{equation}
 %%{eq:indice_gini}{Índice de Gini de un nodo $t$}
@@ -934,7 +944,7 @@ donde $q_j = \frac{N(t_j)}{N(t)}$ para $j = 1, 2$.
 
 \subsection{Bosques Aleatorios (Random Forest)}
 
-El algoritmo de \textbf{Random Forest} (RF) combina múltiples árboles de decisión independientes construidos sobre subconjuntos aleatorios de los datos (muestreo con reemplazo o \emph{bootstrap}).  
+El algoritmo de \textbf{Random Forest}~\cite{Breiman2001} (RF) combina múltiples árboles de decisión independientes construidos sobre subconjuntos aleatorios de los datos (muestreo con reemplazo o \emph{bootstrap}).  
 Cada árbol se entrena sobre un subconjunto de atributos aleatorios en cada división, lo que introduce diversidad y reduce la varianza.
 
 \noindent
@@ -966,7 +976,7 @@ donde $h_m(\bm{x})$ es la predicción del árbol $m$.
 
 \section{Clasificador Naïve Bayes}
 
-El \textbf{Clasificador Naïve Bayes} (CNB) es un método supervisado probabilístico basado en el \textit{Teorema de Bayes}, que asume independencia condicional entre los atributos dado la clase, lo cual sabemos que no es posible que estas mismas variables sean independientes entre sí. La regla de clasificación, o la probabilidad de que se de una clase dado un registro,
+El \textbf{Clasificador Naïve Bayes}~\cite{hand2001idiot} (CNB) es un método supervisado probabilístico basado en el \textit{Teorema de Bayes}, que asume independencia condicional entre los atributos dado la clase, lo cual sabemos que no es posible que estas mismas variables sean independientes entre sí. La regla de clasificación, o la probabilidad de que se de una clase dado un registro,
 
 \begin{equation}
 	P(Y = C_k \mid X_1 = x_1, \ldots, X_d = x_d)
@@ -974,7 +984,7 @@ El \textbf{Clasificador Naïve Bayes} (CNB) es un método supervisado probabilí
 		P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_k) \, P(Y = C_k)
 	}{
 		P(X_1 = x_1, \ldots, X_d = x_d)
-	}
+	}.
 	\label{eq:bayes_general}
 \end{equation}
 %%{eq:bayes_general}{Teorema de Bayes aplicado a clasificación}
@@ -998,7 +1008,7 @@ en donde puede ser expresado para una clase $k$ cuando se presenta un registro $
 \begin{equation}
 	\hat{\theta}_{jmk} =
 	P(X_j = x_{jm} \mid Y = C_k) =
-	\frac{\#\{X_j = x_{jm} \wedge Y = C_k\}}{\#\{Y = C_k\}}
+	\frac{\#\{X_j = x_{jm} \wedge Y = C_k\}}{\#\{Y = C_k\}}.
 	\label{eq:probabilidad_condicional}
 \end{equation}
 %%{eq:probabilidad_condicional}{Estimador de máxima verosimilitud para la probabilidad condicional}
@@ -1010,7 +1020,7 @@ en donde puede ser expresado para una clase $k$ cuando se presenta un registro $
 Otra estimación fundamental a calcular y expresar es la a priori, en la cual se asemeja a la probabilidad de que un nodo pertenezca a una clase $k$ en \textit{Random Forest}
 \begin{equation}
 	\hat{\pi}_k = P(Y = C_k) =
-	\frac{\#\{Y = C_k\}}{N}
+	\frac{\#\{Y = C_k\}}{N}.
 	\label{eq:probabilidad_priori}
 \end{equation}
 %%{eq:probabilidad_priori}{Estimador de máxima verosimilitud para la probabilidad a priori}
@@ -1056,7 +1066,7 @@ por lo cual la decisión final se obtiene como
 	\left[
 	\log P(Y = C_k) +
 	\sum_{j=1}^{d}
-	\log f(x_j \mid \mu_{jk}, \sigma_{jk}^2)
+	\log f(x_j \mid \mu_{jk}, \sigma_{jk}^2).
 	\right]
 	\label{eq:decision_gaussiana}
 \end{equation}
@@ -1064,7 +1074,7 @@ por lo cual la decisión final se obtiene como
 
 \section{Máquinas de Soporte Vectorial (SVM)}
 
-Las \textbf{Máquinas de Soporte Vectorial} (SVM, por sus siglas en inglés) constituyen una técnica de clasificación supervisada basada en la búsqueda de una \textbf{función de decisión} que permita predecir la clase de una observación a partir de sus atributos. Dado que este método opera sobre variables numéricas, los atributos categóricos deben codificarse previamente.\\
+Las \textbf{Máquinas de Soporte Vectorial}~\cite{Cortes1995} (SVM, por sus siglas en inglés) constituyen una técnica de clasificación supervisada basada en la búsqueda de una \textbf{función de decisión} que permita predecir la clase de una observación a partir de sus atributos. Dado que este método opera sobre variables numéricas, los atributos categóricos deben codificarse previamente.\\
 
 \noindent
 El objetivo fundamental de una SVM es encontrar un \textbf{hiperplano de separación óptimo} que divida los datos en función de sus clases, \textbf{maximizando el margen} $M$, es decir, la distancia mínima entre el hiperplano y los puntos más cercanos de cada clase (denominados \textbf{vectores de soporte}). Dichos vectores determinan la posición y orientación del hiperplano, por lo que son los únicos puntos relevantes en el entrenamiento del modelo.\\
@@ -1115,14 +1125,14 @@ La formulación dual del problema permite expresar la solución en términos de 
 	-\frac{1}{2} \sum_{i,\ell=1}^{n}
 	\alpha_i \alpha_\ell y_i y_\ell
 	K(\bm{x}i, \bm{x}\ell)
-	+ \sum_{i=1}^{n} \alpha_i
+	+ \sum_{i=1}^{n} \alpha_i,
 	\label{eq:dualsvm}
 \end{equation}
 
 \begin{equation}
 	\text{sujeto a }
 	0 \le \alpha_i \le C, \quad
-	\sum_{i=1}^{n} \alpha_i y_i = 0
+	\sum_{i=1}^{n} \alpha_i y_i = 0.
 \end{equation}
 
 \noindent
@@ -1141,28 +1151,28 @@ De esta forma, se mantiene la eficiencia computacional mientras se obtiene un mo
 \paragraph{Kernel Lineal:}
 \begin{equation}
 	K(\bm{a}, \bm{b}) =
-	\langle \bm{a}, \bm{b} \rangle
+	\langle \bm{a}, \bm{b} \rangle.
 	\label{eq:kernel_lineal}
 \end{equation}
 
 \paragraph{Kernel Radial (RBF o Gaussiano):}
 \begin{equation}
 	K(\bm{a}, \bm{b}) =
-	\exp \left( -\gamma \|\bm{a} - \bm{b}\|^2 \right)
+	\exp \left( -\gamma \|\bm{a} - \bm{b}\|^2 \right).
 	\label{eq:kernel_rbf}
 \end{equation}
 
 \paragraph{Kernel Polinómico:}
 \begin{equation}
 	K(\bm{a}, \bm{b}) =
-	(\langle \bm{a}, \bm{b} \rangle + r)^d
+	(\langle \bm{a}, \bm{b} \rangle + r)^d.
 	\label{eq:kernel_polinomico}
 \end{equation}
 
 \paragraph{Kernel Sigmoide:}
 \begin{equation}
 	K(\bm{a}, \bm{b}) =
-	\tanh(\gamma \langle \bm{a}, \bm{b} \rangle + r)
+	\tanh(\gamma \langle \bm{a}, \bm{b} \rangle + r).
 	\label{eq:kernel_sigmoid}
 \end{equation}
 
@@ -1197,7 +1207,7 @@ En este capítulo se presentan los resultados obtenidos mediante la aplicación 
 En esta sección se presentan los resultados obtenidos tras la aplicación de distintos modelos de aprendizaje automático sobre los conjuntos de datos binario y multiclase seleccionados. Se buscó evaluar el rendimiento de cada modelo bajo diferentes configuraciones de hiperparámetros, a través de métricas como la precisión (\textit{Accuracy}), el F1-Score y el área bajo la curva ROC (ROC AUC), entre otras.\\
 
 \noindent
-Durante la fase experimental se exploraron distintas estrategias de balanceo de clases, dado que varios de los conjuntos presentaban desbalances significativos entre las clases. En particular, se probó la técnica de \textbf{undersampling}, reduciendo la cantidad de ejemplos de la clase mayoritaria para equilibrar el dataset. Sin embargo, esta estrategia no arrojó resultados satisfactorios: los modelos tendieron a perder capacidad de generalización, mostrando un descenso notable en las métricas de validación. Por este motivo, se optó finalmente por mantener la distribución original y aplicar técnicas de regularización y ajuste de hiperparámetros para mitigar el sesgo hacia la clase dominante.\\
+Durante la fase experimental se exploraron distintas estrategias de balanceo de clases, dado que varios de los conjuntos presentaban desbalances significativos entre las clases. En particular, se probó la técnica de \textbf{undersampling}, reduciendo la cantidad de ejemplos de la clase mayoritaria para equilibrar el dataset. Sin embargo, esta estrategia no arrojó resultados satisfactorios: los modelos tendieron a perder capacidad de generalización, mostrando un descenso notable en las métricas de validación, aunque se sostuvo la mejor configuración con mejor valor de métricas. Por este motivo, se optó finalmente por mantener la distribución original y aplicar técnicas de regularización y ajuste de hiperparámetros para mitigar el sesgo hacia la clase dominante.\\
 
 \noindent
 A continuación se presentan las métricas finales alcanzadas por cada modelo y los valores óptimos de los hiperparámetros encontrados mediante \textit{Grid Search}. Posteriormente, se analiza la importancia de las características más relevantes en la predicción de las clases.
@@ -1214,20 +1224,20 @@ La Regresión Logística obtuvo un desempeño correcto en la clasificación bina
 \noindent
 La mejor configuración se alcanzó utilizando un valor de regularización $C = 1$, sin penalización (\textit{Penalty = l1}), con el solver \textit{saga} y estrategia \textit{ovr} (one-vs-rest) para el tratamiento multiclase.\\
 
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Resultados finales del modelo de Regresión Logística}
 	\label{tab:rl_resultados_binario}
-	\begin{tabular}{lcccc}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} \\
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			$C = 1$\\
 			Penalty = l1\\
 			Solver = saga\\
 			Multiclass = ovr
-		} & 0.84 & 0.84 & 0.90 & 0.13 \\
+		} & 0.84 & 0.84 & 0.84 & 0.90 & 0.13 & 0.84 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -1240,7 +1250,7 @@ El modelo logra una precisión y un F1 Score de 0.84 y 0.84 respectivamente, jun
 El tiempo de entrenamiento fue de apenas 0.13 segundos, lo que lo convierte en una opción eficiente para este tipo de problema.
 
 
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Grid de hiperparámetros - Regresión Logística (binario)}
 	\label{tab:grid_rl_bin}
@@ -1265,19 +1275,19 @@ La Máquinas de Soporte Vectorial obtuvo un desempeño sólido en la clasificaci
 La mejor configuración se alcanzó utilizando un valor de regularización $C = 1$, con kernel radial (\textit{Kernel = rbf},), con un gamma de 0.1 (\textit{Gamma = 0.1})\\
 
 
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Resultados finales del SVM}
 	\label{tab:svm_resultados_binario}
-	\begin{tabular}{lcccc}
-		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} \\
+	\begin{tabular}{lcccccc}
+	\toprule
+	\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			$C = 1$\\
 			Kernel = rbf\\
 			Gamma = 0.1\\
-		} & 0.86 & 0.86 & 0.92 & 0.60 \\
+		} & 0.86 & 0.86 & 0.86 &0.92 &0.60 & 0.86 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -1288,7 +1298,7 @@ El modelo logra una precisión y un F1 Score de 0.86 y 0.86 respectivamente, jun
 El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un gran valor.
 
 
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Grid de hiperparámetros - SVM (binario)}
 	\label{tab:grid_svm_bin}
@@ -1313,17 +1323,17 @@ Naive Bayes Gaussiano obtuvo un buen desempeño en la clasificación multiclase,
 La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias\\
 
 
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Resultados finales del Naive Bayes Gaussiano}
 	\label{tab:nbg_resultados_binario}
-	\begin{tabular}{lcccc}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} \\
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			var\_smoothing = Cualquiera\\
-		} & 0.84 & 0.84 & 0.91 & 0.10 \\
+		} & 0.84 & 0.84 & 0.84 & 0.91 & 0.10 & 0.84 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -1335,7 +1345,7 @@ El modelo logra una precisión y un F1 Score de 0.84 y 0.84 respectivamente, jun
 \noindent 
 El tiempo de entrenamiento fue de apenas 0.10 segundos, siendo su mayor fortaleza, la rapidez de su entrenamiento.
 
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Grid de hiperparámetros - Naive Bayes Gaussiano (binario)}
 	\label{tab:grid_nb_bin}
@@ -1354,16 +1364,16 @@ El tiempo de entrenamiento fue de apenas 0.10 segundos, siendo su mayor fortalez
 Random Forest demostró un desempeño sobresaliente en la clasificación multiclase, mostrando alta capacidad de generalización para registros no vistos durante el entrenamiento.\\
 
 \noindent 
-La mejor configuración se obtuvo utilizando el criterio de \textit{Entropía de Shannon}, profundidad de 7 hojas los árboles, división mínima de 7 ejemplos por nodo, hoja mínima de 1 ejemplo y seleccionando la cantidad de atributos mediante la raíz cuadrada.
+La mejor configuración se obtuvo utilizando el criterio de \textit{Entropía de Shannon}, profundidad de 7 hojas los árboles, división mínima de 7 ejemplos por nodo, hoja mínima de 1 ejemplo y seleccionando la cantidad de atributos mediante la raíz cuadrada.\\
 
 
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Resultados finales del Random Forest}
 	\label{tab:rf_resultados_binario}
-	\begin{tabular}{lcccc}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} \\
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			Criterion = entropy\\
@@ -1371,19 +1381,23 @@ La mejor configuración se obtuvo utilizando el criterio de \textit{Entropía de
 			Min Samples Split = 5\\
 			Min samples Leaf = 1\\
 			Max Features = sqrt\\
-		} & 0.87 & 0.87 & 0.93 & 1.38 \\
+		} & 0.87 & 0.87 & 0.87 & 0.93 & 1.38 & 0.87 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
 \noindent
-Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados_binario}. 
-El modelo logra una precisión y un F1 Score de 0.87 y 0.87 respectivamente, junto con un AUC de 0.93, lo que refleja una buena excelente capacidad discriminatoria. 
+Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados_binario}.\\
+
+\noindent 
+El modelo logra una precisión y un F1 Score de 0.87 y 0.87 respectivamente, junto con un AUC de 0.93, lo que refleja una buena excelente capacidad discriminatoria.\\
+
+\noindent 
 El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente el modelo en cual más se tarda en obtener los resultados.
 
 
 
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Grid de hiperparámetros - Random Forest (binario)}
 	\label{tab:grid_rf_bin}
@@ -1401,7 +1415,7 @@ El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente
 \end{table}
 
 
-\begin{figure}[H]
+\begin{figure}[htb]%[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../mejores_modelos_barras_binario}
 	\caption{Comparación de desempeño de los mejores modelos (Binario)}
@@ -1412,11 +1426,13 @@ El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente
 En la Figura \ref{fig:mejores_modelos_binario} se observa que Random Forest obtiene la mayor puntuación en todas las métricas, seguido por la Regresión Logística y SVM. Esto indica que, para nuestro dataset, el modelo de Random Forest presenta mejor capacidad de generalización, mientras que los demás modelos muestran un desempeño bastante competitivo.
 
 \section{Importancia de las Características}
-La importancia de las características de las mejores configuraciones.
+\noindent La importancia de las características se calculó mediante el método de \textit{Permutation Feature Importance}. Este método evalúa cuánto se degrada el desempeño del modelo cuando se altera aleatoriamente una característica, manteniendo fijas las demás. Cuanto mayor sea la disminución en la métrica de desempeño, mayor será la importancia atribuida a dicha característica.\\
 
-\subsection{Random Forest}
 
-\begin{table}[H]
+\noindent Los resultados obtenidos se presentan en las Tablas~\ref{tab:rf_importancia},~\ref{tab:rl_importancia_},~\ref{tab:nb_importancia} y ~\ref{tab:svm_importancia} correspondientes a los modelos RF, RL, NB y SVM.
+
+
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Importancia de las características según permutación (RF)}
 	\label{tab:rf_importancia}
@@ -1441,9 +1457,7 @@ RestingECG & 0.018956 \\
 
 
 
-\subsection{Regresión Logística}
-
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Importancia de las características según permutación (RL)}
 	\label{tab:rl_importancia_}
@@ -1468,10 +1482,7 @@ RestingECG     &   0.000218\\
 
 
 
-\subsection{SVM}
-
-
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Importancia de las características según permutación (SVM)}
 	\label{tab:svm_importancia}
@@ -1495,7 +1506,7 @@ FastingBS      &   0.004575\\
 \end{table}
 
 
-\subsection{Naive Bayes Gaussiano}
+
 
 \begin{table}[H]
 	\centering
@@ -1524,12 +1535,31 @@ Age & -0.003595 \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_binario}
-	\caption{Evolución de las métricas (Binario)}
+	\caption{Evolución de Accuracy (Binario)}
 	\label{fig:evolucion_metricas_binario}
 \end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{../evolucion_metrica_binario_auc}
+	\caption{Evolución de ROC AUC (Binario)}
+	\label{fig:evolucion_metricas_binario_auc}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{../evolucion_metrica_binario_f1}
+	\caption{Evolución de F1-Score (Binario)}
+	\label{fig:evolucion_metricas_binario_f1}
+\end{figure}
+
+
+
 \noindent
-La Figura \ref{fig:evolucion_metricas_binario} muestra cómo las métricas del modelo mejoran al incorporar las características más relevantes según su importancia. Se observa que inicialmente, con pocas características, el desempeño es limitado o en algunos casos ya muy sorprendentemente, un buen resultado, y a medida que se agregan las variables de mayor relevancia, la métrica Accuracy tiende a incrementarse hasta estabilizarse. Este comportamiento permite identificar el conjunto de características que maximiza el rendimiento sin necesidad de incluir todas las variables disponibles, optimizando tanto la complejidad del modelo como el tiempo de entrenamiento.
+La Figuras \ref{fig:evolucion_metricas_binario}, \ref{fig:evolucion_metricas_binario_auc} y \ref{fig:evolucion_metricas_binario_f1}  muestran cómo las métricas del modelo mejoran al incorporar las características más relevantes según su importancia. Se observa que inicialmente, con pocas características, el desempeño es limitado, siendo prudente incrementar la cantidad de características. En algunos casos es muy sorprendentemente, ya que se obtiene un buen resultado, y a medida que se agregan las variables de mayor relevancia, las métricas tienden a incrementarse hasta estabilizarse. Este comportamiento permite identificar el conjunto de características que maximiza el rendimiento sin necesidad de incluir todas las variables disponibles, optimizando tanto la complejidad del modelo como el tiempo de entrenamiento.\\
+
+\noindent
+Siendo los modelos \textbf{SVM} y \textbf{RF} los que mejor comportamiento tienen a lo largo del incremento de características, donde podemos ver en su gran mayoría un incremento del valor de las métricas a medida que se aumentan las caracterizaras. Ademas, como se puede observar, tienen valores aceptables para pocas características.
 
 
 \subsection{Dataset Multiclase}
@@ -1545,16 +1575,16 @@ La mejor configuración se alcanzó utilizando un valor de regularización $C = 
 	\centering
 	\caption{Resultados finales del modelo de Regresión Logística}
 	\label{tab:rl_resultados}
-	\begin{tabular}{lcccc}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} \\
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			$C = 1$\\
 			Penalty = None\\
 			Solver = newton-cg\\
 			Multiclass = ovr
-		} & 0.897 & 0.896 & 0.964 & 0.30 \\
+		} & 0.89 & 0.89 & 0.89 & 0.96 & 0.30 & 0.89 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -1593,17 +1623,16 @@ La mejor configuración se alcanzó utilizando un valor de regularización $C = 
 	\centering
 	\caption{Resultados finales del SVM}
 	\label{tab:svm_resultados}
-	\begin{tabular}{lcccc}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} \\
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 		$C = 0.1$\\
-			Penalty = None\\
 			Kernel = poly\\
 			Gamma = 1\\
 			Degree = 2\\
-		} & 0.90 & 0.89 & 0.96 & 1.42 \\
+		} & 0.90 & 0.89 & 0.89 & 0.96 & 1.45 & 0.89 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -1646,13 +1675,13 @@ La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias
 	\centering
 	\caption{Resultados finales del Naive Bayes Gaussiano}
 	\label{tab:nbg_resultados}
-	\begin{tabular}{lcccc}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} \\
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			var\_smoothing = Cualquiera\\
-		} & 0.82 & 0.83 & 0.91 & 0.11 \\
+		} & 0.82 & 0.82 & 0.83 & 0.91 & 0.11 & 0.87 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -1690,9 +1719,9 @@ La mejor configuración se obtuvo utilizando el criterio de \textit{Gini}, profu
 	\centering
 	\caption{Resultados finales del Random Forest}
 	\label{tab:rf_resultados}
-	\begin{tabular}{lcccc}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} \\
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			Criterion = gini\\
@@ -1700,7 +1729,7 @@ La mejor configuración se obtuvo utilizando el criterio de \textit{Gini}, profu
 			Min Samples Split = 2\\
 			Min samples Leaf = 1\\
 			Max Features = sqrt\\
-		} & 0.94 & 0.94 & 0.98 & 2.24 \\
+		} & 0.94 & 0.94 &0.94 & 0.98 & 2.24& 0.94\\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -1711,7 +1740,7 @@ El modelo logra una precisión y un F1 Score de 0.94 y 0.94 respectivamente, jun
 El tiempo de entrenamiento fue de apenas 2.24 segundos..
 
 
-\begin{table}[H]
+\begin{table}[htb]
 	\centering
 	\caption{Grid de hiperparámetros - Random Forest (multiclase)}
 	\label{tab:grid_rf_multi}
@@ -1728,26 +1757,28 @@ El tiempo de entrenamiento fue de apenas 2.24 segundos..
 	\end{tabular}
 \end{table}
 
-
-\begin{figure}[H]
+\FloatBarrier
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\textwidth]{../mejores_modelos_barras_multiclase}
 	\caption{Comparación de desempeño de los mejores modelos (Multiclase)}
 	\label{fig:mejores_modelos_multiclase}
 \end{figure}
-
+\FloatBarrier
 \noindent
 En la Figura \ref{fig:mejores_modelos_multiclase} se observa que Random Forest obtiene la mayor puntuación en todas las métricas, seguido por la Regresión Logística y SVM. Esto indica que, para nuestro dataset, el modelo de Random Forest presenta mejor capacidad de generalización, mientras que los demás modelos muestran un desempeño bastante competitivo.
 
 
 
 \section{Importancia de las Características}
-La importancia de las características de las mejores configuraciones \textcolor{red}{agregar cómo se calcula}.
-Los resultados obtenidos se muestran en las Tablas~\ref{tab:rf_importancia},~\ref{tab:rl_importancia_}... para los modelos RF, RL,..., respectivamente. \textcolor{red}{Completar.}
+\noindent La importancia de las características se calculó mediante el método de \textit{Permutation Feature Importance}. Este método evalúa cuánto se degrada el desempeño del modelo cuando se altera aleatoriamente una característica, manteniendo fijas las demás. Cuanto mayor sea la disminución en la métrica de desempeño, mayor será la importancia atribuida a dicha característica.\\
 
-\subsection{Random Forest}
 
-\begin{table}[H]
+
+
+\noindent Los resultados obtenidos se presentan en las Tablas~\ref{tab:rf_importancia_multiclase},~\ref{tab:rl_importancia_multiclase},~\ref{tab:nb_importancia_multiclase} y ~\ref{tab:svm_importancia_multiclase} correspondientes a los modelos RF, RL, NB y SVM.
+
+\begin{table}[htb]
 	\centering
 	\caption{Importancia de las características según permutación (RF)}
 	\label{tab:rf_importancia_multiclase}
@@ -1781,9 +1812,7 @@ Los resultados obtenidos se muestran en las Tablas~\ref{tab:rf_importancia},~\re
 \end{table}
 
 
-\subsection{Regresión Logística}
-
-\begin{table}[htb]
+\begin{table}[htb]%[htb]
 	\centering
 	\caption{Importancia de las características según permutación (RL)}
 	\label{tab:rl_importancia_multiclase}
@@ -1817,9 +1846,7 @@ DS       &   0.000000\\
 \end{table}
 
 
-\subsection{SVM}
-
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Importancia de las características según permutación (SVM)}
 	\label{tab:svm_importancia_multiclase}
@@ -1852,9 +1879,8 @@ LB       &  -0.000804\\
 	\end{tabular}
 \end{table}
 
-\subsection{Naive Bayes Gaussiano}
 
-\begin{table}[H]
+\begin{table}[htb]%[H]
 	\centering
 	\caption{Importancia de las características según permutación (Naive Bayes Gaussiano)}
 	\label{tab:nb_importancia_multiclase}
@@ -1887,18 +1913,33 @@ LB       &  -0.000804\\
 	\end{tabular}
 \end{table}
 
-
-
-
-\begin{figure}[H]
+\begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_multiclase}
-	\caption{Evolución de las métricas (Multiclase)}
+	\caption{Evolución de Accuracy (Multiclase)}
 	\label{fig:evolucion_metricas_multiclase}
 \end{figure}
 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\textwidth]{../evolucion_metrica_multiclase_auc}
+	\caption{Evolución de ROC AUC (Multiclase)}
+	\label{fig:evolucion_metricas_multiclase_auc}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1\textwidth]{../evolucion_metrica_multiclase_F1}
+	\caption{Evolución de F1-score (Multiclase)}
+	\label{fig:evolucion_metricas_multiclase_f1}
+\end{figure}
+
+
 \noindent
-La Figura \ref{fig:evolucion_metricas_multiclase} muestra cómo las métricas del modelo mejoran al incorporar las características más relevantes según su importancia. Se observa que inicialmente, con pocas características, el desempeño es limitado o en algunos casos ya muy sorprendentemente, un buen resultado, y a medida que se agregan las variables de mayor relevancia, la métrica Accuracy tiende a incrementarse hasta estabilizarse. Este comportamiento permite identificar el conjunto de características que maximiza el rendimiento sin necesidad de incluir todas las variables disponibles, optimizando tanto la complejidad del modelo como el tiempo de entrenamiento.
+Las Figuras \ref{fig:evolucion_metricas_multiclase}, \ref{fig:evolucion_metricas_multiclase_f1} y \ref{fig:evolucion_metricas_multiclase_auc} muestran cómo las métricas del modelo mejoran al incorporar las características más relevantes según su importancia. Se observa que inicialmente, con pocas características, el desempeño es menor al obtenido anteriormente, pero mucho mejor del esperable. En algunos casos, de forma muy sorprendentemente, se obtiene un buen resultado ya a los pocos atributos utilizados, y a medida que se agregan las variables de mayor relevancia, las métrica tienden a incrementarse hasta estabilizarse.\\
+
+\noindent
+Este comportamiento permite identificar el conjunto de características que maximiza el rendimiento sin necesidad de incluir todas las variables disponibles, optimizando tanto la complejidad del modelo como el tiempo de entrenamiento.
 
 
 
@@ -1906,17 +1947,15 @@ La Figura \ref{fig:evolucion_metricas_multiclase} muestra cómo las métricas de
 
 \chapter{Conclusiones}
 
-Explicar que aprendimos con la realización de este trabajo. Qué nos muestran los resultados. 
-
 \section{Análisis General e Inferencias}
 
-Del análisis de los resultados obtenidos se puede observar que el modelo \textbf{Random Forest} alcanzó reiteradamente los mejores valores en todas las métricas, tanto en el problema binario como en el multiclase. Esto se debe a su capacidad de combinar múltiples árboles de decisión, lo que permite capturar relaciones no lineales y reducir el sobreajuste, sobretodo a la hora de hacer un voto mayoritario de estos mismos arboles permiten una representación mejor.\\
+Del análisis de los resultados obtenidos se puede observar que el modelo \textbf{Random Forest} alcanzó reiteradamente los mejores valores en todas las métricas, tanto en el problema binario como en el multiclase. Esto se debe a su capacidad de combinar múltiples árboles de decisión, lo que permite capturar relaciones no lineales y reducir el sobreajuste, sobretodo a la hora de hacer un voto mayoritario de estos mismos arboles que permiten una representación mejor.\\
 
 \noindent
-El modelo de \textbf{SVM} mostró también un rendimiento muy bueno, especialmente con el kernel \textbf{RBF} en el caso binario y el \textbf{polinómico} en el multiclase, destacándose su capacidad para definir fronteras de decisión complejas en espacios transformados.\\
+El modelo de \textbf{SVM} mostró también un rendimiento muy bueno, especialmente con el kernel \textbf{RBF} en el caso binario y el \textbf{polinómico} en el caso multiclase, destacándose su capacidad para definir fronteras de decisión complejas en espacios transformados.\\
 
 \noindent
-\textbf{Regresión Logística} presentó resultados positivos y de buena generalización, aunque con menor capacidad para capturar patrones que los otros modelos, no por ser malos resultados, sino que el resto tuvo mejores valores de métricas. Por su parte, el modelo \textbf{Naive Bayes} ofreció un rendimiento aceptable, siendo el más liviano computacionalmente, aunque con limitaciones inherentes a su supuesto de independencia de las variables. Esto no quita aunque posea este supuesto es el más liviano y obteniendo resultados sumamente buenos.\\
+\textbf{Regresión Logística} presentó resultados positivos y de buena generalización, aunque con menor capacidad para capturar patrones que los otros modelos, no por ser malos resultados, sino que el resto tuvo mejores valores de métricas. Por su parte, el modelo \textbf{Naive Bayes} ofreció un rendimiento aceptable, siendo el más liviano computacionalmente, aunque con limitaciones inherentes a su supuesto de independencia de las variables. Esto no quita que aunque posea este supuesto, es el más liviano y rápido de los modelos obteniendo resultados sumamente buenos.\\
 
 \noindent
 En cuanto a la \textbf{importancia de las características}, se identificaron atributos dominantes en cada conjunto de datos. En el binario, variables como \textit{ST\_Slope}, \textit{ChestPainType} y \textit{Oldpeak} fueron recurrentemente relevantes; mientras que en el multiclase destacaron \textit{ASTV}, \textit{ALTV} y \textit{MSTV}.
@@ -1926,10 +1965,9 @@ En cuanto a la \textbf{importancia de las características}, se identificaron at
 Para optimizar aún más las métricas, podrían explorarse las siguientes estrategias:
 
 \begin{itemize}
-	\item \textbf{Ajuste más fino de hiperparámetros:} empleando \emph{Randomized Search} o \emph{Bayesian Optimization} para reducir tiempos de búsqueda.
-	\item \textbf{Ingeniería de características:} normalización o estandarización avanzada, reducción de dimensionalidad (PCA) o creación de variables sintéticas.
-	\item \textbf{Balanceo de clases:} mediante técnicas como \emph{SMOTE} o ponderación de clases en casos de desbalance.
-	\item \textbf{Validación cruzada más robusta:} utilizando más particiones o validación estratificada para estimar mejor la generalización.
+	\item \textbf{Ajuste más fino de hiperparámetros:} empleando \emph{Randomized Search} o \emph{Bayesian Optimization} para reducir tiempos de búsqueda, y luego utlizar un \emph{Grid Search} en los hiperparámetros encontrados.
+	\item \textbf{Manipulación de características:} Reducción de dimensionalidad (PCA) o creación de variables sintéticas, para observar mejor las importancias de cada característica.
+	\item \textbf{Validación cruzada más robusta:} utilizando más particiones para estimar mejor la generalización.
 \end{itemize}
 
 En conjunto, los modelos demostraron un desempeño satisfactorio, con un claro potencial de mejora mediante el refinamiento de hiperparámetros y una mejor comprensión de la estructura de los datos.

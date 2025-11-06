@@ -97,6 +97,76 @@ ggsave(
 ```
 
 ```{r}
+
+modelos <- c("Corpos Común", "Fragentación Frecuencias", "BPE 10.000")
+metricas <- c("Top1","Top5")
+
+# Creamos un data frame con todos los valores simulados
+# Creamos un data frame vacío con todas las combinaciones
+data <- expand.grid(modelo = modelos, metrica = metricas)
+data$valor <- NA  # aquí completás los valores reales
+
+# Ejemplo de cómo asignar valores manualmente:
+data$valor[data$modelo=="Corpos Común" & data$metrica=="Top1"] <- 0.67
+data$valor[data$modelo=="Corpos Común" & data$metrica=="Top5"] <- 0.86
+
+
+
+data$valor[data$modelo=="Fragentación Frecuencias" & data$metrica=="Top1"] <- 0.94
+data$valor[data$modelo=="Fragentación Frecuencias" & data$metrica=="Top5"] <- 0.99
+
+
+
+data$valor[data$modelo=="BPE 10.000" & data$metrica=="Top1"] <- 0.81
+data$valor[data$modelo=="BPE 10.000" & data$metrica=="Top5"] <- 0.95
+
+
+
+
+
+ggplot(data, aes(x = modelo, y = valor, fill = metrica)) +
+  
+  # geom_bar con stat="identity" dibuja las barras con alturas según 'valor'
+  # position="dodge" separa las barras de distintas métricas dentro de cada modelo
+  geom_bar(stat = "identity", position = "dodge") +
+  
+  # Personalización de títulos y etiquetas
+  labs(
+    title = "Valores de Accuracy para distintos CBOW",  # Título del gráfico
+    x = "Modelo",  # Etiqueta del eje X
+    y = "Valor"    # Etiqueta del eje Y
+  ) +
+  
+  # Ajustar eje Y para que vaya de 0 a 1
+  scale_y_continuous(limits = c(0, 1)) +
+  
+  # Cambiar manualmente los colores de cada métrica
+  scale_fill_manual(
+    values = c(  
+      "Top1" = "#ff7f0e",     # verde
+      "Top5" = "#d62728"          # rojo
+    )
+  ) +
+  
+  # Tema minimalista (limpio) y ajustes de texto
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14, face = "bold"),
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12)
+  )
+
+ggsave(
+  filename = "mejores_cbow.png", # <--- extensión explícita
+  plot = last_plot(),                      # o plot = p si lo guardaste en p <- ggplot(...)
+  width = 10, height = 6,                  # tamaño en pulgadas
+  dpi = 300                                # resolución
+)
+```
+
+```{r}
 # Definimos los modelos y métricas
 modelos <- c("RL", "SVM", "NB", "RF")
 metricas <- c("Accuracy","F1", "ROC AUC")
@@ -196,9 +266,9 @@ ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
   geom_point(size = 2) +
   scale_color_manual(values = c("RL" = "#0072B2", "SVM" = "#E69F00",
                                 "NB" = "#009E73", "RF" = "#D55E00")) +
-  scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
+  #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
   labs(
-    title = "Evolución de las métricas (Caso Binario)",
+    title = "Evolución de Accuracy (Caso Binario)",
     subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
     x = "Cantidad de características utilizadas",
     y = "Valor de la métrica Accuracy",
@@ -220,6 +290,108 @@ ggsave(
 
 
 ```
+
+```{r}
+df_metricas <- data.frame(
+  n_features = c(1,2,3,4,5,6,7,8,9,10,11),
+  
+  RL = c(0.6674561179216918, 0.7287718226628976, 0.8081795625760568, 0.8088901752442101, 0.8165282848227433, 0.8247238281934364, 0.823477799716844, 0.8412763801487753, 0.8791948994038572, 0.8910422319132918, 0.9050989388752362),
+  
+  
+  SVM = c(0.8148149068852366, 0.8248699044940363, 0.8597482847280423, 0.8979466454536414, 0.9068137373278218, 0.9125817388051572, 0.9105715915924447, 0.9136641712951782, 0.9129774706308507, 0.9175357851423591, 0.9229747006264472),
+  
+  
+  NB = c(0.8066048032349864, 0.8523922657689009, 0.8685135730215776, 0.8889307546249604, 0.9036279955111723, 0.910264760335431, 0.9119151621044457, 0.9130739472799505, 0.914544653891501, 0.914398340838388, 0.9138213749638953
+),
+  
+  
+  RF = c(0.8054155953615447, 0.8817918377203574, 0.9004269831574263, 0.9030170556510457, 0.9108809087508464, 0.9213537745453169, 0.918867754781217, 0.9205354394836901, 0.9221846574901391, 0.9290975941209616, 0.9293864321869776
+)
+)
+
+df_largo <- df_metricas %>%
+  pivot_longer(cols = -n_features, names_to = "modelo", values_to = "valor")
+
+
+ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_color_manual(values = c("RL" = "#0072B2", "SVM" = "#E69F00",
+                                "NB" = "#009E73", "RF" = "#D55E00")) +
+  #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
+  labs(
+    title = "Evolución de ROC AUC(Caso Binario)",
+    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
+    x = "Cantidad de características utilizadas",
+    y = "Valor de la métrica ROC AUC",
+    color = "Modelo"
+  ) +
+  theme_minimal(base_size = 13) +
+ theme(
+    plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom"
+  )
+
+ggsave(
+  filename = "evolucion_metrica_binario_auc.png", # <--- extensión explícita
+  plot = last_plot(),                      # o plot = p si lo guardaste en p <- ggplot(...)
+  width = 10, height = 6,                  # tamaño en pulgadas
+  dpi = 300                                # resolución
+)
+```
+
+```{r}
+df_metricas <- data.frame(
+  n_features = c(1,2,3,4,5,6,7,8,9,10,11),
+  
+  RL = c(0.6141772059572574, 0.6780695132923875, 0.7688423655641852, 0.767981724594958, 0.7723135305501734, 0.7747874333594168, 0.773703939047668, 0.7685801215693772, 0.797867437973271, 0.8189781014534552, 0.8481736661738084),
+  
+  
+  SVM = c(0.8132637793874651, 0.8334848199732923, 0.8345477555359174, 0.8381772647902105, 0.8442909326910135, 0.8555033406348512, 0.8652650875044445, 0.8596932030396053, 0.860725991007248, 0.8640398996202487, 0.8609447576506198
+),
+  
+  
+  NB = c(0.8132637793874651, 0.8174727264449, 0.7684967535803041, 0.8297238020151344, 0.8288465524904923, 0.852520210122608, 0.8376133218204774, 0.8463223989371528, 0.8463747190900712, 0.8474483959357674, 0.8420104423540213
+),
+  
+  
+  RF = c(0.8132637793874651, 0.8102963685184893, 0.824643952428168, 0.8305864728565121, 0.8496850386585949, 0.8513364622428952, 0.8520982168889699, 0.8632279639148029, 0.8687452926017285, 0.8708951688530023, 0.8764684525774896)
+)
+
+df_largo <- df_metricas %>%
+  pivot_longer(cols = -n_features, names_to = "modelo", values_to = "valor")
+
+
+ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_color_manual(values = c("RL" = "#0072B2", "SVM" = "#E69F00",
+                                "NB" = "#009E73", "RF" = "#D55E00")) +
+  #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
+  labs(
+    title = "Evolución de F1-score (Caso Binario)",
+    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
+    x = "Cantidad de características utilizadas",
+    y = "Valor de la métrica F1",
+    color = "Modelo"
+  ) +
+  theme_minimal(base_size = 13) +
+ theme(
+    plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom"
+  )
+
+ggsave(
+  filename = "evolucion_metrica_binario_f1.png", # <--- extensión explícita
+  plot = last_plot(),                      # o plot = p si lo guardaste en p <- ggplot(...)
+  width = 10, height = 6,                  # tamaño en pulgadas
+  dpi = 300                                # resolución
+)
+```
+
+CAMBIOOO
 
 ```{r}
 df_metricas <- data.frame(
@@ -246,9 +418,9 @@ ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
   geom_point(size = 2) +
   scale_color_manual(values = c("RL" = "#0072B2", "SVM" = "#E69F00",
                                 "NB" = "#009E73", "RF" = "#D55E00")) +
-  scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
+  #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
   labs(
-    title = "Evolución de las métricas (Caso Multiclase)",
+    title = "Evolución Accuracy (Caso Multiclase)",
     subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
     x = "Cantidad de características utilizadas",
     y = "Valor de la métrica Accuracy",
@@ -263,6 +435,106 @@ ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
 
 ggsave(
   filename = "evolucion_metrica_multiclase.png", # <--- extensión explícita
+  plot = last_plot(),                      # o plot = p si lo guardaste en p <- ggplot(...)
+  width = 10, height = 6,                  # tamaño en pulgadas
+  dpi = 300                                # resolución
+)
+```
+
+```{r}
+df_metricas <- data.frame(
+  n_features = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21),
+  
+  RL = c(0.6732955725424616, 0.8409109902358018, 0.8449567294384742, 0.8546731680679629, 0.8683982882295277, 0.8683982882295277, 0.9240753518150437, 0.9456698773762765, 0.9443901514599471, 0.9497636325873113, 0.9496461604672362, 0.9509315563223067, 0.9528114620167607, 0.9527846849660649, 0.9551854634251405, 0.9546844489830926, 0.9596607477075596, 0.9614592842904349, 0.9619576521756338, 0.9646595343484247, 0.964611017718779 ),
+  
+  
+  SVM = c(0.7202985809279848, 0.8168045362769287, 0.8263715349269607, 0.8824574181080859, 0.9260685231740646, 0.973308805529389, 0.974275376451744, 0.9735904804310291, 0.9727103824183315, 0.9741795506047202, 0.9734269188943404, 0.9741911738570156, 0.9735008415404321, 0.9734711843339949, 0.9732751769169603, 0.9731620628866693, 0.973505845785604, 0.9751608821931501, 0.9749884000753998, 0.9749946534261685, 0.9750708764477451),
+  
+  
+  NB = c(0.7740750262918096, 0.8428523337768821, 0.9082385850020875, 0.9293150776001008, 0.930513738334473, 0.9316732793316035, 0.9266869157774289, 0.9268027665722551, 0.9268231668467279, 0.9239763010590737, 0.9222821975698808, 0.9278390405273396, 0.9263463398033481, 0.9222019184964957, 0.9210137647243976, 0.9249326407791136, 0.9211566424127134, 0.919851457987747, 0.9158259983218388, 0.9143249980107567, 0.9109408354075471
+ ),
+  
+  
+  RF = c(0.826601673141061, 0.8954437872345113, 0.9240108324595511, 0.960534301489169, 0.9707742412669547, 0.9768823019612529, 0.9762809187210072, 0.9841480717245148, 0.9834336397884156, 0.985270319451649, 0.9846280951243587, 0.9859797783001685, 0.9863724450340954, 0.9856269456682225, 0.98586859958728, 0.9868349341755887, 0.9873892866500398, 0.9878448341818442, 0.9862469209147477, 0.9866879656568491, 0.9868478611746336)
+)
+
+df_largo <- df_metricas %>%
+  pivot_longer(cols = -n_features, names_to = "modelo", values_to = "valor")
+
+
+ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_color_manual(values = c("RL" = "#0072B2", "SVM" = "#E69F00",
+                                "NB" = "#009E73", "RF" = "#D55E00")) +
+  #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
+  labs(
+    title = "Evolución de ROC AUC (Caso Multiclase)",
+    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
+    x = "Cantidad de características utilizadas",
+    y = "Valor de la métrica ROC AUC",
+    color = "Modelo"
+  ) +
+  theme_minimal(base_size = 13) +
+ theme(
+    plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom"
+  )
+
+ggsave(
+  filename = "evolucion_metrica_multiclase_auc.png", # <--- extensión explícita
+  plot = last_plot(),                      # o plot = p si lo guardaste en p <- ggplot(...)
+  width = 10, height = 6,                  # tamaño en pulgadas
+  dpi = 300                                # resolución
+)
+```
+
+```{r}
+df_metricas <- data.frame(
+  n_features = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21),
+  
+  RL = c(0.6882039515535867, 0.7638638415868833, 0.7764759107921277, 0.791689078358605, 0.789188990716118, 0.789188990716118, 0.8445147285925916, 0.8592342728088715, 0.859710991345902, 0.871575982524895, 0.8726222297410979, 0.874091321451742, 0.875940499377324, 0.875940499377324, 0.8792413504637684, 0.8797997167472598, 0.8924239968488459, 0.8936384590615555, 0.8944217071982921, 0.8937003029456358, 0.8952626055481904
+ ),
+  
+  
+  SVM = c(0.7510574643034261, 0.8382010048941988, 0.8359371700182336, 0.837955021947681, 0.8822804947396389, 0.8996256960450797, 0.9055692414301383, 0.907271729355273, 0.9133577411546344, 0.9132581307231682, 0.9132087546825172, 0.9137645308044025, 0.911084103417385, 0.9113982149735923, 0.910152735489647, 0.9075018767268197, 0.908960467236756, 0.9109750171704574, 0.9128864996979738, 0.9128864996979738, 0.9105259184135146
+),
+  
+  
+  NB = c(0.681818748313796, 0.7404425181565303, 0.8342535483190516, 0.844874812977529, 0.8460560740968711, 0.8439947684730773, 0.8399696869546132, 0.8365787588787539, 0.8391107799035471, 0.8398307901026003, 0.840220347041831, 0.850122877922144, 0.848000187178196, 0.8487638892972212, 0.84981448368688, 0.8456509530326798, 0.8430376108847764, 0.8444993266654122, 0.8400545903470237, 0.8432756355995371, 0.8380614383898563
+ ),
+  
+  
+  RF = c(0.7770813341996465, 0.8574504578708559, 0.8825658834417336, 0.9243698481647383, 0.9360569208481346, 0.9397100679938276, 0.9386569359667934, 0.9373063993166237, 0.9404718938774816, 0.9378664505160501, 0.9396246083615647, 0.9392048733713796, 0.9408359132529878, 0.9404291023200834, 0.9378218255285107, 0.9431778897915816, 0.9424400745980229, 0.9435812170701109, 0.9400230212968556, 0.9395359732577522, 0.9406205330450073 )
+)
+
+df_largo <- df_metricas %>%
+  pivot_longer(cols = -n_features, names_to = "modelo", values_to = "valor")
+
+
+ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2) +
+  scale_color_manual(values = c("RL" = "#0072B2", "SVM" = "#E69F00",
+                                "NB" = "#009E73", "RF" = "#D55E00")) +
+  #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
+  labs(
+    title = "Evolución de F1-score (Caso Multiclase)",
+    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
+    x = "Cantidad de características utilizadas",
+    y = "Valor de la métrica F1",
+    color = "Modelo"
+  ) +
+  theme_minimal(base_size = 13) +
+ theme(
+    plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "bottom"
+  )
+
+ggsave(
+  filename = "evolucion_metrica_multiclase_F1.png", # <--- extensión explícita
   plot = last_plot(),                      # o plot = p si lo guardaste en p <- ggplot(...)
   width = 10, height = 6,                  # tamaño en pulgadas
   dpi = 300                                # resolución
