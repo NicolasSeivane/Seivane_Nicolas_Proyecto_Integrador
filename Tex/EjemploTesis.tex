@@ -6,14 +6,14 @@
 %\usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
-%\usepackage[spanish]{babel}
+\usepackage[spanish]{babel}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
 \usepackage{incgraph,tikz}
 %\usepackage{caption}
 \usepackage{subcaption}
 \usepackage{amsfonts}
-\usepackage{babel}
+%\usepackage{babel}
 \usepackage{color}
 \usepackage{listings}
 \usepackage{float}
@@ -75,7 +75,15 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 \makeatother
 
 \pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
 
+\fancyhead[LE]{\nouppercase{\leftmark}}
+\fancyhead[RO]{\nouppercase{\leftmark}}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
 
 
 
@@ -88,9 +96,9 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 \definecolor{FNcolor}{HTML}{E06666} % Rojo claro para FN
 
 \title{Comparación de Técnicas de Aprendizaje
-	Automático Supervisado Aplicados a Datos Cardiólogos}
+	Automático Supervisado Aplicadas a Datos Cardiólogos}
 \author{Autor: Nicolás Seivane \\ Tutora: Andrea Rey}
-\date{Fecha \\ Universidad Nacional de Hurlingham}
+\date{\\ Universidad Nacional de Hurlingham (UNAHUR)}
 \titlepic{\vspace{12cm}\includegraphics[width=0.15\textwidth]{logo.jpg}}
 
 \usepackage{titlesec}
@@ -131,34 +139,47 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 
 \chapter{Introducción}
 
-El objetivo general de este trabajo es comparar el rendimiento de diversas técnicas de Aprendizaje Automático Supervisado con el fin de recomendar aquella que presente el mejor desempeño al aplicarse sobre un conjunto de datos cardiológicos. Se expondrán las técnicas empleadas y las métricas utilizadas para poder determinar cuál de las técnicas obtiene los valores más favorables y, en consecuencia, resulta más adecuada para el problema planteado.
+
+
+Las enfermedades cardiovasculares son la causa número uno de muerte globalmente, con un estimado de 17.9 millones de vidas cada año, aproximadamente 31\% de todas las muertes globales. La idea central de este trabajo es encontrar la técnica de aprendizaje automático mas óptima para poder realizar predicciones de si un paciente tiene altas probabilidades de tener insuficiencia cardíaca.\\
+
+\noindent
+La cardiotocografía (CTG) es un registro continuo de la frecuencia cardíaca fetal que se obtiene mediante un transductor de ultrasonidos colocado en el abdomen materno. La CTG se utiliza ampliamente durante el embarazo como método para evaluar el bienestar fetal, sobre todo en embarazos con mayor riesgo de complicaciones.\\
+	
+
+\noindent
+El objetivo general de este trabajo es comparar el rendimiento de diversas técnicas de Aprendizaje Automático Supervisado con el fin de recomendar aquella que presente el mejor desempeño al aplicarse sobre un conjunto de datos cardiológicos. Se expondrán las técnicas empleadas y las métricas utilizadas para medidas de calidad de un clasificador y, en consecuencia, resulta más adecuada para el problema planteado.
 
 \section{Motivación}
 
-El proceso de diagnóstico médico puede ser extenso, incluso contando con la mejor disposición del personal de salud, ya que con frecuencia requiere la recopilación y análisis de datos provenientes de distintos estudios. El propósito de este trabajo es contribuir a agilizar dicho proceso, identificando técnicas que puedan facilitar el diagnóstico médico. No solo resulta fundamental la posibilidad de obtener diagnósticos más ágiles, sino también la de reconocer qué atributos o características de los estudios resultan más significativos que otros para un diagnóstico determinado.
+El proceso de diagnóstico médico puede ser extenso, incluso contando con la mejor disposición del personal de salud, ya que con frecuencia requiere la recopilación y análisis de datos provenientes de distintos estudios. El propósito de este trabajo es contribuir a agilizar dicho proceso, identificando técnicas que puedan ser utilizadas por los profesionales médicos como herramientas complementarias para realizar diagnósticos. No solo resulta fundamental la posibilidad de obtener diagnósticos más ágiles, sino también la de reconocer qué atributos o características de los estudios resultan más significativos que otros para un diagnóstico determinado.
 
 \section{Estado del Arte}
 
 
-Las técnicas de Aprendizaje Automático (ML) se utilizan cada vez más en la investigación cardiovascular. El trabajo de Isaksen et al.~\cite{isaksen2025evaluating}(2025) presenta recomendaciones y orientaciones para la evaluación adecuada de modelos de aprendizaje automático supervisado en cardiología, destacando los problemas específicos asociados con estas técnicas, como la fuga de datos (\textit{data leakage}) y el desequilibrio de clases. Por su parte, el documento de Kumar y Kumar ~\cite{kumar2021machine}(2021) revisa las metodologías de ML para el diagnóstico de cardiopatías utilizando métodos no invasivos (NI), un área crucial dada la alta mortalidad anual (17.9 millones de personas) asociada con los problemas cardíacos.
+Las técnicas de Aprendizaje Automático se utilizan cada vez más en la investigación cardiovascular. El trabajo de Isaksen et al.~\cite{isaksen2025evaluating}(2025) presenta recomendaciones y orientaciones para la evaluación adecuada de modelos de aprendizaje automático supervisado en cardiología, destacando los problemas específicos asociados con estas técnicas, como la fuga de datos (\textit{data leakage}) y el desequilibrio de clases. Por su parte, el documento de Kumar y Kumar ~\cite{kumar2021machine}(2021) revisa las metodologías de aprendizaje automático para el diagnóstico de cardiopatías utilizando métodos no invasivos, un área crucial dada la alta mortalidad anual (17.9 millones de personas) asociada con los problemas cardíacos.
+
+%% Algo sobre variables cariológicas en general, y sobre trabajos que usen alguno de los que yo use a cardiología.
  
 \section{Conjuntos de datos Utilizados}
 
-Para la realización de este trabajo se exploraron diversas plataformas en busca de conjuntos de datos reales que resultaran relevantes para el estudio mediante técnicas de aprendizaje automático. Durante esta búsqueda se identificaron múltiples \emph{datasets} de distinta naturaleza: algunos correspondientes a problemas de \textbf{clasificación binaria}, donde las observaciones se asocian a dos posibles clases, y otro \emph{dataset} de \textbf{clasificación multiclase}, con más de dos categorías posibles.\\
+Para la realización de este trabajo se exploraron diversas plataformas en busca de conjuntos de datos reales que resultaran relevantes para el estudio mediante técnicas de aprendizaje automático. Durante esta búsqueda se identificaron múltiples \emph{datasets} de distinta naturaleza: algunos correspondientes a problemas de \textbf{clasificación binaria}, donde las observaciones se asocian a dos posibles clases, y otro \emph{datasets} de \textbf{clasificación multiclase}, con más de dos categorías posibles.\\
 
 \noindent
 Se observó, además, una marcada predominancia de conjuntos de datos provenientes del ámbito \textbf{médico}, dentro de los cuales se seleccionaron aquellos considerados más adecuados para las pruebas de los métodos de aprendizaje automático, abarcando tanto casos binarios como multiclase.\\
 
 \noindent
-Todos estos \emph{datasets} fueron procesados anteriormente a las pruebas realizadas, en donde se eliminaron tanto registros duplicados como con datos faltantes, tampoco se tuvieron en cuenta aquellos con datos atípicos a \textit{priori}, como un caso donde un paciente tiene colesterol 0.
+Todos estos \emph{datasets} fueron procesados anteriormente a las pruebas realizadas, en donde se eliminaron tanto registros duplicados como con datos faltantes, tampoco se tuvieron en cuenta aquellos con datos atípicos a \textit{priori}, como un caso donde un paciente tiene colesterol 0.\\
+
+
+\noindent
+Se realizará una pequeña descripción de cada atributo utilizado en cada \emph{datasets}. Si el atributo es categórico, se informará la distribución de los valores que posee dicho atributo y en caso de resultar ser un atributo numérico, se informará la media de los valores de dicho atributo, junto al valor máximo y mínimo que posee. Se realiza lo anterior para contextualizar los atributos y ver los rangos de valores con que se trabajará. \\
+
 
 \subsection{Dataset Binario: Insuficiencia  Cardíaca Predicción}
 
-
-Las enfermedades cardiovasculares son la causa número uno de muerte globalmente, con un estimado de 17.9 millones de vidas cada año, aproximadamente 31\% de todas las muertes globales. La idea central de este trabajo es encontrar la técnica de aprendizaje automático mas óptima para poder realizar predicciones de si un paciente tiene altas probabilidades de tener insuficiencia cardíaca.\\ 
-
 \noindent
-Este dataset~\cite{HeartFailure}, llamado \textit{HeartFailure} fue creado mediante la combinación de cinco datasets independientes en 11 atributos comunes, logrando el dataset más grande de información de enfermedades cardiovasculares utilizado para investigación. Los cinco datasets utilizados son:
+Este \emph{dataset}~\cite{HeartFailure}, llamado \textit{HeartFailure} fue creado mediante la combinación de cinco \emph{datasets} independientes en 11 atributos comunes, logrando el\emph{datasets} más grande de información de enfermedades cardiovasculares utilizado para investigación. Los cinco \emph{datasets} utilizados son:
 
 \begin{itemize}
 	\item Cleveland: 303 observaciones
@@ -169,13 +190,24 @@ Este dataset~\cite{HeartFailure}, llamado \textit{HeartFailure} fue creado media
 \end{itemize}
 
 \noindent
-En la  Tabla~\ref{tab:tablebinario} se muestran que tipo de datos son los atributos del dataset que serán utilizados en este trabajo, considerando que estos mismos ya fueron previamente procesados para poder ser utilizados en las técnicas de aprendizaje automático.\\
+En la  Tabla~\ref{tab:tablebinario} se muestran que tipo de datos son los atributos del\emph{datasets} que serán utilizados en este trabajo, considerando que estos mismos ya fueron previamente procesados para poder ser utilizados en las técnicas de aprendizaje automático. Luego la Tabla~\ref{tab:cant_datos_binarios} muestra la cantidad de registros y atributos que fueron utilizados, junto a que tipo de datos son.\\
 
-\noindent
-	\textbf{Cantidad de registros}: 918\\
-	\textbf{Cantidad de atributos}: 11\\
-	\textbf{Atributos Categóricos}: 5\\
-	\textbf{Atributos Numéricos}: 6\\
+
+\begin{table}[htb]%[H]
+	\centering
+	\caption{Cantidad de registros utilizados}
+	\label{tab:cant_datos_binarios}
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Cantidad de registros} & \textbf{918} \\
+		\textbf{Cantidad de atributos} & \textbf{11} \\
+		\textbf{Atributos Categóricos} & \textbf{5} \\
+		\textbf{Atributos Numéricos} & \textbf{6} \\
+
+		\bottomrule
+	\end{tabular}
+\end{table}
+
 	
 	
 	\begin{table}[htb]
@@ -188,27 +220,27 @@ En la  Tabla~\ref{tab:tablebinario} se muestran que tipo de datos son los atribu
 			\hline
 			Age        & Numérico (int) & No & Años \\
 			\hline
-			Sex             & Categorico (string) & No & -\\
+			Sex             & Categórico (string) & No & -\\
 			\hline
-			ChestPainType               & Categorico (string) & No & -\\
+			ChestPainType               & Categórico (string) & No & -\\
 			\hline
 			RestingBP     & Numérico (int) & No & mm Hg\\
 			\hline
 			Cholesterol    & Numérico (int) & No & mm/dl\\
 			\hline
-			FastingBS                 & Numérico (int) & Si & mg/dl\\
+			FastingBS                 & Numérico (int) & Sí & mg/dl\\
 			\hline
-			RestingECG                      & Categorico (string) & No & -\\
+			RestingECG                      & Categórico (string) & No & -\\
 			\hline
 			MaxHR    & Numérico (int) & No & -\\
 			\hline
-			ExerciseAngina               & Categorico (string) & No & -\\
+			ExerciseAngina               & Categórico (string) & No & -\\
 			\hline
 			Oldpeak                 & Numérico (float) & No & ST en depresión\\
 			\hline
-			$ST\_Slope$                 & Categorico (string) & No & -\\
+			$ST\_Slope$                 & Categórico (string) & No & -\\
 			\hline
-			HeartDisease                 & Numérico (int)     & Si & -\\
+			HeartDisease                 & Numérico (int)     & Sí & -\\
 			\hline
 			\hline
 		\end{tabular}
@@ -218,8 +250,8 @@ En la  Tabla~\ref{tab:tablebinario} se muestran que tipo de datos son los atribu
 	
 	
 	
-\subsubsection{\underline{Descripción atributos:}}
-A continuación se realizara una pequeña descripción de cada atributo anteriormente señalado. Si el atributo es categórico, se informara la distribución de los valores que posee dicho atributo y en caso de resultar ser un atributo numérico, se informara la media de los valores de dicho atributo, junto al valor máximo y mínimo que posee. Se realiza lo anterior para contextualizar los atributos y ver los rangos de valores con que se trabajara. \\
+\subsubsection{\underline{Descripción de los atributos:}}
+
 	
 	\noindent
 	\textbf{Age}: Este atributo refiera a la edad de los pacientes. Tiene media: 53 años, valor máximo: 77 y valor mínimo: 28, con proporciones de edad bastante bien distribuidas, siendo la menor de 0.11\% para algunas edades y la mayor de 4.14\% para otras edades, teniendo otras distribuciones entre estos dos rangos\\
@@ -267,73 +299,84 @@ A continuación se realizara una pequeña descripción de cada atributo anterior
 	Siendo esta la \textbf{variables objetivo}.
 
 
-\subsection{Dataset Multiclase: Cardiotocografía Predicción}
+\subsection{Dataset Multiclase: \emph{Cardiotocografía Predicción}}
 	
-	\textbf{Descripción}: La cardiotocografía (CTG) es un registro continuo de la frecuencia cardíaca fetal que se obtiene mediante un transductor de ultrasonidos colocado en el abdomen materno. La CTG se utiliza ampliamente durante el embarazo como método para evaluar el bienestar fetal, sobre todo en embarazos con mayor riesgo de complicaciones.\\
 
 \noindent
-	En el dataset~\cite{Cardiotocografia} utilizado se procesaron automáticamente 2126 cardiotocogramas fetales (CTG) y se midieron sus características diagnósticas. Tres obstetras expertos clasificaron los CTG y se les asignó una etiqueta de clasificación consensuada. La clasificación se realizó tanto con respecto a un patrón morfológico (A, B, C...) como al estado fetal (N, S, P).\\
+	En el \emph{datasets}~\cite{Cardiotocografia} utilizado se procesaron automáticamente 2126 cardiotocogramas fetales y se midieron sus características diagnósticas. Tres obstetras expertos clasificaron los CTG y se les asignó una etiqueta de clasificación consensuada. La clasificación se realizó tanto con respecto al estado fetal (N: Normal, S: Sospechoso y P: Patológico).\\
 
     \noindent
-En la Tabla~\ref{tab:tablaej} se muestran los tipos de las variables utilizadas en este trabajo. Luego la cantidad de registros y los tipos de atributos utilizados para este trabajo fueron los siguientes, considerando que estos registros ya fueron previamente procesados para poder ser utilizados en las técnicas de aprendizaje automático. 
+En la Tabla~\ref{tab:tablaej} se muestran los tipos de las variables utilizadas en este trabajo. Luego la cantidad de registros y los tipos de atributos utilizados para este trabajo fueron los siguientes, considerando que estos registros ya fueron previamente procesados para poder ser utilizados en las técnicas de aprendizaje automático. Luego la Tabla~\ref{tab:cant_datos_multiclase} muestra la cantidad de registros y atributos que fueron utilizados, junto a que tipo de datos son.
 
 
-\noindent
-	\textbf{Cantidad de registros}: 2115\\
-	\textbf{Cantidad de atributos}: 21\\
-	\textbf{Atributos Categóricos}: 0\\
-	\textbf{Atributos Numéricos}: 21\\
+\begin{table}[htb]%[H]
+	\centering
+	\caption{Cantidad de registros utilizados}
+	\label{tab:cant_datos_multiclase}
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Cantidad de registros} & \textbf{2115} \\
+		\textbf{Cantidad de atributos} & \textbf{21} \\
+		\textbf{Atributos Categóricos} & \textbf{0} \\
+		\textbf{Atributos Numéricos} & \textbf{21} \\
+		
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
 \begin{table}[htb]
 \caption{Tipo de atributo del conjunto Multiclae.}
 \label{tab:tablaej}
 	\centering
-	\begin{tabular}{|l|c|}
+	\begin{tabular}{|l|c|c|c|c|}
 		\hline
-		\textbf{Atributo} & \textbf{Tipo de dato} \\
+		\textbf{Atributo} & \textbf{Tipo de dato} & \textbf{Media} & \textbf{Máximo} & \textbf{Mínimo}\\
 		\hline
-		LB        & Numérico (int)\\
+		LB        & Numérico (int) & 133.301 &160.000 &106.000\\
+		
 		\hline
-		AC             & Numérico \\
+		AC             & Numérico & 0.003 & 0.019 & 0.000\\
 		\hline
-		FM               & Numérico (float)\\
+		FM               & Numérico (float)& 0.009 & 0.481 & 0.000\\
 		\hline
-		UC     & Numérico (float) \\
+		UC     & Numérico (float) & 0.004 &0.015 &0.000\\
 		\hline
-		DL    & Numérico (float)\\
+		DL    & Numérico (float)&0.001 & 0.015 & 0.000\\
 		\hline
-		DS                 & Numérico (float)\\
+		DS                 & Numérico (float)&- &- &-\\
 		\hline
-		DP                      & Numérico (float)\\
+		DP                      & Numérico (float)&- &- &-\\
 		\hline
-		ASTV    & Numérico (int) \\
+		ASTV    & Numérico (int) &46.977 &87.000 &12.000\\
 		\hline
-		MSTV               & Numérico (float) \\
+		MSTV               & Numérico (float) &1.335 & 7.000&0.200\\
 		\hline
-		ALTV                 & Numérico (int) \\
+		ALTV                 & Numérico (int) &9.759 &91.000 &0.000\\
 		\hline
-		MLTV                 & Numérico (float)\\
+		MLTV                 & Numérico (float)&8.170 &50.700 &0.000\\
 		\hline
-		Width                 & Numérico (int) \\
+		Width                 & Numérico (int) &70.511 &180.000 &3.000\\
 		\hline
-		Min                 & Numérico (int) \\
+		Min                 & Numérico (int) &93.574 &159.000 &50.000\\
 		\hline
-		Max                 & Numérico (int)  \\
+		Max                 & Numérico (int)  &164.085 &238.000 &122.000\\
 		\hline
-		Nmax                 & Numérico (int)  \\
+		Nmax                 & Numérico (int)  &4.075 &18.000 &0.000\\
 		\hline
-		Nzeros                 & Numérico (int)  \\
+		Nzeros                 & Numérico (int)  &- &- &-\\
 		\hline
-		Mode                 & Numérico (int)  \\
+		Mode                 & Numérico (int)  &137.448 &187.000 &60.000\\
 		\hline
-		Mean                 & Numérico (int) \\
+		Mean                 & Numérico (int)& 134.596& 182.000&73.000 \\
 		\hline
-		Median                 & Numérico (int)  \\
+		Median                 & Numérico (int) &138.084 &186.000 &77.000 \\
 		\hline
-		Variance                 & Numérico (int) \\
+		Variance                 & Numérico (int)&18.891 &269.000 &0.000 \\
 		\hline
-		Tendency                 & Numérico (int) \\
+		Tendency                 & Numérico (int)&- &- &- \\
 		\hline
-		NSP                 & Categórico (string) \\
+		NSP                 & Categórico (string) &- &- &-\\
 		\hline
 	\end{tabular}
 \end{table}
@@ -341,25 +384,23 @@ En la Tabla~\ref{tab:tablaej} se muestran los tipos de las variables utilizadas 
 
 
 
-\subsubsection{\underline{Descripción atributos:}}
+\textbf{\underline{Descripción de los atributos:}}
 
-A continuación se realizara una pequeña descripción de cada atributo anteriormente señalado. Si el atributo es categórico, se informara la distribución de los valores que posee dicho atributo y en caso de resultar ser un atributo numérico, se informara la media de los valores de dicho atributo, junto al valor máximo y mínimo que posee. Se realiza lo anterior para contextualizar los atributos y ver los rangos de valores con que se trabajará. \\
-	
 	%{0.2cm}
 	\noindent
-	\textbf{LB}:Frecuencia cardíaca fetal basal (latidos por minuto). Tiene media: 133.30, valor máximo: 160.00 y valor mínimo: 106.00\\
+	\textbf{LB}: Frecuencia cardíaca fetal basal (latidos por minuto). Tiene media: 133.30, valor máximo: 160.00 y valor mínimo: 106.00\\
 	
 \noindent
 	\textbf{AC}: Número de aceleraciones por segundo. Tiene media: 0.00, valor máximo: 0.02 y valor mínimo: 0.00 \\
 	
 \noindent
-	\textbf{FM}:Número de movimientos fetales por segundo. Tiene media: 0.01, valor máximo: 0.48 y valor mínimo: 0.00 \\
+	\textbf{FM}: Número de movimientos fetales por segundo. Tiene media: 0.01, valor máximo: 0.48 y valor mínimo: 0.00 \\
 	
 \noindent
 	\textbf{UC}: Número de contracciones uterinas por segundo.  Tiene media: 0.00, valor máximo: 0.01 y valor mínimo: 0.00\\
 	
 \noindent
-	\textbf{DL}:Número de desaceleraciones leves por segundo. Tiene media: 0.00, valor máximo: 0.01 y valor mínimo: 0.00  \\
+	\textbf{DL}: Número de desaceleraciones leves por segundo. Tiene media: 0.00, valor máximo: 0.01 y valor mínimo: 0.00  \\
 	
 \noindent
 	\textbf{DS}: Número de desaceleraciones severas por segundo. Hay un 99.67\% con valor 0.0 y un 0.33\% con un valor 0.001\\
@@ -380,13 +421,13 @@ A continuación se realizara una pequeña descripción de cada atributo anterior
 	\textbf{MLTV}: Valor medio de la variabilidad a largo plazo. Tiene media: 8.17, valor máximo: 50.70 y valor mínimo: 0.00\\
 	
 \noindent
-	\textbf{Width}: Ancho del histograma de FCF. Tiene media: 70.51, valor máximo: 180.00 y valor mínimo: 3.00\\
+	\textbf{Width}: Ancho del histograma de TCG. Tiene media: 70.51, valor máximo: 180.00 y valor mínimo: 3.00\\
 
 \noindent
-	\textbf{Min}: Mínimo del histograma de FCF. Tiene media: 93.57, valor máximo: 159.00 y valor mínimo: 50.00\\
+	\textbf{Min}: Mínimo del histograma de TCG. Tiene media: 93.57, valor máximo: 159.00 y valor mínimo: 50.00\\
 	
 \noindent
-	\textbf{Max}: Máximo del histograma de FCF. Tiene media: 164.09, valor máximo: 238.00 y valor mínimo: 122.00\\
+	\textbf{Max}: Máximo del histograma de TCG. Tiene media: 164.09, valor máximo: 238.00 y valor mínimo: 122.00\\
 
 \noindent
 	\textbf{Nmax}: Número de picos del histograma. Tiene media: 4.08, valor máximo: 18.00 y valor mínimo: 0.00\\
@@ -416,9 +457,9 @@ A continuación se realizara una pequeña descripción de cada atributo anterior
 
 \chapter{Métricas de Rendimiento Utilizadas}
 
-\section{Introducción}
 
-El objetivo de este trabajo es evaluar el desempeño calificador de cada modelo de Aprendizaje Automático. Para alcanzarlo, se utilizaran \textbf{métricas de rendimiento} que permiten cuantificar la capacidad del algoritmo de clasificar, ergo son herramienta que utilizamos para saber que tan bien predice un modelo a una clase o que tan bien puede clasificar entre varias clases.\\
+
+El objetivo de este trabajo es evaluar el desempeño calificador de cada modelo de Aprendizaje Automático. Para alcanzarlo, se utilizarán \textbf{métricas de rendimiento} que permiten cuantificar la capacidad del algoritmo de clasificar, ergo son herramienta que utilizamos para saber que tan bien predice un modelo a una clase o que tan bien puede clasificar entre varias clases.\\
 
 \noindent
 \textbf{La importancia de las métricas} se ubica en que el objetivo central de estos algoritmos no es simplemente obtener un buen rendimiento en los datos utilizados para construir el modelo, sino en su \textbf{capacidad de generalización}, su habilidad para funcionar correctamente con entradas nuevas y previamente no observadas (no utilizadas en el entrenamiento). Esto se debe a que es perfectamente normal y sumamente esperable que el modelo funcione correctamente con el conjunto de datos que se utiliza para el entrenamiento del modelo, la idea fundamental es poder tener el mismo rendimiento o incluso uno mejor que con el conjunto de entrenamiento.\\
@@ -437,7 +478,7 @@ Dentro de este trabajo no sólo se evaluaran distintos modelos, sino que se util
 
 \section{Métricas para caso Binario}
 
-\subsection{Matriz de Confusión}
+\textbf{Matriz de Confusión}
 
 Una matriz de confusión, que se puede observar en la Tabla~\ref{tab:matrizconfusionbinario}, es una forma simple de saber de que forma esta clasificando el algoritmo, donde una clase es considerada \textbf{positiva $P$} y la otra \textbf{negativa $N$}. La matriz de confusión clasifica las predicciones en:
 
@@ -469,7 +510,7 @@ Una matriz de confusión, que se puede observar en la Tabla~\ref{tab:matrizconfu
 
 
 
-\subsection{\textit{Accuracy}}
+\textbf{\textit{Accuracy}}
 
 El \textit{Accuracy} es la proporción de instancias clasificadas correctamente, es una medida "ingenua" que puede ser engañosa si existe un gran desbalance entre clases, ergo se puede obtener un \textit{Accuracy} alto si predice una clase muy bien, que tiene una distribución mucho mayor que la otra, mientras que la de menor distribución casi no la predice.
 \noindent
@@ -494,7 +535,7 @@ por lo tanto, se puede simplificar como la siguiente formula:
 \end{equation}
 
 
-\subsection{\textit{Precision}}
+\textbf{\textit{Precision}}
 
 El \textit{Precision} mide la probabilidad de que la predicción positiva del clasificador sea correcta, en otras palabras, mide que tan bien predice las clases positivas el modelo.
 \noindent
@@ -505,7 +546,7 @@ En términos de la Matriz de Confusión, se puede expresar lo anterior de la sig
 \end{equation}
 
 
-\subsection{\textit{Recall}}
+\textbf{\textit{Recall}}
 
 El \textit{Recall} o también conocido como Sensibilidad o Tasa de Verdaderos Negativos (TPR). Mide la probabilidad de que el clasificador detecte un caso positivo cuando en verdad lo es.
 \noindent
@@ -517,7 +558,7 @@ En términos de la Matriz de Confusión se puede entender a la \textit{Recall} d
 \end{equation}
 
 
-\subsection{\textit{F-measure}}
+\textbf{\textit{F-measure}}
 
 El \textit{F-measure} es la media armónica ponderada de \textit{precision} y \textit{recall}. La versión más común es el \textbf{F1-score}, donde el parámetro de ponderación $\beta$ es igual a 1. Un clasificador perfecto tiene un valor $F1 = 1$.
 \noindent
@@ -541,7 +582,7 @@ o en términos de la Matriz de Confusión, de forma más simplificada:
         \label{eq:f1enmatriz}
 \end{equation}
 
-\subsection{\textit{Área Bajo la Curva ROC (ROC AUC)}}
+\textbf{\textit{Área Bajo la Curva ROC (ROC AUC)}}
 
 La métrica \textit{ROC AUC} es un valor que resume la capacidad de un clasificador para distinguir entre clases, una métrica muy útil para comparar el desempeño entre modelos distintos o entre un mismo modelo con hipermetamorfosis distintos.\\
 
@@ -560,7 +601,7 @@ Interpretación de valores: Un clasificador \textbf{ideal} se ubica en el punto 
 
 
 
-\section{Métricas para caso Multiclase}
+\textbf{Métricas para caso Multiclase}
 
 En este caso se utiliza el método \textit{"weighted"}, el cual computa o tiene en cuenta el desequilibrio de clases calculando el promedio de métricas binarias, en las que la puntuación o peso de cada clase se pondera según su presencia en la muestra de datos reales.\\
 
@@ -572,7 +613,7 @@ La métrica ponderada por la presencia de la clase, $\text{M}_{\text{weighted}}$
     \label{eq:metricasponderadas}
 \end{equation}
 
-\subsection{Matriz de Confusión (Multiclase)}
+\textbf{Matriz de Confusión (Multiclase)}
 
 La matriz de confusión multiclase, que se puede ver en la Tabla~\ref{tab:matrizmulticlase}, es una matriz cuadrada de tamaño $L \times L$, donde $L$ es el número de clases. Cada celda $C_{ij}$ representa la cantidad de muestras verdaderamente pertenecientes a la clase $i$ que fueron clasificadas como clase $j$.\\
 
@@ -610,7 +651,7 @@ Para cada clase $l$ se definen los valores que antes habíamos utilizados para l
 
 
 
-\subsection{\textit{Precision}}
+\textbf{\textit{Precision}}
 
 La \textit{Precision} por clase $l$ mide la proporción de muestras clasificadas como positivas que realmente pertenecen a la clase $l$.
 
@@ -623,7 +664,7 @@ En términos más simple, utilizando la Matriz de Confusión:
 \end{equation}
 
 
-\subsection{\textit{Recall}}
+\textbf{\textit{Recall}}
 
 El \textit{Recall} por clase $l$ mide la proporción de muestras verdaderamente positivas de la clase $l$ que fueron correctamente identificadas.
 
@@ -635,7 +676,7 @@ En términos más simple, utilizando la Matriz de Confusión:
     \label{eq:recallmulticlase}
 \end{equation}
 
-\subsection{\textit{F-measure}}
+\textbf{\textit{F-measure}}
 
 El \textit{F-measure} es la media armónica ponderada de \textit{precision} y \textit{recall}. La versión más común es el \textbf{F1-score}, donde el parámetro de ponderación $\beta$ es igual a 1. Un clasificador perfecto tiene un valor $F1 = 1$.
 
@@ -650,7 +691,7 @@ El valor global ponderado se obtiene aplicando la fórmula de $M_{\text{weighted
 
 
 
-\subsection{\textit{Área Bajo la Curva ROC (ROC AUC)}}
+\textbf{\textit{Área Bajo la Curva ROC (ROC AUC)}}
 
 Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoque \textbf{One-vs-Rest (OVR)}. Para cada clase $l$, se considera la clase $l$ como positiva y el resto como negativas, luego se calcula el AUC correspondiente ($\text{AUC}_l$) sobre la curva ROC de esa clasificación binaria. Finalmente, se obtiene un promedio ponderado por el soporte de cada clase:
 
@@ -662,7 +703,7 @@ Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoq
 
 
 
-\section{Importancia de la característica}
+\textbf{Importancia de la característica}
 
 \noindent Sea un modelo predictivo $Modelo$ entrenado sobre un conjunto de datos tabular $X$ (ya sea de entrenamiento o validación), y sea $M$ la métrica de referencia del modelo sobre los datos originales. El procedimiento se detalla a continuación:
 
@@ -738,7 +779,7 @@ El modelo busca modelar la probabilidad condicional de que una observación pert
 
 donde $\bm{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$, el cual también llamamos registro.
 
-\subsection{Función de Probabilidad}
+\textbf{Función de Probabilidad}
 
 La función logística define la probabilidad de pertenencia de $x_{i}$ a la clase $1$ como:
 
@@ -751,7 +792,7 @@ La función logística define la probabilidad de pertenencia de $x_{i}$ a la cla
 
 donde $\beta_0$ es el intercepto y $\beta_j$ los coeficientes asociados a cada predictor.
 
-\subsection{Función Logit}
+\textbf{Función Logit}
 
 La función inversa de la función logística, denominada \textit{logit}, relaciona el logaritmo de las \emph{odds} con un modelo lineal, siendo \emph{odds} lo que se utiliza para analizar si la probabilidad de ocurrencia de un evento -caso/no caso- difiere o no en distintos grupos,
 
@@ -778,7 +819,7 @@ La función inversa de la función logística, denominada \textit{logit}, relaci
 \noindent
 Esta transformación asegura que las probabilidades estén acotadas entre 0 y 1, mientras que la combinación lineal de predictores puede tomar cualquier valor real, siendo este ultimo punto un factor que realiza el calculo de coeficientes muy difícil.
 
-\subsection{Estimación por Máxima Verosimilitud}
+\textbf{Estimación por Máxima Verosimilitud}
 
 Los coeficientes de regresión se estiman mediante el método de \textbf{Máxima Verosimilitud} (MLE), donde la función de log-verosimilitud a maximizar
 
@@ -794,7 +835,7 @@ Los coeficientes de regresión se estiman mediante el método de \textbf{Máxima
 \noindent
 en donde la solución analítica no existe, por lo que se utilizan métodos numéricos iterativos para obtener los parámetros óptimos.
 
-\subsection{Hiperparámetros}
+\textbf{Hiperparámetros}
 
 \begin{itemize}
 	\item \textbf{Parámetro de Regularización ($C$):} Controla la complejidad del modelo. Valores pequeños de $C$ implican mayor regularización (menor sobreajuste), mientras que valores grandes permiten mayor flexibilidad del modelo.
@@ -876,7 +917,7 @@ El aprendizaje mediante \textbf{Árboles de Decisión} (RF, por su equivalente e
 \noindent  
 El objetivo principal es encontrar las divisiones (particiones) que maximicen la pureza de los nodos hijos, es decir, que minimicen la impureza del nodo resultante. Es un método mucho mas sencillo de realizar, donde se crea un camino de decisión, por lo cual según los valores de los atributos de un registro podemos predecir que a que clase pertenecerían, donde el computo pesado se encuentra en la creación del propio camino. 
 
-\subsection{Conceptos Fundamentales}
+\textbf{Conceptos Fundamentales}
 
 La probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_k$ se define como
 
@@ -962,7 +1003,7 @@ La predicción final para clasificación se obtiene mediante el voto mayoritario
 \noindent
 donde $h_m(\bm{x})$ es la predicción del árbol $m$.
 
-\subsection{Hiperparámetros}
+\textbf{Hiperparámetros}
 
 \begin{itemize}
 	\item \textbf{Criterio de Partición:} Función de impureza utilizada (e.g., Índice de Gini o Entropía de Shannon).
@@ -1041,7 +1082,7 @@ Otra estimación fundamental a calcular y expresar es la a priori, en la cual se
 %%{eq:regla_clasificacion_nb}{Regla de decisión de Naïve Bayes}
 
 
-\subsection{Caso Continuo (Naïve Bayes Gaussiano)}
+\textbf{Caso Continuo (Naïve Bayes Gaussiano)}
 
 Cuando los atributos son continuos y se asume distribución normal, las verosimilitudes se estiman con la función de densidad Gaussiana:
 
@@ -1082,7 +1123,7 @@ El objetivo fundamental de una SVM es encontrar un \textbf{hiperplano de separac
 \noindent
 Aunque existen infinitos hiperplanos que pueden separar los datos, el principio de las SVM consiste en seleccionar aquel que logre la \textbf{máxima separación posible entre las clases}, minimizando simultáneamente el riesgo de sobreajuste y aumentando la capacidad de generalización.\\
 
-\subsection{Margen Rígido (Hard Margin)}
+\textbf{Margen Rígido (Hard Margin)}
 
 El caso de \textbf{margen rígido} supone que los datos son linealmente separables, es decir, existe un hiperplano que separa perfectamente las clases sin errores de clasificación. En este caso, el problema de optimización se formula como:
 
@@ -1097,7 +1138,7 @@ El caso de \textbf{margen rígido} supone que los datos son linealmente separabl
 \noindent
 donde $ \bm{w} $ es el vector normal al hiperplano, $\beta$ es el término de sesgo, y la restricción garantiza que todas las observaciones queden correctamente clasificadas, y a una distancia mínima de $\frac{1}{\lVert \bm{w} \rVert}$ del hiperplano.
 
-\subsection{Margen Suave (Soft Margin)}
+\textbf{Margen Suave (Soft Margin)}
 
 En la práctica, los datos rara vez son perfectamente separables. Por ello, se introduce el concepto de \textbf{margen suave}, que permite violaciones controladas de las restricciones mediante variables de holgura $ \theta_i \ge 0 $. El problema se redefine como:
 
@@ -1116,7 +1157,7 @@ En la práctica, los datos rara vez son perfectamente separables. Por ello, se i
 \noindent
 donde el parámetro $C > 0$ actúa como un \textbf{control de regularización}: valores grandes de $C$ penalizan más fuertemente los errores, buscando una separación más estricta (a costa de menor margen), mientras que valores pequeños permiten más errores, favoreciendo márgenes amplios y mayor generalización.
 
-\subsection{Formulación Dual y Kernel Trick}
+\textbf{Formulación Dual y Kernel Trick}
 
 La formulación dual del problema permite expresar la solución en términos de los productos internos entre las observaciones:
 
@@ -1177,7 +1218,7 @@ De esta forma, se mantiene la eficiencia computacional mientras se obtiene un mo
 \end{equation}
 
 
-\subsection{Hiperparámetros}
+\textbf{Hiperparámetros}
 
 \begin{itemize}
 	\item \textbf{Parámetro de Regularización (\(C\)):} Controla el equilibrio entre la maximización del margen y la penalización por errores de clasificación.
@@ -1202,12 +1243,12 @@ De esta forma, se mantiene la eficiencia computacional mientras se obtiene un mo
 
 En este capítulo se presentan los resultados obtenidos mediante la aplicación de los modelos de aprendizaje supervisado sobre los distintos conjuntos de datos. Se analizan las métricas de evaluación alcanzadas, las configuraciones óptimas halladas mediante búsqueda en malla (\emph{Grid Search}) y la importancia relativa de las características más influyentes en las predicciones.
 
-\section{Introducción}
+
 
 En esta sección se presentan los resultados obtenidos tras la aplicación de distintos modelos de aprendizaje automático sobre los conjuntos de datos binario y multiclase seleccionados. Se buscó evaluar el rendimiento de cada modelo bajo diferentes configuraciones de hiperparámetros, a través de métricas como la precisión (\textit{Accuracy}), el F1-Score y el área bajo la curva ROC (ROC AUC), entre otras.\\
 
 \noindent
-Durante la fase experimental se exploraron distintas estrategias de balanceo de clases, dado que varios de los conjuntos presentaban desbalances significativos entre las clases. En particular, se probó la técnica de \textbf{undersampling}, reduciendo la cantidad de ejemplos de la clase mayoritaria para equilibrar el dataset. Sin embargo, esta estrategia no arrojó resultados satisfactorios: los modelos tendieron a perder capacidad de generalización, mostrando un descenso notable en las métricas de validación, aunque se sostuvo la mejor configuración con mejor valor de métricas. Por este motivo, se optó finalmente por mantener la distribución original y aplicar técnicas de regularización y ajuste de hiperparámetros para mitigar el sesgo hacia la clase dominante.\\
+Durante la fase experimental se exploraron distintas estrategias de balanceo de clases, dado que varios de los conjuntos presentaban desbalances significativos entre las clases. En particular, se probó la técnica de \textbf{undersampling}, reduciendo la cantidad de ejemplos de la clase mayoritaria para equilibrar el \emph{datasets}. Sin embargo, esta estrategia no arrojó resultados satisfactorios: los modelos tendieron a perder capacidad de generalización, mostrando un descenso notable en las métricas de validación, aunque se sostuvo la mejor configuración con mejor valor de métricas. Por este motivo, se optó finalmente por mantener la distribución original y aplicar técnicas de regularización y ajuste de hiperparámetros para mitigar el sesgo hacia la clase dominante.\\
 
 \noindent
 A continuación se presentan las métricas finales alcanzadas por cada modelo y los valores óptimos de los hiperparámetros encontrados mediante \textit{Grid Search}. Posteriormente, se analiza la importancia de las características más relevantes en la predicción de las clases.
@@ -1423,9 +1464,9 @@ El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente
 \end{figure}
 
 \noindent
-En la Figura \ref{fig:mejores_modelos_binario} se observa que Random Forest obtiene la mayor puntuación en todas las métricas, seguido por la Regresión Logística y SVM. Esto indica que, para nuestro dataset, el modelo de Random Forest presenta mejor capacidad de generalización, mientras que los demás modelos muestran un desempeño bastante competitivo.
+En la Figura \ref{fig:mejores_modelos_binario} se observa que Random Forest obtiene la mayor puntuación en todas las métricas, seguido por la Regresión Logística y SVM. Esto indica que, para nuestro \emph{datasets}, el modelo de Random Forest presenta mejor capacidad de generalización, mientras que los demás modelos muestran un desempeño bastante competitivo.
 
-\section{Importancia de las Características}
+\textbf{Importancia de las Características}
 \noindent La importancia de las características se calculó mediante el método de \textit{Permutation Feature Importance}. Este método evalúa cuánto se degrada el desempeño del modelo cuando se altera aleatoriamente una característica, manteniendo fijas las demás. Cuanto mayor sea la disminución en la métrica de desempeño, mayor será la importancia atribuida a dicha característica.\\
 
 
@@ -1564,7 +1605,7 @@ Siendo los modelos \textbf{SVM} y \textbf{RF} los que mejor comportamiento tiene
 
 \subsection{Dataset Multiclase}
 
-\subsection{Resultados del modelo de Regresión Logística}
+\textbf{Resultados del modelo de Regresión Logística}
 
 La Regresión Logística obtuvo un desempeño sólido en la clasificación multiclase, mostrando un equilibrio adecuado entre precisión y generalización.\\
 
@@ -1766,11 +1807,11 @@ El tiempo de entrenamiento fue de apenas 2.24 segundos..
 \end{figure}
 \FloatBarrier
 \noindent
-En la Figura \ref{fig:mejores_modelos_multiclase} se observa que Random Forest obtiene la mayor puntuación en todas las métricas, seguido por la Regresión Logística y SVM. Esto indica que, para nuestro dataset, el modelo de Random Forest presenta mejor capacidad de generalización, mientras que los demás modelos muestran un desempeño bastante competitivo.
+En la Figura \ref{fig:mejores_modelos_multiclase} se observa que Random Forest obtiene la mayor puntuación en todas las métricas, seguido por la Regresión Logística y SVM. Esto indica que, para nuestro \emph{datasets}, el modelo de Random Forest presenta mejor capacidad de generalización, mientras que los demás modelos muestran un desempeño bastante competitivo.
 
 
 
-\section{Importancia de las Características}
+\textbf{Importancia de las Características}
 \noindent La importancia de las características se calculó mediante el método de \textit{Permutation Feature Importance}. Este método evalúa cuánto se degrada el desempeño del modelo cuando se altera aleatoriamente una característica, manteniendo fijas las demás. Cuanto mayor sea la disminución en la métrica de desempeño, mayor será la importancia atribuida a dicha característica.\\
 
 
