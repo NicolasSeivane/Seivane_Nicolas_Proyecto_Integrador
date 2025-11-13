@@ -458,29 +458,31 @@ En la Tabla~\ref{tab:tablaej} se muestran los tipos de las variables utilizadas 
 \chapter{Métricas de Rendimiento Utilizadas}
 
 
-
+\noindent
 El objetivo de este trabajo es evaluar el desempeño calificador de cada modelo de Aprendizaje Automático. Para alcanzarlo, se utilizarán \textbf{métricas de rendimiento} que permiten cuantificar la capacidad del algoritmo de clasificar, ergo son herramienta que utilizamos para saber que tan bien predice un modelo a una clase o que tan bien puede clasificar entre varias clases.\\
 
 \noindent
 \textbf{La importancia de las métricas} se ubica en que el objetivo central de estos algoritmos no es simplemente obtener un buen rendimiento en los datos utilizados para construir el modelo, sino en su \textbf{capacidad de generalización}, su habilidad para funcionar correctamente con entradas nuevas y previamente no observadas (no utilizadas en el entrenamiento). Esto se debe a que es perfectamente normal y sumamente esperable que el modelo funcione correctamente con el conjunto de datos que se utiliza para el entrenamiento del modelo, la idea fundamental es poder tener el mismo rendimiento o incluso uno mejor que con el conjunto de entrenamiento.\\
 
 \noindent
-Para la obtención de las métricas y entrenamiento de algoritmo se utilizara la estrategia de \textbf{Validación Cruzada $k$-fold}, donde el conjunto de datos se divide en $k$ grupos (o pliegues, en una traducción más fiel) del mismo tamaño, donde en cada iteración un grupo $k$ es utilizado para entrenar y el resto para evaluar, repitiéndose el proceso $k$ veces. Es importante señalar que un grupo $k_i$ es utilizado solo una vez para entrenar, el resto de veces será utilizado como parte del conjunto de prueba. El valor final estimado de la métrica, denotado por $\widehat{M}$,  es el promedio de los valores obtenidos de cada grupo, es decir,
+Para la obtención de las métricas y entrenamiento de algoritmo se utilizara la estrategia de \textbf{Validación Cruzada $k$-fold}, donde el conjunto de datos se divide en $G_i$ grupos $G:\{1, 2, 3, ..., G\} $ (o pliegues, en una traducción más fiel) del mismo tamaño, donde en cada iteración un grupo $G_i \in 1<i>K$ es utilizado para evaluar y el resto para entrenar, repitiéndose el proceso $G$ veces. Es importante señalar que un grupo $G_i$ es utilizado solo una vez para evaluar, el resto de veces será utilizado como parte del conjunto de entrenamiento. El valor final estimado de la métrica $M$, denotado por $\widehat{M}$,  es el promedio de los valores obtenidos de cada iteración, es decir,
 \begin{equation}
 %\label{eq:metrica}
-\hat{M} = \frac{1}{k} \sum_{i=1}^{k} M_i,
+\widehat{M} = \frac{1}{G} \sum_{i=1}^{G} M_i,
 \label{eq:kfolds}
 \end{equation}
-donde $M_i$ es el valor de la métrica de evaluación obtenido en el $i$-ésimo grupo utilizado como conjunto de prueba, para $i=1,2, \dots, k$.\\
+donde $M_i$ es el valor de la métrica de evaluación obtenido cuando $G_i$ es utilizado como conjunto de prueba, para $i=1,2, \dots, k$.\\
 
 \noindent
-Dentro de este trabajo no sólo se evaluaran distintos modelos, sino que se utilizaran distintos \textit{datasets} para lograrlos. A continuación se señalaran las métricas que se utilizaran en cada caso y se podran apreciar algunas diferencias, leves, pero diferencias en si. 
+Dentro de este trabajo no sólo se evaluarán distintos modelos, sino que se utilizarán distintos \emph{datasets} para lograrlos. A continuación se señalaran las métricas que se utilizarán en cada caso y se podrán apreciar algunas diferencias, leves, pero diferencias en sí. 
 
 \section{Métricas para caso Binario}
 
+\noindent
 \textbf{Matriz de Confusión}
 
-Una matriz de confusión, que se puede observar en la Tabla~\ref{tab:matrizconfusionbinario}, es una forma simple de saber de que forma esta clasificando el algoritmo, donde una clase es considerada \textbf{positiva $P$} y la otra \textbf{negativa $N$}. La matriz de confusión clasifica las predicciones en:
+\noindent
+Una matriz de confusión, que se puede observar en la Tabla~\ref{tab:matrizconfusionbinario}, es una forma simple de saber de qué forma esté clasificando el algoritmo, donde una clase es considerada \textbf{positiva $P$} y la otra \textbf{negativa $N$}. La matriz de confusión clasifica las predicciones en:
 
 \begin{itemize}
 	\item \textbf{Verdaderos Positivos (TP):} Casos positivos clasificados correctamente.\\
@@ -503,76 +505,82 @@ Una matriz de confusión, que se puede observar en la Tabla~\ref{tab:matrizconfu
 		& \textbf{Negativo} & \cellcolor{FNcolor} \textbf{Falso Positivo (FP)} & \cellcolor{TPcolor} \textbf{Verdadero Negativo (TN)} \\
 		\hline
 	\end{tabular}
-    \caption{Matriz de Confusion}
+    \caption{Matriz de Confusión}
     \label{tab:matrizconfusionbinario}
 \end{table}
 
+\noindent
+A partir de la matriz de confusión se calculan varias métricas, algunas de las cuales se presentan a continuación.
 
 
-
+\noindent
 \textbf{\textit{Accuracy}}
 
-El \textit{Accuracy} es la proporción de instancias clasificadas correctamente, es una medida "ingenua" que puede ser engañosa si existe un gran desbalance entre clases, ergo se puede obtener un \textit{Accuracy} alto si predice una clase muy bien, que tiene una distribución mucho mayor que la otra, mientras que la de menor distribución casi no la predice.
 \noindent
-En términos de la Matriz de Confusión la formula seria la siguiente:
+El \textit{Accuracy} es la proporción de instancias clasificadas correctamente, es una medida ``ingenua'' que puede ser engañosa si existe un gran desbalance entre clases, ergo se puede obtener un \textit{Accuracy} alto si predice una clase muy bien, que tiene una distribución mucho mayor que la otra, mientras que la de menor distribución casi no la predice.
+\noindent
+En términos de la Matriz de Confusión la formula sería la siguiente:
 \begin{equation}
-    \text{Accuracy} = \frac{TP + TN}{TP + FP + TN + FN} = \frac{TP + TN}{\text{Total}},
+    \text{\textit{Accuracy}} = \frac{TP + TN}{TP + FP + TN + FN} = \frac{TP + TN}{\text{Total}},
     \label{eq:accurcybinario}
 \end{equation}
 \noindent
-y en términos del conjunto de predicciones y valores verdaderos, se tiene que $n_{\text{samples}}$: representa la cantidad total de ejemplos en la muestra, mientras que $\hat{y}_i$ es el valor predicho del $i$-ésimo ejemplo, e $y_i$ es el valor verdadero correspondiente:
+y en términos del conjunto de predicciones y valores verdaderos, se tiene que $n_{\text{samples}}$: representa la cantidad total de ejemplos en la muestra, mientras que $\hat{y}_i$ es el valor predicho del $l$-ésimo ejemplo, e $y_l$ es el valor verdadero correspondiente, en cual caso si $\hat{y}_i$ es igual al valor obtenido, entonces se suma 1 en la sumatoria:
 
 \begin{equation}
-    \texttt{accuracy}(y, \hat{y}) = \frac{1}{n_\text{samples}} \sum_{i=0}^{n_\text{samples}-1} 1(\hat{y}_i = y_i),
+    \texttt{\textit{Accuracy}}(y, \hat{y}) = \frac{1}{n_\text{samples}} \sum_{l=0}^{n_\text{samples}-1} 1(\hat{y}_l = y_l),
     \label{eq:accuracybinarioformula}
 \end{equation}
 \noindent
-por lo tanto, se puede simplificar como la siguiente formula:
+por lo tanto, se puede simplificar como la siguiente fórmula:
 
 \begin{equation}
-    \text{Accuracy} = \frac{\text{Número de predicciones correctas}}{\text{Número total de muestras}}.
+    \text{\textit{Accuracy}} = \frac{\text{Número de predicciones correctas}}{\text{Número total de muestras}}.
     \label{eq:accuracygeneral}
 \end{equation}
 
-
+\noindent
 \textbf{\textit{Precision}}
 
+\noindent
 El \textit{Precision} mide la probabilidad de que la predicción positiva del clasificador sea correcta, en otras palabras, mide que tan bien predice las clases positivas el modelo.
 \noindent
-En términos de la Matriz de Confusión, se puede expresar lo anterior de la siguiente manera;
+En términos de la Matriz de Confusión, se puede expresar lo anterior de la siguiente manera:
 \begin{equation}
-    \text{Precision} = \frac{TP}{TP + FP}.
+    \text{\textit{Precision}} = \frac{TP}{TP + FP}.
     \label{eq:precisionbinario}
 \end{equation}
 
-
+\noindent
 \textbf{\textit{Recall}}
 
+\noindent
 El \textit{Recall} o también conocido como Sensibilidad o Tasa de Verdaderos Negativos (TPR). Mide la probabilidad de que el clasificador detecte un caso positivo cuando en verdad lo es.
 \noindent
 En términos de la Matriz de Confusión se puede entender a la \textit{Recall} de la siguiente manera:
 
 \begin{equation}
-     \text{Recall} = TPR = \frac{TP}{TP + FN} = \frac{TP}{P}.
+     \text{Recall} = \text{TPR} = \frac{TP}{TP + FN} = \frac{TP}{P}.
      \label{eq:recallbinario}
 \end{equation}
 
-
+\noindent
 \textbf{\textit{F-measure}}
 
+\noindent
 El \textit{F-measure} es la media armónica ponderada de \textit{precision} y \textit{recall}. La versión más común es el \textbf{F1-score}, donde el parámetro de ponderación $\beta$ es igual a 1. Un clasificador perfecto tiene un valor $F1 = 1$.
 \noindent
-Fórmula General ($F_{\beta}$):
+La Fórmula General ($F_{\beta}$) es:
 
 \begin{equation}
-    F_{\beta} = \frac{(1 + \beta^2) \text{precision} \times \text{recall}}{\beta^2 \text{precision} + \text{recall}},
+    F_{\beta} = \frac{(1 + \beta^2) precision \times recall}{\beta^2 precision + recall},
     \label{eq:formulageneral}
 \end{equation}
 \noindent
 donde la fórmula del F1-score ($\beta=1$) en términos de Precision y Recall se puede notar de la siguiente manera: 
 
 \begin{equation}
-    F1 = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}},
+    F1 = 2 \cdot \frac{precision \cdot recall}{precision + recall},
     \label{eq:f1general}
 \end{equation}
 \noindent
@@ -582,9 +590,11 @@ o en términos de la Matriz de Confusión, de forma más simplificada:
         \label{eq:f1enmatriz}
 \end{equation}
 
+\noindent
 \textbf{\textit{Área Bajo la Curva ROC (ROC AUC)}}
 
-La métrica \textit{ROC AUC} es un valor que resume la capacidad de un clasificador para distinguir entre clases, una métrica muy útil para comparar el desempeño entre modelos distintos o entre un mismo modelo con hipermetamorfosis distintos.\\
+\noindent
+La métrica \textit{ROC AUC} es un valor que resume la capacidad de un clasificador para distinguir entre clases, una métrica muy útil para comparar el desempeño entre modelos distintos o entre un mismo modelo con hiperparámetros distintos.\\
 
 \noindent
 \textbf{La Curva ROC} es un gráfico que ilustra el rendimiento de un clasificador binario a media que se varia su umbral de discriminación. Se crea graficando la \textbf{Tasa de Verdaderos Positivos (TPR)} versus la \textbf{Tasa de Falsos Positivos (FPR)} en varios umbrales. El \textbf{AUC} mide justamente el área debajo de la Curva ROC.\\
@@ -600,30 +610,33 @@ Ejes utlizados para el gráfico:
 Interpretación de valores: Un clasificador \textbf{ideal} se ubica en el punto $(0, 1)$, donde $TPR=1$ y $FPR=0$, lo que resulta en un \textbf{$AUC = 1$}. Un clasificador \textbf{aleatorio} se sitúa sobre la línea $TPR = FPR$, lo que resulta en un \textbf{$AUC = 0.5$}. Un clasificador se considera \textbf{razonable} si \textbf{ $0.5 < AUC \leq 1$}
 
 
-
-\textbf{Métricas para caso Multiclase}
-
-En este caso se utiliza el método \textit{"weighted"}, el cual computa o tiene en cuenta el desequilibrio de clases calculando el promedio de métricas binarias, en las que la puntuación o peso de cada clase se pondera según su presencia en la muestra de datos reales.\\
+\noindent
+\section{Métricas para caso Multiclase}
 
 \noindent
-La métrica ponderada por la presencia de la clase, $\text{M}_{\text{weighted}}$, se calcula como el promedio de la métrica por clase $\text{M}_l$, donde cada contribución es ponderada por el tamaño de la clase $|y_l|$, siendo $L$ es el conjunto de etiquetas o clases. Donde $\hat{M}_{\text{weighted}}$ es el valor estimado de la métrica promedio ponderada.
+En este caso se utiliza el método \textit{``weighted"}, el cual computa o tiene en cuenta el desequilibrio de clases calculando el promedio de métricas binarias, en las que la puntuación o peso de cada clase se pondera según su presencia en la muestra de datos reales.\\
+
+\noindent
+La métrica ponderada por la presencia de la clase, $\text{M}_{\text{weighted}}$, se calcula como el promedio de la métrica por clase $M_l$, donde hay $L$ clases $\{1, 2, ..., L\}$ siendo $l \in 1< l > L$, en donde cada contribución es ponderada por el tamaño de la clase $|y_l|$, siendo $L$ es el conjunto de etiquetas o clases. Donde $\hat{M}_{\text{weighted}}$ es el valor estimado de la métrica promedio ponderada.
 
 \begin{equation}
-    \hat{M}_{\text{weighted}} = \frac{1}{\sum{l \in L} |y_l|} \sum_{l \in L} |y_l| \cdot \text{M}_l.
+    \widehat{M}_{\text{weighted}} = \frac{1}{\sum_{l \in L} |y_l|} \sum_{l \in L} |y_l| \cdot \text{M}_l.
     \label{eq:metricasponderadas}
 \end{equation}
 
+\noindent
 \textbf{Matriz de Confusión (Multiclase)}
 
-La matriz de confusión multiclase, que se puede ver en la Tabla~\ref{tab:matrizmulticlase}, es una matriz cuadrada de tamaño $L \times L$, donde $L$ es el número de clases. Cada celda $C_{ij}$ representa la cantidad de muestras verdaderamente pertenecientes a la clase $i$ que fueron clasificadas como clase $j$.\\
+\noindent
+La matriz de confusión multiclase, que se puede ver en la Tabla~\ref{tab:matrizmulticlase}, es una matriz cuadrada de tamaño $L \times L$, donde $L$ es el número de clases. Cada celda $C_{ij}$ representa la cantidad de muestras verdaderamente pertenecientes a la clase $i$ que fueron clasificadas como clase $j$ para $i,j: \{ 1, 2, \dots, L\}$.\\
 
 \noindent
-Para cada clase $l$ se definen los valores que antes habíamos utilizados para la matriz de confusión del caso binario:
+Para cada clase $l$ se definen los valores que antes habíamos utilizados para la matriz de confusión del caso binario, en donde $Z$ es el total de instancias o la sumatoria de todas las celdas :
 \begin{itemize}
 \item $TP_l = C_{ll}$ 
-\item $FP_l = \sum_{i \neq l} C_{il}$
-\item $FN_l = \sum_{j \neq l} C_{lj}$
-\item $TN_l = N - TP_l - FP_l - FN_l$
+\item $FP_l = \sum_{i \neq l}^{L} C_{il}$
+\item $FN_l = \sum_{j \neq l}^{L}  C_{lj}$
+\item $TN_l = Z - TP_l - FP_l - FN_l$
 \end{itemize}
 
 
@@ -645,74 +658,67 @@ Para cada clase $l$ se definen los valores que antes habíamos utilizados para l
 		& \textbf{Clase $C_l$} & \cellcolor{FNcolor} FN$_l$ & \cellcolor{FNcolor} $\cdots$ & \cellcolor{FNcolor} FN$_l$ & \cellcolor{TPcolor} TP$_l$ \\
 		\hline
 	\end{tabular}
-    \caption{Matriz Confusion Multiclase}
+    \caption{Matriz Confusión Multiclase}
     \label{tab:matrizmulticlase}
 \end{table}
 
 
-
+\noindent
 \textbf{\textit{Precision}}
 
-La \textit{Precision} por clase $l$ mide la proporción de muestras clasificadas como positivas que realmente pertenecen a la clase $l$.
-
 \noindent
-En términos más simple, utilizando la Matriz de Confusión:
+La \textit{Precision} por clase $l$ mide la proporción de muestras clasificadas como positivas que realmente pertenecen a la clase $l$, donde $l: \{1, 2, \dots, L\}$. En términos más simple, utilizando la Matriz de Confusión:
 
 \begin{equation}
-    \text{Precision}_l = \frac{TP_l}{TP_l + FP_l}.
+    Precision_l = \frac{TP_l}{TP_l + FP_l}.
     \label{eq:precisionmulticlase}
 \end{equation}
 
-
+\noindent
 \textbf{\textit{Recall}}
 
-El \textit{Recall} por clase $l$ mide la proporción de muestras verdaderamente positivas de la clase $l$ que fueron correctamente identificadas.
-
 \noindent
-En términos más simple, utilizando la Matriz de Confusión:
+El \textit{Recall} por clase $l$, donde $l: \{1, 2, \dots, L\}$, mide la proporción de muestras verdaderamente positivas de la clase $l$ que fueron correctamente identificadas. En términos más simple, utilizando la Matriz de Confusión:
 
 \begin{equation}
-    \text{Recall}_l = \frac{TP_l}{TP_l + FN_l}.
+   Recall_l = \frac{TP_l}{TP_l + FN_l}.
     \label{eq:recallmulticlase}
 \end{equation}
 
+\noindent
 \textbf{\textit{F-measure}}
 
-El \textit{F-measure} es la media armónica ponderada de \textit{precision} y \textit{recall}. La versión más común es el \textbf{F1-score}, donde el parámetro de ponderación $\beta$ es igual a 1. Un clasificador perfecto tiene un valor $F1 = 1$.
-
 \noindent
-El valor global ponderado se obtiene aplicando la fórmula de $M_{\text{weighted}}$ sobre los $F_{1,l}$:
+El valor global ponderado se obtiene aplicando la fórmula de $M_{\text{weighted}}$ sobre los $F_{l}$, donde $\beta = 1$:
 
 \begin{equation}
-    F_{1,\text{weighted}} = \sum_{l \in L} w_l \, F_{1,l}, \quad 
-\text{con } w_l = \frac{n_l}{\sum_{i \in L} n_i}.
+    F_{\text{weighted}} = \sum_{l \in L} w_l \, F_{l}, \quad 
+\text{con } w_l = \frac{|y_l|}{\sum_{l \in L}^{L} y_l}.
     \label{eq:f1formula}
 \end{equation}
 
 
-
+\noindent
 \textbf{\textit{Área Bajo la Curva ROC (ROC AUC)}}
 
-Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoque \textbf{One-vs-Rest (OVR)}. Para cada clase $l$, se considera la clase $l$ como positiva y el resto como negativas, luego se calcula el AUC correspondiente ($\text{AUC}_l$) sobre la curva ROC de esa clasificación binaria. Finalmente, se obtiene un promedio ponderado por el soporte de cada clase:
+\noindent
+Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoque \textbf{One-vs-Rest (OVR)}. Para cada clase $l$, se considera la clase $l$, donde $l: \{1, 2, \dots, L\}$, como positiva y el resto como negativas, luego se calcula el AUC correspondiente ($\text{AUC}_l$) sobre la curva ROC de esa clasificación binaria. Finalmente, se obtiene un promedio ponderado por el soporte de cada clase:
 
 \begin{equation}
-     \text{AUC}_{\text{OVR, weighted}} = \sum_{l \in L} w_l \, \text{AUC}_l.
+     \text{AUC}_{\text{OVR, weighted}} = \sum_{l \in L} w_l \, \text{AUC}_l \quad 
+     \text{con } w_l = \frac{|y_l|}{\sum_{l \in L}^{L} y_l}.
      \label{eq:onevsrest}
 \end{equation}
 %{eq:onevsrest}{One-vs-Rest (OVR)}
 
 
-
+\noindent
 \textbf{Importancia de la característica}
 
-\noindent Sea un modelo predictivo $Modelo$ entrenado sobre un conjunto de datos tabular $X$ (ya sea de entrenamiento o validación), y sea $M$ la métrica de referencia del modelo sobre los datos originales. El procedimiento se detalla a continuación:
+
+\noindent Sea un modelo predictivo $\mathcal{M}$ entrenado sobre un conjunto de datos $X$, y sea $M$ la métrica de referencia del modelo sobre los datos originales. El procedimiento se detalla a continuación:
 
 \begin{enumerate}
-	\item Calcular el puntaje de referencia del modelo $M$ sobre $X$:
-	\begin{equation}
-		\text{M} = \text{calcular métrica}(Modelo, X).
-		\label{eq:puntaje_referencia}
-	\end{equation}
 
 	\item Para cada atributo $j$ del conjunto de datos:
 	\begin{enumerate}
@@ -720,7 +726,7 @@ Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoq
 		\begin{enumerate}
 			\item Generar una versión alterada del conjunto de datos, $X^{(k,j)}$, en la que se permuta aleatoriamente, se intercambian de orden los datos de la columna correspondiente a la característica $j$, manteniendo las demás columnas sin cambios, para ver si el modelo empeora o no en su rendimiento.
 			
-			\item Calcular el puntaje del modelo sobre los datos permutados:
+			\item Calcular la métrica $M$ del modelo sobre los datos permutados:
 			\begin{equation}
 				M_{k,j} = \text{calcular métrica}(Modelo, X^{(k,j)}).
 				\label{eq:puntaje_referencia_datos_permutados}
@@ -764,24 +770,25 @@ Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoq
 
 \section{Regresión Logística}
 
+\noindent
 El modelo de \textbf{Regresión Logística}~\cite{cramer2002origins} (LR, por su equivalente en inglés \emph{Logistic Regression}) es una técnica del análisis de datos utilizada para establecer relaciones entre las variables predictoras y la clase a la cual pertenece cada registro. Posteriormente, el modelo permite predecir la probabilidad de que un nuevo registro pertenezca a una clase determinada. Este tipo de modelo de regresión es justamente utilizado para los problemas no linealmente separables, como la mayoría de problemas.\\
 
 \noindent
 A diferencia de la regresión lineal múltiple, la regresión logística predice una probabilidad (valor entre 0 y 1). Ambos modelos son lineales en sus parámetros, pero difieren en la naturaleza de la variable dependiente. El objetivo es estimar los coeficientes de regresión que maximizan la verosimilitud de los datos observados, o encontrar los coeficientes que mejor funcionan para los datos de entrenamiento.\\
 
 \noindent
-El modelo busca modelar la probabilidad condicional de que una observación pertenezca a la clase objetivo $y_{i}$, siendo
+El modelo busca modelar la probabilidad condicional de que una observación pertenezca a la clase objetivo $L$, siendo
 
 \begin{equation}
 	P(y_i = 1 \mid \bm{x}_i),
 	\label{eq:probabilidad_condicional}
 \end{equation}
 
-donde $\bm{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$, el cual también llamamos registro.
+\noindent
+donde $\bm{x}_i : (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$, el cual también llamamos registro, en el cual $k$ es la cantidad de atributos que posee la observación.
 
-\textbf{Función de Probabilidad}
-
-La función logística define la probabilidad de pertenencia de $x_{i}$ a la clase $1$ como:
+\noindent
+La función logística define la \textbf{función de Probabilidad} de pertenencia de $x_{i}$ a la clase $1$ como:
 
 \begin{equation}
 	p(\bm{x}_i) = P(y_i = 1 \mid \bm{x}_i) =
@@ -790,11 +797,11 @@ La función logística define la probabilidad de pertenencia de $x_{i}$ a la cla
 	\label{eq:funcion_logistica}
 \end{equation}
 
-donde $\beta_0$ es el intercepto y $\beta_j$ los coeficientes asociados a cada predictor.
+\noindent
+donde $\beta_0$ es el intercepto y $\beta_j$ los coeficientes asociados a cada predictor.\\
 
-\textbf{Función Logit}
-
-La función inversa de la función logística, denominada \textit{logit}, relaciona el logaritmo de las \emph{odds} con un modelo lineal, siendo \emph{odds} lo que se utiliza para analizar si la probabilidad de ocurrencia de un evento -caso/no caso- difiere o no en distintos grupos,
+\noindent
+La función inversa de la función logística, denominada \textbf{\textit{función logit}}, relaciona el logaritmo de las \emph{odds} con un modelo lineal, siendo \emph{odds} lo que se utiliza para analizar si la probabilidad de ocurrencia de un evento -caso/no caso- difiere o no en distintos grupos,
 
 %\begin{equation}
 %	\text{logit}(\textbf{antilogic}(x)) = x
@@ -819,9 +826,8 @@ La función inversa de la función logística, denominada \textit{logit}, relaci
 \noindent
 Esta transformación asegura que las probabilidades estén acotadas entre 0 y 1, mientras que la combinación lineal de predictores puede tomar cualquier valor real, siendo este ultimo punto un factor que realiza el calculo de coeficientes muy difícil.
 
-\textbf{Estimación por Máxima Verosimilitud}
-
-Los coeficientes de regresión se estiman mediante el método de \textbf{Máxima Verosimilitud} (MLE), donde la función de log-verosimilitud a maximizar
+\noindent
+Para solucionar este obstáculo, el calculo de los coeficientes de regresión se estiman mediante el método de \textbf{Máxima Verosimilitud} (MLE), donde la función de log-verosimilitud a maximizar es
 
 \begin{equation}
 	\ell(\beta_0, \beta_1, \dots, \beta_k) =
@@ -835,12 +841,14 @@ Los coeficientes de regresión se estiman mediante el método de \textbf{Máxima
 \noindent
 en donde la solución analítica no existe, por lo que se utilizan métodos numéricos iterativos para obtener los parámetros óptimos.
 
+\noindent
 \textbf{Hiperparámetros}
 
+\noindent
 \begin{itemize}
 	\item \textbf{Parámetro de Regularización ($C$):} Controla la complejidad del modelo. Valores pequeños de $C$ implican mayor regularización (menor sobreajuste), mientras que valores grandes permiten mayor flexibilidad del modelo.
 	
-	\item \textbf{Penalización (\textit{penalty}):} Es un término regulador ($\Omega$) que se suma a la función de coste original ($J$) para formar una función ajustada $\tilde{J}$. Controla la capacidad del modelo y reduce el error de generalización.
+	\item \textbf{Penalización (\textit{penalty}):} Es un término regulador que se suma a la función de coste original ($J$) para formar una función ajustada $\tilde{J}$. Controla la capacidad del modelo y reduce el error de generalización.
 	
 	\begin{itemize}
 	
@@ -1576,7 +1584,7 @@ Age & -0.003595 \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_binario}
-	\caption{Evolución de Accuracy (Binario)}
+	\caption{Evolución de \textit{Accuracy} (Binario)}
 	\label{fig:evolucion_metricas_binario}
 \end{figure}
 
@@ -1957,7 +1965,7 @@ LB       &  -0.000804\\
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_multiclase}
-	\caption{Evolución de Accuracy (Multiclase)}
+	\caption{Evolución de \textit{Accuracy} (Multiclase)}
 	\label{fig:evolucion_metricas_multiclase}
 \end{figure}
 
