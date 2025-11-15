@@ -124,7 +124,7 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 
 
 
-\maketitle
+%\maketitle
 
 
 {\justifying
@@ -859,6 +859,11 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 		\alpha \sum_{j=1}^{k} |\beta_j|.
 		\label{eq:l1_penalty}
 	\end{equation}
+	 
+	\begin{itemize}
+		\item \(\beta_j\) son los coeficientes del modelo, que representan la influencia de cada variable \(x_j\) en la predicción.
+		\item \(\alpha\) es el parámetro de regularización que controla la intensidad de la penalización: valores más altos implican mayor castigo a los coeficientes.
+	\end{itemize}
 	%{eq:l1_penalty}{}
 	
 	\item Regularización L2 (Ridge).
@@ -868,6 +873,11 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 		\frac{1}{2}\alpha \sum_{j=1}^{k} \beta_j^2.
 		\label{eq:l2_penalty}
 	\end{equation}
+	\begin{itemize}
+		\item \(\beta_j\) controla cuánto influye cada característica sobre la salida.
+		\item \(\alpha\) determina cuánto se penaliza el tamaño de los coeficientes, evitando que crezcan demasiado.
+	\end{itemize}
+	
 	%{eq:l2_penalty}{}
 	
 	\item Regularización Elastic Net
@@ -880,6 +890,11 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 		\right].
 		\label{eq:elasticnet_penalty}
 	\end{equation}
+	\begin{itemize}
+		\item \(\beta_j\) son los coeficientes asociados a cada característica.
+		\item \(\alpha\) controla el grado total de regularización.
+		\item \(\rho\) balancea la combinación entre L1 y L2.
+	\end{itemize}
 	%{eq:elasticnet_penalty}{}
 	
 	\end{itemize}
@@ -896,6 +911,8 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)}).
 			\label{eq:newtoncg}
 		\end{equation}
+
+		\(\boldsymbol{\beta}\) es el vector de parámetros del modelo que se actualiza en cada iteración. El método usa el gradiente y el Hessiano para encontrar la dirección óptima de descenso.
 %		%{eq:newtoncg}{}
 
 		\item Método BFGS (quasi-Newton).
@@ -906,6 +923,8 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)}).
 			\label{eq:bfgs}
 		\end{equation}
+
+		En este método, \(\boldsymbol{\beta}\) también es el vector de parámetros a optimizar. La matriz \(\bm{B}\) aproxima al Hessiano, permitiendo actualizaciones sin calcular derivadas segundas reales.
 %		%{eq:bfgs}{}
 	\end{itemize}
 	
@@ -920,13 +939,13 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 
 \section{Árboles de Decisión}
 
-El aprendizaje mediante \textbf{Árboles de Decisión} (RF, por su equivalente en inglés \emph{Random Forest}) es un método no paramétrico que utiliza divisiones jerárquicas sobre los atributos de los datos, construyendo reglas de decisión del tipo \textit{if-else} para predecir el valor de una variable objetivo.\\
+\noindent
+El aprendizaje mediante \textbf{Árboles de Decisión} es un método no paramétrico que utiliza divisiones jerárquicas sobre los atributos de los datos, construyendo reglas de decisión del tipo \textit{if-else} para predecir el valor de una variable objetivo.\\
 
 \noindent  
 El objetivo principal es encontrar las divisiones (particiones) que maximicen la pureza de los nodos hijos, es decir, que minimicen la impureza del nodo resultante. Es un método mucho mas sencillo de realizar, donde se crea un camino de decisión, por lo cual según los valores de los atributos de un registro podemos predecir que a que clase pertenecerían, donde el computo pesado se encuentra en la creación del propio camino. 
 
-\textbf{Conceptos Fundamentales}
-
+\noindent
 La probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_k$ se define como
 
 \begin{equation}
@@ -936,9 +955,8 @@ La probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_k$ se 
 %%{eq:probabilidad_clase_nodo}{Probabilidad de pertenencia a la clase $C_k$ en el nodo $t$}
 donde $N(t)$ es la cantidad total de ejemplos en el nodo $t$, y $N_k(t)$ la cantidad de ejemplos de la clase $C_k$. Es importante este fenómeno porque es un costo computacional muy barato el calcular esta probabilidad y se asemejan a las probabilidades equiprobables, donde la probabilidad de una clase en un nodo esta dada por la cantidad de clases que tienen en el mismo.
 
-\subsubsection{Impureza del Nodo}
-
-La impureza de un nodo $t$ se mide mediante una función $\phi$ que depende de las probabilidades de clase en dicho nodo, donde la función de impureza $i$ es un hiperparametro en sí mismo.
+\noindent
+De esta manera, la impureza de un nodo $t$ se mide mediante una función $\phi$ que depende de las probabilidades de clase en dicho nodo, donde la función de impureza $i$ es un hiperparametro en sí mismo
 
 \begin{equation}
 	i(t) = \phi \big( p(1|t), p(2|t), \ldots, p(K|t) \big).
@@ -947,7 +965,7 @@ La impureza de un nodo $t$ se mide mediante una función $\phi$ que depende de l
 %%{eq:impureza_general}{Impureza general de un nodo $t$ en función de las probabilidades de clase}
 
 \noindent
-La impureza es máxima cuando las clases están perfectamente mezcladas y mínima (cero) cuando el nodo contiene solo una clase, en donde la impureza máxima seria que la probabilidad de cada clase sea aleatoria, ya que están perfectamente mezcladas.
+La impureza es máxima cuando las clases están perfectamente mezcladas y es mínima (cero) cuando el nodo contiene solo una clase, en donde la impureza máxima seria que la probabilidad de cada clase sea aleatoria, ya que están perfectamente mezcladas.
 
 \paragraph{Entropía de Shannon de un conjunto de datos $D$}
 
@@ -979,9 +997,8 @@ La impureza es máxima cuando las clases están perfectamente mezcladas y mínim
 \end{equation}
 %%{eq:indice_gini}{Índice de Gini de un nodo $t$}
 
-\subsubsection{Disminución de Impureza}
-
-La reducción de impureza generada al dividir el nodo $t$ en dos nodos hijos $t_1$ y $t_2$ mediante una partición $s$ se calcula como
+\noindent
+La \textbf{reducción de impureza} generada al dividir el nodo $t$ en dos nodos hijos $t_1$ y $t_2$ mediante una partición $s$ se calcula como
 
 \begin{equation}
 	\Delta i(s, t) = i(t) - q_1 i(t_1) - q_2 i(t_2),
@@ -993,8 +1010,9 @@ donde $q_j = \frac{N(t_j)}{N(t)}$ para $j = 1, 2$.
 
 \subsection{Bosques Aleatorios (Random Forest)}
 
-El algoritmo de \textbf{Random Forest}~\cite{Breiman2001} (RF) combina múltiples árboles de decisión independientes construidos sobre subconjuntos aleatorios de los datos (muestreo con reemplazo o \emph{bootstrap}).  
-Cada árbol se entrena sobre un subconjunto de atributos aleatorios en cada división, lo que introduce diversidad y reduce la varianza.
+\noindent
+El algoritmo de \textbf{Random Forest}~\cite{Breiman2001} (RF, por su equivalente en inglés \emph{Random Forest}) combina múltiples árboles de decisión independientes construidos sobre subconjuntos aleatorios de los datos (muestreo con reemplazo o \emph{bootstrap}).  
+Cada árbol se entrena sobre un subconjunto de atributos aleatorios en cada división, lo que introduce diversidad y reduce la varianza.\\
 
 \noindent
 La predicción final para clasificación se obtiene mediante el voto mayoritario de los árboles
@@ -1009,8 +1027,9 @@ La predicción final para clasificación se obtiene mediante el voto mayoritario
 %%{eq:voto_random_forest}{Predicción final en Random Forest mediante voto mayoritario}
 
 \noindent
-donde $h_m(\bm{x})$ es la predicción del árbol $m$.
+donde $h_m(\bm{x})$ es la predicción del árbol $m$.\\
 
+\noindent
 \textbf{Hiperparámetros}
 
 \begin{itemize}
@@ -1025,7 +1044,8 @@ donde $h_m(\bm{x})$ es la predicción del árbol $m$.
 
 \section{Clasificador Naïve Bayes}
 
-El \textbf{Clasificador Naïve Bayes}~\cite{hand2001idiot} (CNB) es un método supervisado probabilístico basado en el \textit{Teorema de Bayes}, que asume independencia condicional entre los atributos dado la clase, lo cual sabemos que no es posible que estas mismas variables sean independientes entre sí. La regla de clasificación, o la probabilidad de que se de una clase dado un registro,
+\noindent
+El \textbf{Clasificador Naïve Bayes}~\cite{hand2001idiot} (NB) es un método supervisado probabilístico basado en el \textit{Teorema de Bayes}, que asume independencia condicional entre los atributos dado la clase. Esta suposición, aunque en la práctica rara vez se cumple estrictamente —porque las variables suelen estar correlacionadas entre sí. La regla de clasificación, o la probabilidad de pertenencia de un registro a una clase $C_k$, donde para $K$ clases $k: \{1, 2, \dots, K\}$,
 
 \begin{equation}
 	P(Y = C_k \mid X_1 = x_1, \ldots, X_d = x_d)
@@ -1033,15 +1053,15 @@ El \textbf{Clasificador Naïve Bayes}~\cite{hand2001idiot} (CNB) es un método s
 		P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_k) \, P(Y = C_k)
 	}{
 		P(X_1 = x_1, \ldots, X_d = x_d)
-	}.
+	},
 	\label{eq:bayes_general}
 \end{equation}
 %%{eq:bayes_general}{Teorema de Bayes aplicado a clasificación}
 
+\noindent
+En donde $P(Y = C_k)$ es la \textbf{probabilidad a priori} de la clase $C_k$ (qué tan frecuente es en el conjunto de datos). Luego, $P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_k)$ es la \textbf{verosimilitud}, es decir, cuán probable es observar las características de un registro si supiéramos que pertenece a la clase $C_k$.
 
 \paragraph{Probabilidad Condicional:}
-
-
 
 Bajo el supuesto de independencia condicional, la probabilidad condicional puede expresarse como
 
@@ -1053,7 +1073,7 @@ Bajo el supuesto de independencia condicional, la probabilidad condicional puede
 %%{eq:independencia_condicional}{Factorización de la verosimilitud bajo independencia}
 
 \noindent
-en donde puede ser expresado para una clase $k$ cuando se presenta un registro $j$
+Por lo tanto, basta estimar individualmente para cada atributo $X_j$ y cada clase $k$ la probabilidad:
 \begin{equation}
 	\hat{\theta}_{jmk} =
 	P(X_j = x_{jm} \mid Y = C_k) =
@@ -1061,6 +1081,26 @@ en donde puede ser expresado para una clase $k$ cuando se presenta un registro $
 	\label{eq:probabilidad_condicional}
 \end{equation}
 %%{eq:probabilidad_condicional}{Estimador de máxima verosimilitud para la probabilidad condicional}
+
+\noindent
+Aquí, cada parámetro cumple una función específica:\\
+
+\begin{itemize}
+
+\item $\theta_{jmk}$: probabilidad estimada de que el atributo $X_j$ tome el valor $x_{jm}$ dentro de la clase $C_k$.
+Representa “qué tan típico” es un valor dentro de una clase.
+
+\item ${X_j = x_{jm} \wedge Y = C_k}$: cantidad de veces que aparece ese valor en esa clase.
+
+
+\item ${Y = C_k}$: tamaño total de la clase $C_k$.
+\end{itemize}
+
+
+\noindent
+Podemos pensar a $\theta_{jmk}$ como una especie de \textit{“frecuencia interna de la clase”}, una medida que indica qué características son más comunes dentro de cada grupo.\\
+
+
 
 \paragraph{Probabilidad a Priori:}
 
@@ -1072,6 +1112,22 @@ Otra estimación fundamental a calcular y expresar es la a priori, en la cual se
 	\frac{\#\{Y = C_k\}}{N}.
 	\label{eq:probabilidad_priori}
 \end{equation}
+
+\noindent
+Los parámetros involucrados son:\\
+
+\begin{itemize}
+
+\item $\pi_k$: probabilidad estimada de que un registro pertenezca a la clase $C_k$.
+Es una “creencia inicial” basada solo en la frecuencia de la clase.
+
+\item ${Y = C_k}$: cantidad de elementos de la clase.
+
+\item $N$: tamaño total del dataset.
+\end{itemize}
+
+\noindent
+La intuición es sencilla: antes de mirar ningún atributo, ¿qué tan probable es cada clase?\\
 %%{eq:probabilidad_priori}{Estimador de máxima verosimilitud para la probabilidad a priori}
 
 
@@ -1089,9 +1145,10 @@ Otra estimación fundamental a calcular y expresar es la a priori, en la cual se
 %\end{equation}
 %%{eq:regla_clasificacion_nb}{Regla de decisión de Naïve Bayes}
 
-
+\noindent
 \textbf{Caso Continuo (Naïve Bayes Gaussiano)}
 
+\noindent
 Cuando los atributos son continuos y se asume distribución normal, las verosimilitudes se estiman con la función de densidad Gaussiana:
 
 \begin{equation}
@@ -1123,6 +1180,7 @@ por lo cual la decisión final se obtiene como
 
 \section{Máquinas de Soporte Vectorial (SVM)}
 
+\noindent
 Las \textbf{Máquinas de Soporte Vectorial}~\cite{Cortes1995} (SVM, por sus siglas en inglés) constituyen una técnica de clasificación supervisada basada en la búsqueda de una \textbf{función de decisión} que permita predecir la clase de una observación a partir de sus atributos. Dado que este método opera sobre variables numéricas, los atributos categóricos deben codificarse previamente.\\
 
 \noindent
@@ -1131,9 +1189,9 @@ El objetivo fundamental de una SVM es encontrar un \textbf{hiperplano de separac
 \noindent
 Aunque existen infinitos hiperplanos que pueden separar los datos, el principio de las SVM consiste en seleccionar aquel que logre la \textbf{máxima separación posible entre las clases}, minimizando simultáneamente el riesgo de sobreajuste y aumentando la capacidad de generalización.\\
 
-\textbf{Margen Rígido (Hard Margin)}
 
-El caso de \textbf{margen rígido} supone que los datos son linealmente separables, es decir, existe un hiperplano que separa perfectamente las clases sin errores de clasificación. En este caso, el problema de optimización se formula como:
+\noindent
+El caso de \textbf{Margen Rígido (Hard Margin)} separa perfectamente las clases sin errores de clasificación. En este caso, el problema de optimización se formula como:
 
 \begin{equation}
 	\text{Minimizar }
@@ -1144,11 +1202,10 @@ El caso de \textbf{margen rígido} supone que los datos son linealmente separabl
 \end{equation}
 
 \noindent
-donde $ \bm{w} $ es el vector normal al hiperplano, $\beta$ es el término de sesgo, y la restricción garantiza que todas las observaciones queden correctamente clasificadas, y a una distancia mínima de $\frac{1}{\lVert \bm{w} \rVert}$ del hiperplano.
+donde $ \bm{w} $ es el vector normal al hiperplano, $\beta$ es el término de sesgo, y la restricción garantiza que todas las observaciones queden correctamente clasificadas, y a una distancia mínima de $\frac{1}{\lVert \bm{w} \rVert}$ del hiperplano.\\
 
-\textbf{Margen Suave (Soft Margin)}
-
-En la práctica, los datos rara vez son perfectamente separables. Por ello, se introduce el concepto de \textbf{margen suave}, que permite violaciones controladas de las restricciones mediante variables de holgura $ \theta_i \ge 0 $. El problema se redefine como:
+\noindent
+Pero hay un gran obstaculo, en la práctica los datos rara vez son perfectamente separables. Por ello, se introduce el concepto de \textbf{Margen Suave (Soft Margin)}, que permite violaciones controladas de las restricciones mediante variables de holgura $ \theta_i \ge 0 $. El problema se redefine como:
 
 \begin{equation}
 	\text{Minimizar }
@@ -1163,11 +1220,11 @@ En la práctica, los datos rara vez son perfectamente separables. Por ello, se i
 \end{equation}
 
 \noindent
-donde el parámetro $C > 0$ actúa como un \textbf{control de regularización}: valores grandes de $C$ penalizan más fuertemente los errores, buscando una separación más estricta (a costa de menor margen), mientras que valores pequeños permiten más errores, favoreciendo márgenes amplios y mayor generalización.
+donde el parámetro $C > 0$ actúa como un \textbf{control de regularización}: valores grandes de $C$ penalizan más fuertemente los errores, buscando una separación más estricta (a costa de menor margen), mientras que valores pequeños permiten más errores, favoreciendo márgenes amplios y mayor generalización.\\
 
-\textbf{Formulación Dual y Kernel Trick}
 
-La formulación dual del problema permite expresar la solución en términos de los productos internos entre las observaciones:
+\noindent
+La \textbf{Formulación Dual} del problema, en lo que respecta a los dos margenes permite expresar la solución en términos de los productos internos entre las observaciones:
 
 \begin{equation}
 	\text{Maximizar }
@@ -1189,7 +1246,7 @@ Aquí, los \(\alpha_i\) son los multiplicadores de Lagrange asociados a las rest
 
 
 \noindent
-En muchos casos, las clases no son separables linealmente en el espacio original de los datos. El \textbf{Kernel Trick} permite proyectar los datos a un espacio de mayor dimensión (posiblemente infinito) donde sí exista un hiperplano separador, \emph{sin necesidad de calcular explícitamente la transformación}.
+En muchos casos, las clases no son separables linealmente en el espacio original de los datos. El \textbf{Kernel Trick} permite proyectar los datos a un espacio de mayor dimensión (posiblemente infinito) donde sí exista un hiperplano separador, \emph{sin necesidad de calcular explícitamente la transformación}.\\
 
 \noindent
 Esto se logra sustituyendo los productos internos \(\langle \bm{x}_i, \bm{x}_\ell \rangle\) por una función \textbf{kernel} \(K(\bm{x}_i, \bm{x}_\ell)\), que computa directamente el producto interno en el espacio transformado.
@@ -1225,7 +1282,7 @@ De esta forma, se mantiene la eficiencia computacional mientras se obtiene un mo
 	\label{eq:kernel_sigmoid}
 \end{equation}
 
-
+\noindent
 \textbf{Hiperparámetros}
 
 \begin{itemize}
@@ -1249,29 +1306,27 @@ De esta forma, se mantiene la eficiencia computacional mientras se obtiene un mo
 \chapter{Resultados}
 \label{ch:resultados}
 
-En este capítulo se presentan los resultados obtenidos mediante la aplicación de los modelos de aprendizaje supervisado sobre los distintos conjuntos de datos. Se analizan las métricas de evaluación alcanzadas, las configuraciones óptimas halladas mediante búsqueda en malla (\emph{Grid Search}) y la importancia relativa de las características más influyentes en las predicciones.
+\noindent
+En este capítulo se presentan los resultados obtenidos mediante la aplicación de los modelos de aprendizaje supervisado sobre los distintos conjuntos de datos. Se analizan las métricas de evaluación alcanzadas, las configuraciones óptimas halladas mediante búsqueda en malla (\emph{Grid Search}) y la importancia relativa de las características más influyentes en las predicciones.\\
 
 
-
-En esta sección se presentan los resultados obtenidos tras la aplicación de distintos modelos de aprendizaje automático sobre los conjuntos de datos binario y multiclase seleccionados. Se buscó evaluar el rendimiento de cada modelo bajo diferentes configuraciones de hiperparámetros, a través de métricas como la precisión (\textit{Accuracy}), el F1-Score y el área bajo la curva ROC (ROC AUC), entre otras.\\
+\noindent
+Se buscó evaluar el rendimiento de cada modelo bajo diferentes configuraciones de hiperparámetros, a través de métricas como la precisión (\textit{Accuracy}), el F1-Score y el área bajo la curva ROC (ROC AUC), entre otras.\\
 
 \noindent
 Durante la fase experimental se exploraron distintas estrategias de balanceo de clases, dado que varios de los conjuntos presentaban desbalances significativos entre las clases. En particular, se probó la técnica de \textbf{undersampling}, reduciendo la cantidad de ejemplos de la clase mayoritaria para equilibrar el \emph{datasets}. Sin embargo, esta estrategia no arrojó resultados satisfactorios: los modelos tendieron a perder capacidad de generalización, mostrando un descenso notable en las métricas de validación, aunque se sostuvo la mejor configuración con mejor valor de métricas. Por este motivo, se optó finalmente por mantener la distribución original y aplicar técnicas de regularización y ajuste de hiperparámetros para mitigar el sesgo hacia la clase dominante.\\
 
-\noindent
-A continuación se presentan las métricas finales alcanzadas por cada modelo y los valores óptimos de los hiperparámetros encontrados mediante \textit{Grid Search}. Posteriormente, se analiza la importancia de las características más relevantes en la predicción de las clases.
 
-\section{Métricas de Evaluación}
-
-A continuación, se detallan las principales métricas obtenidas, junto con los hiperparámetros evaluados mediante \textbf{Grid Search} y las configuraciones óptimas seleccionadas.
 \subsection{Dataset Binario}
 
-\subsubsection{Regresión Logística}
-
-La Regresión Logística obtuvo un desempeño correcto en la clasificación binaria.\\
+\subsubsection*{Regresión Logística (RL)}
 
 \noindent
-La mejor configuración se alcanzó utilizando un valor de regularización $C = 1$, sin penalización (\textit{Penalty = l1}), con el solver \textit{saga} y estrategia \textit{ovr} (one-vs-rest) para el tratamiento multiclase.\\
+La \textbf{Regresión Logística} obtuvo un buen desempeño en la clasificación binaria, siempre tomando un \textbf{buen resultado} cuando cualquier métrica por lo menos supere los 0.80.\\
+
+\noindent
+Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rl_resultados_binario}, en la cual se muestra la mejor configuración obtenida de los hiperparámetros de la Tabla~\ref{tab:grid_rl_bin}. 
+El modelo logra una precisión y un F1 Score de 0.84 y 0.84 respectivamente, junto con un AUC de 0.90, lo que refleja una buena capacidad discriminatoria, pero siendo datos médicos se requieren incluso mejores valores.\\
 
 \begin{table}[htb]%[H]
 	\centering
@@ -1291,9 +1346,6 @@ La mejor configuración se alcanzó utilizando un valor de regularización $C = 
 	\end{tabular}
 \end{table}
 
-\noindent
-Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rl_resultados_binario}. 
-El modelo logra una precisión y un F1 Score de 0.84 y 0.84 respectivamente, junto con un AUC de 0.90, lo que refleja una buena capacidad discriminatoria, pero siendo datos médicos se requeriría incluso mejores valores.\\
 
 \noindent 
 El tiempo de entrenamiento fue de apenas 0.13 segundos, lo que lo convierte en una opción eficiente para este tipo de problema.
@@ -1316,12 +1368,16 @@ El tiempo de entrenamiento fue de apenas 0.13 segundos, lo que lo convierte en u
 \end{table}
 
 
-\subsubsection{Máquinas de Soporte Vectorial (SVM)}
+\paragraph{Máquinas de Soporte Vectorial (SVM)}
 
-La Máquinas de Soporte Vectorial obtuvo un desempeño sólido en la clasificación binaria, mostrando un equilibrio adecuado entre precisión y generalización.\\
+La \textbf{Máquinas de Soporte Vectorial (SVM)} obtuvo un desempeño sólido en la clasificación binaria, mostrando un equilibrio adecuado entre precisión y generalización.\\
 
 \noindent
-La mejor configuración se alcanzó utilizando un valor de regularización $C = 1$, con kernel radial (\textit{Kernel = rbf},), con un gamma de 0.1 (\textit{Gamma = 0.1})\\
+Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:svm_resultados_binario}. 
+El modelo logra una precisión y un F1 Score de 0.86 y 0.86 respectivamente, junto con un AUC de 0.92, lo que refleja una mejor capacidad discriminativa. 
+
+\noindent
+El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un gran valor.\\
 
 
 \begin{table}[htb]%[H]
@@ -1341,10 +1397,7 @@ La mejor configuración se alcanzó utilizando un valor de regularización $C = 
 	\end{tabular}
 \end{table}
 
-\noindent
-Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:svm_resultados_binario}. 
-El modelo logra una precisión y un F1 Score de 0.86 y 0.86 respectivamente, junto con un AUC de 0.92, lo que refleja una mejor capacidad discriminativa. 
-El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un gran valor.
+
 
 
 \begin{table}[htb]%[H]
