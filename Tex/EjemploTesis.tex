@@ -179,7 +179,7 @@ Se realiza una pequeña descripción de cada atributo utilizado en cada \emph{da
 \subsection{Dataset Binario: Insuficiencia  Cardíaca Predicción}
 
 \noindent
-Este \emph{dataset}~\cite{HeartFailure}, llamado \textit{HeartFailure} fue creado mediante la combinación de cinco \emph{datasets} independientes en 11 atributos comunes, logrando el\emph{datasets} más grande de información de enfermedades cardiovasculares utilizado para investigación. Los cinco \emph{datasets} utilizados son:
+Este \emph{dataset}~\cite{HeartFailure}, llamado \textit{HeartFailure} fue creado mediante la combinación de cinco \emph{datasets} independientes en 11 atributos comunes, logrando el \emph{datasets} más grande de información de enfermedades cardiovasculares utilizado para investigación. Los cinco \emph{datasets} utilizados son:
 
 \begin{itemize}
 	\item Cleveland: 303 observaciones
@@ -190,7 +190,7 @@ Este \emph{dataset}~\cite{HeartFailure}, llamado \textit{HeartFailure} fue cread
 \end{itemize}
 
 \noindent
-En la  Tabla~\ref{tab:tablebinario} se muestra que tipo de datos son los atributos del\emph{datasets} que son utilizados en este trabajo, considerando que estos mismos ya fueron previamente procesados para poder ser utilizados en las técnicas de aprendizaje automático. Luego la Tabla~\ref{tab:cant_datos_binarios} muestra la cantidad de registros y atributos que son utilizados, junto a que tipo de datos son.\\
+En la  Tabla~\ref{tab:tablebinario} se muestra que tipo de datos son los atributos del \emph{datasets} que son utilizados en este trabajo, considerando que estos mismos ya fueron previamente procesados para poder ser utilizados en las técnicas de aprendizaje automático. Luego la Tabla~\ref{tab:cant_datos_binarios} muestra la cantidad de registros y atributos que son utilizados, junto a que tipo de datos son.\\
 
 
 \begin{table}[htb]%[H]
@@ -254,48 +254,48 @@ En la  Tabla~\ref{tab:tablebinario} se muestra que tipo de datos son los atribut
 
 	
 	\noindent
-	\textbf{Age}: Este atributo refiera a la edad de los pacientes. Tiene media: 53 años, valor máximo: 77 y valor mínimo: 28, con proporciones de edad bastante bien distribuidas, siendo la menor de 0.11\% para algunas edades y la mayor de 4.14\% para otras edades, teniendo otras distribuciones entre estos dos rangos\\
+	\textbf{Age}: Este atributo refiera a la edad de los pacientes. Los pacientes tienen una media de edad de 53 años, con una edad máxima de 77 y de edad mínima  de 28, con proporciones de edad bastante bien distribuidas, siendo la menor de 0.11\% para algunas edades y la mayor de 4.14\% para otras edades, teniendo otras distribuciones entre estos dos rangos.\\
 	
 	\noindent
-	\textbf{Sex}: Refiere al Sexo de los pacientes; hay una distribución 78.98\% M (masculinos) y  hay 21.02\%  F (femeninos)\\
+	\textbf{Sex}: Refiere al Sexo de los pacientes; hay una distribución de sexo de 78.98\% siendo masculinos y 21.02\%  femeninos.\\
 	
 	\noindent
-	\textbf{ChestPainType}: Tipo del dolor en el pecho, del caul hay varias clasificaciones; Tiene una distribución 18.85\% ATA, hay 22.11\% NAP, hay 54.03\% ASY, hay 5.01\% TA. [TA: Typical Angina, ATA: Atypical Angina, NAP: Non-Anginal Pain, ASY: Asymptomatic]\\
+	\textbf{ChestPainType}: Tipo del dolor en el pecho, del cual hay varias clasificaciones; Tiene una distribución 18.85\% de dolor de pecho inusual, luego un 22.11\% de dolor no de pecho, un 54.03\% asintomático, y un 5.01\% de dolor de pecho típico.\\
 	
 	\noindent
 	\textbf{RestingBP}: Se esta describiendo la Presión sanguínea en reposo, donde hay una distribución de 51.09\% de mujeres, codificadas en 1 y 48.91\% de hombres, codificados en 0.\\
 	
 	%{0.2cm}
 	\noindent
-	\textbf{Cholesterol}: Este atributo es el Colesterol serico, la medida total de colesterol en sangre; tiene media: 199.02, valor máximo: 603.00 y valor mínimo: 0.00. Miligramos por decilitro \\
+	\textbf{Cholesterol}: Este atributo es el Colesterol serico, la medida total de colesterol en sangre; tiene un valor medio en los apcientes de 199.02, con un valor máximo de 603.00 y un valor mínimo de 0.00. Se encuentra en miligramos por decilitro. \\
 	
 	%{0.2cm}
 	\noindent
-	\textbf{FastingBS}: Es la Glucosa en sangre en ayuno; hay 76.66\% Glucosa en sangre < 120 mg/dl codificado en 0 y hay 23.34\% Glucosa en sangre > 120 mg/dl codificado en 1\\
+	\textbf{FastingBS}: Es la Glucosa en sangre en ayuno; hay 76.66\% Glucosa en sangre < 120 mg/dl codificado en 0 y hay 23.34\% Glucosa en sangre > 120 mg/dl codificado en 1.\\
 	
 	%{0.2cm}
 	\noindent
-	\textbf{RestingECG}: Son los Resultados de electrocardiogramas en reposo; hay 60.09\% codificado en Normal, hay 19.41\% codificado en ST y hay 20.50\% codificado en LVH  [Normal: Normal, ST: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV), LVH: showing probable or definite left ventricular hypertrophy by Estes' criteria] \\
+	\textbf{RestingECG}: Son los Resultados de electrocardiogramas en reposo; hay 60.09\% codificado en Normal, un 19.41\% codificado en ST (tiene una anormalidad en el estudio) y por último 20.50\% codificado en LVH (probablemente u a hipertrofia en el ventriculo izquierdo).\\
 	
 	%{0.2cm}
 	\noindent
-	\textbf{MaxHR}: Este atributo es el Máximo ritmo cardíaco registrado, tiene media: 136.79, valor máximo: 202.00 y valor mínimo: 60.00 \\
+	\textbf{MaxHR}: Este atributo es el Máximo ritmo cardíaco registrado, tiene una media en los pacientes de 136.79, con un valor máximo de 202.00 y un valor mínimo 60.00. \\
 	%{0.2cm}
 	
 	\noindent
-	\textbf{ExerciseAngina}: Es la Angina producido por ejercicio, dolor en el pecho; hay 59.54\% No codificado en N y hay 40.46\% Si codificado en Y \\
+	\textbf{ExerciseAngina}: Es la Angina producido por ejercicio, dolor en el pecho; donde hay 59.54\% que no tenían dolor codificado en N y hay 40.46\% que sí tenían dolor codificado en Y \\
 	
 	%{0.2cm}
 	\noindent
-	\textbf{Oldpeak}: Valor máximo de depresión del segmento ST (en milímetros) registrado en todas las derivaciones contiguas durante una prueba de esfuerzo. Forma parte del cálculo del riesgo de un paciente de isquemia o infarto de miocardio; valores más altos indican un mayor riesgo de enfermedad coronaria; tiene media: 0.90, valor máximo: 6.20 y valor mínimo: -0.10 \\
+	\textbf{Oldpeak}: Valor máximo de depresión del segmento ST (en milímetros) registrado en todas las derivaciones contiguas durante una prueba de esfuerzo. Forma parte del cálculo del riesgo de un paciente de isquemia o infarto de miocardio; valores más altos indican un mayor riesgo de enfermedad coronaria; tiene una media de 0.90, valor máximo de 6.20 y valor mínimo de -0.10 \\
+	
+	%{0.2cm}
+	\noindent \textbf{ST\_Slope}: La pendiente del segmento ST durante el ejercicio máximo; hay un 43.08\% en Up, un 50.05\% en Flat y luego un 6.87\% en Down [Up: pendiente ascendente, Flat: pendiente plana, Down: pendiente descendente]\\
+
 	
 	%{0.2cm}
 	\noindent
-	\textbf{ST\_Slope}: The slope of the peak exercise ST segment; hay 43.08\% Up, hay 50.05\% Flat y hay 6.87\% Down [Up: upsloping, Flat: flat, Down: downsloping]\\
-	
-	%{0.2cm}
-	\noindent
-	\textbf{HeartDisease}: Variable de salida de si posee una enfermedad cardíaca; hay 44.71\% No codificado en 0 y hay 55.29\% Si codificado en 1.
+	\textbf{HeartDisease}: Variable de salida si posee una enfermedad cardíaca; donde hay 44.71\% que no tiene enfermedad cardíaca codificado en 0 y hay 55.29\% que si tienen enfermedad cardíaca codificado en 1.
 	Siendo esta la \textbf{variables objetivo}.
 
 
@@ -406,7 +406,7 @@ En la Tabla~\ref{tab:tablaej} se muestran los tipos de las variables utilizadas 
 	\textbf{DS}: Número de desaceleraciones severas por segundo.\\
 	
 \noindent
-	\textbf{DP}: Número de desaceleraciones prolongadas por segundo.  Hay un 91.58\% con valor 0.0, 3.40\% con un valor 0.002, 1.13\% con un valor 0.003, 3.31\% con un valor 0.001, 0.43\% con un valor 0.004 y 0.14\% con un valor 0.005\\
+	\textbf{DP}: Número de desaceleraciones prolongadas por segundo.  Hay un 91.58\% con valor de 0.0, un 3.40\% con un valor 0.002, luego un 1.13\% con un valor 0.003, junto con un 3.31\% con un valor 0.001, además de un 0.43\% con un valor 0.004 y por último de un 0.14\% con un valor 0.005.\\
 	
 \noindent
 	\textbf{ASTV}: Porcentaje de tiempo con variabilidad anormal a corto plazo.\\
@@ -448,7 +448,7 @@ En la Tabla~\ref{tab:tablaej} se muestran los tipos de las variables utilizadas 
 	\textbf{Variance}: Varianza del histograma.\\
 	
 \noindent
-	\textbf{Tendency}: Tendencia del histograma.  Hay un 39.67\% con valor 1, 52.53\% con un valor 0 y 8.27\% con un valor -1\\
+	\textbf{Tendency}: Tendencia del histograma.  Hay un 39.67\% con valor de 1, 52.53\% con un valor de 0 y un 8.27\% con un valor -1.\\
 	
 \noindent
 	\textbf{CLASS}: Código de clasificación del estado fetal (N=normal; S=sospechoso; P=patológico).  Hay un 13.81\% con valor Sospechoso, 77.92\% con un valor Normal, 8.27\% con un valor Patológico.
@@ -479,7 +479,7 @@ Dentro de este trabajo no sólo se evalúan distintos modelos, sino que se utili
 \section{Métricas para caso Binario}
 
 \noindent
-\textbf{Matriz de Confusión}
+\subsection*{\textbf{Matriz de Confusión}}
 
 \noindent
 Una matriz de confusión, que se puede observar en la Tabla~\ref{tab:matrizconfusionbinario}, es una forma simple de saber de qué forma esté clasificando el algoritmo, donde una clase es considerada \textbf{positiva $P$} y la otra \textbf{negativa $N$}. La matriz de confusión clasifica las predicciones en:
@@ -514,12 +514,11 @@ A partir de la matriz de confusión se calculan varias métricas, algunas de las
 
 
 \noindent
-\textbf{\textit{Accuracy}}
+\subsection*{\textbf{\textit{Accuracy}}}
+
 
 \noindent
-El \textit{Accuracy} es la proporción de instancias clasificadas correctamente, es una medida ``ingenua'' que puede ser engañosa si existe un gran desbalance entre clases, ergo se puede obtener un \textit{Accuracy} alto si predice una clase muy bien, que tiene una distribución mucho mayor que la otra, mientras que la de menor distribución casi no la predice.
-\noindent
-En términos de la Matriz de Confusión la formula sería la siguiente:
+El \textit{Accuracy} es la proporción de instancias clasificadas correctamente, es una medida ``ingenua'' que puede ser engañosa si existe un gran desbalance entre clases, ergo se puede obtener un \textit{Accuracy} alto si predice una clase muy bien, que tiene una distribución mucho mayor que la otra, mientras que la de menor distribución casi no la predice. En términos de la Matriz de Confusión
 \begin{equation}
     \text{\textit{Accuracy}} = \frac{TP + TN}{TP + FP + TN + FN} = \frac{TP + TN}{\text{Total}},
     \label{eq:accurcybinario}
@@ -540,7 +539,8 @@ por lo tanto, se puede simplificar como la siguiente fórmula:
 \end{equation}
 
 \noindent
-\textbf{\textit{Precision}}
+\subsection*{\textbf{\textit{Precision}}}
+
 
 \noindent
 El \textit{Precision} mide la probabilidad de que la predicción positiva del clasificador sea correcta, en otras palabras, mide que tan bien predice las clases positivas el modelo.
@@ -565,7 +565,8 @@ En términos de la Matriz de Confusión se puede entender a la \textit{Recall} d
 \end{equation}
 
 \noindent
-\textbf{\textit{F-measure}}
+\subsection*{\textbf{\textit{F-measure}}}
+
 
 \noindent
 El \textit{F-measure} es la media armónica ponderada de \textit{precision} y \textit{recall}. La versión más común es el \textbf{F1-score}, donde el parámetro de ponderación $\beta$ es igual a 1. Un clasificador perfecto tiene un valor $F1 = 1$.
@@ -591,7 +592,8 @@ o en términos de la Matriz de Confusión, de forma más simplificada:
 \end{equation}
 
 \noindent
-\textbf{\textit{Área Bajo la Curva ROC (ROC AUC)}}
+\subsection*{\textbf{\textit{Área Bajo la Curva ROC (ROC AUC)}}}
+
 
 \noindent
 La métrica \textit{ROC AUC} es un valor que resume la capacidad de un clasificador para distinguir entre clases, una métrica muy útil para comparar el desempeño entre modelos distintos o entre un mismo modelo con hiperparámetros distintos.\\
@@ -607,7 +609,7 @@ Ejes utlizados para el gráfico:
 • \textbf{Eje X:} FPR\\
 
 \noindent
-Interpretación de valores: Un clasificador \textbf{ideal} se ubica en el punto $(0, 1)$, donde $TPR=1$ y $FPR=0$, lo que resulta en un \textbf{$AUC = 1$}. Un clasificador \textbf{aleatorio} se sitúa sobre la línea $TPR = FPR$, lo que resulta en un \textbf{$AUC = 0.5$}. Un clasificador se considera \textbf{razonable} si \textbf{ $0.5 < AUC \leq 1$}
+Un clasificador \textbf{ideal} se ubica en el punto $(0, 1)$, donde $TPR=1$ y $FPR=0$, lo que resulta en un \textbf{$AUC = 1$}. Un clasificador \textbf{aleatorio} se sitúa sobre la línea $TPR = FPR$, lo que resulta en un \textbf{$AUC = 0.5$}. Un clasificador se considera \textbf{razonable} si \textbf{ $0.5 < AUC \leq 1$}
 
 
 \noindent
@@ -625,7 +627,8 @@ La métrica ponderada por la presencia de la clase, $\text{M}_{\text{weighted}}$
 \end{equation}
 
 \noindent
-\textbf{Matriz de Confusión (Multiclase)}
+\subsection*{\textbf{Matriz de Confusión (Multiclase)}}
+
 
 \noindent
 La matriz de confusión multiclase, que se puede ver en la Tabla~\ref{tab:matrizmulticlase}, es una matriz cuadrada de tamaño $L \times L$, donde $L$ es el número de clases. Cada celda $C_{ij}$ representa la cantidad de muestras verdaderamente pertenecientes a la clase $i$ que fueron clasificadas como clase $j$ para $i,j: \{ 1, 2, \dots, L\}$.\\
@@ -707,7 +710,8 @@ Para cada clase $l$ se definen los valores que antes habíamos utilizados para l
 
 
 \noindent
-\textbf{\textit{Precision}}
+\subsection*{\textbf{\textit{Precision}}}
+
 
 \noindent
 La \textit{Precision} por clase $l$ mide la proporción de muestras clasificadas como positivas que realmente pertenecen a la clase $l$, donde $l: \{1, 2, \dots, L\}$. En términos más simple, utilizando la Matriz de Confusión:
@@ -718,7 +722,7 @@ La \textit{Precision} por clase $l$ mide la proporción de muestras clasificadas
 \end{equation}
 
 \noindent
-\textbf{\textit{Recall}}
+\subsection*{\textit{Recall}}
 
 \noindent
 El \textit{Recall} por clase $l$, donde $l: \{1, 2, \dots, L\}$, mide la proporción de muestras verdaderamente positivas de la clase $l$ que fueron correctamente identificadas. En términos más simple, utilizando la Matriz de Confusión:
@@ -729,7 +733,7 @@ El \textit{Recall} por clase $l$, donde $l: \{1, 2, \dots, L\}$, mide la proporc
 \end{equation}
 
 \noindent
-\textbf{\textit{F-measure}}
+\subsection*{\textit{F-measure}}
 
 \noindent
 El valor global ponderado se obtiene aplicando la fórmula de $M_{\text{weighted}}$ sobre los $F_{l}$, donde $\beta = 1$:
@@ -742,7 +746,7 @@ El valor global ponderado se obtiene aplicando la fórmula de $M_{\text{weighted
 
 
 \noindent
-\textbf{\textit{Área Bajo la Curva ROC (ROC AUC)}}
+\subsection*{\textit{Área Bajo la Curva ROC (ROC AUC)}}
 
 \noindent
 Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoque \textbf{One-vs-Rest (OVR)}. Para cada clase $l$, se considera la clase $l$, donde $l: \{1, 2, \dots, L\}$, como positiva y el resto como negativas, luego se calcula el AUC correspondiente ($\text{AUC}_l$) sobre la curva ROC de esa clasificación binaria. Finalmente, se obtiene un promedio ponderado por el soporte de cada clase:
@@ -756,7 +760,7 @@ Para extender la métrica ROC AUC a clasificación multiclase se emplea el enfoq
 
 
 \noindent
-\textbf{Importancia de la característica}
+\subsection*{Importancia de la característica}
 
 
 \noindent Sea un modelo predictivo $\mathcal{M}$ entrenado sobre un conjunto de datos $X$, y sea $M$ la métrica de referencia del modelo sobre los datos originales. El procedimiento se detalla a continuación:
@@ -823,7 +827,7 @@ A diferencia de la regresión lineal múltiple, la regresión logística predice
 El modelo busca modelar la probabilidad condicional de que una observación pertenezca a la clase objetivo $L$, siendo
 
 \begin{equation}
-	P(y_i = 1 \mid \bm{x}_i),
+	P(l_i = 1 \mid \bm{x}_i),
 	\label{eq:probabilidad_condicional}
 \end{equation}
 
@@ -834,7 +838,7 @@ donde $\bm{x}_i : (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de característi
 Por lo cual, la función logística define la \textbf{función de probabilidad} de pertenencia de $x_{i}$ a la clase $1$ como:
 
 \begin{equation}
-	p(\bm{x}_i) = P(y_i = 1 \mid \bm{x}_i) =
+	p(\bm{x}_i) = P(l_i = 1 \mid \bm{x}_i) =
 	\frac{\exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
 	{1 + \exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})},
 	\label{eq:funcion_logistica}
@@ -875,8 +879,8 @@ Para solucionar este obstáculo, el calculo de los coeficientes de regresión se
 \begin{equation}
 	\ell(\beta_0, \beta_1, \dots, \beta_k) =
 	\sum_{i=1}^{n} \left[
-	y_i \ln(p(\bm{x}_i)) +
-	(1 - y_i) \ln(1 - p(\bm{x}_i))
+	l_i \ln(p(\bm{x}_i)) +
+	(1 - l_i) \ln(1 - p(\bm{x}_i))
 	\right],
 	\label{eq:log_verosimilitud}
 \end{equation}
@@ -1356,7 +1360,7 @@ En este capítulo se presentan los resultados obtenidos mediante la aplicación 
 
 
 \noindent
-Se buscan evaluar el rendimiento de cada modelo bajo diferentes configuraciones de hiperparámetros, a través de métricas como la precisión (\textit{Accuracy}), el F1-Score y el área bajo la curva ROC (ROC AUC), entre otras.\\
+Se busca evaluar el rendimiento de cada modelo bajo diferentes configuraciones de hiperparámetros, a través de métricas como la precisión (\textit{Accuracy}), el F1-Score y el área bajo la curva ROC (ROC AUC), entre otras.\\
 
 \noindent
 Durante la fase experimental se exploraran distintas estrategias de balanceo de clases, dado que varios de los conjuntos presentan desbalances significativos entre las clases. En particular, se prueba la técnica de \textbf{undersampling}, reduciendo la cantidad de ejemplos de la clase mayoritaria para equilibrar el \emph{datasets}. Sin embargo, esta estrategia no arroja resultados satisfactorios: los modelos tienden a perder capacidad de generalización, mostrando un descenso notable en las métricas de validación, aunque se sostiene la mejor configuración con mejor valor de métricas. Por este motivo, se opta finalmente por mantener la distribución original y aplicar técnicas de regularización y ajuste de hiperparámetros para mitigar el sesgo hacia la clase dominante.\\
@@ -1367,7 +1371,7 @@ Durante la fase experimental se exploraran distintas estrategias de balanceo de 
 \subsubsection*{Regresión Logística (RL)}
 
 \noindent
-La \textbf{Regresión Logística} obtuvo un buen desempeño en la clasificación binaria, siempre tomando un \textbf{buen resultado} cuando cualquier métrica por lo menos supere los 0.80.\\
+La \textbf{Regresión Logística} obtuvo un correcto desempeño en la clasificación binaria, siempre tomando un \textbf{buen resultado} cuando cualquier métrica por lo menos supere los 0.80.\\
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rl_resultados_binario}, en la cual se muestra la mejor configuración obtenida de los hiperparámetros de la Tabla~\ref{tab:grid_rl_bin}. 
@@ -1386,14 +1390,14 @@ El modelo logra una precisión y un F1 Score de 0.84 y 0.84 respectivamente, jun
 			Penalty = l1\\
 			Solver = saga\\
 			Multiclass = ovr
-		} & 0.84 & 0.84 & 0.84 & 0.90 & 0.13 & 0.84 \\
+		} & 0.8485 & 0.8485 & 0.8481 & 0.9050 & 0.13 & 0.8495 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
 
 \noindent 
-El tiempo de entrenamiento fue de apenas 0.13 segundos, lo que lo convierte en una opción eficiente para este tipo de problema.
+El tiempo de entrenamiento fue de apenas 0.13 segundos, lo que lo convierte en una opción eficiente para este tipo de problema, teniendo en cuenta el tamaño pequeño del \emph{dataset}.
 
 
 \begin{table}[htb]%[H]
@@ -1414,16 +1418,15 @@ El tiempo de entrenamiento fue de apenas 0.13 segundos, lo que lo convierte en u
 
 \subsubsection*{Máquinas de Soporte Vectorial (SVM)}
 
-\paragraph{Máquinas de Soporte Vectorial (SVM)}
 
-La \textbf{Máquinas de Soporte Vectorial (SVM)} obtuvo un desempeño sólido en la clasificación binaria, mostrando un equilibrio adecuado entre precisión y generalización.\\
+La \textbf{Máquinas de Soporte Vectorial (SVM)} obtuvo un desempeño sólido en la clasificación binaria, mostrando un equilibrio adecuado entre precisión y generalización. Demostrando la solidez habitual con que es descripto este método.\\
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:svm_resultados_binario}. 
-El modelo logra una precisión y un F1 Score de 0.86 y 0.86 respectivamente, junto con un AUC de 0.92, lo que refleja una mejor capacidad discriminativa. 
+El modelo logra una precisión y un F1 Score de 0.86 y 0.86 respectivamente, junto con un AUC de 0.92, lo que refleja la mejor capacidad de clasificación hasta ahora.\\
 
 \noindent
-El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un gran valor.\\
+El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado, pero costoso si vemos que el tamaño del \emph{dataset} es bastante acotado.\\
 
 
 \begin{table}[htb]%[H]
@@ -1438,7 +1441,7 @@ El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un gran valor.\\
 			$C = 1$\\
 			Kernel = rbf\\
 			Gamma = 0.1\\
-		} & 0.86 & 0.86 & 0.86 &0.92 &0.60 & 0.86 \\
+		} & 0.8616 & 0.8616 & 0.8609 &0.9232 &0.60 & 0.8628 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -1465,10 +1468,10 @@ El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un gran valor.\\
 
 \subsubsection*{Naive Bayes Gaussiano}
 
-Naive Bayes Gaussiano obtuvo un buen desempeño en la clasificación multiclase, considerando su supuesto de independencia entre atributos. \\
+
 
 \noindent
-La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias\\
+Naive Bayes Gaussiano obtuvo un buen desempeño solido en la clasificación binario, considerando su supuesto de independencia entre atributos, que si tomamos la ida de que es \emph{buena} métrica si supera el 0.8 en su valor. La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias. Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados_binario}.  El modelo logra una precisión y un F1 Score de 0.84 y 0.84 respectivamente, junto con un AUC de 0.91, lo que refleja una buena capacidad discriminativa, bastante similar con los resultados de los modelos a los cuales se compara. \\
 
 
 \begin{table}[htb]%[H]
@@ -1480,18 +1483,17 @@ La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias
 		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
-			var\_smoothing = Cualquiera\\
-		} & 0.84 & 0.84 & 0.84 & 0.91 & 0.10 & 0.84 \\
+			var\_smoothing =\\
+			 Cualquiera\\
+		} & 0.8420 & 0.8420 & 0.8420 & 0.9138 & 0.10 & 0.8433 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-\noindent
-Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados_binario}. 
-El modelo logra una precisión y un F1 Score de 0.84 y 0.84 respectivamente, junto con un AUC de 0.91, lo que refleja una buena capacidad discriminativa, bastante similar con los resultados de los modelos a los cuales se compara.\\
+
 
 \noindent 
-El tiempo de entrenamiento fue de apenas 0.10 segundos, siendo su mayor fortaleza, la rapidez de su entrenamiento.
+El tiempo de entrenamiento fue de apenas 0.10 segundos, siendo que la mayor fortaleza es la rapidez de su entrenamiento.
 
 \begin{table}[htb]%[H]
 	\centering
@@ -1509,10 +1511,14 @@ El tiempo de entrenamiento fue de apenas 0.10 segundos, siendo su mayor fortalez
 
 \subsubsection*{Random Forest}
 
-Random Forest demostró un desempeño sobresaliente en la clasificación multiclase, mostrando alta capacidad de generalización para registros no vistos durante el entrenamiento.\\
+\noindent
+Random Forest demostró un desempeño bastante solido en la clasificación binaria, mostrando alta capacidad de generalización para registros no vistos durante el entrenamiento.\\
 
 \noindent 
-La mejor configuración se obtuvo utilizando el criterio de \textit{Entropía de Shannon}, profundidad de 7 hojas los árboles, división mínima de 7 ejemplos por nodo, hoja mínima de 1 ejemplo y seleccionando la cantidad de atributos mediante la raíz cuadrada.\\
+Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados_binario}, donde el modelo logra una precisión y un F1 Score de 0.87 y 0.87 respectivamente, junto con un AUC de 0.93, lo que refleja una buena excelente capacidad discriminatoria.\\
+
+\noindent 
+El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente el modelo en cual más se tarda en obtener los resultados.
 
 
 \begin{table}[htb]%[H]
@@ -1529,19 +1535,10 @@ La mejor configuración se obtuvo utilizando el criterio de \textit{Entropía de
 			Min Samples Split = 5\\
 			Min samples Leaf = 1\\
 			Max Features = sqrt\\
-		} & 0.87 & 0.87 & 0.87 & 0.93 & 1.38 & 0.87 \\
+		} & 0.8780 & 0.8780 & 0.8775 & 0.9315 & 1.38 & 0.8731 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
-
-\noindent
-Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados_binario}.\\
-
-\noindent 
-El modelo logra una precisión y un F1 Score de 0.87 y 0.87 respectivamente, junto con un AUC de 0.93, lo que refleja una buena excelente capacidad discriminatoria.\\
-
-\noindent 
-El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente el modelo en cual más se tarda en obtener los resultados.
 
 
 
@@ -1571,7 +1568,7 @@ El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente
 \end{figure}
 
 \noindent
-En la Figura \ref{fig:mejores_modelos_binario} se observa que Random Forest obtiene la mayor puntuación en todas las métricas, seguido por la Regresión Logística y SVM. Esto indica que, para nuestro \emph{datasets}, el modelo de Random Forest presenta mejor capacidad de generalización, mientras que los demás modelos muestran un desempeño bastante competitivo.
+En la Figura \ref{fig:mejores_modelos_binario} se observa que Random Forest obtiene la mayor puntuación en todas las métricas, seguido por la Regresión Logística y SVM. Esto indica que, para nuestro \emph{datasets}, el modelo de Random Forest presenta mejor capacidad de generalización, mientras que los demás modelos muestran un desempeño bastante competitivo. Esto no quiere decir que sea el mejor modelo, sino que es el que mejor resuelve este \emph{dataset}, pero si se quieren resultados sólidos pero con menor tiempo de cálculo, entonces el NB es una buena solución. Podemos afirmar que todos los modelos tuvieron desempeños correctos.
 
 \subsubsection*{Importancia de las Características}
 
@@ -1714,12 +1711,17 @@ Siendo los modelos \textbf{SVM} y \textbf{RF} los que mejor comportamiento tiene
 
 \section{Dataset Multiclase}
 
-\subsubsection*{Resultados del modelo de Regresión Logística}
-
-La Regresión Logística obtuvo un desempeño sólido en la clasificación multiclase, mostrando un equilibrio adecuado entre precisión y generalización.\\
+\subsubsection*{Regresión Logística}
 
 \noindent
-La mejor configuración se alcanzó utilizando un valor de regularización $C = 1$, sin penalización (\textit{Penalty = None}), con el solver \textit{newton-cg} y estrategia \textit{ovr} (one-vs-rest) para el tratamiento multiclase.\\
+La Regresión Logística obtuvo un muy buen desempeño en la clasificación multiclase, mostrando un equilibrio adecuado entre precisión y generalización.\\
+
+\noindent
+Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rl_resultados}, junto con la configuración de hiperparámetros que logro esos resultados. 
+El modelo logra una precisión y un F1 Score de 0.897 y 0.896 respectivamente, junto con un AUC de 0.964, lo que refleja una buena capacidad discriminativa.\\
+
+\noindent 
+El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en una opción eficiente para este tipo de problema, teniendo en cuanta que se mantiene en rangos acotados, incluso con más datos que en el caso binario.
 
 \begin{table}[H]
 	\centering
@@ -1734,15 +1736,12 @@ La mejor configuración se alcanzó utilizando un valor de regularización $C = 
 			Penalty = None\\
 			Solver = newton-cg\\
 			Multiclass = ovr
-		} & 0.89 & 0.89 & 0.89 & 0.96 & 0.30 & 0.89 \\
+		} & 0.8978 & 0.8978 & 0.8953 & 0.9644 & 0.30 & 0.8945 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-\noindent
-Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rl_resultados}. 
-El modelo logra una precisión y un F1 Score de 0.897 y 0.896 respectivamente, junto con un AUC de 0.964, lo que refleja una buena capacidad discriminativa. 
-El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en una opción eficiente para este tipo de problema.
+
 \begin{table}[H]
 	\centering
 	\caption{Grid de hiperparámetros - Regresión Logística (multiclase)}
@@ -1763,11 +1762,12 @@ El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en u
 
 \subsubsection*{Máquinas de Soporte Vectorial (SVM)}
 
-La Máquinas de Soporte Vectorial obtuvo un desempeño sólido en la clasificación multiclase, mostrando un equilibrio adecuado entre precisión y generalización. \\
+La Máquinas de Soporte Vectorial obtuvo un desempeño bastante sólido en la clasificación multiclase, mostrando unos grandes valores en sus métricas. \\
 
 \noindent
-La mejor configuración se alcanzó utilizando un valor de regularización $C = 0.1$, con kernel polinomico de segundo grado (\textit{Kernel = Poly}, \textit{Degree = 2}), con un gamma de 1 (\textit{Gamma = 1})\\
-
+Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:svm_resultados}, junto con la mejor configuración que logro las mejoras métricas. 
+El modelo logra una precisión y un F1 Score de 0.90 y 0.89 respectivamente, junto con un AUC de 0.95, lo que refleja una buena capacidad de clasificación. 
+El tiempo de entrenamiento fue de apenas 1.42 segundos, mostrando una clara demora a cuantos más datos deben de procesar, si comparamos como sube el tiempo de ejecución con el caso binario.
 
 \begin{table}[H]
 	\centering
@@ -1782,15 +1782,12 @@ La mejor configuración se alcanzó utilizando un valor de regularización $C = 
 			Kernel = poly\\
 			Gamma = 1\\
 			Degree = 2\\
-		} & 0.90 & 0.89 & 0.89 & 0.96 & 1.45 & 0.89 \\
+		} & 0.9082 & 0.9082 & 0.9064 & 0.9556 & 1.45 & 0.9057 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-\noindent
-Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:svm_resultados}. 
-El modelo logra una precisión y un F1 Score de 0.90 y 0.89 respectivamente, junto con un AUC de 0.96, lo que refleja una buena capacidad discriminativa. 
-El tiempo de entrenamiento fue de apenas 1.42 segundos..
+
 
 
 
@@ -1817,9 +1814,6 @@ El tiempo de entrenamiento fue de apenas 1.42 segundos..
 
 Naive Bayes Gaussiano obtuvo un buen desempeño en la clasificación multiclase, considerando su supuesto de independencia entre atributos. \\
 
-\noindent
-La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias\\
-
 
 \begin{table}[H]
 	\centering
@@ -1830,16 +1824,17 @@ La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias
 		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
-			var\_smoothing = Cualquiera\\
-		} & 0.82 & 0.82 & 0.83 & 0.91 & 0.11 & 0.87 \\
+			var\_smoothing =\\
+			 Cualquiera\\
+		} & 0.8208 & 0.8208 & 0.8366 & 0.9112 & 0.11 & 0.8747 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados}. 
-El modelo logra una precisión y un F1 Score de 0.82 y 0.83 respectivamente, junto con un AUC de 0.91, lo que refleja una buena capacidad discriminativa, pero lo suficientemente menor a los modelos con los cuales se compara. 
-El tiempo de entrenamiento fue de apenas 0.11 segundos, siendo su mayor fortaleza, la rapidez de su entrenamiento.
+El modelo logra una precisión y un F1 Score de 0.82 y 0.83 respectivamente, junto con un AUC de 0.91, lo que refleja una buena capacidad clasificadora, pero lo suficientemente menor a los modelos con los cuales se compara. 
+El tiempo de entrenamiento fue de apenas 0.11 segundos, siendo su mayor fortaleza, incluso con más datos el modelo se mantiene en valores parecidos de tiempo de ejecución.
 
 
 \begin{table}[H]
@@ -1858,11 +1853,13 @@ El tiempo de entrenamiento fue de apenas 0.11 segundos, siendo su mayor fortalez
 
 \subsubsection*{Random Forest}
 
+\noindent
+Random Forest demostró un desempeño claramente superador en la clasificación multiclase, mostrando alta capacidad de generalización para registros no vistos durante el entrenamiento.\\
 
-Random Forest demostró un desempeño sobresaliente en la clasificación multiclase, mostrando alta capacidad de generalización para registros no vistos durante el entrenamiento.\\
-
-\noindent 
-La mejor configuración se obtuvo utilizando el criterio de \textit{Gini}, profundidad ilimitada de los árboles, división mínima de 2 ejemplos por nodo, hoja mínima de 1 ejemplo y seleccionando la cantidad de atributos mediante la raíz cuadrada.
+\noindent
+Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados}, junto con la mejor configuración con la cual se obtuvieron estos resultados. 
+El modelo logra una precisión y un F1 Score de 0.94 y 0.94 respectivamente, junto con un AUC de 0.98, lo que refleja una buena excelente capacidad clasificadora. 
+El tiempo de entrenamiento fue de 2.24 segundos, mostrando como estos modelos incrementan su tiempo de ejecución a mayores datos requieren procesar.
 
 
 \begin{table}[H]
@@ -1879,15 +1876,11 @@ La mejor configuración se obtuvo utilizando el criterio de \textit{Gini}, profu
 			Min Samples Split = 2\\
 			Min samples Leaf = 1\\
 			Max Features = sqrt\\
-		} & 0.94 & 0.94 &0.94 & 0.98 & 2.24& 0.94\\
+		} & 0.9432 & 0.9432 &0.9412 & 0.9868 & 2.24& 0.9417\\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-\noindent
-Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados}. 
-El modelo logra una precisión y un F1 Score de 0.94 y 0.94 respectivamente, junto con un AUC de 0.98, lo que refleja una buena excelente capacidad discriminativa. 
-El tiempo de entrenamiento fue de apenas 2.24 segundos..
 
 
 \begin{table}[htb]
@@ -1920,11 +1913,6 @@ En la Figura \ref{fig:mejores_modelos_multiclase} se observa que Random Forest o
 
 
 \subsubsection*{Importancia de las Características}
-
-\noindent La importancia de las características se calculó mediante el método de \textit{Permutation Feature Importance}. Este método evalúa cuánto se degrada el desempeño del modelo cuando se altera aleatoriamente una característica, manteniendo fijas las demás. Cuanto mayor sea la disminución en la métrica de desempeño, mayor será la importancia atribuida a dicha característica.\\
-
-
-
 
 \noindent Los resultados obtenidos se presentan en las Tablas~\ref{tab:rf_importancia_multiclase},~\ref{tab:rl_importancia_multiclase},~\ref{tab:nb_importancia_multiclase} y ~\ref{tab:svm_importancia_multiclase} correspondientes a los modelos RF, RL, NB y SVM.
 
@@ -2089,7 +2077,7 @@ LB       &  -0.000804\\
 Las Figuras \ref{fig:evolucion_metricas_multiclase}, \ref{fig:evolucion_metricas_multiclase_f1} y \ref{fig:evolucion_metricas_multiclase_auc} muestran cómo las métricas del modelo mejoran al incorporar las características más relevantes según su importancia. Se observa que inicialmente, con pocas características, el desempeño es menor al obtenido anteriormente, pero mucho mejor del esperable. En algunos casos, de forma muy sorprendentemente, se obtiene un buen resultado ya a los pocos atributos utilizados, y a medida que se agregan las variables de mayor relevancia, las métrica tienden a incrementarse hasta estabilizarse.\\
 
 \noindent
-Este comportamiento permite identificar el conjunto de características que maximiza el rendimiento sin necesidad de incluir todas las variables disponibles, optimizando tanto la complejidad del modelo como el tiempo de entrenamiento.
+Este comportamiento permite identificar el conjunto de características que maximiza el rendimiento sin necesidad de incluir todas las variables disponibles, optimizando tanto la complejidad del modelo como el tiempo de entrenamiento. Se ven como \textbf{RF} muestra resultados muy prometedores incluso con pocas métricas, siendo claramente superior en los valores de métricas incluso con pocos atributos.
 
 
 
@@ -2099,6 +2087,7 @@ Este comportamiento permite identificar el conjunto de características que maxi
 
 \section{Análisis General e Inferencias}
 
+\noindent
 Del análisis de los resultados obtenidos se puede observar que el modelo \textbf{Random Forest} alcanzó reiteradamente los mejores valores en todas las métricas, tanto en el problema binario como en el multiclase. Esto se debe a su capacidad de combinar múltiples árboles de decisión, lo que permite capturar relaciones no lineales y reducir el sobreajuste, sobretodo a la hora de hacer un voto mayoritario de estos mismos arboles que permiten una representación mejor.\\
 
 \noindent
@@ -2112,6 +2101,7 @@ En cuanto a la \textbf{importancia de las características}, se identificaron at
 
 \section{Mejoras Potenciales y Consideraciones}
 
+\noindent
 Para optimizar aún más las métricas, podrían explorarse las siguientes estrategias:
 
 \begin{itemize}
