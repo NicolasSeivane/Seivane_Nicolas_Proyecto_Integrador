@@ -1037,6 +1037,12 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 
 		En este método, \(\boldsymbol{\beta}\) también es el vector de parámetros a optimizar. La matriz \(\bm{B}\) aproxima al Hessiano, permitiendo actualizaciones sin calcular derivadas segundas reales.
 %		%{eq:bfgs}{}
+
+	\item Método Saga. 
+	Un algoritmo de tipo \emph{stochastic gradient descent} con soporte para regularización L1 y L2. Permite trabajar con grandes datasets y converger de manera estable incluso con penalización L1.
+	
+	\item Método Liblinear.
+	Optimiza la función de coste usando un método de descenso por coordenadas, eficiente para datasets grandes y modelos lineales. Soporta L1 y L2.
 	\end{itemize}
 	
 	\item 
@@ -1065,7 +1071,7 @@ En consecuencia, la probabilidad de que un ejemplo en el nodo $t$ pertenezca a l
 	p(l|t) = \frac{N_l(t)}{N(t)},
 	\label{eq:probabilidad_clase_nodo}
 \end{equation}
-%%{eq:probabilidad_clase_nodo}{Probabilidad de pertenencia a la clase $C_k$ en el nodo $t$}
+
 
 \noindent
 donde $N(t)$ es la cantidad total de ejemplos en el nodo $t$, y $N_l(t)$ la cantidad de ejemplos de la clase $C_l$. Es importante este fenómeno porque es un costo computacional muy barato el calcular esta probabilidad y se asemejan a las probabilidades equiprobables, donde la probabilidad de una clase en un nodo está dada por la cantidad de ejemplos de la clase que tienen en el mismo.\\
@@ -1099,7 +1105,7 @@ Tanto el índice de Gini como la entropía de Shannon satisfacen estas propiedad
 	i(t) = \phi \big( p(1|t), p(2|t), \ldots, p(K|t) \big).
 	\label{eq:impureza_general}
 \end{equation}
-%%{eq:impureza_general}{Impureza general de un nodo $t$ en función de las probabilidades de clase}
+
 
 \noindent
 La impureza es máxima cuando las clases están perfectamente mezcladas y es mínima (cero) cuando el nodo contiene solo una clase, en donde la impureza máxima sería que la probabilidad de cada clase son aleatoria, ya que están perfectamente mezcladas.\\
@@ -1139,7 +1145,7 @@ La \textbf{reducción de impureza} generada al dividir el nodo $t$ en dos nodos 
 	\Delta i(s, t) = i(t) - q_1 i(t_1) - q_2 i(t_2),
 	\label{eq:disminucion_impureza}
 \end{equation}
-%%{eq:disminucion_impureza}{Disminución de impureza asociada a una partición $s$ del nodo $t$}
+
 donde $q_j = \frac{N(t_j)}{N(t)}$ para $j = 1, 2$.
 
 \subsection{Bosques Aleatorios (Random Forest)}
@@ -1161,7 +1167,7 @@ La predicción final para clasificación se obtiene mediante el voto mayoritario
 	\big( \widehat{y_a}(\bm{x}) = l \big) ,
 	\label{eq:voto_random_forest}
 \end{equation}
-%%{eq:voto_random_forest}{Predicción final en Random Forest mediante voto mayoritario}
+
 
 \noindent
 donde $\widehat{y_a}(\bm{x})$ es la predicción del árbol $a$, y $A$ es la cantidad total de árboles en el bosque.\\
@@ -1579,7 +1585,7 @@ Durante la fase experimental se exploraron distintas estrategias de balanceo de 
 \section{Dataset Binario}
 
 %% AR: En lo que sigue, no volver a definir las siglas que ya fueron definidad previamente. simplemente, usarlas.
-\subsubsection*{Regresión Logística (RL)}
+\subsubsection*{RL}
 
 \noindent
 La \textbf{Regresión Logística} obtuvo un correcto desempeño en la clasificación binaria, siempre tomando un \textbf{buen resultado} cuando cualquier métrica por lo menos supere el valor de 0.80.\\
@@ -1587,45 +1593,28 @@ La \textbf{Regresión Logística} obtuvo un correcto desempeño en la clasificac
 \noindent
 Los resultados cuantitativos se resumen en la Tabla~\ref{tab:rl_resultados_binario}, en la cual se muestra la mejor configuración obtenida de los hiperparámetros de la Tabla~\ref{tab:grid_rl_bin}. 
 %% AR: En lo que sigue usar "F1-Score" en vez de "F1 Score" y "AUC" en vez de "ROC AUC". Modificar tanto en texto, como en tablas, como en figuras.
-El modelo logra una precisión
+%% NS: Listo en latex, ahora lo hago en los graficos.
+El modelo logra un \emph{Accuracy}
 %% AR: Ojo!!! Precision se definió no como accuracy. Revisar en lo que sigue.
-y un F1 Score de 0.84 y 0.84 respectivamente,
+y un F1-Score de 0.8445,
 %% AR: Si dan igual, no ponerlo separado.
+%% NS: OK
 junto con un AUC de 0.90, lo que refleja una buena capacidad discriminatoria, pero siendo datos médicos se requieren incluso mejores valores.\\
 %% AR: Informar en el texto con la misma cantidad de cifras decimales que en la tabla.
-
+%% NS: Si me habia quedado mal eso.
 %% AR: Los captions de tablas y figuras deben terminar en un punto. Revisar y corregir a partir de acá (lo anterior ya lo fui modificando).
-\begin{table}[htb]%[H]
-	\centering
-	\caption{Resultados finales del modelo de Regresión Logística}
-	\label{tab:rl_resultados_binario}
-	\begin{tabular}{lcccccc}
-		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
-		\midrule
-		\makecell[l]{
-			$C = 1$\\
-			Penalty = l1\\
-			Solver = saga \\
-%% AR: saga no se mencionó previamente.
-			Multiclass = ovr
-		} & 0.8485 & 0.8485 & 0.8481 & 0.9050 & 0.13 & 0.8495 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-
-\noindent 
-El tiempo de entrenamiento fue de apenas 0.13 segundos, lo que lo convierte en una opción eficiente para este tipo de problema, teniendo en cuenta el tamaño pequeño del \emph{dataset}.
+%% NS: Listo.
 
 %% AR: Primero debería ir la tabla del grid search y luego la de las métricas del mejor modelo. Respetar este orden en lo que sigue.
+%% NS: Ok.
 \begin{table}[htb]%[H]
 	\centering
-	\caption{Grid 
-%% AR: Reemplar "grid" por "grilla" en todo el docuemnto.
-de hiperparámetros - Regresión Logística (binario)}
+	\caption{Grilla 
+		%% AR: Reemplar "grid" por "grilla" en todo el docuemnto.
+		%% NS: Listo.
+		de hiperparámetros - Regresión Logística (binario).}
 	\label{tab:grid_rl_bin}
-	\begin{tabular}{ll}
+	\begin{tabular}{l|l}
 		\toprule
 		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
 		\midrule
@@ -1637,27 +1626,74 @@ de hiperparámetros - Regresión Logística (binario)}
 	\end{tabular}
 \end{table}
 
+
+\begin{table}[htb]%[H]
+	\centering
+	\caption{Resultados finales del modelo de Regresión Logística.}
+	\label{tab:rl_resultados_binario}
+	\begin{tabular}{l|c|c|c|c|c|c}
+		\toprule
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\midrule
+		\makecell[l]{
+			$C = 1$\\
+			Penalty = l1\\
+			Solver = saga \\
+%% AR: saga no se mencionó previamente.
+%% NS: Ya lo agregue.
+			Multiclass = ovr
+		} & 0.8485 & 0.8485 & 0.8481 & 0.9050 & 0.13 & 0.8495 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+\noindent 
+El tiempo de entrenamiento fue de apenas 0.13 segundos, lo que lo convierte en una opción eficiente para este tipo de problema, teniendo en cuenta el tamaño pequeño del \emph{dataset}.
+
+
+
 \subsubsection*{Máquinas de Soporte Vectorial (SVM)}
 
 
 La \textbf{Máquinas de Soporte Vectorial (SVM)} obtuvo un desempeño sólido en la clasificación binaria, mostrando un equilibrio adecuado entre precisión y generalización. Demostrando la solidez habitual con que es descripto este método.\\
 %% AR: ¿Singular o plural?
+%% NS: No entendí la corrección.
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:svm_resultados_binario}. 
-El modelo logra una precisión y un F1 Score de 0.86 y 0.86 respectivamente, junto con un AUC de 0.92, lo que refleja la mejor capacidad de clasificación hasta ahora.\\
+El modelo logra una precisión y un F1-Score de 0.86 y 0.86 respectivamente, junto con un AUC de 0.92, lo que refleja la mejor capacidad de clasificación hasta ahora.\\
 
 \noindent
 El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado, pero costoso si vemos que el tamaño del \emph{dataset} es bastante acotado.\\
 
 
+
 \begin{table}[htb]%[H]
 	\centering
-	\caption{Resultados finales del SVM}
+	\caption{Grilla de hiperparámetros - SVM (binario).}
+	\label{tab:grid_svm_bin}
+	\begin{tabular}{l|l}
+		\toprule
+		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+		\midrule
+		$C$ & [0.001, 0.01, 0.1, 1, 10, 15, 20, 25] \\
+		Kernel & [linear, poly, rbf, sigmoid] \\
+		Gamma & [scale, auto, 0.001, 0.01, 0.1, 1] \\
+		Degree & [2--10] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+
+\begin{table}[htb]%[H]
+	\centering
+	\caption{Resultados finales del SVM.}
 	\label{tab:svm_resultados_binario}
-	\begin{tabular}{lcccccc}
+	\begin{tabular}{l|c|c|c|c|c|c}
 	\toprule
-	\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+	\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			$C = 1$\\
@@ -1671,21 +1707,7 @@ El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado
 
 
 
-\begin{table}[htb]%[H]
-	\centering
-	\caption{Grid de hiperparámetros - SVM (binario)}
-	\label{tab:grid_svm_bin}
-	\begin{tabular}{ll}
-		\toprule
-		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
-		\midrule
-		$C$ & [0.001, 0.01, 0.1, 1, 10, 15, 20, 25] \\
-		Kernel & [linear, poly, rbf, sigmoid] \\
-		Gamma & [scale, auto, 0.001, 0.01, 0.1, 1] \\
-		Degree & [2--10] \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+
 
 
 \subsubsection*{Naive Bayes Gaussiano}
@@ -1693,16 +1715,29 @@ El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado
 
 
 \noindent
-Naive Bayes Gaussiano obtuvo un buen desempeño sólido en la clasificación binaria, considerando su supuesto de independencia entre atributos, que si tomamos la ida de que es \emph{buena} métrica si supera el 0.8 en su valor. La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias. Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados_binario}.  El modelo logra una precisión y un F1 Score de 0.84 y 0.84 respectivamente, junto con un AUC de 0.91, lo que refleja una buena capacidad discriminativa, bastante similar con los resultados de los modelos a los cuales se compara. \\
+Naive Bayes Gaussiano obtuvo un buen desempeño sólido en la clasificación binaria, considerando su supuesto de independencia entre atributos, que si tomamos la ida de que es \emph{buena} métrica si supera el 0.8 en su valor. La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias. Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados_binario}.  El modelo logra una precisión y un F1-Score de 0.84 y 0.84 respectivamente, junto con un AUC de 0.91, lo que refleja una buena capacidad discriminativa, bastante similar con los resultados de los modelos a los cuales se compara. \\
 
 
 \begin{table}[htb]%[H]
 	\centering
-	\caption{Resultados finales del Naive Bayes Gaussiano}
-	\label{tab:nbg_resultados_binario}
-	\begin{tabular}{lcccccc}
+	\caption{Grilla de hiperparámetros - Naive Bayes Gaussiano (binario).}
+	\label{tab:grid_nb_bin}
+	\begin{tabular}{l|l}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+		\midrule
+		Suavizado & Variaciones de suavizado \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}[htb]%[H]
+	\centering
+	\caption{Resultados finales del Naive Bayes Gaussiano.}
+	\label{tab:nbg_resultados_binario}
+	\begin{tabular}{l|c|c|c|c|c|c}
+		\toprule
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			var\_smoothing =\\
@@ -1717,18 +1752,7 @@ Naive Bayes Gaussiano obtuvo un buen desempeño sólido en la clasificación bin
 \noindent 
 El tiempo de entrenamiento fue de apenas 0.10 segundos, siendo que la mayor fortaleza es la rapidez de su entrenamiento.
 
-\begin{table}[htb]%[H]
-	\centering
-	\caption{Grid de hiperparámetros - Naive Bayes Gaussiano (binario)}
-	\label{tab:grid_nb_bin}
-	\begin{tabular}{ll}
-		\toprule
-		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
-		\midrule
-		Suavizado & Variaciones de suavizado \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+
 
 
 \subsubsection*{Random Forest}
@@ -1737,7 +1761,7 @@ El tiempo de entrenamiento fue de apenas 0.10 segundos, siendo que la mayor fort
 Random Forest demostró un desempeño bastante solido en la clasificación binaria, mostrando alta capacidad de generalización para registros no vistos durante el entrenamiento.\\
 
 \noindent 
-Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados_binario}, donde el modelo logra una precisión y un F1 Score de 0.87 y 0.87 respectivamente, junto con un AUC de 0.93, lo que refleja una buena excelente capacidad discriminatoria.\\
+Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados_binario}, donde el modelo logra una precisión y un F1-Score de 0.87 y 0.87 respectivamente, junto con un AUC de 0.93, lo que refleja una buena excelente capacidad discriminatoria.\\
 
 \noindent 
 El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente el modelo en cual más se tarda en obtener los resultados.
@@ -1745,11 +1769,29 @@ El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente
 
 \begin{table}[htb]%[H]
 	\centering
-	\caption{Resultados finales del Random Forest}
-	\label{tab:rf_resultados_binario}
-	\begin{tabular}{lcccccc}
+	\caption{Grilla de hiperparámetros - Random Forest (binario).}
+	\label{tab:grid_rf_bin}
+	\begin{tabular}{l|l}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+		\midrule
+		Criterion & [gini, entropy] \\
+		Max Depth & [None, 3, 5, 7, 9] \\
+		Min Samples Split & [2, 5, 10] \\
+		Min Samples Leaf & [1, 2, 4] \\
+		Max Features & [None, sqrt, log2] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+\begin{table}[htb]%[H]
+	\centering
+	\caption{Resultados finales del Random Forest.}
+	\label{tab:rf_resultados_binario}
+	\begin{tabular}{l|c|c|c|c|c|c}
+		\toprule
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			Criterion = entropy\\
@@ -1764,28 +1806,12 @@ El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente
 
 
 
-\begin{table}[htb]%[H]
-	\centering
-	\caption{Grid de hiperparámetros - Random Forest (binario)}
-	\label{tab:grid_rf_bin}
-	\begin{tabular}{ll}
-		\toprule
-		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
-		\midrule
-		Criterion & [gini, entropy] \\
-		Max Depth & [None, 3, 5, 7, 9] \\
-		Min Samples Split & [2, 5, 10] \\
-		Min Samples Leaf & [1, 2, 4] \\
-		Max Features & [None, sqrt, log2] \\
-		\bottomrule
-	\end{tabular}
-\end{table}
 
 
 \begin{figure}[htb]%[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../mejores_modelos_barras_binario}
-	\caption{Comparación de desempeño de los mejores modelos (Binario)}
+	\caption{Comparación de desempeño de los mejores modelos (Binario).}
 	\label{fig:mejores_modelos_binario}
 \end{figure}
 
@@ -1803,9 +1829,9 @@ En la Figura \ref{fig:mejores_modelos_binario} se observa que Random Forest obti
 
 \begin{table}[htb]%[H]
 	\centering
-	\caption{Importancia de las características según permutación (RF)}
+	\caption{Importancia de las características según permutación (RF).}
 	\label{tab:rf_importancia}
-	\begin{tabular}{lc}
+	\begin{tabular}{l|c}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -1828,9 +1854,9 @@ RestingECG & 0.018956 \\
 
 \begin{table}[htb]%[H]
 	\centering
-	\caption{Importancia de las características según permutación (RL)}
+	\caption{Importancia de las características según permutación (RL).}
 	\label{tab:rl_importancia_}
-	\begin{tabular}{lc}
+	\begin{tabular}{l|c}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -1853,9 +1879,9 @@ RestingECG     &   0.000218\\
 
 \begin{table}[htb]%[H]
 	\centering
-	\caption{Importancia de las características según permutación (SVM)}
+	\caption{Importancia de las características según permutación (SVM).}
 	\label{tab:svm_importancia}
-	\begin{tabular}{lc}
+	\begin{tabular}{l|c}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -1879,9 +1905,9 @@ FastingBS      &   0.004575\\
 
 \begin{table}[H]
 	\centering
-	\caption{Importancia de las características según permutación (NB)}
+	\caption{Importancia de las características según permutación (NB).}
 	\label{tab:nb_importancia}
-	\begin{tabular}{lc}
+	\begin{tabular}{l|c}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -1904,21 +1930,21 @@ Age & -0.003595 \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_binario}
-	\caption{Evolución de \textit{Accuracy} (Binario)}
+	\caption{Evolución de \textit{Accuracy} (Binario).}
 	\label{fig:evolucion_metricas_binario}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_binario_auc}
-	\caption{Evolución de ROC AUC (Binario)}
+	\caption{Evolución de AUC (Binario).}
 	\label{fig:evolucion_metricas_binario_auc}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_binario_f1}
-	\caption{Evolución de F1-Score (Binario)}
+	\caption{Evolución de F1-Score (Binario).}
 	\label{fig:evolucion_metricas_binario_f1}
 \end{figure}
 
@@ -1940,18 +1966,35 @@ La Regresión Logística obtuvo un muy buen desempeño en la clasificación mult
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rl_resultados}, junto con la configuración de hiperparámetros que logro esos resultados. 
-El modelo logra una precisión y un F1 Score de 0.897 y 0.896 respectivamente, junto con un AUC de 0.964, lo que refleja una buena capacidad discriminativa.\\
+El modelo logra una precisión y un F1-Score de 0.897 y 0.896 respectivamente, junto con un AUC de 0.964, lo que refleja una buena capacidad discriminativa.\\
 
 \noindent 
 El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en una opción eficiente para este tipo de problema, teniendo en cuanta que se mantiene en rangos acotados, incluso con más datos que en el caso binario.
 
+
 \begin{table}[H]
 	\centering
-	\caption{Resultados finales del modelo de Regresión Logística}
-	\label{tab:rl_resultados}
-	\begin{tabular}{lcccccc}
+	\caption{Grilla de hiperparámetros - Regresión Logística (multiclase).}
+	\label{tab:grid_rl_multi}
+	\begin{tabular}{l|l}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+		\midrule
+		$C$ & [0.01, 0.1, 1, 10] \\
+		Penalty & [None, l2, elasticnet] \\
+		Solver & [lbfgs, saga, newton-s] \\
+		Multiclass & [ovr] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\caption{Resultados finales del modelo de Regresión Logística.}
+	\label{tab:rl_resultados}
+	\begin{tabular}{l|c|c|c|c|c|c}
+		\toprule
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			$C = 1$\\
@@ -1964,21 +2007,7 @@ El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en u
 \end{table}
 
 
-\begin{table}[H]
-	\centering
-	\caption{Grid de hiperparámetros - Regresión Logística (multiclase)}
-	\label{tab:grid_rl_multi}
-	\begin{tabular}{ll}
-		\toprule
-		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
-		\midrule
-		$C$ & [0.01, 0.1, 1, 10] \\
-		Penalty & [None, l2, elasticnet] \\
-		Solver & [lbfgs, saga, newton-s] \\
-		Multiclass & [ovr] \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+
 
 
 
@@ -1988,16 +2017,34 @@ La Máquinas de Soporte Vectorial obtuvo un desempeño bastante sólido en la cl
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:svm_resultados}, junto con la mejor configuración que logro las mejoras métricas. 
-El modelo logra una precisión y un F1 Score de 0.90 y 0.89 respectivamente, junto con un AUC de 0.95, lo que refleja una buena capacidad de clasificación. 
+El modelo logra una precisión y un F1-Score de 0.90 y 0.89 respectivamente, junto con un AUC de 0.95, lo que refleja una buena capacidad de clasificación. 
 El tiempo de entrenamiento fue de apenas 1.42 segundos, mostrando una clara demora a cuantos más datos deben de procesar, si comparamos como sube el tiempo de ejecución con el caso binario.
+
 
 \begin{table}[H]
 	\centering
-	\caption{Resultados finales del SVM}
-	\label{tab:svm_resultados}
-	\begin{tabular}{lcccccc}
+	\caption{Grilla de hiperparámetros - SVM (multiclase).}
+	\label{tab:grid_svm_multi}
+	\begin{tabular}{l|l}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+		\midrule
+		$C$ & [0.001, 0.01, 0.1, 1, 10, 15, 20, 25] \\
+		Kernel & [linear, poly, rbf, sigmoid] \\
+		Gamma & [scale, auto, 0.001, 0.01, 0.1, 1] \\
+		Degree & [2--10] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+\begin{table}[H]
+	\centering
+	\caption{Resultados finales del SVM.}
+	\label{tab:svm_resultados}
+	\begin{tabular}{l|c|c|c|c|c|c}
+		\toprule
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 		$C = 0.1$\\
@@ -2013,21 +2060,7 @@ El tiempo de entrenamiento fue de apenas 1.42 segundos, mostrando una clara demo
 
 
 
-\begin{table}[H]
-	\centering
-	\caption{Grid de hiperparámetros - SVM (multiclase)}
-	\label{tab:grid_svm_multi}
-	\begin{tabular}{ll}
-		\toprule
-		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
-		\midrule
-		$C$ & [0.001, 0.01, 0.1, 1, 10, 15, 20, 25] \\
-		Kernel & [linear, poly, rbf, sigmoid] \\
-		Gamma & [scale, auto, 0.001, 0.01, 0.1, 1] \\
-		Degree & [2--10] \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+
 
 
 
@@ -2036,14 +2069,27 @@ El tiempo de entrenamiento fue de apenas 1.42 segundos, mostrando una clara demo
 
 Naive Bayes Gaussiano obtuvo un buen desempeño en la clasificación multiclase, considerando su supuesto de independencia entre atributos. \\
 
+\begin{table}[H]
+	\centering
+	\caption{Grilla de hiperparámetros - Naive Bayes Gaussiano (multiclase).}
+	\label{tab:grid_nb_multi}
+	\begin{tabular}{l|l}
+		\toprule
+		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+		\midrule
+		Suavizado & Variaciones de suavizado \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
 
 \begin{table}[H]
 	\centering
-	\caption{Resultados finales del Naive Bayes Gaussiano}
+	\caption{Resultados finales del Naive Bayes Gaussiano.}
 	\label{tab:nbg_resultados}
-	\begin{tabular}{lcccccc}
+	\begin{tabular}{l|c|c|c|c|c|c}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			var\_smoothing =\\
@@ -2055,22 +2101,11 @@ Naive Bayes Gaussiano obtuvo un buen desempeño en la clasificación multiclase,
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados}. 
-El modelo logra una precisión y un F1 Score de 0.82 y 0.83 respectivamente, junto con un AUC de 0.91, lo que refleja una buena capacidad clasificadora, pero lo suficientemente menor a los modelos con los cuales se compara. 
+El modelo logra una precisión y un F1-Score de 0.82 y 0.83 respectivamente, junto con un AUC de 0.91, lo que refleja una buena capacidad clasificadora, pero lo suficientemente menor a los modelos con los cuales se compara. 
 El tiempo de entrenamiento fue de apenas 0.11 segundos, siendo su mayor fortaleza, incluso con más datos el modelo se mantiene en valores parecidos de tiempo de ejecución.
 
 
-\begin{table}[H]
-	\centering
-	\caption{Grid de hiperparámetros - Naive Bayes Gaussiano (multiclase)}
-	\label{tab:grid_nb_multi}
-	\begin{tabular}{ll}
-		\toprule
-		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
-		\midrule
-		Suavizado & Variaciones de suavizado \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+
 
 
 \subsubsection*{Random Forest}
@@ -2080,17 +2115,34 @@ Random Forest demostró un desempeño claramente superador en la clasificación 
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados}, junto con la mejor configuración con la cual se obtuvieron estos resultados. 
-El modelo logra una precisión y un F1 Score de 0.94 y 0.94 respectivamente, junto con un AUC de 0.98, lo que refleja una buena excelente capacidad clasificadora. 
+El modelo logra una precisión y un F1-Score de 0.94 y 0.94 respectivamente, junto con un AUC de 0.98, lo que refleja una buena excelente capacidad clasificadora. 
 El tiempo de entrenamiento fue de 2.24 segundos, mostrando como estos modelos incrementan su tiempo de ejecución a mayores datos requieren procesar.
 
 
+\begin{table}[htb]
+	\centering
+	\caption{Grilla de hiperparámetros - Random Forest (multiclase).}
+	\label{tab:grid_rf_multi}
+	\begin{tabular}{l|l}
+		\toprule
+		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+		\midrule
+		Criterion & [gini, entropy] \\
+		Max Depth & [None, 3, 5, 7, 9] \\
+		Min Samples Split & [2, 5, 10] \\
+		Min Samples Leaf & [1, 2, 4] \\
+		Max Features & [None, sqrt, log2] \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
 \begin{table}[H]
 	\centering
-	\caption{Resultados finales del Random Forest}
+	\caption{Resultados finales del Random Forest.}
 	\label{tab:rf_resultados}
-	\begin{tabular}{lcccccc}
+	\begin{tabular}{l|c|c|c|c|c|c}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1 Score} & \textbf{ROC AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			Criterion = gini\\
@@ -2105,28 +2157,13 @@ El tiempo de entrenamiento fue de 2.24 segundos, mostrando como estos modelos in
 
 
 
-\begin{table}[htb]
-	\centering
-	\caption{Grid de hiperparámetros - Random Forest (multiclase)}
-	\label{tab:grid_rf_multi}
-	\begin{tabular}{ll}
-		\toprule
-		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
-		\midrule
-		Criterion & [gini, entropy] \\
-		Max Depth & [None, 3, 5, 7, 9] \\
-		Min Samples Split & [2, 5, 10] \\
-		Min Samples Leaf & [1, 2, 4] \\
-		Max Features & [None, sqrt, log2] \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+
 
 \FloatBarrier
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\textwidth]{../mejores_modelos_barras_multiclase}
-	\caption{Comparación de desempeño de los mejores modelos (Multiclase)}
+	\caption{Comparación de desempeño de los mejores modelos (Multiclase).}
 	\label{fig:mejores_modelos_multiclase}
 \end{figure}
 \FloatBarrier
@@ -2140,9 +2177,9 @@ En la Figura \ref{fig:mejores_modelos_multiclase} se observa que Random Forest o
 
 \begin{table}[htb]
 	\centering
-	\caption{Importancia de las características según permutación (RF)}
+	\caption{Importancia de las características según permutación (RF).}
 	\label{tab:rf_importancia_multiclase}
-	\begin{tabular}{lc}
+	\begin{tabular}{l|c}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -2174,9 +2211,9 @@ En la Figura \ref{fig:mejores_modelos_multiclase} se observa que Random Forest o
 
 \begin{table}[htb]%[htb]
 	\centering
-	\caption{Importancia de las características según permutación (RL)}
+	\caption{Importancia de las características según permutación (RL).}
 	\label{tab:rl_importancia_multiclase}
-	\begin{tabular}{lc}
+	\begin{tabular}{l|c}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -2208,9 +2245,9 @@ DS       &   0.000000\\
 
 \begin{table}[htb]%[H]
 	\centering
-	\caption{Importancia de las características según permutación (SVM)}
+	\caption{Importancia de las características según permutación (SVM).}
 	\label{tab:svm_importancia_multiclase}
-	\begin{tabular}{lc}
+	\begin{tabular}{l|c}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -2242,9 +2279,9 @@ LB       &  -0.000804\\
 
 \begin{table}[htb]%[H]
 	\centering
-	\caption{Importancia de las características según permutación (Naive Bayes Gaussiano)}
+	\caption{Importancia de las características según permutación (Naive Bayes Gaussiano).}
 	\label{tab:nb_importancia_multiclase}
-	\begin{tabular}{lc}
+	\begin{tabular}{l|c}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -2276,21 +2313,21 @@ LB       &  -0.000804\\
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_multiclase}
-	\caption{Evolución de \textit{Accuracy} (Multiclase)}
+	\caption{Evolución de \textit{Accuracy} (Multiclase).}
 	\label{fig:evolucion_metricas_multiclase}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_multiclase_auc}
-	\caption{Evolución de ROC AUC (Multiclase)}
+	\caption{Evolución de AUC (Multiclase).}
 	\label{fig:evolucion_metricas_multiclase_auc}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_multiclase_F1}
-	\caption{Evolución de F1-score (Multiclase)}
+	\caption{Evolución de F1-score (Multiclase).}
 	\label{fig:evolucion_metricas_multiclase_f1}
 \end{figure}
 
