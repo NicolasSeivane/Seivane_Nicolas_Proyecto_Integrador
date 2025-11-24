@@ -3,7 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{ragged2e}
-%\usepackage{mathtools}
+%\usepackage{mathtools}makeglossaries %.tex
 \usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
 \usepackage[spanish, es-tabla]{babel}
@@ -35,6 +35,8 @@
 \usepackage{bm}
 \usepackage{makecell}
 \usepackage{placeins}
+
+
 
 \usepackage{listings}
 \lstset{ %
@@ -120,11 +122,15 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 
 
 
+
+
+
+
 \begin{document}
 
 %% AR: Falta la portada.
 
-%\maketitle
+\maketitle
 
 
 	\tableofcontents
@@ -135,9 +141,41 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 	\listoftables
 
 
+
+
+
+
 \chapter*{Resumen}
 
 %% AR: Falta redactar en resumen.
+\noindent
+En este trabajo se realiza un análisis comparativo de distintas técnicas de \textbf{Aprendizaje Automático Supervisado} aplicadas a un conjunto de datos cardiológicos, con el objetivo de evaluar su desempeño en la clasificación de pacientes según riesgo o presencia de enfermedad cardíaca.\\
+
+\noindent
+En primer lugar, se lleva a cabo una \textbf{preparación del dataset}, que incluye limpieza, transformación de variables, selección de atributos y división en conjuntos de entrenamiento y prueba. Se definen las notaciones fundamentales utilizadas a lo largo del trabajo, tales como el número de muestras $n$, la cantidad de atributos $D$, el número de clases $L$, y los parámetros estimados para algunos modelos.\\
+
+\noindent
+Luego, se describen los principales algoritmos estudiados:\\
+
+\begin{itemize}
+	\item \textbf{Naïve Bayes}, se resalta su fundamento probabilístico y el supuesto de independencia condicional.
+	\item \textbf{Regresión Logística}, incluyendo la función logística, el hiperplano de decisión y el proceso de optimización.
+	\item \textbf{Máquinas de Vectores de Soporte (SVM)}, considerando márgenes duros y suaves, los hiperparámetros clave $(C, \gamma)$, el rol del vector normal $\bm{w}$ y el uso de kernels.
+	\item \textbf{Árboles de Decisión} y \textbf{Random Forest}, destacando la construcción jerárquica de reglas, los criterios de impureza y la reducción de varianza aportada por los métodos de ensamble.
+\end{itemize}
+
+\noindent
+Para cada método se explican los \textbf{hiperparámetros relevantes}, su interpretación y cómo afectan el ajuste del modelo. Se especifican los valores considerados o el procedimiento utilizado para seleccionarlos.\\
+
+\noindent
+Posteriormente, se detalla la \textbf{metodología de evaluación}, incluyendo las métricas utilizadas: exactitud, precisión, recall, especificidad, sensibilidad, F1-Score, matriz de confusión y otras métricas derivadas.\\
+
+\noindent
+A continuación, se presentan y discuten los \textbf{resultados obtenidos} para cada modelo. Se comparan sus desempeños utilizando las métricas seleccionadas.\\
+
+\noindent
+Finalmente, se exponen las \textbf{conclusiones generales} del estudio, señalando qué métodos mostraron mejor rendimiento en el \emph{dataset} de cardiología, qué limitaciones presenta el estudio y cómo podrían extenderse o mejorarse los análisis en trabajos futuros mediante técnicas adicionales, mayor optimización o validación más exhaustiva.\\
+
 
 \chapter{Introducción}
 
@@ -165,11 +203,18 @@ Las técnicas de Aprendizaje Automático se utilizan cada vez más en la investi
 %(2025) 
 presenta recomendaciones y orientaciones para la evaluación adecuada de modelos de aprendizaje automático supervisado en cardiología, destacando los problemas específicos asociados con estas técnicas, como la fuga de datos (\textit{data leakage}) y el desequilibrio de clases. Por su parte, el documento de Kumar y Kumar~\cite{kumar2021machine}
 %(2021) 
-revisa las metodologías de aprendizaje automático para el diagnóstico de cardiopatías utilizando métodos no invasivos, un área crucial dada la alta mortalidad anual (17.9 millones de personas) asociada con los problemas cardíacos.
+revisa las metodologías de aprendizaje automático para el diagnóstico de cardiopatías utilizando métodos no invasivos, un área crucial dada la alta mortalidad anual (17.9 millones de personas) asociada con los problemas cardíacos.\\
 
-%% Algo sobre variables cariológicas en general, y sobre trabajos que usen alguno de los que yo use a cardiología.
+%% Algo sobre variables cardiológicas en general, y sobre trabajos que usen alguno de los que yo use a cardiología.
+
+\noindent
+En los estudios cardiológicos, las variables utilizadas pueden agruparse en tres grandes categorías principales: parámetros clínicos estructurados, señales cardíacas y datos provenientes de imágenes médicas. Los parámetros clínicos incluyen variables demográficas, antecedentes, síntomas y mediciones de laboratorio, que suelen encontrarse en bases de datos estructuradas como el conjunto de Cleveland, utilizado comúnmente en estudios de clasificación de enfermedades cardíacas. Las señales cardíacas, como los electrocardiogramas (ECG) y fonocardiogramas (PCG), aportan información temporal y frecuencial altamente relevante para la detección de arritmias, soplos o patrones eléctricos anómalos. Finalmente, los datos de imagen —que abarcan ecocardiografías, resonancias magnéticas cardíacas (CMR), tomografías computarizadas (CCT) o estudios SPECT— permiten evaluar morfología, función cardíaca y perfusión.\\
+
+\noindent
+En el ámbito de los métodos de aprendizaje automático aplicados a cardiología, varios trabajos han empleado los mismos algoritmos utilizados en este estudio. Por ejemplo, modelos basados en \textit{Support Vector Machines} (SVM) han demostrado un rendimiento competitivo en la clasificación de ECG y en la detección de enfermedades a partir de parámetros clínicos, mostrando en muchos casos un desempeño superior a métodos más simples. Los clasificadores \textit{k}-Nearest Neighbors (\textit{k}-NN) han sido utilizados para tareas como la detección de arritmias mediante características temporales del ECG o para la predicción de riesgo a partir de datos clínicos estructurados. Otros estudios han empleado Naïve Bayes o árboles de decisión para la clasificación de cardiopatías utilizando tanto datos tabulares como señales procesadas. Estas aplicaciones muestran que los modelos implementados en este trabajo están bien representados dentro de la literatura del área y cuentan con antecedentes sólidos en tareas diagnósticas dentro del dominio cardiológico.\\
 
 %% AR: Ver de agregar algo sobre herramientas clásicas que usan los médicos.
+
  
 \section{Conjuntos de Datos %Utilizados
 }
@@ -450,6 +495,758 @@ En la Tabla~\ref{tab:tablaej} se muestran los tipos de las variables utilizadas 
 \end{itemize}
 	%{0.2cm}
 
+%% AR: Pondría primero los modelos y luego las métricas.
+%% NS: Listo
+
+
+
+\chapter*{Glosario}
+
+\begin{longtable}{p{3cm} | p{10cm}}
+	\textbf{Notación} & \textbf{Descripción} \\
+	\toprule
+	$n$ & Número total de registros o ejemplos en el dataset. \\
+	$D$ & Cantidad de atributos de cada registro. \\
+	$L$ & Número total de clases posibles en el problema de clasificación. \\
+	$\hat{\theta}_{jvl}$ & Probabilidad estimada de que el atributo $X_j$ tome el valor $x_{jv}$ dado que la clase es $C_l$. \\
+	$\hat{\pi}_k$ & Probabilidad a priori estimada de que un registro pertenezca a la clase $C_k$. \\
+	$\bm{x}_i$ & Vector de características del registro $i$, $\bm{x}_i = (x_{i1}, \dots, x_{iD})$. \\
+	$X_j$ & $j$-ésimo atributo de un registro. \\
+	$C_l$ & $l$-ésima clase del conjunto de clases $\{C_1, \dots, C_L\}$. \\
+	$\bm{w}$ & Vector normal al hiperplano en SVM. \\
+	$\beta$ & Término de sesgo o intercepto en SVM o regresión logística. \\
+	$\xi_i$ & Variable de holgura (slack) para el registro $i$ en SVM de margen suave. \\
+	$C$ & Parámetro de regularización en SVM que controla el equilibrio entre margen y errores. \\
+	$K(\bm{a},\bm{b})$ & Función kernel que calcula la similitud entre vectores $\bm{a}$ y $\bm{b}$. \\
+	$\gamma$ & Parámetro de ancho en el kernel RBF (Radial Basis Function). \\
+	$r$ & Coeficiente de desplazamiento en kernels polinómicos y sigmoides. \\
+	$d'$ & Grado del polinomio en el kernel polinómico (usamos d prima para diferenciar de $D$). \\
+	$\tilde{J}(\bm{\beta})$ & Función de costo regularizada en regresión logística. \\
+	$\alpha$ & Parámetro de regularización L1 (Lasso) o L2 (Ridge) en regresión. \\
+	$\bm{H}$ & Matriz Hessiana de la función de costo en métodos Newton-CG. \\
+	$\bm{B}$ & Aproximación de la matriz Hessiana en BFGS. \\
+	$\hat{y}$ & Predicción final en un modelo de clasificación. \\
+	$\widehat{y_a}(\bm{x})$ & Predicción del árbol $a$ en Random Forest para la observación $\bm{x}$. \\
+	$A$ & Número total de árboles en un Random Forest. \\
+	$M_l$ & Valor de la métrica (accuracy, F1, etc.) para la clase $l$. \\
+	$|y_l|$ & Cardinalidad o número de registros pertenecientes a la clase $l$. \\
+	$\widehat{M}_{\text{weighted}}$ & Métrica ponderada por tamaño de clase en problemas multiclase. \\
+	$K$ & Número de pliegues en validación cruzada $K$-fold. \\
+	$G_i$ & $i$-ésimo pliegue o grupo en validación cruzada. \\
+	$H(D)$ & Entropía de Shannon del conjunto de datos $D$. \\
+	$\text{Gini}(t)$ & Índice de Gini de un nodo $t$ en un árbol de decisión. \\
+	$f(x)$ & Función de densidad de probabilidad gaussiana para atributo continuo. \\
+	$\mu_{jl}$ & Media del atributo $X_j$ en la clase $C_l$. \\
+	$\sigma_{jl}^2$ & Varianza del atributo $X_j$ en la clase $C_l$. \\
+	\bottomrule
+\end{longtable}
+
+\chapter{Descripción de los Métodos Utilizados}
+
+%% AR: Agregar un breve texto que indique lo que se va a presentar en este capítulo.
+%% NS: Ahí agregue algo más.
+\noindent
+En este capítulo se presentan los métodos de aprendizaje automático supervisado que se emplearon en este trabajo. 
+Se describen sus fundamentos teóricos, las fórmulas y notaciones utilizadas, así como los hiperparámetros y criterios de optimización más relevantes. 
+El objetivo es describir y explicar como funcionan cada uno de los algoritmos, sus supuestos y la forma en que se aplican a los datos cardiólogos analizados.
+
+\noindent
+Un \textbf{hiperparámetro} es un parámetro cuyo valor se fija antes del proceso de entrenamiento de un modelo y que controla aspectos del aprendizaje, como la complejidad del modelo, la velocidad de convergencia o la regularización. 
+A diferencia de los parámetros internos del modelo (por ejemplo, los pesos en una regresión logística o en una red neuronal), los hiperparámetros no se aprenden automáticamente a partir de los datos, sino que deben ser seleccionados mediante experimentación, validación cruzada u optimización de hiperparámetros, siendo un análisis en sí mismos.
+
+
+\section{Regresión Logística}
+
+\noindent
+El modelo de \textbf{Regresión Logística}~\cite{cramer2002origins} (LR, por su equivalente en inglés \emph{Logistic Regression}) es una técnica del análisis de datos utilizada para establecer relaciones entre las variables predictoras y la clase a la cual pertenece cada registro. El modelo permite predecir la probabilidad de que un nuevo registro pertenezca a una clase determinada. Este tipo de modelo de regresión es justamente utilizado para los problemas no linealmente separables, como la mayoría de los problemas.\\
+
+\noindent
+A diferencia de la regresión lineal múltiple, la regresión logística predice una probabilidad (valor entre 0 y 1). Ambos modelos son lineales en sus parámetros, pero difieren en la naturaleza de la variable dependiente. El objetivo es estimar los coeficientes de regresión que maximizan la verosimilitud de los datos observados, o encontrar los coeficientes que mejor funcionan para los datos de entrenamiento.\\
+
+\noindent
+El modelo busca estimar la probabilidad condicional de que una observación pertenezca a la clase positiva (o clase objetivo), donde $l_i$ representa la etiqueta verdadera del registro $i$, tomando el valor $l_i = 1$ si la observación pertenece a la clase objetivo y $l_i = 0$ en caso contrario:
+
+\begin{equation}
+	P(l_i = 1 \mid \bm{x}_i),
+	\label{eq:probabilidad_condicional}
+\end{equation}
+
+\noindent
+donde $\bm{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$, el cual también llamamos registro, en el cual $k$ es la cantidad de atributos que posee la observación.\\
+%% AR: ¿Quién es $l_i$?
+%% NS: Ahí debería de estar.
+
+\noindent
+Por lo cual, la función logística define la \textbf{función de probabilidad} de pertenencia de $\bm x_{i}$ a la clase $1$ como:
+
+\begin{equation}
+	p(\bm{x}_i) = P(l_i = 1 \mid \bm{x}_i) =
+	\frac{\exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
+	{1 + \exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})},
+	\label{eq:funcion_logistica}
+\end{equation}
+
+\noindent
+donde $\beta_0$ es el intercepto y $\beta_j$ son los coeficientes asociados a cada predictor, para $j=1,2,\dots,k$.\\
+
+\noindent
+La función inversa de la función logística, denominada \textbf{\textit{función logit}}, relaciona el logaritmo de las \emph{odds} con un modelo lineal, siendo \emph{odds} lo que se utiliza para analizar si la probabilidad de ocurrencia de un evento -caso/no caso- difiere o no en distintos grupos,
+
+%\begin{equation}
+%	\text{logit}(\textbf{antilogic}(x)) = x
+%	\label{eq:logit}
+%\end{equation}
+
+
+%\begin{equation}
+%	\text{odds} =
+%	\frac{p}{1 - p} 
+%	\label{eq:odds}
+%\end{equation}
+
+
+\begin{equation}
+	\text{logit}(p(\bm{x}_i)) =
+	\ln \left( \frac{p(\bm{x}_i)}{1 - p(\bm{x}_i)} \right)
+	= \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}.
+	\label{eq:funcion_logit}
+\end{equation}
+
+\noindent
+Esta transformación asegura que las probabilidades estén acotadas entre 0 y 1, mientras que la combinación lineal de predictores puede tomar cualquier valor real, siendo este último punto un factor que realiza el cálculo de coeficientes muy difícil.
+Para solucionar este obstáculo, el cálculo de los coeficientes de regresión se estiman mediante el método de \textbf{Máxima Verosimilitud} (MLE), donde la función de log-verosimilitud a maximizar es
+
+\begin{equation}
+	\ell(\beta_0, \beta_1, \dots, \beta_k) =
+	\sum_{i=1}^{n} \left[
+	l_i \ln(p(\bm{x}_i)) +
+	(1 - l_i) \ln(1 - p(\bm{x}_i))
+	\right],
+	\label{eq:log_verosimilitud}
+\end{equation}
+%% AR: ¿Quién es n?
+%% NS: n lo habiía definido en Accuracy. Seguro ponga todas las notaciones al principio.
+\noindent
+en donde la solución analítica no existe, por lo que se utilizan métodos numéricos iterativos para obtener los parámetros óptimos.\\
+
+\noindent
+\textbf{Hiperparámetros}
+%% AR: Acá habría que aclara que son los hiperparámetros que se usan en Python. Quizás se pueda poner algo general en la intro del capítulo.
+%% NS: Lo hago en la into.
+\noindent
+\begin{itemize}
+	\item \textbf{Parámetro de Regularización ($C$):} Controla la complejidad del modelo. Valores pequeños de $C$ implican mayor regularización (menor sobreajuste), mientras que valores grandes permiten mayor flexibilidad del modelo.
+	
+	\item \textbf{Penalización (\textit{penalty}):} Es un término regulador que se suma a la función de coste original ($J$) para formar una función ajustada $\tilde{J}$. Controla la capacidad del modelo y reduce el error de generalización.
+	
+	\begin{itemize}
+		
+		\item  Regularización L1 (Lasso):
+		\begin{equation}
+			\tilde{J}_{L1}(\boldsymbol{\beta}) =
+			J(\boldsymbol{\beta}) +
+			\alpha \sum_{j=1}^{k} |\beta_j|,
+			\label{eq:l1_penalty}
+		\end{equation}
+		donde
+		\begin{itemize}
+			\item \(\beta_j\) son los coeficientes del modelo, que representan la influencia de cada variable \(x_j\) en la predicción, para $j=1,2,\dots,k$;
+			\item Donde \(\alpha \ge 0\) es el parámetro de regularización que controla la intensidad de la penalización: valores más altos implican mayor castigo a los coeficientes. %% AR: ¿Hay alguna restricción para su valor?
+			%% NS: Ahí lo agregue.
+		\end{itemize}
+		%{eq:l1_penalty}{}
+		
+		%% AR: En lo que sigue, respetar el estilo que modifiqué para L1.
+		\item Regularización L2 (Ridge).
+		\begin{equation}
+			\tilde{J}_{L2}(\boldsymbol{\beta}) =
+			J(\boldsymbol{\beta}) +
+			\frac{1}{2}\alpha \sum_{j=1}^{k} \beta_j^2,
+			\label{eq:l2_penalty}
+		\end{equation}
+		donde
+		\begin{itemize}
+			\item \(\beta_j\) controla cuánto influye cada característica sobre la salida.
+			\item \(\alpha\) determina cuánto se penaliza el tamaño de los coeficientes, evitando que crezcan demasiado.
+		\end{itemize}
+		
+		%{eq:l2_penalty}{}
+		
+		\item Regularización Elastic Net
+		\begin{equation}
+			\tilde{J}_{EN}(\boldsymbol{\beta}) =
+			J(\boldsymbol{\beta}) +
+			\alpha \left[
+			\rho \sum_{j=1}^{k} |\beta_j| +
+			\frac{1 - \rho}{2} \sum_{j=1}^{k} \beta_j^2
+			\right],
+			\label{eq:elasticnet_penalty}
+		\end{equation}
+		donde
+		\begin{itemize}
+			\item \(\beta_j\) son los coeficientes asociados a cada característica.
+			\item \(\alpha\) controla el grado total de regularización.
+			\item \(\rho\) balancea la combinación entre L1 y L2.
+		\end{itemize}
+		%{eq:elasticnet_penalty}{}
+		
+	\end{itemize}
+	
+	\item \textbf{Algoritmo de Optimización (\textit{solver}):}  
+	El \textit{solver} es el algoritmo numérico encargado de minimizar la función de coste regularizada $\tilde{J}(\boldsymbol{\beta})$.
+	
+	\begin{itemize}
+		\item Método Newton-CG (basado en segunda derivada).
+		\begin{equation}
+			\boldsymbol{\beta}^{(t+1)} \leftarrow
+			\boldsymbol{\beta}^{(t)} -
+			\bm{H}^{-1}
+			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)}),
+			\label{eq:newtoncg}
+		\end{equation}
+		%% AR: ¿La flecha no sería un igual?
+		%% NS: Es iterativo en t iteraciones, lo aclaro?
+		donde \(\boldsymbol{\beta}\) es el vector de parámetros del modelo que se actualiza en cada iteración. El método utiliza el gradiente y la inversa de la matriz Hessiana (o una aproximación de la misma mediante \emph{Conjugate Gradient}) para determinar la dirección de actualización del vector de parámetros.
+		%% AR: El hessiano es el determinante de la matriz Hessiana. ¿Es esto lo que se usa o la inversa de la matriz hessiana?
+		%% NS: Es la inversa el que se usa, y se intenta evitar.
+		%		%{eq:newtoncg}{}
+		
+		\item Método BFGS (quasi-Newton).
+		\begin{equation}
+			\boldsymbol{\beta}^{(t+1)} \leftarrow
+			\boldsymbol{\beta}^{(t)} -
+			\bm{B}^{-1}
+			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)}).
+			\label{eq:bfgs}
+		\end{equation}
+		
+		En este método, \(\boldsymbol{\beta}\) también es el vector de parámetros a optimizar. La matriz \(\bm{B}\) aproxima al Hessiano, permitiendo actualizaciones sin calcular derivadas segundas reales.
+		%		%{eq:bfgs}{}
+		
+		\item Método Saga. 
+		Un algoritmo de tipo \emph{stochastic gradient descent} con soporte para regularización L1 y L2. Permite trabajar con grandes datasets y converger de manera estable incluso con penalización L1.
+		
+		\item Método Liblinear.
+		Optimiza la función de coste usando un método de descenso por coordenadas, eficiente para datasets grandes y modelos lineales. Soporta L1 y L2.
+	\end{itemize}
+	
+	\item 
+	\textbf{Estrategia Multiclase (\textit{multi\_class}):}
+	La regresión logística está diseñada originalmente para clasificación binaria. Para extenderla a múltiples clases se emplean estrategias como:
+	\begin{itemize}
+		\item \textit{one-vs-rest} (OvR): Entrena un clasificador por clase.
+		\item \textit{multinomial}: Optimiza una única función de verosimilitud multinomial conjunta.
+	\end{itemize}
+\end{itemize}
+
+\section{Árboles de Decisión}
+
+\noindent
+El aprendizaje mediante \textbf{Árboles de Decisión} es un método no paramétrico que utiliza divisiones jerárquicas sobre los atributos de los datos, construyendo reglas de decisión del tipo \textit{if-else} para predecir el valor de una variable objetivo.\\
+
+\noindent  
+El objetivo principal es encontrar las divisiones (particiones) que maximicen la pureza de los nodos hijos, es decir, que minimicen la impureza del nodo resultante. Es un método mucho más sencillo de realizar, donde se crea un camino de decisión, por lo cual según los valores de los atributos de un registro podemos predecir a que clase pertenecen $C_l$, donde el cómputo pesado se encuentra en la creación del propio camino. \\
+
+%% AR: puesto que las clases se usan en diversos contextos a lo largo del trabajo, usaría una notación común, que se puede introducir al comienzo de este capítulo (previo cambio con el capítulo de métricas), deciendo algo del estilo "En lo que resta del documento...".
+%% NS: Ok, lo agrego.
+\noindent
+En consecuencia, la probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_l$ se define como
+
+\begin{equation}
+	p(l|t) = \frac{N_l(t)}{N(t)},
+	\label{eq:probabilidad_clase_nodo}
+\end{equation}
+
+
+\noindent
+donde $N(t)$ es la cantidad total de ejemplos en el nodo $t$, y $N_l(t)$ la cantidad de ejemplos de la clase $C_l$. Es importante este fenómeno porque es un costo computacional muy barato el calcular esta probabilidad y se asemejan a las probabilidades equiprobables, donde la probabilidad de una clase en un nodo está dada por la cantidad de ejemplos de la clase que tienen en el mismo.\\
+%% AR: ¿De clases o de ejemplos?
+
+\noindent
+De esta manera, la impureza de un nodo $t$ se mide mediante una función $\phi$ que depende de las probabilidades de clase en dicho nodo. La función de impureza $i$ es un hiperparámetro en sí mismo, y debe cumplir las siguientes condiciones:
+
+\begin{itemize}
+	\item \textbf{No negatividad:}
+	\[
+	\phi(\mathbf{p}) \ge 0.
+	\]
+	
+	\item \textbf{Impureza mínima en nodos puros:}
+	\[
+	\phi(\mathbf{p}) = 0 \quad \text{si existe } l \text{ tal que } p_l = 1.
+	\]
+	
+	\item \textbf{Máxima impureza con distribución uniforme:}
+	\[
+	\phi(\mathbf{p}) \text{ es máxima cuando } p_l = \frac{1}{L} \quad \forall l.
+	\]
+\end{itemize}
+
+\noindent
+Tanto el índice de Gini como la entropía de Shannon satisfacen estas propiedades, por lo que son funciones de impureza válidas para la construcción del árbol.
+%% AR: No es cualquier función, sino que debe cumplir ciertas propiedades.
+%% NS: Ahí las coloque.
+\begin{equation}
+	i(t) = \phi \big( p(1|t), p(2|t), \ldots, p(K|t) \big).
+	\label{eq:impureza_general}
+\end{equation}
+
+
+\noindent
+La impureza es máxima cuando las clases están perfectamente mezcladas y es mínima (cero) cuando el nodo contiene solo una clase, en donde la impureza máxima sería que la probabilidad de cada clase son aleatoria, ya que están perfectamente mezcladas.\\
+%% AR: Las probabilidades son aleatorias.
+
+%% AR: Incluir una frase que introduzca lo que se presenta a continuación.
+%% NS: Ahí debería de etar.
+
+
+\noindent
+\textbf{La entropía de Shannon}, mide el grado de desorden o incertidumbre en el conjunto de datos $D$.  
+Toma valores cercanos a cero cuando el nodo es puro y crece a medida que las clases se distribuyen de forma más uniforme,
+
+\begin{equation}
+	H(D) = - \sum_{k=1}^K 
+	\frac{N_k(D)}{N(D)} 
+	\log_2 \left( \frac{N_k(D)}{N(D)} \right).
+	\label{eq:entropia_shannon}
+\end{equation}
+
+
+\noindent
+\textbf{Índice de Gini} cuantifica la probabilidad de clasificar incorrectamente una instancia si se asigna aleatoriamente según la distribución de clases en $t$.  
+Al igual que la entropía, es mínimo cuando el nodo es puro y aumenta cuando las clases están mezcladas.
+\begin{equation}
+	\text{Gini}(t) = 
+	1 - \sum_{k=1}^K \big[p(k|t)\big]^2 =
+	1 - \sum_{k=1}^K \left(\frac{N_k(t)}{N(t)}\right)^2.
+	\label{eq:indice_gini}
+\end{equation}
+
+
+\noindent
+La \textbf{reducción de impureza} generada al dividir el nodo $t$ en dos nodos hijos $t_1$ y $t_2$ mediante una partición $s$ se calcula como
+
+\begin{equation}
+	\Delta i(s, t) = i(t) - q_1 i(t_1) - q_2 i(t_2),
+	\label{eq:disminucion_impureza}
+\end{equation}
+
+donde $q_j = \frac{N(t_j)}{N(t)}$ para $j = 1, 2$.
+
+\subsection{Bosques Aleatorios (Random Forest)}
+
+\noindent
+El algoritmo de \textbf{Random Forest}~\cite{Breiman2001} (RF)
+%%AR: No hay equivalente ya que así se presentó.
+%% NS: Ok.
+combina múltiples árboles de decisión independientes construidos sobre subconjuntos aleatorios de los datos (muestreo con reemplazo o \emph{bootstrap}).  
+Cada árbol se entrena sobre un subconjunto de atributos aleatorios en cada división, lo que introduce diversidad y reduce la varianza.\\
+
+\noindent
+La predicción final para clasificación se obtiene mediante el voto mayoritario de los árboles
+
+\begin{equation}
+	\hat{y} = 
+	\underset{l \in \mathcal{L}}{\operatorname{argmax}}
+	\sum_{a=1}^{A} \mathbb{I}
+	\big( \widehat{y_a}(\bm{x}) = l \big) ,
+	\label{eq:voto_random_forest}
+\end{equation}
+
+
+\noindent
+donde $\widehat{y_a}(\bm{x})$ es la predicción del árbol $a$, y $A$ es la cantidad total de árboles en el bosque.\\
+%% AR: ¿Quiénes son $\mathcal{C}$ e $\mathbb{I}$ ? Para la última antes se usó 1 (hay que unificar). Observar, además, que $M$ se usó para métrica.
+%% NS: Ahí lo corregí, despues los agrego a las notaciones.
+
+
+\noindent
+\textbf{Hiperparámetros}
+
+\begin{itemize}
+	
+	\item \textbf{Criterio de Partición:} 
+	Función de impureza utilizada para evaluar la calidad de una división. 
+	En \texttt{scikit-learn}, las opciones disponibles son:
+	\texttt{``gini''} (índice de Gini) y \texttt{``entropy''} (entropía de Shannon).
+	
+	\item \textbf{Algoritmo de Construcción:} 
+	\textit{ID3} emplea la ganancia de información (entropía), mientras que \textit{CART} utiliza el índice de Gini y construye árboles binarios.
+	En \texttt{scikit-learn}, el árbol implementado corresponde a una versión optimizada de \textit{CART}.
+	%% AR: Se podrían incluir referencias.
+	%% NS: Las busco.
+	\item \textbf{Número de Atributos Muestreados (\texttt{max\_features}):} 
+	Cantidad de atributos candidatos por división.  
+	En Random Forest, las opciones típicas son:
+	\[
+	\texttt{``sqrt''} = \sqrt{a}, \qquad
+	\texttt{``log2''} = \ln(a),
+	\]
+	o bien un número entero, un porcentaje o \texttt{None} (usar todos los atributos).
+	
+	\item \textbf{Número de Árboles (\texttt{n\_estimators}):} 
+	Cantidad total de árboles que componen el bosque en Random Forest. Valores altos reducen la varianza pero aumentan el costo computacional.
+	
+	\item \textbf{Profundidad Máxima (\texttt{max\_depth}):} 
+	Límite superior a la altura del árbol. Un valor \texttt{None} permite crecer hasta que las hojas sean puras o no haya más divisiones posibles.
+	
+	\item \textbf{Tamaño Mínimo de Muestra para Dividir (\texttt{min\_samples\_split}):} 
+	Número mínimo de muestras requerido para realizar una partición interna.
+	
+	\item \textbf{Tamaño Mínimo de Muestra en una Hoja (\texttt{min\_samples\_leaf}):}
+	Cantidad mínima de muestras que debe contener una hoja para evitar sobreajuste.
+	
+	\item \textbf{Profundidad Mínima del Nodo Interno (\texttt{min\_impurity\_decrease}):}
+	Umbral mínimo de reducción de impureza necesario para aceptar una división.
+	
+	\item \textbf{Bootstrap (\texttt{bootstrap}):}
+	Indica si los árboles del bosque se entrenan con muestras generadas mediante remuestreo con reemplazo. Por defecto, \texttt{True} en Random Forest.
+	%% AR: En los dos últimos, no creo que la notación sea RF.
+	%% NS: No, se me chispoteo.
+\end{itemize}
+
+
+\section{Clasificador Naïve Bayes}
+
+\noindent
+El \textbf{Clasificador Naïve Bayes}~\cite{hand2001idiot} (NB) es un método supervisado probabilístico basado en el \textit{Teorema de Bayes}, que asume independencia condicional entre los atributos dado la clase. Esta suposición, aunque en la práctica rara vez se cumple estrictamente —porque las variables suelen estar correlacionadas entre sí. 
+%% AR: Esta última oración está inclompleta.
+La regla de clasificación, o la probabilidad de pertenencia de un registro a una clase $C_l$, donde para cada clases $l \in \{1, 2, \dots, L\}$, donde cada registro tiene $D$ atributos, indexados por $d \in \{1, 2, \dots, D\}$.
+
+\begin{equation}
+	P(Y = C_l \mid X_1 = x_1, \ldots, X_d = x_d)
+	= \frac{
+		P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_l) \, P(Y = C_l)
+	}{
+		P(X_1 = x_1, \ldots, X_d = x_d)
+	},
+	\label{eq:bayes_general}
+\end{equation}
+
+%% AR: Observar que antes se usó k para la cantidad de predictoras (o atributos), ahora se usa d. k también se usó para clases. Hay que unificar notación.
+%% NS: Ahí lo arregle.
+
+\noindent
+En donde $P(Y = C_l)$ es la \textbf{probabilidad \emph{a priori}} de la clase $C_l$ (qué tan frecuente es en el conjunto de datos). Luego, $P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_l)$ es la \textbf{verosimilitud}, es decir, cuán probable es observar las características de un registro si supiéramos que pertenece a la clase $C_l$.
+
+\paragraph{Probabilidad Condicional:}
+
+Bajo el supuesto de independencia condicional, la probabilidad condicional puede expresarse como
+
+\begin{equation}
+	P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_l)
+	= \prod_{j=1}^{d} P(X_j = x_j \mid Y = C_l),
+	\label{eq:independencia_condicional}
+\end{equation}
+
+
+\noindent
+Por lo tanto, basta estimar individualmente, para cada atributo 
+$X_j$ con $j \in \{1,2,\dots,D\}$ y para cada clase 
+$C_l$ con $l \in \{1,2,\dots,L\}$, la probabilidad:
+
+\begin{equation}
+	\hat{\theta}_{jvl} =
+	P(X_j = x_{jv} \mid Y = C_l) =
+	\frac{\left| \{\,X_j = x_{jv} \,\wedge\, Y = C_l\,\} \right|}
+	{|Y_l|} ,
+	\label{eq:probabilidad_condicional}
+\end{equation}
+%% AR: Hay que indicar el rango en el que varía cada uno de los subíndices.
+%% NS: LIsto, 
+
+\noindent
+donde $v \in \{1,2,\dots,V_j\}$ indexa los valores posibles del atributo $X_j$.
+
+\noindent
+Aquí, cada parámetro cumple una función específica:
+\begin{itemize}
+	
+	\item $\hat{\theta}_{jvl}$: probabilidad estimada de que el atributo $X_j$ tome el valor $x_{jv}$ dentro de la clase $C_l$.  
+	Representa qué tan típico es ese valor dentro de una clase.
+	%% AR: Falta el sombrero.
+	%% NS: Listo.
+	\item $\left| \{\,X_j = x_{jv} \wedge Y = C_l\,\} \right|$: cantidad de registros en los que el atributo $X_j$ toma el valor $x_{jv}$ y simultáneamente la clase es $C_l$.
+	%% AR: No es claro, falta el numeral y el conjunto. Observar que antes se usó barra para notar cantidad de elementos.
+	%% NS: Use las barras para la cardinaldiad.
+	\item $|Y_l|$: número total de registros pertenecientes a la clase $C_l$.
+	%% AR: Mismo comentario que en el punto anterior.
+	%% NS: Idem.
+\end{itemize}
+
+
+
+\noindent
+Podemos pensar a $\theta_{jmk}$ como una especie de \textit{“frecuencia interna de la clase”}, una medida que indica qué características son más comunes dentro de cada grupo.\\
+
+%% AR: En lo que sigue, reemplazar "a priori" por \emph{a priori}.
+
+\paragraph{Probabilidad a Priori:}
+
+
+
+Otra estimación fundamental a calcular y expresar es la \emph{a priori}.
+%, en la cual se asemeja a la probabilidad de que un nodo pertenezca a una clase $k$ en \textit{Random Forest}
+%% AR: No pondría lo de RF.
+%% NS: Lo comente.
+\begin{equation}
+	\hat{\pi}_l = P(Y = C_l) =
+	\frac{\#\{Y = C_l\}}{n'}.
+	\label{eq:probabilidad_priori}
+\end{equation}
+
+\noindent
+Los parámetros involucrados son:\\
+
+\begin{itemize}
+	
+	\item $\hat{\pi}_l$: probabilidad estimada de que un registro pertenezca a la clase $C_k$.
+	Corresponde a la frecuencia relativa de esa clase en la muestra.
+	%% AR: falta sombrero.
+	%% NS: Listo y lo puse consistente.
+	
+	\item $|Y_l|$: cantidad de registros cuya clase es $C_l$.
+	%% AR: No es correcto.
+	%% NS: Ahí lo modifique.
+	
+	\item $n'$: tamaño muestral total.
+	%% AR: Antes se usó n. No usaría tamaño total, sino tamaño mnuestral. 
+	%% NS: Use n como tamaño total, voy a usar n prima.
+\end{itemize}
+
+\noindent
+La intuición es sencilla: antes de mirar ningún atributo, ¿qué tan probable es cada clase?\\
+
+
+
+%\noindent
+%La clase predicha maximiza la probabilidad a posteriori:
+
+%\begin{equation}
+%	\hat{Y} = 
+%	\underset{C_k}{\operatorname{argmax}}
+%	\left[
+%	P(Y = C_k)
+%	\prod_{j=1}^{d} P(X_j = x_j \mid Y = C_k)
+%	\right]
+%	\label{eq:regla_clasificacion_nb}
+%\end{equation}
+
+
+\noindent
+\textbf{Caso Continuo (Naïve Bayes Gaussiano)}
+
+\noindent
+Cuando los atributos son continuos y se asume distribución normal, las verosimilitudes se estiman con la función de densidad Gaussiana:
+
+\begin{equation}
+	f(x) =
+	\frac{1}{\sigma \sqrt{2\pi}}
+	\exp \left[
+	-\frac{1}{2} \left(
+	\frac{x - \mu}{\sigma}
+	\right)^2
+	\right],
+	\label{eq:densidad_gaussiana}
+\end{equation}
+
+
+\noindent
+por lo cual la decisión final se obtiene como
+
+\begin{equation}
+	\hat{Y} = 
+	\underset{C_k}{\operatorname{argmax}}
+	\left[
+	\log P(Y = C_l) +
+	\sum_{j=1}^{d}
+	\log f(x_j \mid \mu_{jl}, \sigma_{jl}^2)
+	\right].
+	\label{eq:decision_gaussiana}
+\end{equation}
+%% AR: ¿Quiénes son las medias y las varianzas?
+%% NS: Ahí lo agregue
+\noindent
+donde los parámetros de la distribución normal para cada atributo \(X_j\) y clase \(C_l\) se estiman como
+
+\begin{equation}
+	\hat{\mu}_{jl}
+	= \frac{1}{|Y_l|}
+	\sum_{i : Y_i = C_l} x_{ij},
+	\label{eq:media_gaussiana}
+\end{equation}
+
+\begin{equation}
+	\hat{\sigma}_{jl}^2
+	= \frac{1}{|Y_l|}
+	\sum_{i : Y_i = C_l}
+	\left( x_{ij} - \hat{\mu}_{jl} \right)^2.
+	\label{eq:varianza_gaussiana}
+\end{equation}
+
+
+
+\section{Máquinas de Soporte Vectorial (SVM)}
+
+\noindent
+Las \textbf{Máquinas de Soporte Vectorial}~\cite{Cortes1995} (SVM, por sus siglas en inglés) constituyen una técnica de clasificación supervisada basada en la búsqueda de una \textbf{función de decisión} que permita predecir la clase de una observación a partir de sus atributos. Dado que este método opera sobre variables numéricas, los atributos categóricos deben codificarse previamente.\\
+
+\noindent
+El objetivo fundamental de una SVM es encontrar un \textbf{hiperplano de separación óptimo} que divida los datos en función de sus clases, \textbf{maximizando el margen} $\gamma$, es decir, la distancia mínima entre el hiperplano y los puntos más cercanos de cada clase (denominados \textbf{vectores de soporte}). Dichos vectores determinan la posición y orientación del hiperplano, por lo que son los únicos puntos relevantes en el entrenamiento del modelo.\\
+%% AR: M se usó para métrica.
+%% NS: Uso gamma 
+Aunque existen infinitos hiperplanos que pueden separar los datos, el principio de las SVM consiste en seleccionar aquel que logre la \textbf{máxima separación posible entre las clases}, minimizando simultáneamente el riesgo de sobreajuste y aumentando la capacidad de generalización.\\
+
+
+\noindent
+El caso de \textbf{Margen Rígido (Hard Margin)} separa perfectamente las clases sin errores de clasificación. En este caso, el problema de optimización se formula como:
+
+\begin{equation}
+	\text{Minimizar }
+	\frac{1}{2} |\bm{w}|^2
+	\quad \text{sujeto a }
+	y_i (\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 ,
+	\label{eq:hard_margin}
+\end{equation}
+
+\noindent
+donde 
+$\bm{w}$ es el vector normal al hiperplano, 
+$\beta$ es el término de sesgo, 
+$\bm{x}_i$ es el $i$-ésimo registro del conjunto de datos, 
+$y_i \in \{-1, +1\}$ es la etiqueta asociada a dicho registro,
+y la restricción garantiza que todas las observaciones queden correctamente clasificadas y a una distancia mínima de 
+$\frac{1}{\lVert \bm{w} \rVert}$ del hiperplano.\\
+%% AR: ¿Quiénes son los $y_i$?
+%% NS: Listo.
+
+\noindent
+Pero hay un gran obstáculo, debido a que en la práctica los datos rara vez son perfectamente separables. Por ello, se introduce el concepto de \textbf{Margen Suave (Soft Margin)}, que permite violaciones controladas de las restricciones mediante variables de holgura $ \xi_i \ge 0 $.
+%% AR: ¿\theta o \xi?
+%% NS: Ahi deje \xi.
+El problema se redefine como:
+
+\begin{equation}
+	\text{Minimizar } 
+	\frac{1}{2} \lVert \bm{w} \rVert^2 +
+	C \sum_{i=1}^{n} \xi_i
+	\quad \text{sujeto a }
+	\begin{cases}
+		y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 - \xi_i, \\
+		\xi_i \ge 0,
+	\end{cases}
+	\label{eq:soft_margin}
+\end{equation}
+%% AR: Las restricciones no quedaron bien.
+%% NS: Las puse en cases, sino va avisame y las coloco como antes pero con la coma que iría.
+
+\noindent
+donde el parámetro $C > 0$ actúa como un \textbf{control de regularización}: valores grandes de $C$ penalizan más fuertemente los errores, buscando una separación más estricta (a costa de menor margen), mientras que valores pequeños permiten más errores, favoreciendo márgenes amplios y mayor generalización.\\
+
+
+\noindent
+La \textbf{Formulación Dual} del problema, en lo que respecta a los dos margenes permite expresar la solución en términos de los productos internos entre las observaciones:
+
+\begin{equation}
+	\text{Maximizar }
+	-\frac{1}{2} \sum_{i,\ell=1}^{n}
+	\alpha_i \alpha_\ell y_i y_\ell
+	K(\bm{x}_i, \bm{x}_\ell)
+	+ \sum_{i=1}^{n} \alpha_i,
+	\label{eq:dualsvm}
+\end{equation}
+
+\begin{equation}
+	\text{sujeto a }
+	0 \le \alpha_i \le C, \quad
+	\sum_{i=1}^{n} \alpha_i y_i = 0.
+\end{equation}
+
+\noindent
+Aquí, los \(\alpha_i\) son los multiplicadores de Lagrange asociados a las restricciones, y \(K(\bm{x}_i, \bm{x}_\ell)\) representa el producto interno entre las observaciones en un espacio transformado.\\
+
+
+\noindent
+En muchos casos, las clases no son separables linealmente en el espacio original de los datos. El \textbf{Kernel Trick} permite proyectar los datos a un espacio de mayor dimensión (posiblemente infinito) donde sí exista un hiperplano separador, \emph{sin necesidad de calcular explícitamente la transformación}.\\
+
+\noindent
+Esto se logra sustituyendo los productos internos \(\langle \bm{x}_i, \bm{x}_\ell \rangle\) por una función \textbf{kernel} \(K(\bm{x}_i, \bm{x}_\ell)\), que computa directamente el producto interno en el espacio transformado.
+De esta forma, se mantiene la eficiencia computacional mientras se obtiene un modelo capaz de representar fronteras de decisión no lineales.
+
+\subsubsection{Funciones Kernel Comunes}
+
+\noindent
+En las siguientes definiciones, los vectores 
+$\bm{a}, \bm{b} \in \mathbb{R}^D$ representan puntos de datos en el 
+espacio original de características. Cada kernel introduce parámetros 
+que controlan la flexibilidad del modelo:
+
+\begin{itemize}
+	\item $\gamma > 0$: controla la influencia local de los puntos 
+	(utilizado en el kernel RBF y el sigmoide).
+	\item $r \in \mathbb{R}$: término independiente o sesgo 
+	(usado en los kernels polinómico y sigmoide).
+	\item $d' \in \mathbb{N}$: grado del polinomio 
+	en el kernel polinómico.
+\end{itemize}
+%% AR: Hay que indicar qué representan a, b, d, r y gamma.
+%% NS: Ahí esta.
+
+
+\paragraph{Kernel Lineal:}
+\begin{equation}
+	K(\bm{a}, \bm{b}) =
+	\langle \bm{a}, \bm{b} \rangle.
+	\label{eq:kernel_lineal}
+\end{equation}
+
+\paragraph{Kernel Radial (RBF o Gaussiano):}
+\begin{equation}
+	K(\bm{a}, \bm{b}) =
+	\exp \left( -\gamma \|\bm{a} - \bm{b}\|^2 \right).
+	\label{eq:kernel_rbf}
+\end{equation}
+
+\paragraph{Kernel Polinómico:}
+\begin{equation}
+	K(\bm{a}, \bm{b}) =
+	(\langle \bm{a}, \bm{b} \rangle + r)^\textbf{$d'$}.
+	\label{eq:kernel_polinomico}
+\end{equation}
+
+\paragraph{Kernel Sigmoide:}
+\begin{equation}
+	K(\bm{a}, \bm{b}) =
+	\tanh(\gamma \langle \bm{a}, \bm{b} \rangle + r).
+	\label{eq:kernel_sigmoid}
+\end{equation}
+
+\noindent
+\textbf{Hiperparámetros}
+
+\begin{itemize}
+	\item \textbf{Parámetro de Regularización (\(C\)):}
+	Controla el equilibrio entre maximizar el margen y permitir errores de clasificación. 
+	Valores altos priorizan clasificar correctamente los datos de entrenamiento; valores bajos generan un margen más amplio y toleran mayor error, donde $C > 0$.
+	
+	\item \textbf{Tipo de Kernel (\texttt{kernel}):}
+	Determina la forma de la frontera de decisión. 
+	Scikit-learn permite: \texttt{linear}, \texttt{poly}, \texttt{rbf}, \texttt{sigmoid} (y \texttt{precomputed}).
+	
+	\item \textbf{Parámetros del Kernel:}
+	Dependiendo del tipo elegido, scikit-learn utiliza:
+	\begin{itemize}
+		\item \(\gamma\): controla la influencia de los puntos en kernels \texttt{rbf}, \texttt{poly} y \texttt{sigmoid}, $\gamma > 0 $.  
+		Es equivalente a \( \tfrac{1}{2\sigma^2} \) en formulaciones gaussianas, aunque scikit-learn nunca usa \(\sigma\) explícitamente.
+		\item \(d'\) (\texttt{degree}): grado del polinomio cuando el kernel es \texttt{poly}, $d' \ge 1$ .
+		\item \(r\) (\texttt{coef0}): coeficiente independiente usado por los kernels \texttt{poly} y \texttt{sigmoid}.
+	\end{itemize}
+\end{itemize}
+
+
+
+%% AR: En lo anterior nunca apareció sigma.
+%% NS: Ahí mantuve todo como hacía en los anteriroes.
 
 	
 
@@ -851,726 +1648,6 @@ Para extender la métrica $AUC$ a clasificación multiclase se emplea el enfoque
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-%% AR: Pondría primero los modelos y luego las métricas.
-
-\chapter{Descripción de los Métodos Utilizados}
-
-%% AR: Agregar un breve texto que indique lo que se va a presentar en este capítulo.
-
-
-\section{Regresión Logística}
-
-\noindent
-El modelo de \textbf{Regresión Logística}~\cite{cramer2002origins} (LR, por su equivalente en inglés \emph{Logistic Regression}) es una técnica del análisis de datos utilizada para establecer relaciones entre las variables predictoras y la clase a la cual pertenece cada registro. El modelo permite predecir la probabilidad de que un nuevo registro pertenezca a una clase determinada. Este tipo de modelo de regresión es justamente utilizado para los problemas no linealmente separables, como la mayoría de los problemas.\\
-
-\noindent
-A diferencia de la regresión lineal múltiple, la regresión logística predice una probabilidad (valor entre 0 y 1). Ambos modelos son lineales en sus parámetros, pero difieren en la naturaleza de la variable dependiente. El objetivo es estimar los coeficientes de regresión que maximizan la verosimilitud de los datos observados, o encontrar los coeficientes que mejor funcionan para los datos de entrenamiento.\\
-
-\noindent
-El modelo busca estimar la probabilidad condicional de que una observación pertenezca a la clase positiva (o clase objetivo), donde $l_i$ representa la etiqueta verdadera del registro $i$, tomando el valor $l_i = 1$ si la observación pertenece a la clase objetivo y $l_i = 0$ en caso contrario:
-
-\begin{equation}
-	P(l_i = 1 \mid \bm{x}_i),
-	\label{eq:probabilidad_condicional}
-\end{equation}
-
-\noindent
-donde $\bm{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$, el cual también llamamos registro, en el cual $k$ es la cantidad de atributos que posee la observación.\\
-%% AR: ¿Quién es $l_i$?
-%% NS: Ahí debería de estar.
-
-\noindent
-Por lo cual, la función logística define la \textbf{función de probabilidad} de pertenencia de $\bm x_{i}$ a la clase $1$ como:
-
-\begin{equation}
-	p(\bm{x}_i) = P(l_i = 1 \mid \bm{x}_i) =
-	\frac{\exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
-	{1 + \exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})},
-	\label{eq:funcion_logistica}
-\end{equation}
-
-\noindent
-donde $\beta_0$ es el intercepto y $\beta_j$ son los coeficientes asociados a cada predictor, para $j=1,2,\dots,k$.\\
-
-\noindent
-La función inversa de la función logística, denominada \textbf{\textit{función logit}}, relaciona el logaritmo de las \emph{odds} con un modelo lineal, siendo \emph{odds} lo que se utiliza para analizar si la probabilidad de ocurrencia de un evento -caso/no caso- difiere o no en distintos grupos,
-
-%\begin{equation}
-%	\text{logit}(\textbf{antilogic}(x)) = x
-%	\label{eq:logit}
-%\end{equation}
-
-
-%\begin{equation}
-%	\text{odds} =
-%	\frac{p}{1 - p} 
-%	\label{eq:odds}
-%\end{equation}
-
-
-\begin{equation}
-	\text{logit}(p(\bm{x}_i)) =
-	\ln \left( \frac{p(\bm{x}_i)}{1 - p(\bm{x}_i)} \right)
-	= \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}.
-	\label{eq:funcion_logit}
-\end{equation}
-
-\noindent
-Esta transformación asegura que las probabilidades estén acotadas entre 0 y 1, mientras que la combinación lineal de predictores puede tomar cualquier valor real, siendo este último punto un factor que realiza el cálculo de coeficientes muy difícil.
-Para solucionar este obstáculo, el cálculo de los coeficientes de regresión se estiman mediante el método de \textbf{Máxima Verosimilitud} (MLE), donde la función de log-verosimilitud a maximizar es
-
-\begin{equation}
-	\ell(\beta_0, \beta_1, \dots, \beta_k) =
-	\sum_{i=1}^{n} \left[
-	l_i \ln(p(\bm{x}_i)) +
-	(1 - l_i) \ln(1 - p(\bm{x}_i))
-	\right],
-	\label{eq:log_verosimilitud}
-\end{equation}
-%% AR: ¿Quién es n?
-%% NS: n lo habiía definido en Accuracy. Seguro ponga todas las notaciones al principio.
-\noindent
-en donde la solución analítica no existe, por lo que se utilizan métodos numéricos iterativos para obtener los parámetros óptimos.\\
-
-\noindent
-\textbf{Hiperparámetros}
-%% AR: Acá habría que aclara que son los hiperparámetros que se usan en Python. Quizás se pueda poner algo general en la intro del capítulo.
-%% NS: Lo hago en la into.
-\noindent
-\begin{itemize}
-	\item \textbf{Parámetro de Regularización ($C$):} Controla la complejidad del modelo. Valores pequeños de $C$ implican mayor regularización (menor sobreajuste), mientras que valores grandes permiten mayor flexibilidad del modelo.
-	
-	\item \textbf{Penalización (\textit{penalty}):} Es un término regulador que se suma a la función de coste original ($J$) para formar una función ajustada $\tilde{J}$. Controla la capacidad del modelo y reduce el error de generalización.
-	
-	\begin{itemize}
-	
-	\item  Regularización L1 (Lasso):
-	\begin{equation}
-		\tilde{J}_{L1}(\boldsymbol{\beta}) =
-		J(\boldsymbol{\beta}) +
-		\alpha \sum_{j=1}^{k} |\beta_j|,
-		\label{eq:l1_penalty}
-	\end{equation}
-	donde
-	\begin{itemize}
-		\item \(\beta_j\) son los coeficientes del modelo, que representan la influencia de cada variable \(x_j\) en la predicción, para $j=1,2,\dots,k$;
-		\item Donde \(\alpha \ge 0\) es el parámetro de regularización que controla la intensidad de la penalización: valores más altos implican mayor castigo a los coeficientes. %% AR: ¿Hay alguna restricción para su valor?
-		%% NS: Ahí lo agregue.
-	\end{itemize}
-	%{eq:l1_penalty}{}
-	
-%% AR: En lo que sigue, respetar el estilo que modifiqué para L1.
-	\item Regularización L2 (Ridge).
-	\begin{equation}
-		\tilde{J}_{L2}(\boldsymbol{\beta}) =
-		J(\boldsymbol{\beta}) +
-		\frac{1}{2}\alpha \sum_{j=1}^{k} \beta_j^2,
-		\label{eq:l2_penalty}
-	\end{equation}
-	donde
-	\begin{itemize}
-		\item \(\beta_j\) controla cuánto influye cada característica sobre la salida.
-		\item \(\alpha\) determina cuánto se penaliza el tamaño de los coeficientes, evitando que crezcan demasiado.
-	\end{itemize}
-	
-	%{eq:l2_penalty}{}
-	
-	\item Regularización Elastic Net
-	\begin{equation}
-		\tilde{J}_{EN}(\boldsymbol{\beta}) =
-		J(\boldsymbol{\beta}) +
-		\alpha \left[
-		\rho \sum_{j=1}^{k} |\beta_j| +
-		\frac{1 - \rho}{2} \sum_{j=1}^{k} \beta_j^2
-		\right],
-		\label{eq:elasticnet_penalty}
-	\end{equation}
-	donde
-	\begin{itemize}
-		\item \(\beta_j\) son los coeficientes asociados a cada característica.
-		\item \(\alpha\) controla el grado total de regularización.
-		\item \(\rho\) balancea la combinación entre L1 y L2.
-	\end{itemize}
-	%{eq:elasticnet_penalty}{}
-	
-	\end{itemize}
-	
-	\item \textbf{Algoritmo de Optimización (\textit{solver}):}  
-	El \textit{solver} es el algoritmo numérico encargado de minimizar la función de coste regularizada $\tilde{J}(\boldsymbol{\beta})$.
-	
-	\begin{itemize}
-		\item Método Newton-CG (basado en segunda derivada).
-		\begin{equation}
-			\boldsymbol{\beta}^{(t+1)} \leftarrow
-			\boldsymbol{\beta}^{(t)} -
-			\bm{H}^{-1}
-			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)}),
-			\label{eq:newtoncg}
-		\end{equation}
-%% AR: ¿La flecha no sería un igual?
-%% NS: Es iterativo en t iteraciones, lo aclaro?
-		donde \(\boldsymbol{\beta}\) es el vector de parámetros del modelo que se actualiza en cada iteración. El método utiliza el gradiente y la inversa de la matriz Hessiana (o una aproximación de la misma mediante \emph{Conjugate Gradient}) para determinar la dirección de actualización del vector de parámetros.
-%% AR: El hessiano es el determinante de la matriz Hessiana. ¿Es esto lo que se usa o la inversa de la matriz hessiana?
-%% NS: Es la inversa el que se usa, y se intenta evitar.
-%		%{eq:newtoncg}{}
-
-		\item Método BFGS (quasi-Newton).
-		\begin{equation}
-			\boldsymbol{\beta}^{(t+1)} \leftarrow
-			\boldsymbol{\beta}^{(t)} -
-			\bm{B}^{-1}
-			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)}).
-			\label{eq:bfgs}
-		\end{equation}
-
-		En este método, \(\boldsymbol{\beta}\) también es el vector de parámetros a optimizar. La matriz \(\bm{B}\) aproxima al Hessiano, permitiendo actualizaciones sin calcular derivadas segundas reales.
-%		%{eq:bfgs}{}
-
-	\item Método Saga. 
-	Un algoritmo de tipo \emph{stochastic gradient descent} con soporte para regularización L1 y L2. Permite trabajar con grandes datasets y converger de manera estable incluso con penalización L1.
-	
-	\item Método Liblinear.
-	Optimiza la función de coste usando un método de descenso por coordenadas, eficiente para datasets grandes y modelos lineales. Soporta L1 y L2.
-	\end{itemize}
-	
-	\item 
-\textbf{Estrategia Multiclase (\textit{multi\_class}):}
-	La regresión logística está diseñada originalmente para clasificación binaria. Para extenderla a múltiples clases se emplean estrategias como:
-	\begin{itemize}
-		\item \textit{one-vs-rest} (OvR): Entrena un clasificador por clase.
-		\item \textit{multinomial}: Optimiza una única función de verosimilitud multinomial conjunta.
-	\end{itemize}
-\end{itemize}
-
-\section{Árboles de Decisión}
-
-\noindent
-El aprendizaje mediante \textbf{Árboles de Decisión} es un método no paramétrico que utiliza divisiones jerárquicas sobre los atributos de los datos, construyendo reglas de decisión del tipo \textit{if-else} para predecir el valor de una variable objetivo.\\
-
-\noindent  
-El objetivo principal es encontrar las divisiones (particiones) que maximicen la pureza de los nodos hijos, es decir, que minimicen la impureza del nodo resultante. Es un método mucho más sencillo de realizar, donde se crea un camino de decisión, por lo cual según los valores de los atributos de un registro podemos predecir a que clase pertenecen $C_l$, donde el cómputo pesado se encuentra en la creación del propio camino. \\
-
-%% AR: puesto que las clases se usan en diversos contextos a lo largo del trabajo, usaría una notación común, que se puede introducir al comienzo de este capítulo (previo cambio con el capítulo de métricas), deciendo algo del estilo "En lo que resta del documento...".
-%% NS: Ok, lo agrego.
-\noindent
-En consecuencia, la probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_l$ se define como
-
-\begin{equation}
-	p(l|t) = \frac{N_l(t)}{N(t)},
-	\label{eq:probabilidad_clase_nodo}
-\end{equation}
-
-
-\noindent
-donde $N(t)$ es la cantidad total de ejemplos en el nodo $t$, y $N_l(t)$ la cantidad de ejemplos de la clase $C_l$. Es importante este fenómeno porque es un costo computacional muy barato el calcular esta probabilidad y se asemejan a las probabilidades equiprobables, donde la probabilidad de una clase en un nodo está dada por la cantidad de ejemplos de la clase que tienen en el mismo.\\
-%% AR: ¿De clases o de ejemplos?
-
-\noindent
-De esta manera, la impureza de un nodo $t$ se mide mediante una función $\phi$ que depende de las probabilidades de clase en dicho nodo. La función de impureza $i$ es un hiperparámetro en sí mismo, y debe cumplir las siguientes condiciones:
-
-\begin{itemize}
-	\item \textbf{No negatividad:}
-	\[
-	\phi(\mathbf{p}) \ge 0.
-	\]
-	
-	\item \textbf{Impureza mínima en nodos puros:}
-	\[
-	\phi(\mathbf{p}) = 0 \quad \text{si existe } l \text{ tal que } p_l = 1.
-	\]
-	
-	\item \textbf{Máxima impureza con distribución uniforme:}
-	\[
-	\phi(\mathbf{p}) \text{ es máxima cuando } p_l = \frac{1}{L} \quad \forall l.
-	\]
-\end{itemize}
-
-\noindent
-Tanto el índice de Gini como la entropía de Shannon satisfacen estas propiedades, por lo que son funciones de impureza válidas para la construcción del árbol.
-%% AR: No es cualquier función, sino que debe cumplir ciertas propiedades.
-%% NS: Ahí las coloque.
-\begin{equation}
-	i(t) = \phi \big( p(1|t), p(2|t), \ldots, p(K|t) \big).
-	\label{eq:impureza_general}
-\end{equation}
-
-
-\noindent
-La impureza es máxima cuando las clases están perfectamente mezcladas y es mínima (cero) cuando el nodo contiene solo una clase, en donde la impureza máxima sería que la probabilidad de cada clase son aleatoria, ya que están perfectamente mezcladas.\\
-%% AR: Las probabilidades son aleatorias.
-
-%% AR: Incluir una frase que introduzca lo que se presenta a continuación.
-%% NS: Ahí debería de etar.
-
-
-\noindent
-\textbf{La entropía de Shannon}, mide el grado de desorden o incertidumbre en el conjunto de datos $D$.  
-Toma valores cercanos a cero cuando el nodo es puro y crece a medida que las clases se distribuyen de forma más uniforme,
-
-\begin{equation}
-	H(D) = - \sum_{k=1}^K 
-	\frac{N_k(D)}{N(D)} 
-	\log_2 \left( \frac{N_k(D)}{N(D)} \right).
-	\label{eq:entropia_shannon}
-\end{equation}
-
-
-\noindent
-\textbf{Índice de Gini} cuantifica la probabilidad de clasificar incorrectamente una instancia si se asigna aleatoriamente según la distribución de clases en $t$.  
-Al igual que la entropía, es mínimo cuando el nodo es puro y aumenta cuando las clases están mezcladas.
-\begin{equation}
-	\text{Gini}(t) = 
-	1 - \sum_{k=1}^K \big[p(k|t)\big]^2 =
-	1 - \sum_{k=1}^K \left(\frac{N_k(t)}{N(t)}\right)^2.
-	\label{eq:indice_gini}
-\end{equation}
-
-
-\noindent
-La \textbf{reducción de impureza} generada al dividir el nodo $t$ en dos nodos hijos $t_1$ y $t_2$ mediante una partición $s$ se calcula como
-
-\begin{equation}
-	\Delta i(s, t) = i(t) - q_1 i(t_1) - q_2 i(t_2),
-	\label{eq:disminucion_impureza}
-\end{equation}
-
-donde $q_j = \frac{N(t_j)}{N(t)}$ para $j = 1, 2$.
-
-\subsection{Bosques Aleatorios (Random Forest)}
-
-\noindent
-El algoritmo de \textbf{Random Forest}~\cite{Breiman2001} (RF)
-%%AR: No hay equivalente ya que así se presentó.
-%% NS: Ok.
-combina múltiples árboles de decisión independientes construidos sobre subconjuntos aleatorios de los datos (muestreo con reemplazo o \emph{bootstrap}).  
-Cada árbol se entrena sobre un subconjunto de atributos aleatorios en cada división, lo que introduce diversidad y reduce la varianza.\\
-
-\noindent
-La predicción final para clasificación se obtiene mediante el voto mayoritario de los árboles
-
-\begin{equation}
-	\hat{y} = 
-	\underset{l \in \mathcal{L}}{\operatorname{argmax}}
-	\sum_{a=1}^{A} \mathbb{I}
-	\big( \widehat{y_a}(\bm{x}) = l \big) ,
-	\label{eq:voto_random_forest}
-\end{equation}
-
-
-\noindent
-donde $\widehat{y_a}(\bm{x})$ es la predicción del árbol $a$, y $A$ es la cantidad total de árboles en el bosque.\\
-%% AR: ¿Quiénes son $\mathcal{C}$ e $\mathbb{I}$ ? Para la última antes se usó 1 (hay que unificar). Observar, además, que $M$ se usó para métrica.
-%% NS: Ahí lo corregí, despues los agrego a las notaciones.
-
-
-\noindent
-\textbf{Hiperparámetros}
-
-\begin{itemize}
-	
-	\item \textbf{Criterio de Partición:} 
-	Función de impureza utilizada para evaluar la calidad de una división. 
-	En \texttt{scikit-learn}, las opciones disponibles son:
-	\texttt{``gini''} (índice de Gini) y \texttt{``entropy''} (entropía de Shannon).
-	
-	\item \textbf{Algoritmo de Construcción:} 
-	\textit{ID3} emplea la ganancia de información (entropía), mientras que \textit{CART} utiliza el índice de Gini y construye árboles binarios.
-	En \texttt{scikit-learn}, el árbol implementado corresponde a una versión optimizada de \textit{CART}.
-	%% AR: Se podrían incluir referencias.
-	%% NS: Las busco.
-	\item \textbf{Número de Atributos Muestreados (\texttt{max\_features}):} 
-	Cantidad de atributos candidatos por división.  
-	En Random Forest, las opciones típicas son:
-	\[
-	\texttt{``sqrt''} = \sqrt{a}, \qquad
-	\texttt{``log2''} = \ln(a),
-	\]
-	o bien un número entero, un porcentaje o \texttt{None} (usar todos los atributos).
-	
-	\item \textbf{Número de Árboles (\texttt{n\_estimators}):} 
-	Cantidad total de árboles que componen el bosque en Random Forest. Valores altos reducen la varianza pero aumentan el costo computacional.
-	
-	\item \textbf{Profundidad Máxima (\texttt{max\_depth}):} 
-	Límite superior a la altura del árbol. Un valor \texttt{None} permite crecer hasta que las hojas sean puras o no haya más divisiones posibles.
-	
-	\item \textbf{Tamaño Mínimo de Muestra para Dividir (\texttt{min\_samples\_split}):} 
-	Número mínimo de muestras requerido para realizar una partición interna.
-	
-	\item \textbf{Tamaño Mínimo de Muestra en una Hoja (\texttt{min\_samples\_leaf}):}
-	Cantidad mínima de muestras que debe contener una hoja para evitar sobreajuste.
-	
-	\item \textbf{Profundidad Mínima del Nodo Interno (\texttt{min\_impurity\_decrease}):}
-	Umbral mínimo de reducción de impureza necesario para aceptar una división.
-	
-	\item \textbf{Bootstrap (\texttt{bootstrap}):}
-	Indica si los árboles del bosque se entrenan con muestras generadas mediante remuestreo con reemplazo. Por defecto, \texttt{True} en Random Forest.
-%% AR: En los dos últimos, no creo que la notación sea RF.
-%% NS: No, se me chispoteo.
-\end{itemize}
-
-
-\section{Clasificador Naïve Bayes}
-
-\noindent
-El \textbf{Clasificador Naïve Bayes}~\cite{hand2001idiot} (NB) es un método supervisado probabilístico basado en el \textit{Teorema de Bayes}, que asume independencia condicional entre los atributos dado la clase. Esta suposición, aunque en la práctica rara vez se cumple estrictamente —porque las variables suelen estar correlacionadas entre sí. 
-%% AR: Esta última oración está inclompleta.
-La regla de clasificación, o la probabilidad de pertenencia de un registro a una clase $C_l$, donde para cada clases $l \in \{1, 2, \dots, L\}$, donde cada registro tiene $D$ atributos, indexados por $d \in \{1, 2, \dots, D\}$.
-
-\begin{equation}
-	P(Y = C_l \mid X_1 = x_1, \ldots, X_d = x_d)
-	= \frac{
-		P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_l) \, P(Y = C_l)
-	}{
-		P(X_1 = x_1, \ldots, X_d = x_d)
-	},
-	\label{eq:bayes_general}
-\end{equation}
-
-%% AR: Observar que antes se usó k para la cantidad de predictoras (o atributos), ahora se usa d. k también se usó para clases. Hay que unificar notación.
-%% NS: Ahí lo arregle.
-
-\noindent
-En donde $P(Y = C_l)$ es la \textbf{probabilidad \emph{a priori}} de la clase $C_l$ (qué tan frecuente es en el conjunto de datos). Luego, $P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_l)$ es la \textbf{verosimilitud}, es decir, cuán probable es observar las características de un registro si supiéramos que pertenece a la clase $C_l$.
-
-\paragraph{Probabilidad Condicional:}
-
-Bajo el supuesto de independencia condicional, la probabilidad condicional puede expresarse como
-
-\begin{equation}
-	P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_l)
-	= \prod_{j=1}^{d} P(X_j = x_j \mid Y = C_l),
-	\label{eq:independencia_condicional}
-\end{equation}
-
-
-\noindent
-Por lo tanto, basta estimar individualmente, para cada atributo 
-$X_j$ con $j \in \{1,2,\dots,D\}$ y para cada clase 
-$C_l$ con $l \in \{1,2,\dots,L\}$, la probabilidad:
-
-\begin{equation}
-	\hat{\theta}_{jvl} =
-	P(X_j = x_{jv} \mid Y = C_l) =
-	\frac{\left| \{\,X_j = x_{jv} \,\wedge\, Y = C_l\,\} \right|}
-	{|Y_l|} ,
-	\label{eq:probabilidad_condicional}
-\end{equation}
-%% AR: Hay que indicar el rango en el que varía cada uno de los subíndices.
-%% NS: LIsto, 
-
-\noindent
-donde $v \in \{1,2,\dots,V_j\}$ indexa los valores posibles del atributo $X_j$.
-
-\noindent
-Aquí, cada parámetro cumple una función específica:
-\begin{itemize}
-	
-	\item $\hat{\theta}_{jvl}$: probabilidad estimada de que el atributo $X_j$ tome el valor $x_{jv}$ dentro de la clase $C_l$.  
-	Representa qué tan típico es ese valor dentro de una clase.
-	%% AR: Falta el sombrero.
-	%% NS: Listo.
-	\item $\left| \{\,X_j = x_{jv} \wedge Y = C_l\,\} \right|$: cantidad de registros en los que el atributo $X_j$ toma el valor $x_{jv}$ y simultáneamente la clase es $C_l$.
-	%% AR: No es claro, falta el numeral y el conjunto. Observar que antes se usó barra para notar cantidad de elementos.
-	%% NS: Use las barras para la cardinaldiad.
-	\item $|Y_l|$: número total de registros pertenecientes a la clase $C_l$.
-	%% AR: Mismo comentario que en el punto anterior.
-	%% NS: Idem.
-\end{itemize}
-
-
-
-\noindent
-Podemos pensar a $\theta_{jmk}$ como una especie de \textit{“frecuencia interna de la clase”}, una medida que indica qué características son más comunes dentro de cada grupo.\\
-
-%% AR: En lo que sigue, reemplazar "a priori" por \emph{a priori}.
-
-\paragraph{Probabilidad a Priori:}
-
-
-
-Otra estimación fundamental a calcular y expresar es la \emph{a priori}.
-%, en la cual se asemeja a la probabilidad de que un nodo pertenezca a una clase $k$ en \textit{Random Forest}
-%% AR: No pondría lo de RF.
-%% NS: Lo comente.
-\begin{equation}
-	\hat{\pi}_l = P(Y = C_l) =
-	\frac{\#\{Y = C_l\}}{n'}.
-	\label{eq:probabilidad_priori}
-\end{equation}
-
-\noindent
-Los parámetros involucrados son:\\
-
-\begin{itemize}
-
-\item $\hat{\pi}_l$: probabilidad estimada de que un registro pertenezca a la clase $C_k$.
-Corresponde a la frecuencia relativa de esa clase en la muestra.
-%% AR: falta sombrero.
-%% NS: Listo y lo puse consistente.
-
-\item $|Y_l|$: cantidad de registros cuya clase es $C_l$.
-%% AR: No es correcto.
-%% NS: Ahí lo modifique.
-
-\item $n'$: tamaño muestral total.
-%% AR: Antes se usó n. No usaría tamaño total, sino tamaño mnuestral. 
-%% NS: Use n como tamaño total, voy a usar n prima.
-\end{itemize}
-
-\noindent
-La intuición es sencilla: antes de mirar ningún atributo, ¿qué tan probable es cada clase?\\
-
-
-
-%\noindent
-%La clase predicha maximiza la probabilidad a posteriori:
-
-%\begin{equation}
-%	\hat{Y} = 
-%	\underset{C_k}{\operatorname{argmax}}
-%	\left[
-%	P(Y = C_k)
-%	\prod_{j=1}^{d} P(X_j = x_j \mid Y = C_k)
-%	\right]
-%	\label{eq:regla_clasificacion_nb}
-%\end{equation}
-
-
-\noindent
-\textbf{Caso Continuo (Naïve Bayes Gaussiano)}
-
-\noindent
-Cuando los atributos son continuos y se asume distribución normal, las verosimilitudes se estiman con la función de densidad Gaussiana:
-
-\begin{equation}
-	f(x) =
-	\frac{1}{\sigma \sqrt{2\pi}}
-	\exp \left[
-	-\frac{1}{2} \left(
-	\frac{x - \mu}{\sigma}
-	\right)^2
-	\right],
-	\label{eq:densidad_gaussiana}
-\end{equation}
-
-
-\noindent
-por lo cual la decisión final se obtiene como
-
-\begin{equation}
-	\hat{Y} = 
-	\underset{C_k}{\operatorname{argmax}}
-	\left[
-	\log P(Y = C_l) +
-	\sum_{j=1}^{d}
-	\log f(x_j \mid \mu_{jl}, \sigma_{jl}^2)
-	\right].
-	\label{eq:decision_gaussiana}
-\end{equation}
-%% AR: ¿Quiénes son las medias y las varianzas?
-%% NS: Ahí lo agregue
-\noindent
-donde los parámetros de la distribución normal para cada atributo \(X_j\) y clase \(C_l\) se estiman como
-
-\begin{equation}
-	\hat{\mu}_{jl}
-	= \frac{1}{|Y_l|}
-	\sum_{i : Y_i = C_l} x_{ij},
-	\label{eq:media_gaussiana}
-\end{equation}
-
-\begin{equation}
-	\hat{\sigma}_{jl}^2
-	= \frac{1}{|Y_l|}
-	\sum_{i : Y_i = C_l}
-	\left( x_{ij} - \hat{\mu}_{jl} \right)^2.
-	\label{eq:varianza_gaussiana}
-\end{equation}
-
-
-
-\section{Máquinas de Soporte Vectorial (SVM)}
-
-\noindent
-Las \textbf{Máquinas de Soporte Vectorial}~\cite{Cortes1995} (SVM, por sus siglas en inglés) constituyen una técnica de clasificación supervisada basada en la búsqueda de una \textbf{función de decisión} que permita predecir la clase de una observación a partir de sus atributos. Dado que este método opera sobre variables numéricas, los atributos categóricos deben codificarse previamente.\\
-
-\noindent
-El objetivo fundamental de una SVM es encontrar un \textbf{hiperplano de separación óptimo} que divida los datos en función de sus clases, \textbf{maximizando el margen} $\gamma$, es decir, la distancia mínima entre el hiperplano y los puntos más cercanos de cada clase (denominados \textbf{vectores de soporte}). Dichos vectores determinan la posición y orientación del hiperplano, por lo que son los únicos puntos relevantes en el entrenamiento del modelo.\\
-%% AR: M se usó para métrica.
-%% NS: Uso gamma 
-Aunque existen infinitos hiperplanos que pueden separar los datos, el principio de las SVM consiste en seleccionar aquel que logre la \textbf{máxima separación posible entre las clases}, minimizando simultáneamente el riesgo de sobreajuste y aumentando la capacidad de generalización.\\
-
-
-\noindent
-El caso de \textbf{Margen Rígido (Hard Margin)} separa perfectamente las clases sin errores de clasificación. En este caso, el problema de optimización se formula como:
-
-\begin{equation}
-	\text{Minimizar }
-	\frac{1}{2} |\bm{w}|^2
-	\quad \text{sujeto a }
-	y_i (\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 ,
-	\label{eq:hard_margin}
-\end{equation}
-
-\noindent
-donde 
-$\bm{w}$ es el vector normal al hiperplano, 
-$\beta$ es el término de sesgo, 
-$\bm{x}_i$ es el $i$-ésimo registro del conjunto de datos, 
-$y_i \in \{-1, +1\}$ es la etiqueta asociada a dicho registro,
-y la restricción garantiza que todas las observaciones queden correctamente clasificadas y a una distancia mínima de 
-$\frac{1}{\lVert \bm{w} \rVert}$ del hiperplano.\\
-%% AR: ¿Quiénes son los $y_i$?
-%% NS: Listo.
-
-\noindent
-Pero hay un gran obstáculo, debido a que en la práctica los datos rara vez son perfectamente separables. Por ello, se introduce el concepto de \textbf{Margen Suave (Soft Margin)}, que permite violaciones controladas de las restricciones mediante variables de holgura $ \xi_i \ge 0 $.
-%% AR: ¿\theta o \xi?
-%% NS: Ahi deje \xi.
-El problema se redefine como:
-
-\begin{equation}
-	\text{Minimizar } 
-	\frac{1}{2} \lVert \bm{w} \rVert^2 +
-	C \sum_{i=1}^{n} \xi_i
-	\quad \text{sujeto a }
-	\begin{cases}
-		y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 - \xi_i, \\
-		\xi_i \ge 0,
-	\end{cases}
-	\label{eq:soft_margin}
-\end{equation}
-%% AR: Las restricciones no quedaron bien.
-%% NS: Las puse en cases, sino va avisame y las coloco como antes pero con la coma que iría.
-
-\noindent
-donde el parámetro $C > 0$ actúa como un \textbf{control de regularización}: valores grandes de $C$ penalizan más fuertemente los errores, buscando una separación más estricta (a costa de menor margen), mientras que valores pequeños permiten más errores, favoreciendo márgenes amplios y mayor generalización.\\
-
-
-\noindent
-La \textbf{Formulación Dual} del problema, en lo que respecta a los dos margenes permite expresar la solución en términos de los productos internos entre las observaciones:
-
-\begin{equation}
-	\text{Maximizar }
-	-\frac{1}{2} \sum_{i,\ell=1}^{n}
-	\alpha_i \alpha_\ell y_i y_\ell
-	K(\bm{x}_i, \bm{x}_\ell)
-	+ \sum_{i=1}^{n} \alpha_i,
-	\label{eq:dualsvm}
-\end{equation}
-
-\begin{equation}
-	\text{sujeto a }
-	0 \le \alpha_i \le C, \quad
-	\sum_{i=1}^{n} \alpha_i y_i = 0.
-\end{equation}
-
-\noindent
-Aquí, los \(\alpha_i\) son los multiplicadores de Lagrange asociados a las restricciones, y \(K(\bm{x}_i, \bm{x}_\ell)\) representa el producto interno entre las observaciones en un espacio transformado.\\
-
-
-\noindent
-En muchos casos, las clases no son separables linealmente en el espacio original de los datos. El \textbf{Kernel Trick} permite proyectar los datos a un espacio de mayor dimensión (posiblemente infinito) donde sí exista un hiperplano separador, \emph{sin necesidad de calcular explícitamente la transformación}.\\
-
-\noindent
-Esto se logra sustituyendo los productos internos \(\langle \bm{x}_i, \bm{x}_\ell \rangle\) por una función \textbf{kernel} \(K(\bm{x}_i, \bm{x}_\ell)\), que computa directamente el producto interno en el espacio transformado.
-De esta forma, se mantiene la eficiencia computacional mientras se obtiene un modelo capaz de representar fronteras de decisión no lineales.
-
-\subsubsection{Funciones Kernel Comunes}
-
-\noindent
-En las siguientes definiciones, los vectores 
-$\bm{a}, \bm{b} \in \mathbb{R}^D$ representan puntos de datos en el 
-espacio original de características. Cada kernel introduce parámetros 
-que controlan la flexibilidad del modelo:
-
-\begin{itemize}
-	\item $\gamma > 0$: controla la influencia local de los puntos 
-	(utilizado en el kernel RBF y el sigmoide).
-	\item $r \in \mathbb{R}$: término independiente o sesgo 
-	(usado en los kernels polinómico y sigmoide).
-	\item $d' \in \mathbb{N}$: grado del polinomio 
-	en el kernel polinómico.
-\end{itemize}
-%% AR: Hay que indicar qué representan a, b, d, r y gamma.
-%% NS: Ahí esta.
-
-
-\paragraph{Kernel Lineal:}
-\begin{equation}
-	K(\bm{a}, \bm{b}) =
-	\langle \bm{a}, \bm{b} \rangle.
-	\label{eq:kernel_lineal}
-\end{equation}
-
-\paragraph{Kernel Radial (RBF o Gaussiano):}
-\begin{equation}
-	K(\bm{a}, \bm{b}) =
-	\exp \left( -\gamma \|\bm{a} - \bm{b}\|^2 \right).
-	\label{eq:kernel_rbf}
-\end{equation}
-
-\paragraph{Kernel Polinómico:}
-\begin{equation}
-	K(\bm{a}, \bm{b}) =
-	(\langle \bm{a}, \bm{b} \rangle + r)^\textbf{$d'$}.
-	\label{eq:kernel_polinomico}
-\end{equation}
-
-\paragraph{Kernel Sigmoide:}
-\begin{equation}
-	K(\bm{a}, \bm{b}) =
-	\tanh(\gamma \langle \bm{a}, \bm{b} \rangle + r).
-	\label{eq:kernel_sigmoid}
-\end{equation}
-
-\noindent
-\textbf{Hiperparámetros}
-
-\begin{itemize}
-	\item \textbf{Parámetro de Regularización (\(C\)):}
-	Controla el equilibrio entre maximizar el margen y permitir errores de clasificación. 
-	Valores altos priorizan clasificar correctamente los datos de entrenamiento; valores bajos generan un margen más amplio y toleran mayor error, donde $C > 0$.
-	
-	\item \textbf{Tipo de Kernel (\texttt{kernel}):}
-	Determina la forma de la frontera de decisión. 
-	Scikit-learn permite: \texttt{linear}, \texttt{poly}, \texttt{rbf}, \texttt{sigmoid} (y \texttt{precomputed}).
-	
-	\item \textbf{Parámetros del Kernel:}
-	Dependiendo del tipo elegido, scikit-learn utiliza:
-	\begin{itemize}
-		\item \(\gamma\): controla la influencia de los puntos en kernels \texttt{rbf}, \texttt{poly} y \texttt{sigmoid}, $\gamma > 0 $.  
-		Es equivalente a \( \tfrac{1}{2\sigma^2} \) en formulaciones gaussianas, aunque scikit-learn nunca usa \(\sigma\) explícitamente.
-		\item \(d'\) (\texttt{degree}): grado del polinomio cuando el kernel es \texttt{poly}, $d' \ge 1$ .
-		\item \(r\) (\texttt{coef0}): coeficiente independiente usado por los kernels \texttt{poly} y \texttt{sigmoid}.
-	\end{itemize}
-\end{itemize}
-%% AR: En lo anterior nunca apareció sigma.
-%% NS: Ahí mantuve todo como hacía en los anteriroes.
-
-
-
-
-
-
-
-
-
-
-
-
 \chapter{Resultados}
 \label{ch:resultados}
 
@@ -1599,7 +1676,7 @@ El modelo logra un \emph{Accuracy}
 y un F1-Score de 0.8445,
 %% AR: Si dan igual, no ponerlo separado.
 %% NS: OK
-junto con un AUC de 0.90, lo que refleja una buena capacidad discriminatoria, pero siendo datos médicos se requieren incluso mejores valores.\\
+junto con un AUC de 0.9050, lo que refleja una buena capacidad discriminatoria, pero siendo datos médicos se requieren incluso mejores valores.\\
 %% AR: Informar en el texto con la misma cantidad de cifras decimales que en la tabla.
 %% NS: Si me habia quedado mal eso.
 %% AR: Los captions de tablas y figuras deben terminar en un punto. Revisar y corregir a partir de acá (lo anterior ya lo fui modificando).
@@ -1633,7 +1710,7 @@ junto con un AUC de 0.90, lo que refleja una buena capacidad discriminatoria, pe
 	\label{tab:rl_resultados_binario}
 	\begin{tabular}{l|c|c|c|c|c|c}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			$C = 1$\\
@@ -1653,7 +1730,7 @@ El tiempo de entrenamiento fue de apenas 0.13 segundos, lo que lo convierte en u
 
 
 
-\subsubsection*{Máquinas de Soporte Vectorial (SVM)}
+\subsubsection*{SVM}
 
 
 La \textbf{Máquinas de Soporte Vectorial (SVM)} obtuvo un desempeño sólido en la clasificación binaria, mostrando un equilibrio adecuado entre precisión y generalización. Demostrando la solidez habitual con que es descripto este método.\\
@@ -1662,10 +1739,10 @@ La \textbf{Máquinas de Soporte Vectorial (SVM)} obtuvo un desempeño sólido en
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:svm_resultados_binario}. 
-El modelo logra una precisión y un F1-Score de 0.86 y 0.86 respectivamente, junto con un AUC de 0.92, lo que refleja la mejor capacidad de clasificación hasta ahora.\\
+El modelo logra un \emph{Accuracy} y un F1-Score de 0.8616, junto con un AUC de 0.9232, lo que refleja la mejor capacidad de clasificación hasta ahora.\\
 
 \noindent
-El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado, pero costoso si vemos que el tamaño del \emph{dataset} es bastante acotado.\\
+El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado, pero costoso si vemos que el tamaño del \emph{dataset} es bastante acotado, refleja un costo de evaluación más grande que con RL.\\
 
 
 
@@ -1693,7 +1770,7 @@ El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado
 	\label{tab:svm_resultados_binario}
 	\begin{tabular}{l|c|c|c|c|c|c}
 	\toprule
-	\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+	\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			$C = 1$\\
@@ -1710,12 +1787,12 @@ El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado
 
 
 
-\subsubsection*{Naive Bayes Gaussiano}
+\subsubsection*{NB}
 
 
 
 \noindent
-Naive Bayes Gaussiano obtuvo un buen desempeño sólido en la clasificación binaria, considerando su supuesto de independencia entre atributos, que si tomamos la ida de que es \emph{buena} métrica si supera el 0.8 en su valor. La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias. Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados_binario}.  El modelo logra una precisión y un F1-Score de 0.84 y 0.84 respectivamente, junto con un AUC de 0.91, lo que refleja una buena capacidad discriminativa, bastante similar con los resultados de los modelos a los cuales se compara. \\
+Naive Bayes Gaussiano obtuvo un buen desempeño sólido en la clasificación binaria, considerando su supuesto de independencia entre atributos, que si tomamos la ida de que es \emph{buena} métrica si supera el 0.8 en su valor. La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias. Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados_binario}.  El modelo logra un \emph{Accuracy} y un F1-Score de 0.8420, junto con un AUC de 0.9138, lo que refleja una muy buena capacidad clasificadora siendo un método tan eficaz, ademas de ser bastante similar con los resultados de los modelos a los cuales se compara. \\
 
 
 \begin{table}[htb]%[H]
@@ -1737,7 +1814,7 @@ Naive Bayes Gaussiano obtuvo un buen desempeño sólido en la clasificación bin
 	\label{tab:nbg_resultados_binario}
 	\begin{tabular}{l|c|c|c|c|c|c}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			var\_smoothing =\\
@@ -1755,16 +1832,16 @@ El tiempo de entrenamiento fue de apenas 0.10 segundos, siendo que la mayor fort
 
 
 
-\subsubsection*{Random Forest}
+\subsubsection*{RF}
 
 \noindent
 Random Forest demostró un desempeño bastante solido en la clasificación binaria, mostrando alta capacidad de generalización para registros no vistos durante el entrenamiento.\\
 
 \noindent 
-Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados_binario}, donde el modelo logra una precisión y un F1-Score de 0.87 y 0.87 respectivamente, junto con un AUC de 0.93, lo que refleja una buena excelente capacidad discriminatoria.\\
+Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados_binario}, donde el modelo logra un \emph{Accuracy} y un F1-Score de 0.8780, junto con un AUC de 0.9315, lo que refleja una excelente capacidad de clasificación, pero evidentemente la tarea de creación de los árboles y del voto mayoritario lo vuelven un método bastante costoso pero efectivo.\\
 
 \noindent 
-El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente el modelo en cual más se tarda en obtener los resultados.
+El tiempo de entrenamiento fue de 1.38 segundos, siendo considerablemente el modelo en cual más se tarda en obtener los resultados.
 
 
 \begin{table}[htb]%[H]
@@ -1791,7 +1868,7 @@ El tiempo de entrenamiento fue de apenas 1.38 segundos, siendo considerablemente
 	\label{tab:rf_resultados_binario}
 	\begin{tabular}{l|c|c|c|c|c|c}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			Criterion = entropy\\
@@ -1959,14 +2036,14 @@ Siendo los modelos \textbf{SVM} y \textbf{RF} los que mejor comportamiento tiene
 
 \section{Dataset Multiclase}
 
-\subsubsection*{Regresión Logística}
+\subsubsection*{RL}
 
 \noindent
 La Regresión Logística obtuvo un muy buen desempeño en la clasificación multiclase, mostrando un equilibrio adecuado entre precisión y generalización.\\
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rl_resultados}, junto con la configuración de hiperparámetros que logro esos resultados. 
-El modelo logra una precisión y un F1-Score de 0.897 y 0.896 respectivamente, junto con un AUC de 0.964, lo que refleja una buena capacidad discriminativa.\\
+El modelo logra un \emph{Accuracy} y un F1-Score de 0.8978 respectivamente, junto con un AUC de 0.9644, lo que refleja una buena capacidad discriminatoria, logrando un buen resultado al incremento de datos y de dificultad al existir más de dos clases.\\
 
 \noindent 
 El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en una opción eficiente para este tipo de problema, teniendo en cuanta que se mantiene en rangos acotados, incluso con más datos que en el caso binario.
@@ -1994,7 +2071,7 @@ El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en u
 	\label{tab:rl_resultados}
 	\begin{tabular}{l|c|c|c|c|c|c}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			$C = 1$\\
@@ -2011,13 +2088,13 @@ El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en u
 
 
 
-\subsubsection*{Máquinas de Soporte Vectorial (SVM)}
+\subsubsection*{SVM}
 
 La Máquinas de Soporte Vectorial obtuvo un desempeño bastante sólido en la clasificación multiclase, mostrando unos grandes valores en sus métricas. \\
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:svm_resultados}, junto con la mejor configuración que logro las mejoras métricas. 
-El modelo logra una precisión y un F1-Score de 0.90 y 0.89 respectivamente, junto con un AUC de 0.95, lo que refleja una buena capacidad de clasificación. 
+El modelo logra un \emph{Accuracy} y un F1-Score de 0.9082, junto con un AUC de 0.9556, lo que refleja una muy buena capacidad de clasificación, logrando ser un método útil para \emph{datasets} acotados y grandes, como a casos binarios y multiclase. 
 El tiempo de entrenamiento fue de apenas 1.42 segundos, mostrando una clara demora a cuantos más datos deben de procesar, si comparamos como sube el tiempo de ejecución con el caso binario.
 
 
@@ -2044,7 +2121,7 @@ El tiempo de entrenamiento fue de apenas 1.42 segundos, mostrando una clara demo
 	\label{tab:svm_resultados}
 	\begin{tabular}{l|c|c|c|c|c|c}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 		$C = 0.1$\\
@@ -2064,7 +2141,7 @@ El tiempo de entrenamiento fue de apenas 1.42 segundos, mostrando una clara demo
 
 
 
-\subsubsection*{Naive Bayes Gaussiano}
+\subsubsection*{NB}
 
 
 Naive Bayes Gaussiano obtuvo un buen desempeño en la clasificación multiclase, considerando su supuesto de independencia entre atributos. \\
@@ -2089,7 +2166,7 @@ Naive Bayes Gaussiano obtuvo un buen desempeño en la clasificación multiclase,
 	\label{tab:nbg_resultados}
 	\begin{tabular}{l|c|c|c|c|c|c}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			var\_smoothing =\\
@@ -2101,21 +2178,23 @@ Naive Bayes Gaussiano obtuvo un buen desempeño en la clasificación multiclase,
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados}. 
-El modelo logra una precisión y un F1-Score de 0.82 y 0.83 respectivamente, junto con un AUC de 0.91, lo que refleja una buena capacidad clasificadora, pero lo suficientemente menor a los modelos con los cuales se compara. 
+El modelo logra un \emph{Accuracy} y un F1-Score de 0.8208, junto con un AUC de 0.91, lo que refleja una buena capacidad clasificadora, pero lo suficientemente menor a los modelos con los cuales se compara, para decidir que no es útil en cuanto a tener buenos valores de métricas a la hora de resolver este problema. Es evidente que se mantuvo en valores similares al caso binario, sin tener caídas aún cuando se incrementa el tamaño del \emph{dataset} o se dificulta el mismo con un caso multiclase, pero tampoco muestra mejora como el resto de modelos.\\
+
+\noindent
 El tiempo de entrenamiento fue de apenas 0.11 segundos, siendo su mayor fortaleza, incluso con más datos el modelo se mantiene en valores parecidos de tiempo de ejecución.
 
 
 
 
 
-\subsubsection*{Random Forest}
+\subsubsection*{RF}
 
 \noindent
-Random Forest demostró un desempeño claramente superador en la clasificación multiclase, mostrando alta capacidad de generalización para registros no vistos durante el entrenamiento.\\
+Random Forest demostró un desempeño claramente superador en la clasificación multiclase, mostrando alta capacidad de generalización incluso para un \emph{dataset} más grande y con caso multiclase.\\
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados}, junto con la mejor configuración con la cual se obtuvieron estos resultados. 
-El modelo logra una precisión y un F1-Score de 0.94 y 0.94 respectivamente, junto con un AUC de 0.98, lo que refleja una buena excelente capacidad clasificadora. 
+El modelo logra un \emph{Accuracy} y un F1-Score de 0.9432, junto con un AUC de 0.9868, lo que refleja una buena excelente capacidad clasificadora. Se entienden que los árboles de decisión no se ven afectados por casos multiclase y que la presencia de más cantidad de registros los enriquecen para realizar mejor clasificaciones. 
 El tiempo de entrenamiento fue de 2.24 segundos, mostrando como estos modelos incrementan su tiempo de ejecución a mayores datos requieren procesar.
 
 
@@ -2142,7 +2221,7 @@ El tiempo de entrenamiento fue de 2.24 segundos, mostrando como estos modelos in
 	\label{tab:rf_resultados}
 	\begin{tabular}{l|c|c|c|c|c|c}
 		\toprule
-		\textbf{Configuración} & \textbf{Precisión (Acc)} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			Criterion = gini\\

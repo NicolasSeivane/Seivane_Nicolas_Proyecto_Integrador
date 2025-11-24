@@ -1,0 +1,196 @@
+\glsdefs@newdocentry{n_samples}%
+{%
+name={$n$},%
+sort={$n$},%
+type={main},%
+first={$n$},%
+firstplural={$n$s},%
+text={$n$},%
+plural={$n$s},%
+description={Número total de registros o ejemplos en el dataset},%
+descriptionplural={Número total de registros o ejemplos en el dataset},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{d_attributes}%
+{%
+name={$D$},%
+sort={$D$},%
+type={main},%
+first={$D$},%
+firstplural={$D$s},%
+text={$D$},%
+plural={$D$s},%
+description={Cantidad de atributos de cada registro},%
+descriptionplural={Cantidad de atributos de cada registro},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{classes}%
+{%
+name={$L$},%
+sort={$L$},%
+type={main},%
+first={$L$},%
+firstplural={$L$s},%
+text={$L$},%
+plural={$L$s},%
+description={Número total de clases posibles en el problema de clasificación},%
+descriptionplural={Número total de clases posibles en el problema de clasificación},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{theta}%
+{%
+name={$\hat {\theta }_{jvl}$},%
+sort={$\hat {\theta }_{jvl}$},%
+type={main},%
+first={$\protect \hat  {\theta }_{jvl}$},%
+firstplural={$\protect \hat  {\theta }_{jvl}$s},%
+text={$\protect \hat  {\theta }_{jvl}$},%
+plural={$\protect \hat  {\theta }_{jvl}$s},%
+description={Probabilidad estimada de que el atributo $X_j$ tome el valor $x_{jv}$ dado que la clase es $C_l$},%
+descriptionplural={Probabilidad estimada de que el atributo $X_j$ tome el valor $x_{jv}$ dado que la clase es $C_l$},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{pi}%
+{%
+name={$\hat {\pi }_k$},%
+sort={$\hat {\pi }_k$},%
+type={main},%
+first={$\protect \hat  {\pi }_k$},%
+firstplural={$\protect \hat  {\pi }_k$s},%
+text={$\protect \hat  {\pi }_k$},%
+plural={$\protect \hat  {\pi }_k$s},%
+description={Probabilidad a priori estimada de que un registro pertenezca a la clase $C_k$},%
+descriptionplural={Probabilidad a priori estimada de que un registro pertenezca a la clase $C_k$},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{w}%
+{%
+name={$\bm {w}$},%
+sort={$\bm {w}$},%
+type={main},%
+first={$\protect \bm  {w}$},%
+firstplural={$\protect \bm  {w}$s},%
+text={$\protect \bm  {w}$},%
+plural={$\protect \bm  {w}$s},%
+description={Vector normal al hiperplano en SVM},%
+descriptionplural={Vector normal al hiperplano en SVM},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{beta}%
+{%
+name={$\beta $},%
+sort={$\beta $},%
+type={main},%
+first={$\beta $},%
+firstplural={$\beta $s},%
+text={$\beta $},%
+plural={$\beta $s},%
+description={Término de sesgo o intercepto en SVM o regresión logística},%
+descriptionplural={Término de sesgo o intercepto en SVM o regresión logística},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
