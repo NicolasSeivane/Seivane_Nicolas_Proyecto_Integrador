@@ -142,7 +142,55 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 
 
 
+%% AR: Muy buena idea lo del Glosario. El mismo debería ir luego del índice de tablas o al final del documento.
 
+
+\chapter*{Glosario}
+
+\begin{longtable}{p{3cm} | p{10cm}}
+	\textbf{Notación} & \textbf{Descripción} \\
+	\toprule
+	$n$ & Número total de registros o ejemplos en el dataset. \\
+	$D$ & Cantidad de atributos de cada registro. \\
+	$L$ & Número total de clases posibles en el problema de clasificación. \\
+	$\hat{\theta}_{jvl}$ & Probabilidad estimada de que el atributo $X_j$ tome el valor $x_{jv}$ dado que la clase es $C_l$. \\
+	$\hat{\pi}_k$ & Probabilidad a priori estimada de que un registro pertenezca a la clase $C_k$. \\
+	$\bm{x}_i$ & Vector de características del registro $i$, $\bm{x}_i = (x_{i1}, x_{i2},\dots, x_{iD})$. \\
+	$X_j$ & $j$-ésimo atributo de un registro. \\
+	$C_l$ & $l$-ésima clase del conjunto de clases $\{C_1, C_2,\dots, C_L\}$. \\
+	$\bm{w}$ & Vector normal al hiperplano en SVM. \\
+	$\beta$ & Término de sesgo o intercepto en SVM o regresión logística. \\
+	$\xi_i$ & Variable de holgura (\emph{slack}) para el registro $i$-ésimo en SVM de margen suave. \\
+	$C$ & Parámetro de regularización en SVM que controla el equilibrio entre margen y errores. \\
+	$K(\bm{a},\bm{b})$ & Función kernel que calcula la similitud entre vectores $\bm{a}$ y $\bm{b}$. \\
+	$\gamma$ & Parámetro de ancho en el kernel RBF (Radial Basis Function). \\
+	$r$ & Coeficiente de desplazamiento en kernels polinómicos y sigmoides. \\
+	$d$ & Grado del polinomio en el kernel polinómico.
+	%% AR: $d$ y $D$ son diferentes. No usar $d'$ sino $d$. 
+	%% NS: Corrigo en todo el doc.
+	\\
+	$\tilde{J}(\bm{\beta})$ & Función de costo regularizada en regresión logística. \\
+	$\alpha$ & Parámetro de regularización L1 (Lasso) o L2 (Ridge) en regresión. \\
+	$\bm{H}$ & Matriz Hessiana de la función de costo en métodos Newton-CG. \\
+	$\bm{B}$ & Aproximación de la matriz Hessiana en BFGS. \\
+	$\hat{y}$ & Predicción final en un modelo de clasificación. \\
+	$\widehat{y_a}(\bm{x})$ & Predicción del árbol $a$ en Random Forest para la observación $\bm{x}$. \\
+	$A$ & Número total de árboles en un Random Forest. \\
+	$M_l$ & Valor de la métrica (\emph{accuracy}, F1-score, etc.) para la clase $l$. \\
+	$|C_l|$ & Cardinalidad o número de registros pertenecientes a la clase $l$.
+	%% AR: Entonces sería $|C_l|$. Yo pondría $|\cdot|$ : Cantidad de elementos en el conjunto de interés.
+	%% NS: Listo.
+	\\
+	$\widehat{M}_{\text{weighted}}$ & Métrica ponderada por tamaño de clase en problemas multiclase. \\
+	$K$ & Número de pliegues en validación cruzada $K$-fold. \\
+	$G_i$ & $i$-ésimo pliegue o grupo en validación cruzada. \\
+	$H(D)$ & Entropía de Shannon del conjunto de datos $D$. \\
+	$\text{Gini}(t)$ & Índice de Gini de un nodo $t$ en un árbol de decisión. \\
+	$f(x)$ & Función de densidad de probabilidad gaussiana para atributo continuo. \\
+	$\mu_{jl}$ & Media del atributo $X_j$ en la clase $C_l$. \\
+	$\sigma_{jl}^2$ & Varianza del atributo $X_j$ en la clase $C_l$. \\
+	\bottomrule
+\end{longtable}
 
 \chapter*{Resumen}
 
@@ -169,8 +217,9 @@ Para cada método se explican los \textbf{hiperparámetros relevantes}, su inter
 Posteriormente, se detalla la \textbf{metodología de evaluación}, incluyendo las métricas utilizadas derivadas de la matriz de confusión: exactitud, precisión, recall, especificidad, sensibilidad y F1-Score.\\
 
 \noindent
-A continuación, se presentan y discuten los \textbf{resultados obtenidos} para cada modelo. Se comparan sus desempeños utilizando las métricas seleccionadas.\\
+A continuación, se presentan y discuten los \textbf{resultados obtenidos} para cada modelo. Se comparan sus desempeños utilizando las métricas seleccionadas. El método con mejor desempeño en ambos casos es el \textbf{Random Forest}, donde obtiene valores altos en las métricas utilizadas para evaluar, siendo claro el poder clasificador que se obtiene al tener varios arboles de decision distitnos que clasifican un registro, obteniendo la clasificacion más votada. En contra, se nota como a mayor cantidad de datos y claes para clasificar, el método tarda más cantidad de tiempo en procesar una decisión.\\
 %% AR: Indicar el método que se destacó.
+%% NS: Creo que ahí esta, no se si poner mas.
 
 \noindent
 Finalmente, se exponen las \textbf{conclusiones generales} del estudio, señalando qué métodos mostraron mejor rendimiento en el \emph{dataset} de cardiología, qué limitaciones presenta el estudio y cómo podrían extenderse o mejorarse los análisis en trabajos futuros mediante técnicas adicionales, mayor optimización o validación más exhaustiva.\\
@@ -250,7 +299,7 @@ En la  Tabla~\ref{tab:tablebinario} se muestra qué tipo de datos son los atribu
 	\centering
 	\caption{Cantidad de registros utilizados.}
 	\label{tab:cant_datos_binarios}
-	\begin{tabular}{l|c}
+	\begin{tabular}{lc}
 		\toprule
 		\textbf{Cantidad de registros} & \textbf{918} \\
 		\textbf{Cantidad de atributos} & \textbf{11} \\
@@ -263,6 +312,7 @@ En la  Tabla~\ref{tab:tablebinario} se muestra qué tipo de datos son los atribu
 
 %% NS: Pongo lineas verticales, quedan mal lo de los tipos de datos sin lineas verticales.
 %% AR: En general, no se usan líneas verticales. Fijate si te gusta cómo dejé esta tabla (la original está comentada debajo). Si te parece bien, sacar todas las líneas verticales de las tablas.
+%% NS: Esta bien, el problem alo tenia en otra tabla que quedaba medio raro, pero mantengo el estilo.tabular
 	
 	\begin{table}[htb]
 		\caption{Tipo de atributo del conjunto binario.} 
@@ -401,7 +451,7 @@ En la Tabla~\ref{tab:tablaej} se muestran los tipos de las variables utilizadas 
 	\centering
 	\caption{Cantidad de registros utilizados.}
 	\label{tab:cant_datos_multiclase}
-	\begin{tabular}{l|c}
+	\begin{tabular}{lc}
 		\toprule
 		\textbf{Cantidad de registros} & \textbf{2115} \\
 		\textbf{Cantidad de atributos} & \textbf{21} \\
@@ -417,7 +467,7 @@ En la Tabla~\ref{tab:tablaej} se muestran los tipos de las variables utilizadas 
 \caption{Tipo de atributo del conjunto multiclase.}
 \label{tab:tablaej}
 	\centering
-	\begin{tabular}{l|c|c|c|c}
+	\begin{tabular}{lcccc}
 		\toprule
 		\textbf{Atributo} & \textbf{Tipo de dato} & \textbf{Media} & \textbf{Máximo} & \textbf{Mínimo}\\
 		\hline
@@ -515,53 +565,7 @@ En la Tabla~\ref{tab:tablaej} se muestran los tipos de las variables utilizadas 
 \end{itemize}
 	%{0.2cm}
 
-%% AR: Muy buena idea lo del Glosario. El mismo debería ir luego del índice de tablas o al final del documento.
 
-
-\chapter*{Glosario}
-
-\begin{longtable}{p{3cm} | p{10cm}}
-	\textbf{Notación} & \textbf{Descripción} \\
-	\toprule
-	$n$ & Número total de registros o ejemplos en el dataset. \\
-	$D$ & Cantidad de atributos de cada registro. \\
-	$L$ & Número total de clases posibles en el problema de clasificación. \\
-	$\hat{\theta}_{jvl}$ & Probabilidad estimada de que el atributo $X_j$ tome el valor $x_{jv}$ dado que la clase es $C_l$. \\
-	$\hat{\pi}_k$ & Probabilidad a priori estimada de que un registro pertenezca a la clase $C_k$. \\
-	$\bm{x}_i$ & Vector de características del registro $i$, $\bm{x}_i = (x_{i1}, x_{i2},\dots, x_{iD})$. \\
-	$X_j$ & $j$-ésimo atributo de un registro. \\
-	$C_l$ & $l$-ésima clase del conjunto de clases $\{C_1, C_2,\dots, C_L\}$. \\
-	$\bm{w}$ & Vector normal al hiperplano en SVM. \\
-	$\beta$ & Término de sesgo o intercepto en SVM o regresión logística. \\
-	$\xi_i$ & Variable de holgura (\emph{slack}) para el registro $i$-ésimo en SVM de margen suave. \\
-	$C$ & Parámetro de regularización en SVM que controla el equilibrio entre margen y errores. \\
-	$K(\bm{a},\bm{b})$ & Función kernel que calcula la similitud entre vectores $\bm{a}$ y $\bm{b}$. \\
-	$\gamma$ & Parámetro de ancho en el kernel RBF (Radial Basis Function). \\
-	$r$ & Coeficiente de desplazamiento en kernels polinómicos y sigmoides. \\
-	$d'$ & Grado del polinomio en el kernel polinómico (usamos d prima para diferenciar de $D$).
-%% AR: $d$ y $D$ son diferentes. No usar $d'$ sino $d$. 
-\\
-	$\tilde{J}(\bm{\beta})$ & Función de costo regularizada en regresión logística. \\
-	$\alpha$ & Parámetro de regularización L1 (Lasso) o L2 (Ridge) en regresión. \\
-	$\bm{H}$ & Matriz Hessiana de la función de costo en métodos Newton-CG. \\
-	$\bm{B}$ & Aproximación de la matriz Hessiana en BFGS. \\
-	$\hat{y}$ & Predicción final en un modelo de clasificación. \\
-	$\widehat{y_a}(\bm{x})$ & Predicción del árbol $a$ en Random Forest para la observación $\bm{x}$. \\
-	$A$ & Número total de árboles en un Random Forest. \\
-	$M_l$ & Valor de la métrica (\emph{accuracy}, F1-score, etc.) para la clase $l$. \\
-	$|y_l|$ & Cardinalidad o número de registros pertenecientes a la clase $l$.
-%% AR: Entonces sería $|C_l|$. Yo pondría $|\cdot|$ : Cantidad de elementos en el conjunto de interés.
- \\
-	$\widehat{M}_{\text{weighted}}$ & Métrica ponderada por tamaño de clase en problemas multiclase. \\
-	$K$ & Número de pliegues en validación cruzada $K$-fold. \\
-	$G_i$ & $i$-ésimo pliegue o grupo en validación cruzada. \\
-	$H(D)$ & Entropía de Shannon del conjunto de datos $D$. \\
-	$\text{Gini}(t)$ & Índice de Gini de un nodo $t$ en un árbol de decisión. \\
-	$f(x)$ & Función de densidad de probabilidad gaussiana para atributo continuo. \\
-	$\mu_{jl}$ & Media del atributo $X_j$ en la clase $C_l$. \\
-	$\sigma_{jl}^2$ & Varianza del atributo $X_j$ en la clase $C_l$. \\
-	\bottomrule
-\end{longtable}
 
 \chapter{Descripción de los Métodos Utilizados}
 
@@ -574,6 +578,14 @@ El objetivo es describir y explicar cómo funcionan cada uno de los algoritmos, 
 Los métodos requieren de  \textbf{hiperparámetros}, que son un parámetro cuyo valor se fija antes del proceso de entrenamiento de un modelo y que controla aspectos del aprendizaje, como la complejidad del modelo, la velocidad de convergencia o la regularización. 
 A diferencia de los parámetros internos del modelo (por ejemplo, los pesos en una regresión logística o en una red neuronal), los hiperparámetros no se aprenden automáticamente a partir de los datos, sino que deben ser seleccionados mediante experimentación, validación cruzada u optimización de hiperparámetros, siendo un análisis en sí mismos.
 
+\noindent
+Los \textbf{hiperparámetros} utilizados en este trabajo corresponden a aquellos definidos por la librería \emph{scikit-learn} del lenguaje de programación \emph{Python}, la cual ofrece implementaciones estandarizadas y bien documentadas de modelos clásicos de aprendizaje automático. En particular, la búsqueda en grilla se realiza con los valores posibles que determina la librería, junto con la combinación de valores que son posibles de combinar, como el grado del polinomio cuando utilizamos el kernel de polinomia en \textbf{SVM}. 
+
+\noindent
+
+En particular, se emplearon los valores por defecto sugeridos por la librería y, cuando fue necesario, se ajustaron manualmente algunos hiperparámetros relevantes —como la profundidad máxima del árbol, el criterio de partición o la cantidad de vecinos en modelos basados en distancia— con el fin de evaluar su influencia en el desempeño del modelo. 
+Este procedimiento permite garantizar consistencia en las comparaciones, reproducibilidad de los experimentos y una interpretación clara acerca del efecto de cada hiperparámetro sobre los resultados.
+
 
 \section{Regresión Logística}
 
@@ -584,7 +596,14 @@ El modelo de \textbf{Regresión Logística}~\cite{cramer2002origins} (LR, por su
 A diferencia de la regresión lineal múltiple, la regresión logística predice una probabilidad (valor entre 0 y 1). Ambos modelos son lineales en sus parámetros, pero difieren en la naturaleza de la variable dependiente. El objetivo es estimar los coeficientes de regresión que maximizan la verosimilitud de los datos observados, o encontrar los coeficientes que mejor funcionan para los datos de entrenamiento.\\
 
 \noindent
-El modelo busca estimar la probabilidad condicional de que una observación pertenezca a la clase positiva (o clase objetivo), donde $l_i$ representa la etiqueta verdadera del registro $i$ (para $i=1,2, \dots,n$), tomando el valor $l_i = 1$ si la observación pertenece a la clase objetivo y $l_i = 0$ en caso contrario:
+El modelo busca estimar la probabilidad condicional de que una observación pertenezca a la clase positiva (o clase objetivo). Sea $C_l$ el conjunto de clases posibles, con $l \in \{1,2,\dots,L\}$. Para cada registro $i$ (con $i = 1,2,\dots,n$), su etiqueta verdadera se denota por $l_i$, donde definimos:
+\[
+l_i =
+\begin{cases}
+	1, & \text{si la observación pertenece a la clase positiva } C_1, \\
+	0, & \text{si la observación pertenece a la clase negativa } C_0.
+\end{cases}
+\]
 
 \begin{equation}
 	P(l_i = 1 \mid \bm{x}_i),
@@ -592,21 +611,22 @@ El modelo busca estimar la probabilidad condicional de que una observación pert
 \end{equation}
 
 \noindent
-donde $\bm{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$, el cual también llamamos registro, en el cual $k$ es la cantidad de atributos que posee la observación.\\
+donde $\bm{x}_i = (x_{i1}, x_{i2}, \dots, x_{ik})$ es el vector de características de la observación $i$, el cual también llamamos registro, en el cual $D$ es la cantidad de atributos que posee la observación.\\
 %% AR: En el Glosario, la cantidad de atributos es $D$.
+%% NS: Ya los cambie en esa parte y en las fomulas de abajo.
 
 \noindent
 Por lo cual, la función logística define la \textbf{función de probabilidad} de pertenencia de $\bm x_{i}$ a la clase $1$ como:
 
 \begin{equation}
 	p(\bm{x}_i) = P(l_i = 1 \mid \bm{x}_i) =
-	\frac{\exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})}
-	{1 + \exp(\beta_0 + \sum_{j=1}^{k} \beta_j x_{ij})},
+	\frac{\exp(\beta_0 + \sum_{j=1}^{D} \beta_j x_{ij})}
+	{1 + \exp(\beta_0 + \sum_{j=1}^{D} \beta_j x_{ij})},
 	\label{eq:funcion_logistica}
 \end{equation}
 
 \noindent
-donde $\beta_0$ es el intercepto y $\beta_j$ son los coeficientes asociados a cada predictor, para $j=1,2,\dots,k$.\\
+donde $\beta_0$ es el intercepto y $\beta_j$ son los coeficientes asociados a cada predictor, para $j=1,2,\dots,D$.\\
 
 \noindent
 La función inversa de la función logística, denominada \textbf{\textit{función logit}}, relaciona el logaritmo de las \emph{odds} con un modelo lineal, siendo \emph{odds} lo que se utiliza para analizar si la probabilidad de ocurrencia de un evento -caso/no caso- difiere o no en distintos grupos,
@@ -627,7 +647,7 @@ La función inversa de la función logística, denominada \textbf{\textit{funci�
 \begin{equation}
 	\text{logit}(p(\bm{x}_i)) =
 	\ln \left( \frac{p(\bm{x}_i)}{1 - p(\bm{x}_i)} \right)
-	= \beta_0 + \sum_{j=1}^{k} \beta_j x_{ij}.
+	= \beta_0 + \sum_{j=1}^{D} \beta_j x_{ij}.
 	\label{eq:funcion_logit}
 \end{equation}
 
@@ -653,6 +673,7 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 %% AR: Acá habría que aclara que son los hiperparámetros que se usan en Python. Quizás se pueda poner algo general en la intro del capítulo.
 %% NS: Lo hago en la into.
 %% AR: A lo que me refería es a que vas a usar los hiperparámetros que se usan en la biblioteca de Python.
+%% NS: Lo agregue al principio del capitulo, nombre la libreria y el lenguaje que se usa.
 \noindent
 \begin{itemize}
 	\item \textbf{Parámetro de Regularización ($C$):} Controla la complejidad del modelo. Valores pequeños de $C$ implican mayor regularización (menor sobreajuste), mientras que valores grandes permiten mayor flexibilidad del modelo.
@@ -665,7 +686,7 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 		\begin{equation}
 			\tilde{J}_{L1}(\boldsymbol{\beta}) =
 			J(\boldsymbol{\beta}) +
-			\alpha \sum_{j=1}^{k} |\beta_j|,
+			\alpha \sum_{j=1}^{D} |\beta_j|,
 			\label{eq:l1_penalty}
 		\end{equation}
 		donde
@@ -680,13 +701,14 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 		\begin{equation}
 			\tilde{J}_{L2}(\boldsymbol{\beta}) =
 			J(\boldsymbol{\beta}) +
-			\frac{1}{2}\alpha \sum_{j=1}^{k} \beta_j^2,
+			\frac{1}{2}\alpha \sum_{j=1}^{D} \beta_j^2,
 			\label{eq:l2_penalty}
 		\end{equation}
 		donde
 		\begin{itemize}
 			\item \(\beta_j\) controla cuánto influye cada característica sobre la salida;
-			\item \(\alpha\) determina cuánto se penaliza el tamaño de los coeficientes, evitando que crezcan demasiado. %% AR: ¿También es no negativo? Agregarlo.
+			\item \(\alpha \geq 0  \) determina cuánto se penaliza el tamaño de los coeficientes, evitando que crezcan demasiado. %% AR: ¿También es no negativo? Agregarlo.
+					%% NS: Agregue asi, porque deberia de ser mayor o igual a 0, si es 0 no hay ajuste, si crece mucho puedo ser contradictorio, etc.
 		\end{itemize}
 		
 		%{eq:l2_penalty}{}
@@ -696,16 +718,18 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 			\tilde{J}_{EN}(\boldsymbol{\beta}) =
 			J(\boldsymbol{\beta}) +
 			\alpha \left[
-			\rho \sum_{j=1}^{k} |\beta_j| +
-			\frac{1 - \rho}{2} \sum_{j=1}^{k} \beta_j^2
+			\rho \sum_{j=1}^{D} |\beta_j| +
+			\frac{1 - \rho}{2} \sum_{j=1}^{D} \beta_j^2
 			\right],
 			\label{eq:elasticnet_penalty}
 		\end{equation}
 		donde
 		\begin{itemize}
 			\item \(\beta_j\) son los coeficientes asociados a cada característica;
-			\item \(\alpha\) controla el grado total de regularización; %% AR: Agregar restricciones para $\alpha$.
-			\item \(\rho\) balancea la combinación entre L1 y L2. %% AR: Agregar restricciones para $\rho$.
+			\item \(\alpha \geq 0\) controla el grado total de regularización; %% AR: Agregar restricciones para $\alpha$.
+			%%NS: Listo.
+			\item \(\rho \geq 0\) balancea la combinación entre L1 y L2. Si es 0 entonces tenemos L2 y si es 1 tenemos L1. %% AR: Agregar restricciones para $\rho$.
+			%% NS: Listo ya lo agregue.
 		\end{itemize}
 		%{eq:elasticnet_penalty}{}
 		
@@ -717,7 +741,7 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 	\begin{itemize}
 		\item Método Newton-CG (basado en segunda derivada).
 		\begin{equation}
-			\boldsymbol{\beta}^{(t+1)} \leftarrow
+			\boldsymbol{\beta}^{(t+1)} =
 			\boldsymbol{\beta}^{(t)} -
 			\bm{H}^{-1}
 			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)}),
@@ -731,7 +755,7 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 		
 		\item Método BFGS (quasi-Newton).
 		\begin{equation}
-			\boldsymbol{\beta}^{(t+1)} \leftarrow
+			\boldsymbol{\beta}^{(t+1)} =
 			\boldsymbol{\beta}^{(t)} -
 			\bm{B}^{-1}
 			\nabla_{\boldsymbol{\beta}} \tilde{J}(\boldsymbol{\beta}^{(t)}).
@@ -768,6 +792,7 @@ El objetivo principal es encontrar las divisiones (particiones) que maximicen la
 %% AR: puesto que las clases se usan en diversos contextos a lo largo del trabajo, usaría una notación común, que se puede introducir al comienzo de este capítulo (previo cambio con el capítulo de métricas), deciendo algo del estilo "En lo que resta del documento...".
 %% NS: Ok, lo agrego.
 %% AR: No lo encontré.
+%% NS: Debo agregarlo si esta el glosario?
 \noindent
 En consecuencia, la probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_l$ se define como
 
@@ -781,8 +806,9 @@ En consecuencia, la probabilidad de que un ejemplo en el nodo $t$ pertenezca a l
 donde $N(t)$ es la cantidad total de ejemplos en el nodo $t$, y $N_l(t)$ la cantidad de ejemplos de la clase $C_l$. Es importante este fenómeno porque es un costo computacional muy barato el calcular esta probabilidad y se asemejan a las probabilidades equiprobables, donde la probabilidad de una clase en un nodo está dada por la cantidad de ejemplos de la clase que tienen en el mismo.\\
 
 \noindent
-De esta manera, la impureza de un nodo $t$ se mide mediante una función $\phi$ que depende de las probabilidades de clase en dicho nodo. La función de impureza $i$ 
+De esta manera, la impureza de un nodo $t$ se mide mediante una función $\phi$ que depende de las probabilidades de clase en dicho nodo. La función de impureza $im$ 
 %% AR: Antes se usaba $i$ como subíndice, quizás haya que cambiar la notación en este caso.
+%% NS: Listo use im para la impureza.
 es un hiperparámetro en sí mismo, y debe cumplir las siguientes condiciones, para una función de densidad de probabilidad $\mathbf{p}$:
 
 \begin{itemize}
@@ -805,7 +831,7 @@ es un hiperparámetro en sí mismo, y debe cumplir las siguientes condiciones, p
 \noindent
 Tanto el índice de Gini como la entropía de Shannon satisfacen estas propiedades, por lo que son funciones de impureza válidas para la construcción del árbol.
 \begin{equation}
-	i(t) = \phi \big( p(1|t), p(2|t), \ldots, p(K|t) \big).
+	im(t) = \phi \big( p(1|t), p(2|t), \ldots, p(K|t) \big).
 	\label{eq:impureza_general}
 \end{equation}
 
@@ -813,6 +839,7 @@ Tanto el índice de Gini como la entropía de Shannon satisfacen estas propiedad
 \noindent
 La impureza es máxima cuando las clases están perfectamente mezcladas y es mínima (cero) cuando el nodo contiene solo una clase, en donde la impureza máxima sería que la probabilidad de cada clase es la misma.\\
 
+\noindent
 Dentro de las funciones de impureza más utilizadas, se encuentran la entropía de Shannon y el índice de Gini.
 
 %% AR: Incluir una frase que introduzca lo que se presenta a continuación.
@@ -847,7 +874,7 @@ Al igual que la entropía, es mínimo cuando el nodo es puro y aumenta cuando la
 La \textbf{reducción de impureza} generada al dividir el nodo $t$ en dos nodos hijos $t_1$ y $t_2$ mediante una partición $s$ se calcula como
 
 \begin{equation}
-	\Delta i(s, t) = i(t) - q_1 i(t_1) - q_2 i(t_2),
+	\Delta im(s, t) = im(t) - q_1 im(t_1) - q_2 im(t_2),
 	\label{eq:disminucion_impureza}
 \end{equation}
 donde $q_j = \frac{N(t_j)}{N(t)}$ para $j = 1, 2$.
@@ -874,8 +901,17 @@ La predicción final para clasificación se obtiene mediante el voto mayoritario
 
 
 \noindent
-donde $\widehat{y_a}(\bm{x})$ es la predicción del árbol $a$, y $A$ es la cantidad total de árboles en el bosque.\\
+donde $\widehat{y_a}(\bm{x})$ es la predicción del árbol $a$, $A$ es la cantidad total de árboles en el bosque $\mathbb{I}$ es la \textbf{función indicadora}, definida como
+\[
+\mathbb{I}( \widehat{y_a}(\bm{x}) = l ) =
+\begin{cases}
+	1, & \text{si el árbol } a \text{ asigna la clase } l, \\
+	0, & \text{en caso contrario}.
+\end{cases}
+\]
+Esta función contabiliza cuántos árboles votan por cada clase $l$, permitiendo que el modelo escoja aquella con mayor cantidad de votos.\\
 %% AR: Falta decir que $\mathbb{I}$ es la función indicadora.
+%% NS: Ahí esta, esta bien utilizada en este caso de random forest?
 
 
 \noindent
@@ -919,16 +955,16 @@ donde $\widehat{y_a}(\bm{x})$ es la predicción del árbol $a$, y $A$ es la cant
 	
 	\item \textbf{Bootstrap (\texttt{bootstrap}):}
 	Indica si los árboles del bosque se entrenan con muestras generadas mediante remuestreo con reemplazo. Por defecto, \texttt{True} en Random Forest.
-	%% AR: En los dos últimos, no creo que la notación sea RF.
-	%% NS: No, se me chispoteo.
+
 \end{itemize}
 
 
 \section{Clasificador Naïve Bayes}
 
 \noindent
-El \textbf{Clasificador Naïve Bayes}~\cite{hand2001idiot} (NB) es un método supervisado probabilístico basado en el \textit{Teorema de Bayes}, que asume independencia condicional entre los atributos dado la clase. Esta suposición, aunque en la práctica rara vez se cumple estrictamente —porque las variables suelen estar correlacionadas entre sí. 
+El \textbf{Clasificador Naïve Bayes}~\cite{hand2001idiot} (NB) es un método supervisado probabilístico basado en el \textit{Teorema de Bayes}, que asume independencia condicional entre los atributos dado la clase. Si bien esta suposición rara vez se cumple estrictamente en la práctica —debido a que las variables suelen estar correlacionadas entre sí, el método continúa funcionando de manera efectiva en numerosos problemas reales.
 %% AR: Esta última oración está inclompleta.
+%% NS: Listo, ahi redondee. 
 La regla de clasificación, o la probabilidad de pertenencia de un registro a una clase $C_l$, donde para cada clases $l \in \{1, 2, \dots, L\}$, donde cada registro tiene $D$ atributos, indexados por $d \in \{1, 2, \dots, D\}$.
 
 \begin{equation}
@@ -942,6 +978,7 @@ La regla de clasificación, o la probabilidad de pertenencia de un registro a un
 \end{equation}
 
 %% AR: Observar que antes se usó $l_i$ y acá se usa $Y=C_l$. Habría que unificar.
+%% NS: Modifique el anerior para que se note la diferencia.
 \noindent
 En donde $P(Y = C_l)$ es la \textbf{probabilidad \emph{a priori}} de la clase $C_l$ (qué tan frecuente es en el conjunto de datos). Luego, $P(X_1 = x_1, \ldots, X_d = x_d \mid Y = C_l)$ es la \textbf{verosimilitud}, es decir, cuán probable es observar las características de un registro si supiéramos que pertenece a la clase $C_l$.
 
@@ -993,6 +1030,7 @@ Podemos pensar a $\theta_{jmk}$ como una especie de \textit{“frecuencia intern
 Otra estimación fundamental a calcular y expresar es la \emph{a priori}.
 %, en la cual se asemeja a la probabilidad de que un nodo pertenezca a una clase $k$ en \textit{Random Forest}
 %% AR: ¿Por qué ahora se usa $n'$?
+%% NS: Listo lo cambie por n.
 \begin{equation}
 	\hat{\pi}_l = P(Y = C_l) =
 	\frac{\#\{Y = C_l\}}{n'}.
@@ -1007,7 +1045,7 @@ Los parámetros involucrados son:
 	\item $\hat{\pi}_l$: probabilidad estimada de que un registro pertenezca a la clase $C_k$.
 	Corresponde a la frecuencia relativa de esa clase en la muestra.	
 	\item $|C_l|$: cantidad de registros cuya clase es $C_l$	
-	\item $n'$: tamaño muestral total.
+	\item $n$: tamaño muestral total.
 	%% AR: Antes se usó n. No usaría tamaño total, sino tamaño mnuestral. 
 	%% NS: Use n como tamaño total, voy a usar n prima.
  %% AR: pero es lo mismo.
@@ -1089,10 +1127,11 @@ donde los parámetros de la distribución normal para cada atributo \(X_j\) y cl
 Las \textbf{Máquinas de Soporte Vectorial}~\cite{Cortes1995} (SVM, por sus siglas en inglés) constituyen una técnica de clasificación supervisada basada en la búsqueda de una \textbf{función de decisión} que permita predecir la clase de una observación a partir de sus atributos. Dado que este método opera sobre variables numéricas, los atributos categóricos deben codificarse previamente.\\
 
 \noindent
-El objetivo fundamental de una SVM es encontrar un \textbf{hiperplano de separación óptimo} que divida los datos en función de sus clases, \textbf{maximizando el margen} $\gamma$, es decir, la distancia mínima entre el hiperplano y los puntos más cercanos de cada clase (denominados \textbf{vectores de soporte}). Dichos vectores determinan la posición y orientación del hiperplano, por lo que son los únicos puntos relevantes en el entrenamiento del modelo.\\
+El objetivo fundamental de una SVM es encontrar un \textbf{hiperplano de separación óptimo} que divida los datos en función de sus clases, \textbf{maximizando el margen} $\varphi$, es decir, la distancia mínima entre el hiperplano y los puntos más cercanos de cada clase (denominados \textbf{vectores de soporte}). Dichos vectores determinan la posición y orientación del hiperplano, por lo que son los únicos puntos relevantes en el entrenamiento del modelo.\\
 %% AR: M se usó para métrica.
 %% NS: Uso gamma 
 %% AR: gamma se usa para los kernels. =(
+%% NS: Listo uso varphi
 Aunque existen infinitos hiperplanos que pueden separar los datos, el principio de las SVM consiste en seleccionar aquel que logre la \textbf{máxima separación posible entre las clases}, minimizando simultáneamente el riesgo de sobreajuste y aumentando la capacidad de generalización.\\
 
 
@@ -1197,7 +1236,7 @@ que controlan la flexibilidad del modelo:
 \paragraph{Kernel Polinómico:}
 \begin{equation}
 	K(\bm{a}, \bm{b}) =
-	(\langle \bm{a}, \bm{b} \rangle + r)^\textbf{$d'$}.
+	(\langle \bm{a}, \bm{b} \rangle + r)^\textbf{$d$}.
 	\label{eq:kernel_polinomico}
 \end{equation}
 
@@ -1225,7 +1264,7 @@ que controlan la flexibilidad del modelo:
 	\begin{itemize}
 		\item \(\gamma\): controla la influencia de los puntos en kernels \texttt{rbf}, \texttt{poly} y \texttt{sigmoid}, $\gamma > 0 $.  
 		Es equivalente a \( \tfrac{1}{2\sigma^2} \) en formulaciones gaussianas, aunque scikit-learn nunca usa \(\sigma\) explícitamente.
-		\item \(d'\) (\texttt{degree}): grado del polinomio cuando el kernel es \texttt{poly}, $d' \ge 1$ .
+		\item \(d\) (\texttt{degree}): grado del polinomio cuando el kernel es \texttt{poly}, $d \ge 1$ .
 		\item \(r\) (\texttt{coef0}): coeficiente independiente usado por los kernels \texttt{poly} y \texttt{sigmoid}.
 	\end{itemize}
 \end{itemize}
@@ -1306,12 +1345,23 @@ El \textit{Accuracy} es la proporción de instancias clasificadas correctamente,
 En términos del conjunto de predicciones y valores verdaderos, se tiene que $n$: representa la cantidad total de ejemplos en el \emph{dataset}, mientras que $\hat{y}_l$ es el valor predicho del $l$-ésimo ejemplo, e $y_l$ es el valor verdadero correspondiente, en cual caso si $\hat{y}_l$ es igual al valor obtenido. La expresión $ 1(\hat{y}_l = y_l)$ corresponde a la función indicadora, que toma el valor 1 si la predicción del ejemplo $l$ es correcta y 0 en caso contrario. Al sumar estos valores sobre todas las muestras, se obtiene el número total de aciertos del modelo.
 
 \begin{equation}
-    \texttt{\textit{Accuracy}}(y, \hat{y}) = \frac{1}{n} \sum_{l=0}^{n_-1} 1(\hat{y}_l = y_l).
+    \texttt{\textit{Accuracy}}(y, \hat{y}) = \frac{1}{n} \sum_{l=0}^{n_-1} \mathbb{I}(\hat{y}_l = y_l),
     \label{eq:accuracybinarioformula}
 \end{equation}
 %% AR: Falta aclarar lo que representa 1(\hat{y}_l = y_l)
 %% NS: Lo agregue al final del parrafo anterior.
 %% AR: Antes se usó otra notación para la función indicadora. Hay que unificar.
+%% NS: Listo.
+\noindent
+\noindent
+donde la \textbf{función indicadora} se define como:
+\[
+\mathbb{I}(\hat{y}_l = y_l) =
+\begin{cases}
+	1, & \text{si } \hat{y}_l = y_l, \\
+	0, & \text{en caso contrario}.
+\end{cases}
+\]\\
 \noindent
 Por lo tanto, se puede simplificar como la siguiente fórmula:
 
@@ -1375,14 +1425,14 @@ o en términos de la Matriz de Confusión, de forma más simplificada:
 \end{equation}
 
 \noindent
-\subsection*{\textbf{\textit{Área Bajo la Curva ROC (AUC)}}}
+\subsection*{\textbf{\textit{Área Bajo la Curva ROC ($AUC$)}}}
 
 
 \noindent
-La métrica \textit{AUC} es un valor que resume la capacidad de un clasificador para distinguir entre clases, siendo una métrica muy útil para comparar el desempeño entre modelos distintos o entre un mismo modelo con hiperparámetros distintos.\\
+La métrica \textit{$AUC$} es un valor que resume la capacidad de un clasificador para distinguir entre clases, siendo una métrica muy útil para comparar el desempeño entre modelos distintos o entre un mismo modelo con hiperparámetros distintos.\\
 
 \noindent
-\textbf{La Curva ROC} es un gráfico que ilustra el rendimiento de un clasificador binario a media que se varía su umbral de discriminación. Se crea graficando la \textbf{Tasa de Verdaderos Positivos (TPR)} versus la \textbf{Tasa de Falsos Positivos (FPR)} en varios umbrales. El \textbf{AUC} mide justamente el área debajo de la Curva ROC.\\
+\textbf{La Curva ROC} es un gráfico que ilustra el rendimiento de un clasificador binario a media que se varía su umbral de discriminación. Se crea graficando la \textbf{Tasa de Verdaderos Positivos (TPR)} versus la \textbf{Tasa de Falsos Positivos (FPR)} en varios umbrales. El \textbf{$AUC$} mide justamente el área debajo de la Curva ROC.\\
 
 \noindent
 Ejes utlizados para el gráfico:
@@ -1404,18 +1454,20 @@ Un clasificador \textbf{ideal} se ubica en el punto $(0, 1)$, donde TPR=1 y FPR=
 En este caso se utiliza el método \textit{``weighted''}, el cual tiene en cuenta el desequilibrio de clases calculando el promedio de las métricas binarias por clase, ponderadas según su frecuencia en el conjunto de datos reales.\\
 
 \noindent
-Sea $L = \{1, 2, \dots, L\}$ el conjunto de etiquetas o clases. Para cada clase $l$, se define $|y_l|$ como la cantidad de muestras reales pertenecientes a dicha clase (las barras verticales representan la \textbf{cardinalidad} del conjunto de ejemplos con etiqueta $l$, es decir la cantidad de muestras que tiene esa clase). Asimismo, $M_l$ es el valor de la métrica binaria correspondiente a la clase $l$.\\
+Sea $\{1, 2, \dots, L\}$ el conjunto de etiquetas o clases. Para cada clase $l$, se define $|C_l|$ como la cantidad de muestras reales pertenecientes a dicha clase (las barras verticales representan la \textbf{cardinalidad} del conjunto de ejemplos con etiqueta $l$, es decir la cantidad de muestras que tiene esa clase). Asimismo, $M_l$ es el valor de la métrica binaria correspondiente a la clase $l$.\\
 
 %% AR: Revisar notación para K-fold y corregir el párrafo anterior de manera análoga.
 %% NS: Creo que ahí esta.
 %% AR: Observar que el conjunto L se define con un elemento que también se llama L. Por otra parte, antes de usaba las clases como C_1, C_2, \dots, C_L, ¿por qué no seguir con la misma notación e indicar la cantidad de ejemplos en una clase por |C_l|?
+%% NS: Tenes razon, ahi modifique todos los |y_l| por |C_l|
+
 
 \noindent
 La métrica ponderada, $\widehat{M}_{\text{weighted}}$, se define como:
 \begin{equation}
 	\widehat{M}_{\text{weighted}} =
-	\frac{1}{\sum_{l \in L} |y_l|}
-	\sum_{l \in L} |y_l| \cdot M_l.
+	\frac{1}{\sum_{l \in L} |C_l|}
+	\sum_{l \in L} |C_l| \cdot M_l.
 	\label{eq:metricasponderadas}
 \end{equation}
 
@@ -1550,23 +1602,24 @@ El valor global ponderado se obtiene aplicando la fórmula de $M_{\text{weighted
 
 \begin{equation}
     F_{\text{weighted}} = \sum_{l \in L} w_l \, F_{l}, \quad 
-\text{con } w_l = \frac{|y_l|}{\sum\limits_{l=1}^{L} |y_l|}.
+\text{con } w_l = \frac{|C_l|}{\sum\limits_{l=1}^{L} |C_l|}.
     \label{eq:f1formula}
 \end{equation}
 
 \noindent
-\subsection*{\textit{Área Bajo la Curva ROC (AUC)}}
+\subsection*{\textit{Área Bajo la Curva ROC ($AUC$)}}
 %% AR: Antes era $AUC$, elegir un estilo y unificar.
 %% NS: Ok.
 %% AR: Sigue habiendo diferencia.
+%% NS: Ahí lo hice con buscar y reemplazar, debería de estar.
 
 \noindent
 Para extender la métrica $AUC$ a clasificación multiclase se emplea el enfoque \textbf{One-vs-Rest (OVR)}. Para cada clase $l$ (donde $l \in \{1, 2, \dots, L\}$), se considera la clase $l$ como positiva y el resto como negativas; luego, se calcula el valor correspondiente $\text{AUC}_l$ a partir de la curva ROC del problema binario generado para esa clase. Finalmente, el $AUC$ multiclase se obtiene como un promedio ponderado por el soporte de cada clase.
 
 
 \begin{equation}
-     \text{AUC}_{\text{OVR, weighted}} = \sum_{l \in L} w_l \, \text{AUC}_l \quad 
-     \text{con } w_l = \frac{|y_l|}{\sum\limits_{l=1}^{L} |y_l|}.
+     \text{$AUC$}_{\text{OVR, weighted}} = \sum_{l \in L} w_l \, \text{$AUC$}_l \quad 
+     \text{con } w_l = \frac{|C_l|}{\sum\limits_{l=1}^{L} |C_l|}.
      \label{eq:onevsrest}
 \end{equation}
 %{eq:onevsrest}{One-vs-Rest (OVR)}
@@ -1614,7 +1667,7 @@ Para extender la métrica $AUC$ a clasificación multiclase se emplea el enfoque
 
 \noindent
 En este capítulo se presentan los resultados obtenidos mediante la aplicación de los modelos de aprendizaje supervisado sobre los distintos conjuntos de datos. Se analizan las métricas de evaluación alcanzadas, las configuraciones óptimas halladas mediante búsqueda en malla (\emph{Grid Search}) y la importancia relativa de las características más influyentes en las predicciones.
-Se busca evaluar el rendimiento de cada modelo bajo diferentes configuraciones de hiperparámetros, a través de métricas como la precisión (\textit{Accuracy}), el F1-Score y el área bajo la curva ROC (AUC), entre otras.\\
+Se busca evaluar el rendimiento de cada modelo bajo diferentes configuraciones de hiperparámetros, a través de métricas como la precisión (\textit{Accuracy}), el F1-Score y el área bajo la curva ROC ($AUC$), entre otras.\\
 
 \noindent
 Durante la fase experimental se exploraron distintas estrategias de balanceo de clases, dado que varios de los conjuntos presentan desbalances significativos entre las clases. En particular, se probó la técnica de \textbf{undersampling}, reduciendo la cantidad de ejemplos de la clase mayoritaria para equilibrar el \emph{dataset}. Sin embargo, esta estrategia no arrojó resultados satisfactorios: los modelos tienden a perder capacidad de generalización, mostrando un descenso notable en las métricas de validación, aunque se sostiene la mejor configuración con mejor valor de métricas. Por este motivo, se opta finalmente por mantener la distribución original y aplicar técnicas de regularización y ajuste de hiperparámetros para mitigar el sesgo hacia la clase dominante.\\
@@ -1622,7 +1675,12 @@ Durante la fase experimental se exploraron distintas estrategias de balanceo de 
 
 \section{Dataset Binario}
 
+\noindent
+En esta sección se presentan los resultados obtenidos al aplicar los distintos modelos de aprendizaje automático al \textbf{dataset binario}. En este caso, la tarea de clasificación consiste en distinguir entre dos clases posibles, lo que típicamente permite a los algoritmos aprender fronteras de decisión más simples en comparación con escenarios multiclase.
+
+
 %% AR: Agregar una frase introductoria a la sección.
+%% NS: Listo.
 \subsubsection*{Regresión Logística}
 
 \noindent
@@ -1632,13 +1690,13 @@ Durante la fase experimental se exploraron distintas estrategias de balanceo de 
 Los resultados cuantitativos se resumen en la Tabla~\ref{tab:rl_resultados_binario}, en la cual se muestra la mejor configuración obtenida de los hiperparámetros de la Tabla~\ref{tab:grid_rl_bin}. 
 El modelo logra un \emph{Accuracy}
 y un F1-Score de 0.8445,
-junto con un AUC de 0.9050, lo que refleja una buena capacidad discriminatoria, pero siendo datos médicos se requieren incluso mejores valores.\\
+junto con un $AUC$ de 0.9050, lo que refleja una buena capacidad discriminatoria, pero siendo datos médicos se requieren incluso mejores valores.\\
 
 \begin{table}[htb]%[H]
 	\centering
 	\caption{Grilla de hiperparámetros - Regresión Logística (binario).}
 	\label{tab:grid_rl_bin}
-	\begin{tabular}{l|l}
+	\begin{tabular}{ll}
 		\toprule
 		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
 		\midrule
@@ -1655,9 +1713,9 @@ junto con un AUC de 0.9050, lo que refleja una buena capacidad discriminatoria, 
 	\centering
 	\caption{Resultados finales del modelo de Regresión Logística.}
 	\label{tab:rl_resultados_binario}
-	\begin{tabular}{l|c|c|c|c|c|c}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			$C = 1$\\
@@ -1677,12 +1735,12 @@ El tiempo de entrenamiento fue de apenas 0.13 segundos, lo que lo convierte en u
 
 \subsubsection*{Máquinas de Soporte Vectorial}
 
-
+\noindent
 \textbf{SVM} obtuvo un desempeño sólido en la clasificación binaria, mostrando un equilibrio adecuado entre precisión y generalización. Demostrando la solidez habitual con que es descripto este método.\\
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:svm_resultados_binario}. 
-El modelo logra un \emph{Accuracy} y un F1-Score de 0.8616, junto con un AUC de 0.9232, lo que refleja la mejor capacidad de clasificación hasta ahora.\\
+El modelo logra un \emph{Accuracy} y un F1-Score de 0.8616, junto con un $AUC$ de 0.9232, lo que refleja la mejor capacidad de clasificación hasta ahora.\\
 
 \noindent
 El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado, pero costoso si vemos que el tamaño del \emph{dataset} es bastante pequeño, refleja un costo de evaluación más grande que con RL.\\
@@ -1693,7 +1751,7 @@ El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado
 	\centering
 	\caption{Grilla de hiperparámetros - SVM (binario).}
 	\label{tab:grid_svm_bin}
-	\begin{tabular}{l|l}
+	\begin{tabular}{ll}
 		\toprule
 		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
 		\midrule
@@ -1711,9 +1769,9 @@ El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado
 	\centering
 	\caption{Resultados finales del SVM.}
 	\label{tab:svm_resultados_binario}
-	\begin{tabular}{l|c|c|c|c|c|c}
+	\begin{tabular}{lcccccc}
 	\toprule
-	\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+	\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			$C = 1$\\
@@ -1735,21 +1793,26 @@ El tiempo de entrenamiento fue de apenas 0.60 segundos, siendo un tiempo acotado
 
 
 \noindent
-\textbf{NB} Gaussiano obtuvo un buen desempeño sólido en la clasificación binaria, considerando su supuesto de independencia entre atributos, que si tomamos la ida de que es \emph{buena} métrica si supera el 0.8 en su valor. 
+\textbf{NB} obtuvo un desempeño sólido en la tarea de clasificación binaria, especialmente considerando su supuesto fuerte de independencia condicional entre atributos.Si bien este supuesto rara vez se cumple estrictamente en datos reales, el modelo suele mantener un rendimiento competitivo.
+En este trabajo, evaluamos su desempeño utilizando la métricas distitas métricas, y consideramos que un valor superior a 0.80 constituye un nivel de desempeño adecuado para el tipo de problema abordado.\\
 %% AR: No estiendo bien la oración anterior.
-La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias. Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados_binario}.  El modelo logra un \emph{Accuracy} y un F1-Score de 0.8420, junto con un AUC de 0.9138, lo que refleja una muy buena capacidad clasificadora siendo un método tan eficaz, además de ser bastante similar con los resultados de los modelos a los cuales se compara. \\
+%% NS: Ahí la corregí un poco más.
+
+\noindent
+La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias. Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados_binario}.  El modelo logra un \emph{Accuracy} y un F1-Score de 0.8420, junto con un $AUC$ de 0.9138, lo que refleja una muy buena capacidad clasificadora siendo un método tan eficaz, además de ser bastante similar con los resultados de los modelos a los cuales se compara. \\
 
 
 \begin{table}[htb]%[H]
 	\centering
 	\caption{Grilla de hiperparámetros - Naive Bayes Gaussiano (binario).}
 	\label{tab:grid_nb_bin}
-	\begin{tabular}{l|l}
+	\begin{tabular}{ll}
 		\toprule
 		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
 		\midrule
-		Suavizado & Variaciones de suavizado
+		Suavizado & $\{10^{-9},\; 10^{-8},\; 10^{-7},\; 10^{-6},\; 10^{-5}\}$
 %% AR: Esto no es muy preciso.
+%% NS: Listo.
  \\
 		\bottomrule
 	\end{tabular}
@@ -1759,9 +1822,9 @@ La mejor configuración se alcanzó con cualquier suavizado, no hubo diferencias
 	\centering
 	\caption{Resultados finales del Naive Bayes Gaussiano.}
 	\label{tab:nbg_resultados_binario}
-	\begin{tabular}{l|c|c|c|c|c|c}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			var\_smoothing =\\
@@ -1785,7 +1848,7 @@ El tiempo de entrenamiento fue de apenas 0.10 segundos, siendo que la mayor fort
 \textbf{RF} demostró un desempeño bastante sólido en la clasificación binaria, mostrando alta capacidad de generalización para registros no vistos durante el entrenamiento.\\
 
 \noindent 
-Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados_binario}, donde el modelo logra un \emph{Accuracy} y un F1-Score de 0.8780, junto con un AUC de 0.9315, lo que refleja una excelente capacidad de clasificación, pero evidentemente la tarea de creación de los árboles y del voto mayoritario lo vuelven un método bastante costoso aunque efectivo.\\
+Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados_binario}, donde el modelo logra un \emph{Accuracy} y un F1-Score de 0.8780, junto con un $AUC$ de 0.9315, lo que refleja una excelente capacidad de clasificación, pero evidentemente la tarea de creación de los árboles y del voto mayoritario lo vuelven un método bastante costoso aunque efectivo.\\
 
 \noindent 
 El tiempo de entrenamiento fue de 1.38 segundos, siendo considerablemente el modelo en el cual más se tarda en obtener los resultados.\\
@@ -1795,7 +1858,7 @@ El tiempo de entrenamiento fue de 1.38 segundos, siendo considerablemente el mod
 	\centering
 	\caption{Grilla de hiperparámetros - Random Forest (binario).}
 	\label{tab:grid_rf_bin}
-	\begin{tabular}{l|l}
+	\begin{tabular}{ll}
 		\toprule
 		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
 		\midrule
@@ -1813,9 +1876,9 @@ El tiempo de entrenamiento fue de 1.38 segundos, siendo considerablemente el mod
 	\centering
 	\caption{Resultados finales del Random Forest.}
 	\label{tab:rf_resultados_binario}
-	\begin{tabular}{l|c|c|c|c|c|c}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			Criterion = entropy\\
@@ -1849,40 +1912,21 @@ En la Figura \ref{fig:mejores_modelos_binario} se observa que Random Forest obti
 \noindent La importancia de las características se calculó mediante el método de \textit{Permutation Feature Importance}. Este método evalúa cuánto se degrada el desempeño del modelo cuando se altera aleatoriamente una característica, manteniendo fijas las demás. Cuanto mayor sea la disminución en la métrica de desempeño, mayor será la importancia atribuida a dicha característica.\\
 
 
-\noindent Los resultados obtenidos se presentan en las Tablas~\ref{tab:rf_importancia},~\ref{tab:rl_importancia_},~\ref{tab:nb_importancia} y ~\ref{tab:svm_importancia} correspondientes a los modelos RF, RL, NB y SVM, respectivamente.
+\noindent Los resultados obtenidos se presentan en las Tablas~\ref{tab:rl_importancia_},~\ref{tab:svm_importancia},~\ref{tab:nb_importancia} y \ref{tab:rf_importancia}, correspondientes a los modelos  RL, NB, SVM y RF, respectivamente.
 %% AR: Habría que respetar el mismo orden previo para los métodos: RL, SVM, NB, RF. Lo mismo aplica para el caso multiclase.
+%% NS: Listo ya lo hice.
 
 
-\begin{table}[htb]%[H]
-	\centering
-	\caption{Importancia de las características según permutación (RF).}
-	\label{tab:rf_importancia}
-	\begin{tabular}{l|c}
-		\toprule
-		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
-		\midrule
-ST\_Slope & 0.254265 \\
-ChestPainType & 0.127319 \\
-Oldpeak & 0.113156 \\
-ExerciseAngina & 0.105952 \\
-Cholesterol & 0.099872 \\
-MaxHR & 0.088635 \\
-Age & 0.065807 \\
-RestingBP & 0.055053 \\
-Sex & 0.040916 \\
-FastingBS & 0.030069 \\
-RestingECG & 0.018956 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+
 
 
 %% AR: Ver que esta tabla queda cortada en el texto.
+%% NS: Ahora esta bien, raro.
 \begin{table}[htb]%[H]
 	\centering
 	\caption{Importancia de las características según permutación (RL).}
 	\label{tab:rl_importancia_}
-	\begin{tabular}{l|c}
+	\begin{tabular}{lc}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -1903,11 +1947,11 @@ RestingECG     &   0.000218\\
 
 
 
-\begin{table}[htb]%[H]
+\begin{table}[H]%[H]
 	\centering
 	\caption{Importancia de las características según permutación (SVM).}
 	\label{tab:svm_importancia}
-	\begin{tabular}{l|c}
+	\begin{tabular}{lc}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -1929,11 +1973,12 @@ FastingBS      &   0.004575\\
 
 
 %% AR: Revisar porque no puede aparecer la Tabla 4.12 antes que la 4.9.
-\begin{table}[H]
+%% NS: Modifique con H la anterior, es por como funciona htb, que quedaba la anerior.
+\begin{table}[htb]
 	\centering
 	\caption{Importancia de las características según permutación (NB).}
 	\label{tab:nb_importancia}
-	\begin{tabular}{l|c}
+	\begin{tabular}{lc}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -1952,6 +1997,30 @@ Age & -0.003595 \\
 	\end{tabular}
 \end{table}
 
+\begin{table}[htb]%[H]
+	\centering
+	\caption{Importancia de las características según permutación (RF).}
+	\label{tab:rf_importancia}
+	\begin{tabular}{lc}
+		\toprule
+		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+		\midrule
+		ST\_Slope & 0.254265 \\
+		ChestPainType & 0.127319 \\
+		Oldpeak & 0.113156 \\
+		ExerciseAngina & 0.105952 \\
+		Cholesterol & 0.099872 \\
+		MaxHR & 0.088635 \\
+		Age & 0.065807 \\
+		RestingBP & 0.055053 \\
+		Sex & 0.040916 \\
+		FastingBS & 0.030069 \\
+		RestingECG & 0.018956 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
 
 \begin{figure}[H]
 	\centering
@@ -1964,7 +2033,7 @@ Age & -0.003595 \\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_binario_auc}
-	\caption{Evolución de AUC (Binario).}
+	\caption{Evolución de $AUC$ (Binario).}
 	\label{fig:evolucion_metricas_binario_auc}
 \end{figure}
 
@@ -1986,17 +2055,23 @@ Siendo los modelos \textbf{SVM} y \textbf{RF} los que mejor comportamiento tiene
 
 \section{Dataset Multiclase}
 
-%% AR: Agregar frase que introduzca la sección.
-
-%% AR: Revisar cómo modifiqué título y siglas en en caso binario y modificar unificando estilo.
-\subsubsection*{RL}
 
 \noindent
-La Regresión Logística obtuvo un muy buen desempeño en la clasificación multiclase, mostrando un equilibrio adecuado entre precisión y generalización.\\
+En esta sección se presentan los resultados obtenidos al aplicar los distintos modelos de aprendizaje automático al \textbf{dataset multiclase}. A diferencia del problema binario, este conjunto de datos requiere que los algoritmos distingan entre varias categorías posibles, lo cual introduce desafíos adicionales como la separación más compleja entre clases, mayor variabilidad interna y posibles desbalances entre categorías. 
+
+%% AR: Agregar frase que introduzca la sección.
+%% NS: Listo.
+
+%% AR: Revisar cómo modifiqué título y siglas en en caso binario y modificar unificando estilo.
+%% NS: Listo quedo más bonito.
+\subsubsection*{Regresión Logística}
+
+\noindent
+\textbf{RL} obtuvo un muy buen desempeño en la clasificación multiclase, mostrando un equilibrio adecuado entre precisión y generalización.\\
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rl_resultados}, junto con la configuración de hiperparámetros que logro esos resultados. 
-El modelo logra un \emph{Accuracy} y un F1-Score de 0.8978 respectivamente, junto con un AUC de 0.9644, lo que refleja una buena capacidad discriminatoria, logrando un buen resultado al incremento de datos y de dificultad al existir más de dos clases.\\
+El modelo logra un \emph{Accuracy} y un F1-Score de 0.8978 respectivamente, junto con un $AUC$ de 0.9644, lo que refleja una buena capacidad discriminatoria, logrando un buen resultado al incremento de datos y de dificultad al existir más de dos clases.\\
 
 \noindent 
 El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en una opción eficiente para este tipo de problema, teniendo en cuanta que se mantiene en rangos acotados, incluso con más datos que en el caso binario.
@@ -2006,7 +2081,7 @@ El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en u
 	\centering
 	\caption{Grilla de hiperparámetros - Regresión Logística (multiclase).}
 	\label{tab:grid_rl_multi}
-	\begin{tabular}{l|l}
+	\begin{tabular}{ll}
 		\toprule
 		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
 		\midrule
@@ -2022,9 +2097,9 @@ El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en u
 	\centering
 	\caption{Resultados finales del modelo de Regresión Logística.}
 	\label{tab:rl_resultados}
-	\begin{tabular}{l|c|c|c|c|c|c}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			$C = 1$\\
@@ -2041,13 +2116,14 @@ El tiempo de entrenamiento fue de apenas 0.30 segundos, lo que lo convierte en u
 
 
 
-\subsubsection*{SVM}
+\subsubsection*{Máquinas de Soporte Vecotorial}
 
-La Máquinas de Soporte Vectorial obtuvo un desempeño bastante sólido en la clasificación multiclase, mostrando unos grandes valores en sus métricas. \\
+\noindent
+\textbf{SVM} obtuvo un desempeño bastante sólido en la clasificación multiclase, mostrando unos grandes valores en sus métricas. \\
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:svm_resultados}, junto con la mejor configuración que logro las mejoras métricas. 
-El modelo logra un \emph{Accuracy} y un F1-Score de 0.9082, junto con un AUC de 0.9556, lo que refleja una muy buena capacidad de clasificación, logrando ser un método útil para \emph{datasets} acotados y grandes, como a casos binarios y multiclase. 
+El modelo logra un \emph{Accuracy} y un F1-Score de 0.9082, junto con un $AUC$ de 0.9556, lo que refleja una muy buena capacidad de clasificación, logrando ser un método útil para \emph{datasets} acotados y grandes, como a casos binarios y multiclase. 
 El tiempo de entrenamiento fue de apenas 1.42 segundos, mostrando una clara demora a cuantos más datos deben de procesar, si comparamos como sube el tiempo de ejecución con el caso binario.
 
 
@@ -2055,7 +2131,7 @@ El tiempo de entrenamiento fue de apenas 1.42 segundos, mostrando una clara demo
 	\centering
 	\caption{Grilla de hiperparámetros - SVM (multiclase).}
 	\label{tab:grid_svm_multi}
-	\begin{tabular}{l|l}
+	\begin{tabular}{ll}
 		\toprule
 		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
 		\midrule
@@ -2072,9 +2148,9 @@ El tiempo de entrenamiento fue de apenas 1.42 segundos, mostrando una clara demo
 	\centering
 	\caption{Resultados finales del SVM.}
 	\label{tab:svm_resultados}
-	\begin{tabular}{l|c|c|c|c|c|c}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 		$C = 0.1$\\
@@ -2094,20 +2170,20 @@ El tiempo de entrenamiento fue de apenas 1.42 segundos, mostrando una clara demo
 
 
 
-\subsubsection*{NB}
+\subsubsection*{Naive Bayes}
 
-
-Naive Bayes Gaussiano obtuvo un buen desempeño en la clasificación multiclase, considerando su supuesto de independencia entre atributos. \\
+\noindent
+\textbf{NB} obtuvo un buen desempeño en la clasificación multiclase, considerando su supuesto de independencia entre atributos. \\
 
 \begin{table}[H]
 	\centering
 	\caption{Grilla de hiperparámetros - Naive Bayes Gaussiano (multiclase).}
 	\label{tab:grid_nb_multi}
-	\begin{tabular}{l|l}
+	\begin{tabular}{ll}
 		\toprule
 		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
 		\midrule
-		Suavizado & Variaciones de suavizado \\
+		Suavizado & $\{10^{-9},\; 10^{-8},\; 10^{-7},\; 10^{-6},\; 10^{-5}\}$\\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -2117,9 +2193,9 @@ Naive Bayes Gaussiano obtuvo un buen desempeño en la clasificación multiclase,
 	\centering
 	\caption{Resultados finales del Naive Bayes Gaussiano.}
 	\label{tab:nbg_resultados}
-	\begin{tabular}{l|c|c|c|c|c|c}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			var\_smoothing =\\
@@ -2131,7 +2207,7 @@ Naive Bayes Gaussiano obtuvo un buen desempeño en la clasificación multiclase,
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:nbg_resultados}. 
-El modelo logra un \emph{Accuracy} y un F1-Score de 0.8208, junto con un AUC de 0.91, lo que refleja una buena capacidad clasificadora, pero lo suficientemente menor a los modelos con los cuales se compara, para decidir que no es útil en cuanto a tener buenos valores de métricas a la hora de resolver este problema. Es evidente que se mantuvo en valores similares al caso binario, sin tener caídas aún cuando se incrementa el tamaño del \emph{dataset} o se dificulta el mismo con un caso multiclase, pero tampoco muestra mejora como el resto de modelos.\\
+El modelo logra un \emph{Accuracy} y un F1-Score de 0.8208, junto con un $AUC$ de 0.91, lo que refleja una buena capacidad clasificadora, pero lo suficientemente menor a los modelos con los cuales se compara, para decidir que no es útil en cuanto a tener buenos valores de métricas a la hora de resolver este problema. Es evidente que se mantuvo en valores similares al caso binario, sin tener caídas aún cuando se incrementa el tamaño del \emph{dataset} o se dificulta el mismo con un caso multiclase, pero tampoco muestra mejora como el resto de modelos.\\
 
 \noindent
 El tiempo de entrenamiento fue de apenas 0.11 segundos, siendo su mayor fortaleza, incluso con más datos el modelo se mantiene en valores parecidos de tiempo de ejecución.
@@ -2140,14 +2216,14 @@ El tiempo de entrenamiento fue de apenas 0.11 segundos, siendo su mayor fortalez
 
 
 
-\subsubsection*{RF}
+\subsubsection*{Random Forest}
 
 \noindent
-Random Forest demostró un desempeño claramente superador en la clasificación multiclase, mostrando alta capacidad de generalización incluso para un \emph{dataset} más grande y con caso multiclase.\\
+\textbf{RF} demostró un desempeño claramente superador en la clasificación multiclase, mostrando alta capacidad de generalización incluso para un \emph{dataset} más grande y con caso multiclase.\\
 
 \noindent
 Los resultados cuantitativos finales se resumen en la Tabla~\ref{tab:rf_resultados}, junto con la mejor configuración con la cual se obtuvieron estos resultados. 
-El modelo logra un \emph{Accuracy} y un F1-Score de 0.9432, junto con un AUC de 0.9868, lo que refleja una buena excelente capacidad clasificadora. Se entienden que los árboles de decisión no se ven afectados por casos multiclase y que la presencia de más cantidad de registros los enriquecen para realizar mejor clasificaciones. 
+El modelo logra un \emph{Accuracy} y un F1-Score de 0.9432, junto con un $AUC$ de 0.9868, lo que refleja una buena excelente capacidad clasificadora. Se entienden que los árboles de decisión no se ven afectados por casos multiclase y que la presencia de más cantidad de registros los enriquecen para realizar mejor clasificaciones. 
 El tiempo de entrenamiento fue de 2.24 segundos, mostrando como estos modelos incrementan su tiempo de ejecución a mayores datos requieren procesar.
 
 
@@ -2155,7 +2231,7 @@ El tiempo de entrenamiento fue de 2.24 segundos, mostrando como estos modelos in
 	\centering
 	\caption{Grilla de hiperparámetros - Random Forest (multiclase).}
 	\label{tab:grid_rf_multi}
-	\begin{tabular}{l|l}
+	\begin{tabular}{ll}
 		\toprule
 		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
 		\midrule
@@ -2172,9 +2248,9 @@ El tiempo de entrenamiento fue de 2.24 segundos, mostrando como estos modelos in
 	\centering
 	\caption{Resultados finales del Random Forest.}
 	\label{tab:rf_resultados}
-	\begin{tabular}{l|c|c|c|c|c|c}
+	\begin{tabular}{lcccccc}
 		\toprule
-		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{AUC} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+		\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 		\midrule
 		\makecell[l]{
 			Criterion = gini\\
@@ -2207,45 +2283,13 @@ En la Figura \ref{fig:mejores_modelos_multiclase} se observa que Random Forest o
 
 \noindent Los resultados obtenidos se presentan en las Tablas~\ref{tab:rf_importancia_multiclase},~\ref{tab:rl_importancia_multiclase},~\ref{tab:nb_importancia_multiclase} y ~\ref{tab:svm_importancia_multiclase} correspondientes a los modelos RF, RL, NB y SVM.
 
-\begin{table}[htb]
-	\centering
-	\caption{Importancia de las características según permutación (RF).}
-	\label{tab:rf_importancia_multiclase}
-	\begin{tabular}{l|c}
-		\toprule
-		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
-		\midrule
-	ASTV      &  0.139807\\
-	ALTV      &  0.109941\\
-	MSTV      &  0.104823\\
-	Mean      &  0.091579\\
-	AC        &  0.063645\\
-	Mode       & 0.061986\\
-	Median      &0.060633\\
-	DP        &  0.047945\\
-	LB        &  0.045324\\
-	MLTV      &  0.045132\\
-	Variance  &  0.040531\\
-	UC        &  0.039166\\
-	Width     &  0.030551\\
-	Min       &  0.030109\\
-	Max       &  0.027147\\
-	FM        &  0.020801\\
-	Nmax      &  0.018407\\
-	DL        &  0.011128\\
-	Tendency  &  0.007652\\
-	Nzeros    &  0.003405\\
-	DS        &  0.000287\\
-		\bottomrule
-	\end{tabular}
-\end{table}
 
 
 \begin{table}[htb]%[htb]
 	\centering
 	\caption{Importancia de las características según permutación (RL).}
 	\label{tab:rl_importancia_multiclase}
-	\begin{tabular}{l|c}
+	\begin{tabular}{lc}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -2279,7 +2323,7 @@ DS       &   0.000000\\
 	\centering
 	\caption{Importancia de las características según permutación (SVM).}
 	\label{tab:svm_importancia_multiclase}
-	\begin{tabular}{l|c}
+	\begin{tabular}{lc}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -2313,7 +2357,7 @@ LB       &  -0.000804\\
 	\centering
 	\caption{Importancia de las características según permutación (Naive Bayes Gaussiano).}
 	\label{tab:nb_importancia_multiclase}
-	\begin{tabular}{l|c}
+	\begin{tabular}{lc}
 		\toprule
 		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
 		\midrule
@@ -2342,6 +2386,42 @@ LB       &  -0.000804\\
 	\end{tabular}
 \end{table}
 
+
+\begin{table}[htb]
+	\centering
+	\caption{Importancia de las características según permutación (RF).}
+	\label{tab:rf_importancia_multiclase}
+	\begin{tabular}{lc}
+		\toprule
+		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+		\midrule
+		ASTV      &  0.139807\\
+		ALTV      &  0.109941\\
+		MSTV      &  0.104823\\
+		Mean      &  0.091579\\
+		AC        &  0.063645\\
+		Mode       & 0.061986\\
+		Median      &0.060633\\
+		DP        &  0.047945\\
+		LB        &  0.045324\\
+		MLTV      &  0.045132\\
+		Variance  &  0.040531\\
+		UC        &  0.039166\\
+		Width     &  0.030551\\
+		Min       &  0.030109\\
+		Max       &  0.027147\\
+		FM        &  0.020801\\
+		Nmax      &  0.018407\\
+		DL        &  0.011128\\
+		Tendency  &  0.007652\\
+		Nzeros    &  0.003405\\
+		DS        &  0.000287\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_multiclase}
@@ -2352,7 +2432,7 @@ LB       &  -0.000804\\
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1\textwidth]{../evolucion_metrica_multiclase_auc}
-	\caption{Evolución de AUC (Multiclase).}
+	\caption{Evolución de $AUC$ (Multiclase).}
 	\label{fig:evolucion_metricas_multiclase_auc}
 \end{figure}
 
@@ -2388,8 +2468,15 @@ El modelo de \textbf{Máquinas de Soporte Vectorial} mostró también un rendimi
 \textbf{Regresión Logística} presentó resultados positivos y de buena generalización, aunque con menor capacidad para capturar patrones que los otros modelos, no por ser malos resultados, sino que el resto tuvo mejores valores de métricas. Por su parte, el modelo \textbf{Naive Bayes} ofreció un rendimiento aceptable, siendo el más liviano computacionalmente, aunque con limitaciones inherentes a su supuesto de independencia de las variables. Esto no quita que aunque posea este supuesto, es el más liviano y rápido de los modelos obteniendo resultados sumamente buenos.\\
 
 \noindent
-En cuanto a la \textbf{importancia de las características}, se identificaron atributos dominantes en cada conjunto de datos. En el caso binario, variables como \textit{ST\_Slope}, \textit{ChestPainType} y \textit{Oldpeak} fueron recurrentemente relevantes; mientras que en el caso multiclase destacaron \textit{ASTV}, \textit{ALTV} y \textit{MSTV}.
+En cuanto a la \textbf{importancia de las características}, se identificaron atributos dominantes en cada conjunto de datos:\\
+
+\noindent
+En el caso binario, variables como \textit{ST\_Slope}: este segmento del ECG se analiza porque cambia cuando hay isquemia, es decir, cuando el corazón recibe menos sangre de la necesaria; \textit{ChestPainType}: el tipo de dolor en el pecho, asociado a isquemia cardíaca; y \textit{Oldpeak}: componente utilizado para estimar el riesgo de isquemia o infarto de miocardio, fueron recurrentemente relevantes.\\
+
+\noindent
+En el caso multiclase destacaron \textit{ASTV}: porcentaje de tiempo con variabilidad anormal a corto plazo; \textit{ALTV}: porcentaje de tiempo con variabilidad anormal a largo plazo; y \textit{MSTV}: valor medio de la variabilidad a largo plazo.
 %% AR: Pondría las variables de modo que sea comprensible y no haya que ir a buscar lo que significan. Esto es porque son las conclusiones. 
+%% NS: Listo.
 
 \section{Mejoras Potenciales y Consideraciones}
 
