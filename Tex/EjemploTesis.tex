@@ -251,7 +251,6 @@ presenta recomendaciones y orientaciones para la evaluación adecuada de modelos
 %(2021) 
 revisa las metodologías de aprendizaje automático para el diagnóstico de cardiopatías utilizando métodos no invasivos, un área crucial dada la alta mortalidad anual (17.9 millones de personas) asociada con los problemas cardíacos.\\
 
-%% Algo sobre variables cardiológicas en general, y sobre trabajos que usen alguno de los que yo use a cardiología.
 
 \noindent
 En los estudios cardiológicos, las variables utilizadas pueden agruparse en tres grandes categorías principales: parámetros clínicos estructurados, señales cardíacas y datos provenientes de imágenes médicas. Los parámetros clínicos incluyen variables demográficas, antecedentes, síntomas y mediciones de laboratorio, que suelen encontrarse en bases de datos estructuradas como el conjunto de Cleveland, utilizado comúnmente en estudios de clasificación de enfermedades cardíacas. Las señales cardíacas, como los electrocardiogramas (ECG) y fonocardiogramas (PCG), aportan información temporal y frecuencial altamente relevante para la detección de arritmias, soplos o patrones eléctricos anómalos. Finalmente, los datos de imagen —que abarcan ecocardiografías, resonancias magnéticas cardíacas (CMR), tomografías computarizadas (CCT) o estudios SPECT— permiten evaluar morfología, función cardíaca y perfusión.\\
@@ -259,7 +258,11 @@ En los estudios cardiológicos, las variables utilizadas pueden agruparse en tre
 \noindent
 En el ámbito de los métodos de aprendizaje automático aplicados a cardiología, varios trabajos han empleado los mismos algoritmos utilizados en este estudio. Por ejemplo, modelos basados en \textit{Support Vector Machines} (SVM) han demostrado un rendimiento competitivo en la clasificación de ECG y en la detección de enfermedades a partir de parámetros clínicos, mostrando en muchos casos un desempeño superior a métodos más simples. Los clasificadores \textit{k}-Nearest Neighbors (\textit{k}-NN) han sido utilizados para tareas como la detección de arritmias mediante características temporales del ECG o para la predicción de riesgo a partir de datos clínicos estructurados. Otros estudios han empleado Naïve Bayes o árboles de decisión para la clasificación de cardiopatías utilizando tanto datos tabulares como señales procesadas. Estas aplicaciones muestran que los modelos implementados en este trabajo están bien representados dentro de la literatura del área y cuentan con antecedentes sólidos en tareas diagnósticas dentro del dominio cardiológico.\\
 
+\noindent
+Además de los enfoques basados en aprendizaje automático, los profesionales de la salud emplean tradicionalmente una variedad de herramientas diagnósticas para la evaluación cardiovascular, las cuales constituyen la base clínica sobre la que se interpretan los resultados computacionales. Entre ellas se destacan el electrocardiograma (ECG), utilizado para detectar alteraciones eléctricas como isquemia, arritmias o hipertrofias; las pruebas de esfuerzo, que permiten evaluar la respuesta cardíaca ante actividad física y cambios en el segmento ST; los ecocardiogramas, que brindan información estructural y funcional sobre cavidades, válvulas y fracción de eyección; y los análisis de laboratorio, que incluyen marcadores como troponinas, colesterol y glucosa, esenciales para caracterizar el riesgo cardiovascular. Estas herramientas continúan siendo el estándar clínico y complementan los modelos computacionales, proporcionando un marco interpretativo que guía la toma de decisiones médicas.\\
+
 %% AR: Ver de agregar algo sobre herramientas clásicas que usan los médicos.
+%% NS: Ahí esta.
 
  
 \section{Conjuntos de Datos %Utilizados
@@ -925,7 +928,7 @@ Esta función contabiliza cuántos árboles votan por cada clase $l$, permitiend
 	\texttt{``gini''} (índice de Gini) y \texttt{``entropy''} (entropía de Shannon).
 	
 	\item \textbf{Algoritmo de Construcción:} 
-	\textit{ID3} emplea la ganancia de información (entropía), mientras que \textit{CART} utiliza el índice de Gini y construye árboles binarios.
+	\textit{ID3}~\cite{breiman2017classification} emplea la ganancia de información (entropía), mientras que \textit{CART}~\cite{quinlan1986induction} utiliza el índice de Gini y construye árboles binarios.
 	En \texttt{scikit-learn}, el árbol implementado corresponde a una versión optimizada de \textit{CART}.
 	%% AR: Se podrían incluir referencias.
 	%% NS: Las busco.
@@ -1902,6 +1905,7 @@ El tiempo de entrenamiento fue de 1.38 segundos, siendo considerablemente el mod
 	\label{fig:mejores_modelos_binario}
 \end{figure}
 %% AR: Cambiar "metricas" por "Métricas" (revisar el resto del documento).
+%% NS: Listo en los que tocaba.
 
 \noindent
 En la Figura \ref{fig:mejores_modelos_binario} se observa que Random Forest obtiene la mayor puntuación en todas las métricas, seguido por la Regresión Logística y SVM. Esto indica que, para nuestro \emph{dataset}, el modelo RF presenta mejor capacidad de generalización, mientras que los demás modelos muestran un desempeño bastante competitivo. Esto no quiere decir que sea el mejor modelo, sino que es el que mejor clasifica este \emph{dataset}, pero si se quieren resultados sólidos con menor tiempo de cálculo, entonces el NB es una buena solución. Podemos afirmar que todos los modelos tuvieron desempeños correctos.
@@ -2029,6 +2033,7 @@ Age & -0.003595 \\
 	\label{fig:evolucion_metricas_binario}
 \end{figure}
 %% AR: Sacar título porque hay un caption. (Revisar en el tresto del documento.)
+%% NS: Listo en todas las figuras.
 
 \begin{figure}[H]
 	\centering

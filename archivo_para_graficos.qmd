@@ -23,37 +23,37 @@ You can add options to executable code like this
 ```{r}
 # Definimos los modelos y métricas
 modelos <- c("RL", "SVM", "NB", "RF")
-metricas <- c("Accuracy","F1", "AUC")
+metrica <- c("Accuracy","F1", "AUC")
 
 # Creamos un data frame con todos los valores simulados
 # Creamos un data frame vacío con todas las combinaciones
-data <- expand.grid(modelo = modelos, metricas = metricas)
+data <- expand.grid(modelo = modelos, Métricas = metrica)
 data$valor <- NA  # aquí completás los valores reales
 
 # Ejemplo de cómo asignar valores manualmente:
-data$valor[data$modelo=="RL" & data$metrica=="Accuracy"] <- 0.84
-data$valor[data$modelo=="RL" & data$metrica=="AUC"] <- 0.90
-data$valor[data$modelo=="RL" & data$metrica=="F1"] <- 0.84
+data$valor[data$modelo=="RL" & data$Métricas=="Accuracy"] <- 0.84
+data$valor[data$modelo=="RL" & data$Métricas=="AUC"] <- 0.90
+data$valor[data$modelo=="RL" & data$Métricas=="F1"] <- 0.84
 
 
-data$valor[data$modelo=="SVM" & data$metrica=="Accuracy"] <- 0.86
-data$valor[data$modelo=="SVM" & data$metrica=="AUC"] <- 0.86
-data$valor[data$modelo=="SVM" & data$metrica=="F1"] <- 0.86
+data$valor[data$modelo=="SVM" & data$Métricas=="Accuracy"] <- 0.86
+data$valor[data$modelo=="SVM" & data$Métricas=="AUC"] <- 0.86
+data$valor[data$modelo=="SVM" & data$Métricas=="F1"] <- 0.86
 
 
-data$valor[data$modelo=="NB" & data$metrica=="Accuracy"] <- 0.84
-data$valor[data$modelo=="NB" & data$metrica=="AUC"] <- 0.84
-data$valor[data$modelo=="NB" & data$metrica=="F1"] <- 0.84
+data$valor[data$modelo=="NB" & data$Métricas=="Accuracy"] <- 0.84
+data$valor[data$modelo=="NB" & data$Métricas=="AUC"] <- 0.84
+data$valor[data$modelo=="NB" & data$Métricas=="F1"] <- 0.84
 
 
-data$valor[data$modelo=="RF" & data$metrica=="Accuracy"] <- 0.87
-data$valor[data$modelo=="RF" & data$metrica=="AUC"] <- 0.87
-data$valor[data$modelo=="RF" & data$metrica=="F1"] <- 0.92
+data$valor[data$modelo=="RF" & data$Métricas=="Accuracy"] <- 0.87
+data$valor[data$modelo=="RF" & data$Métricas=="AUC"] <- 0.87
+data$valor[data$modelo=="RF" & data$Métricas=="F1"] <- 0.92
 
 ```
 
 ```{r}
-ggplot(data, aes(x = modelo, y = valor, fill = metricas)) +
+ggplot(data, aes(x = modelo, y = valor, fill = Métricas)) +
   
   # geom_bar con stat="identity" dibuja las barras con alturas según 'valor'
   # position="dodge" separa las barras de distintas métricas dentro de cada modelo
@@ -103,28 +103,28 @@ metricas <- c("Top1","Top5")
 
 # Creamos un data frame con todos los valores simulados
 # Creamos un data frame vacío con todas las combinaciones
-data <- expand.grid(modelo = modelos, metrica = metricas)
+data <- expand.grid(modelo = modelos, Métricas = metricas)
 data$valor <- NA  # aquí completás los valores reales
 
 # Ejemplo de cómo asignar valores manualmente:
-data$valor[data$modelo=="Corpos Común" & data$metrica=="Top1"] <- 0.67
-data$valor[data$modelo=="Corpos Común" & data$metrica=="Top5"] <- 0.86
+data$valor[data$modelo=="Corpos Común" & data$Métricas=="Top1"] <- 0.67
+data$valor[data$modelo=="Corpos Común" & data$Métricas=="Top5"] <- 0.86
 
 
 
-data$valor[data$modelo=="Fragentación Frecuencias" & data$metrica=="Top1"] <- 0.94
-data$valor[data$modelo=="Fragentación Frecuencias" & data$metrica=="Top5"] <- 0.99
+data$valor[data$modelo=="Fragentación Frecuencias" & data$Métricas=="Top1"] <- 0.94
+data$valor[data$modelo=="Fragentación Frecuencias" & data$Métricas=="Top5"] <- 0.99
 
 
 
-data$valor[data$modelo=="BPE 10.000" & data$metrica=="Top1"] <- 0.81
-data$valor[data$modelo=="BPE 10.000" & data$metrica=="Top5"] <- 0.95
+data$valor[data$modelo=="BPE 10.000" & data$Métricas=="Top1"] <- 0.81
+data$valor[data$modelo=="BPE 10.000" & data$Métricas=="Top5"] <- 0.95
 
 
 
 
 
-ggplot(data, aes(x = modelo, y = valor, fill = metrica)) +
+ggplot(data, aes(x = modelo, y = valor, fill = Métricas)) +
   
   # geom_bar con stat="identity" dibuja las barras con alturas según 'valor'
   # position="dodge" separa las barras de distintas métricas dentro de cada modelo
@@ -173,32 +173,32 @@ metricas <- c("Accuracy","F1", "AUC")
 
 # Creamos un data frame con todos los valores simulados
 # Creamos un data frame vacío con todas las combinaciones
-data2 <- expand.grid(modelo = modelos, metricas = metricas)
-data2$valor <- NA  # aquí completás los valores reales
+data <- expand.grid(modelo = modelos, Métricas = metricas)
+data$valor <- NA  # aquí completás los valores reales
 
 # Ejemplo de cómo asignar valores manualmente:
-data2$valor[data$modelo=="RL" & data$metrica=="Accuracy"] <- 0.87
-data2$valor[data$modelo=="RL" & data$metrica=="AUC"] <- 0.96
-data2$valor[data$modelo=="RL" & data$metrica=="F1"] <- 0.89
+data2$valor[data$modelo=="RL" & data$Métricas=="Accuracy"] <- 0.87
+data2$valor[data$modelo=="RL" & data$Métricas=="AUC"] <- 0.96
+data2$valor[data$modelo=="RL" & data$Métricas=="F1"] <- 0.89
 
 
-data2$valor[data$modelo=="SVM" & data$metrica=="Accuracy"] <- 0.90
-data2$valor[data$modelo=="SVM" & data$metrica=="AUC"] <- 0.89
-data2$valor[data$modelo=="SVM" & data$metrica=="F1"] <- 0.89
+data2$valor[data$modelo=="SVM" & data$Métricas=="Accuracy"] <- 0.90
+data2$valor[data$modelo=="SVM" & data$Métricas=="AUC"] <- 0.90
+data2$valor[data$modelo=="SVM" & data$Métricas=="F1"] <- 0.89
 
 
-data2$valor[data$modelo=="NB" & data$metrica=="Accuracy"] <- 0.82
-data2$valor[data$modelo=="NB" & data$metrica=="AUC"] <- 0.91
-data2$valor[data$modelo=="NB" & data$metrica=="F1"] <- 0.83
+data2$valor[data$modelo=="NB" & data$Métricas=="Accuracy"] <- 0.82
+data2$valor[data$modelo=="NB" & data$Métricas=="AUC"] <- 0.91
+data2$valor[data$modelo=="NB" & data$Métricas=="F1"] <- 0.83
 
 
-data2$valor[data$modelo=="RF" & data$metrica=="Accuracy"] <- 0.94
-data2$valor[data$modelo=="RF" & data$metrica=="AUC"] <- 0.94
-data2$valor[data$modelo=="RF" & data$metrica=="F1"] <- 0.98
+data2$valor[data$modelo=="RF" & data$Métricas=="Accuracy"] <- 0.94
+data2$valor[data$modelo=="RF" & data$Métricas=="AUC"] <- 0.94
+data2$valor[data$modelo=="RF" & data$Métricas=="F1"] <- 0.98
 ```
 
 ```{r}
-ggplot(data2, aes(x = modelo, y = valor, fill = metricas)) +
+ggplot(data2, aes(x = modelo, y = valor, fill = Métricas)) +
   
   # geom_bar con stat="identity" dibuja las barras con alturas según 'valor'
   # position="dodge" separa las barras de distintas métricas dentro de cada modelo
@@ -268,8 +268,6 @@ ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
                                 "NB" = "#009E73", "RF" = "#D55E00")) +
   #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
   labs(
-    title = "Evolución de Accuracy (Caso Binario)",
-    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
     x = "Cantidad de características utilizadas",
     y = "Valor de la métrica Accuracy",
     color = "Modelo"
@@ -320,8 +318,6 @@ ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
                                 "NB" = "#009E73", "RF" = "#D55E00")) +
   #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
   labs(
-    title = "Evolución de AUC(Caso Binario)",
-    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
     x = "Cantidad de características utilizadas",
     y = "Valor de la métrica ROC AUC",
     color = "Modelo"
@@ -370,8 +366,6 @@ ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
                                 "NB" = "#009E73", "RF" = "#D55E00")) +
   #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
   labs(
-    title = "Evolución de F1-score (Caso Binario)",
-    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
     x = "Cantidad de características utilizadas",
     y = "Valor de la métrica F1",
     color = "Modelo"
@@ -420,8 +414,6 @@ ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
                                 "NB" = "#009E73", "RF" = "#D55E00")) +
   #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
   labs(
-    title = "Evolución Accuracy (Caso Multiclase)",
-    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
     x = "Cantidad de características utilizadas",
     y = "Valor de la métrica Accuracy",
     color = "Modelo"
@@ -469,8 +461,6 @@ ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
                                 "NB" = "#009E73", "RF" = "#D55E00")) +
   #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
   labs(
-    title = "Evolución de AUC (Caso Multiclase)",
-    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
     x = "Cantidad de características utilizadas",
     y = "Valor de la métrica ROC AUC",
     color = "Modelo"
@@ -520,8 +510,6 @@ ggplot(df_largo, aes(x = n_features, y = valor, color = modelo)) +
                                 "NB" = "#009E73", "RF" = "#D55E00")) +
   #scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1)) +
   labs(
-    title = "Evolución de F1-score (Caso Multiclase)",
-    subtitle = "Cada punto representa la métrica segun la cantidad de caracteristicas",
     x = "Cantidad de características utilizadas",
     y = "Valor de la métrica F1",
     color = "Modelo"
