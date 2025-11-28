@@ -148,49 +148,94 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 \chapter*{Glosario}
 
 \begin{longtable}{p{3cm} | p{10cm}}
-	\textbf{Notación} & \textbf{Descripción} \\
 	\toprule
+	
+	\multicolumn{2}{l}{\textbf{Notación general y datos}}\\
+	\midrule
 	$n$ & Número total de registros o ejemplos en el dataset. \\
 	$D$ & Cantidad de atributos de cada registro. \\
 	$L$ & Número total de clases posibles en el problema de clasificación. \\
-	$\hat{\theta}_{jvl}$ & Probabilidad estimada de que el atributo $X_j$ tome el valor $x_{jv}$ dado que la clase es $C_l$. \\
-	$\hat{\pi}_k$ & Probabilidad a priori estimada de que un registro pertenezca a la clase $C_k$. \\
 	$\bm{x}_i$ & Vector de características del registro $i$, $\bm{x}_i = (x_{i1}, x_{i2},\dots, x_{iD})$. \\
 	$X_j$ & $j$-ésimo atributo de un registro. \\
+	$x_{ij}$ & Valor del atributo $X_j$ para el registro $i$. \\
+	$y_i$ & Clase real (etiqueta verdadera) del registro $i$. \\
+	$\hat{y}_i$ & Clase predicha para el registro $i$. \\
 	$C_l$ & $l$-ésima clase del conjunto de clases $\{C_1, C_2,\dots, C_L\}$. \\
+	$|C_l|$ & Cardinalidad o número de registros pertenecientes a la clase $l$. \\
+	$\hat{y}$ & Predicción final en un modelo de clasificación. \\
+	
+	\toprule
+	\multicolumn{2}{l}{\textbf{Naïve Bayes (Gaussiano)}}\\
+	\midrule
+	$\hat{\pi}_l$ & Probabilidad a priori estimada de que un registro pertenezca a la clase $C_l$. \\
+	$\hat{\theta}_{jvl}$ & Probabilidad estimada de que el atributo $X_j$ tome el valor $x_{jv}$ dado que la clase es $C_l$. \\
+	$f(x_j\mid \mu_{jl},\sigma_{jl}^2)$ & Densidad gaussiana condicional usada en Naïve Bayes para atributos continuos. \\
+	$\mu_{jl}$ & Media del atributo $X_j$ en la clase $C_l$. \\
+	$\sigma_{jl}^2$ & Varianza del atributo $X_j$ en la clase $C_l$. \\
+	$\text{var\_smoothing}$ & Hiperparámetro de suavizado numérico en Naïve Bayes gaussiano. \\
+		\toprule
+	\multicolumn{2}{l}{\textbf{Regresión logística}}\\
+	\midrule
+	$\bm{\beta}$ & Vector de coeficientes en regresión logística, $\bm{\beta}=(\beta_1,\dots,\beta_D)$. \\
+	$\beta_0$ & Intercepto (sesgo) del modelo en regresión logística. \\
+	$\beta$ & Término de sesgo o intercepto en regresión logística (cuando se usa sin subíndice). \\
+	$p(\bm{x}_i)$ & Probabilidad estimada de clase positiva para la observación $\bm{x}_i$ en regresión logística. \\
+	$\tilde{J}(\bm{\beta})$ & Función de costo regularizada en regresión logística. \\
+	$\alpha$ & Parámetro de regularización L1 (Lasso) o L2 (Ridge) en regresión. \\
+	$\bm{H}$ & Matriz Hessiana de la función de costo en métodos Newton-CG. \\
+	$\bm{B}$ & Aproximación de la matriz Hessiana en BFGS. \\
+	$C$ & Parámetro de regularización del modelo (controla el equilibrio entre ajuste y complejidad). \\
+		\toprule
+	\multicolumn{2}{l}{\textbf{SVM}}\\
+	\midrule
 	$\bm{w}$ & Vector normal al hiperplano en SVM. \\
-	$\beta$ & Término de sesgo o intercepto en SVM o regresión logística. \\
+	$\beta$ & Término de sesgo o intercepto en SVM (cuando se usa sin subíndice). \\
 	$\xi_i$ & Variable de holgura (\emph{slack}) para el registro $i$-ésimo en SVM de margen suave. \\
 	$C$ & Parámetro de regularización en SVM que controla el equilibrio entre margen y errores. \\
 	$K(\bm{a},\bm{b})$ & Función kernel que calcula la similitud entre vectores $\bm{a}$ y $\bm{b}$. \\
 	$\gamma$ & Parámetro de ancho en el kernel RBF (Radial Basis Function). \\
 	$r$ & Coeficiente de desplazamiento en kernels polinómicos y sigmoides. \\
-	$d$ & Grado del polinomio en el kernel polinómico.
-	%% AR: $d$ y $D$ son diferentes. No usar $d'$ sino $d$. 
-	%% NS: Corrigo en todo el doc.
-	\\
-	$\tilde{J}(\bm{\beta})$ & Función de costo regularizada en regresión logística. \\
-	$\alpha$ & Parámetro de regularización L1 (Lasso) o L2 (Ridge) en regresión. \\
-	$\bm{H}$ & Matriz Hessiana de la función de costo en métodos Newton-CG. \\
-	$\bm{B}$ & Aproximación de la matriz Hessiana en BFGS. \\
-	$\hat{y}$ & Predicción final en un modelo de clasificación. \\
-	$\widehat{y_a}(\bm{x})$ & Predicción del árbol $a$ en Random Forest para la observación $\bm{x}$. \\
-	$A$ & Número total de árboles en un Random Forest. \\
-	$M_l$ & Valor de la métrica (\emph{accuracy}, F1-score, etc.) para la clase $l$. \\
-	$|C_l|$ & Cardinalidad o número de registros pertenecientes a la clase $l$.
-	%% AR: Entonces sería $|C_l|$. Yo pondría $|\cdot|$ : Cantidad de elementos en el conjunto de interés.
-	%% NS: Listo.
-	\\
-	$\widehat{M}_{\text{weighted}}$ & Métrica ponderada por tamaño de clase en problemas multiclase. \\
-	$K$ & Número de pliegues en validación cruzada $K$-fold. \\
-	$G_i$ & $i$-ésimo pliegue o grupo en validación cruzada. \\
+	$q$ & Grado del polinomio en el kernel polinómico. \\
+		\toprule
+	\multicolumn{2}{l}{\textbf{Árboles de decisión y Random Forest}}\\
+	\midrule
+	$t$ & Nodo de un árbol de decisión. \\
+	$N(t)$ & Número de registros que llegan al nodo $t$. \\
+	$p(l\mid t)$ & Proporción/probabilidad de la clase $l$ en el nodo $t$. \\
 	$H(D)$ & Entropía de Shannon del conjunto de datos $D$. \\
 	$\text{Gini}(t)$ & Índice de Gini de un nodo $t$ en un árbol de decisión. \\
-	$f(x)$ & Función de densidad de probabilidad gaussiana para atributo continuo. \\
-	$\mu_{jl}$ & Media del atributo $X_j$ en la clase $C_l$. \\
-	$\sigma_{jl}^2$ & Varianza del atributo $X_j$ en la clase $C_l$. \\
+	$\widehat{y_a}(\bm{x})$ & Predicción del árbol $a$ en Random Forest para la observación $\bm{x}$. \\
+	$A$ & Número total de árboles en un Random Forest. \\
+	$\text{criterion}$ & Criterio de partición en árboles/RF (gini o entropy). \\
+	$\text{max\_depth}$ & Profundidad máxima del árbol. \\
+	$\text{min\_samples\_split}$ & Mínimo de muestras para dividir un nodo. \\
+	$\text{min\_samples\_leaf}$ & Mínimo de muestras en una hoja. \\
+	$\text{max\_features}$ & Número de atributos considerados por división. \\
+	$\text{bootstrap}$ & Remuestreo con reemplazo para entrenar árboles en Random Forest. \\
+		\toprule
+	\multicolumn{2}{l}{\textbf{Métricas de evaluación}}\\
+	\midrule
+	$\text{TP}$ & Verdaderos positivos. \\
+	$\text{TN}$ & Verdaderos negativos. \\
+	$\text{FP}$ & Falsos positivos. \\
+	$\text{FN}$ & Falsos negativos. \\
+	$\text{Accuracy}$ & Proporción global de predicciones correctas. \\
+	$\text{Precision}$ & Proporción de positivos predichos correctos, $\frac{TP}{TP+FP}$. \\
+	$\text{Recall}$ & Proporción de positivos reales detectados, $\frac{TP}{TP+FN}$. \\
+	$\text{F1-score}$ & Media armónica entre Precision y Recall. \\
+	$F_{\beta_f}$ & F-measure ponderada que balancea Recall y Precision mediante $\beta_f$. \\
+	$\text{AUC-ROC}$ & Área bajo la curva ROC. \\
+	$M_l$ & Valor de la métrica (\emph{accuracy}, F1-score, etc.) para la clase $l$. \\
+	$\widehat{M}_{\text{weighted}}$ & Métrica ponderada por tamaño de clase en problemas multiclase. \\
+		\toprule
+	\multicolumn{2}{l}{\textbf{Validación cruzada}}\\
+	\midrule
+	$K$ & Número de pliegues en validación cruzada $K$-fold. \\
+	$G_i$ & $i$-ésimo pliegue o grupo en validación cruzada. \\
+	
 	\bottomrule
 \end{longtable}
+
 
 \chapter*{Resumen}
 
@@ -1036,7 +1081,7 @@ Otra estimación fundamental a calcular y expresar es la \emph{a priori}.
 %% NS: Listo lo cambie por n.
 \begin{equation}
 	\hat{\pi}_l = P(Y = C_l) =
-	\frac{\#\{Y = C_l\}}{n'}.
+	\frac{\#\{Y = C_l\}}{n}.
 	\label{eq:probabilidad_priori}
 \end{equation}
 
@@ -1045,7 +1090,7 @@ Los parámetros involucrados son:
 
 \begin{itemize}
 	
-	\item $\hat{\pi}_l$: probabilidad estimada de que un registro pertenezca a la clase $C_k$.
+	\item $\hat{\pi}_l$: probabilidad estimada de que un registro pertenezca a la clase $C_l$.
 	Corresponde a la frecuencia relativa de esa clase en la muestra.	
 	\item $|C_l|$: cantidad de registros cuya clase es $C_l$	
 	\item $n$: tamaño muestral total.
@@ -1096,7 +1141,7 @@ por lo cual la decisión final se obtiene como
 
 \begin{equation}
 	\hat{Y} = 
-	\underset{C_k}{\operatorname{argmax}}
+	\underset{C_l}{\operatorname{argmax}}
 	\left[
 	\log P(Y = C_l) +
 	\sum_{j=1}^{d}
@@ -1218,7 +1263,7 @@ que controlan la flexibilidad del modelo:
 	(utilizado en el kernel RBF y el sigmoide).
 	\item $r \in \mathbb{R}$: término independiente o sesgo 
 	(usado en los kernels polinómico y sigmoide).
-	\item $d' \in \mathbb{N}$: grado del polinomio 
+	\item $q \in \mathbb{N}$: grado del polinomio 
 	en el kernel polinómico.
 \end{itemize}
 
@@ -1239,7 +1284,7 @@ que controlan la flexibilidad del modelo:
 \paragraph{Kernel Polinómico:}
 \begin{equation}
 	K(\bm{a}, \bm{b}) =
-	(\langle \bm{a}, \bm{b} \rangle + r)^\textbf{$d$}.
+	(\langle \bm{a}, \bm{b} \rangle + r)^\textbf{$q$}.
 	\label{eq:kernel_polinomico}
 \end{equation}
 
@@ -1405,16 +1450,16 @@ En términos de la Matriz de Confusión se puede entender al \textit{Recall} de 
 
 
 \noindent
-El \textit{F-measure} es la media armónica ponderada de \textit{precision} y \textit{recall}. La versión más común es el \textbf{F1-score}, donde el parámetro de ponderación $\beta$ es igual a 1, donde $\beta > 0$ controla la importancia relativa entre la precisión y el recall. Un clasificador perfecto tiene un valor $F1 = 1$.
+El \textit{F-measure} es la media armónica ponderada de \textit{precision} y \textit{recall}. La versión más común es el \textbf{F1-score}, donde el parámetro de ponderación $\beta_f$ es igual a 1, donde $\beta_f > 0$ controla la importancia relativa entre la precisión y el recall. Un clasificador perfecto tiene un valor $F1 = 1$.
 \noindent
 La fórmula general es:
 \begin{equation}
-    F_{\beta} = \frac{(1 + \beta^2) \, precision \times recall}{\beta^2 precision + recall},
+    F_{\beta} = \frac{(1 + {\beta_f}^2) \, precision \times recall}{{\beta_f}^2 precision + recall},
     \label{eq:formulageneral}
 \end{equation}
 
 \noindent
-donde la fórmula del F1-score ($\beta=1$) en términos de \textit{precision} y \textit{recall} se puede notar de la siguiente manera: 
+donde la fórmula del F1-score ($\beta_f=1$) en términos de \textit{precision} y \textit{recall} se puede notar de la siguiente manera: 
 
 \begin{equation}
     F1 = 2 \cdot \frac{precision \cdot recall}{precision + recall},
