@@ -434,14 +434,14 @@ En la  Tabla~\ref{tab:tablebinario} se muestra qué tipo de datos son los atribu
 	\textbf{Sex}: Refiere al sexo de los pacientes; hay una distribución de sexo del 78.98\% masculinos y el 21.02\%  femeninos.\\
 	
 	\noindent
-	\textbf{ChestPainType}: Tipo del dolor en el pecho, con exactitud dolor torácico causado por isquemia cardíaca. Tiene una distribución 18.85\% de angina atípica, luego un 22.11\% de dolor no anginoso, un 54.03\% asintomático, y un 5.01\% de dolor de pecho anginoso típico.\\
+	\textbf{ChestPainType}: Tipo del dolor en el pecho, con exactitud, dolor torácico causado por isquemia cardíaca. Tiene una distribución 18.85\% de angina atípica, luego un 22.11\% de dolor no anginoso, un 54.03\% asintomático, y un 5.01\% de dolor de pecho anginoso típico.\\
 	
 	\noindent
-	\textbf{RestingBP}: Se está describiendo la presión sanguínea en reposo, donde hay una distribución de 51.09\% de mujeres, codificadas en 1 y 48.91\% de hombres, codificados en 0.\\
+	\textbf{RestingBP}: Se está describiendo la presión sanguínea en reposo, tiene un valor medio de 133.02, con un valor máximo de 200.00 y valor mínimo de 92.00.\\
 	
 	%{0.2cm}
 	\noindent
-	\textbf{Cholesterol}: Este atributo es el colesterol sérico, la medida total de colesterol en sangre; tiene un valor medio en los pacientes de 199.02, con un valor máximo de 603.00 y un valor mínimo de 0.00. Se encuentra en miligramos por decilitro. \\
+	\textbf{Cholesterol}: Este atributo es el colesterol sérico, la medida total de colesterol en sangre; tiene un valor medio en los pacientes de 199.02, con un valor máximo de 603.00 y un valor mínimo de 85.00. Se encuentra en miligramos por decilitro. \\
 	
 	%{0.2cm}
 	\noindent
@@ -956,6 +956,7 @@ en donde la solución analítica no existe, por lo que se utilizan métodos num�
 	\end{itemize}
 \end{itemize}
 
+% ----------------------------------------------------------------------------------------------------
 \section{Árboles de Decisión}
 
 \noindent
@@ -1008,7 +1009,7 @@ es un hiperparámetro en sí mismo, y debe cumplir las siguientes condiciones, p
 \noindent
 Tanto el índice de Gini como la entropía de Shannon satisfacen estas propiedades, por lo que son funciones de impureza válidas para la construcción del árbol.
 \begin{equation}
-	\iota(t) = \phi \big( p(1|t), p(2|t), \ldots, p(K|t) \big).
+	\iota(t) = \phi \big( p(1|t), p(2|t), \ldots, p(t|t) \big).
 	\label{eq:impureza_general}
 \end{equation}
 
@@ -1026,8 +1027,8 @@ Toma valores cercanos a cero cuando el nodo es puro y crece a medida que las cla
 
 \begin{equation}
 	H(D) = - \sum_{k=1}^K 
-	\frac{N_k(D)}{N(D)} 
-	\log_2 \left( \frac{N_k(D)}{N(D)} \right).
+	\frac{N_k(t)}{N(t)} 
+	\log_2 \left( \frac{N_l(t)}{N(t)} \right).
 	\label{eq:entropia_shannon}
 \end{equation}
 
@@ -1037,8 +1038,8 @@ Toma valores cercanos a cero cuando el nodo es puro y crece a medida que las cla
 Al igual que la entropía, es mínimo cuando el nodo es puro y aumenta cuando las clases están mezcladas.
 \begin{equation}
 	\text{Gini}(t) = 
-	1 - \sum_{k=1}^K \big[p(k|t)\big]^2 =
-	1 - \sum_{k=1}^K \left(\frac{N_k(t)}{N(t)}\right)^2.
+	1 - \sum_{l=1}^L \big[p(l|t)\big]^2 =
+	1 - \sum_{l=1}^L \left(\frac{N_l(t)}{N(t)}\right)^2.
 	\label{eq:indice_gini}
 \end{equation}
 

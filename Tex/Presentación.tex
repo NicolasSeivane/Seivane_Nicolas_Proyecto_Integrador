@@ -1,0 +1,1450 @@
+\documentclass{beamer}
+
+% CONFIGURACIÓN GENERAL
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{bm}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{incgraph,tikz}
+%\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsfonts}
+%\usepackage{babel}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{adjustbox}
+\usepackage{natbib}
+\usepackage{xcolor}
+\usepackage{titlepic}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{etoolbox}
+%\usepackage{cite}    
+\usepackage{bm}
+\usepackage{makecell}
+\usepackage{placeins}
+
+
+\renewcommand{\raggedright}{\leftskip=0pt \rightskip=0pt plus 0cm}
+
+
+
+\definecolor{unahurverde}{RGB}{0,120,60}      % Verde principal
+\definecolor{unahurverdeclaro}{RGB}{0,150,80} % Verde secundario
+\definecolor{unahurgris}{RGB}{51,51,51}       % Gris institucional
+
+\usetheme{Madrid}
+
+\definecolor{TPcolor}{HTML}{A9D18E} % Verde claro para TP
+\definecolor{TNcolor}{HTML}{D9EAD3} % Verde muy claro para TN
+\definecolor{FPcolor}{HTML}{F4CCCC} % Rojo muy claro para FP
+\definecolor{FNcolor}{HTML}{E06666} % Rojo claro para FN
+
+
+\setbeamercolor{palette primary}{bg=unahurverde, fg=white}
+\setbeamercolor{palette secondary}{bg=unahurverdeclaro, fg=white}
+\setbeamercolor{palette tertiary}{bg=unahurverde, fg=white}
+\setbeamercolor{palette quaternary}{bg=unahurgris, fg=white}
+
+\setbeamercolor{structure}{fg=unahurverde}
+\setbeamercolor{frametitle}{bg=unahurverde!15, fg=unahurgris}
+
+
+\setbeamercolor{normal text}{fg=unahurgris}
+
+
+% ----------------------------------------
+\addtobeamertemplate{frametitle}{}{%
+	\begin{textblock*}{40mm}(0.95\textwidth,-0.0009cm)
+		\includegraphics[height=0.9cm]{logo_mas_corto}
+		% Reemplazar "logo-unahur.png" con tu archivo
+	\end{textblock*}
+}
+\usepackage[absolute,overlay]{textpos}
+
+% ----------------------------------------
+\title{Aplicación de Técnicas de Aprendizaje Supervisado en Enfermedades Cardiovasculares}
+\author{Nicolás Seivane}
+\institute{UNAHUR}
+\date{4 de Diciembre de 2025}
+
+\begin{document}
+	
+	% ----------------------------------------------------
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	% ----------------------------------------------------
+	
+	
+	
+	\begin{frame}{Introducción}
+		\
+		\begin{block}{}
+			\
+		\begin{itemize}
+	\item Las enfermedades cardiovasculares son la causa número uno de muerte globalmente, con un estimado de 17.9 millones de vidas cada año, aproximadamente el 31\% de todas las muertes globales.
+
+	\item El objetivo general de este trabajo es comparar el rendimiento de diversas técnicas de Aprendizaje Automático Supervisado con el fin de recomendar aquella que presente el mejor desempeño al aplicarse sobre un conjunto de datos cardiológicos, con el fin de realizar predicciones de si un paciente tiene altas probabilidades de tener insuficiencia cardíaca.
+%% Incluir imagen sobre un hombre con dolor de pecho
+\end{itemize}
+		\end{block}
+
+	\end{frame}
+	
+	
+	
+	
+	
+%	\chapter{Introducción}
+	
+	
+	
+%	 \\
+	
+%	\noindent
+%	Por otro lado, la cardiotocografía (CTG) es un registro continuo de la frecuencia cardíaca fetal que se obtiene mediante un transductor de ultrasonidos colocado en el abdomen materno. La CTG se utiliza ampliamente durante el embarazo como método para evaluar el bienestar fetal, sobre todo en embarazos con mayor riesgo de complicaciones.\\
+	
+	
+%	\noindent
+%	 Se expondrán las técnicas empleadas y las métricas utilizadas para medidas de calidad de un clasificador y, en consecuencia, cual técnica resulta más adecuada para el problema del pre-diagnóstico de enfermedades cardíacas.
+	
+	
+	
+	\begin{frame}{Motivación}
+		\begin{block}{}
+		\begin{itemize}
+	\item El proceso de diagnóstico médico puede ser extenso, incluso contando con la mejor disposición del personal de salud, ya que con frecuencia requiere la recopilación y análisis de datos provenientes de distintos estudios.
+	\item  El propósito de este trabajo es contribuir a agilizar dicho proceso, identificando técnicas que puedan ser utilizadas por los profesionales médicos como herramientas complementarias para realizar diagnósticos.
+%% Incluir imagen sobre diagnostico médico.
+\end{itemize}
+		\end{block}
+
+
+
+
+
+	\end{frame}
+	
+	% ----------------------------------------------------
+	
+\begin{frame}{Estado del Arte (I)}
+	\begin{block}{Aprendizaje Automático en Cardiología}
+		
+		El Aprendizaje Automático se ha vuelto central en la investigación cardiovascular.  
+		Isaksen et al.~\cite{isaksen2025evaluating} destacan desafíos como fuga de datos y desbalance de clases.  
+		Kumar y Kumar~\cite{kumar2021machine} revisan técnicas no invasivas basadas en ML para diagnóstico cardíaco.
+		
+		\vspace{0.25cm}
+		
+		Las variables cardiológicas suelen agruparse en:
+		\begin{itemize}
+			\item \textbf{Parámetros clínicos estructurados} (demografía, laboratorio).
+			\item \textbf{Señales cardíacas} (ECG, PCG).
+			\item \textbf{Imágenes médicas} (ECG, CMR, CCT, SPECT).
+		\end{itemize}
+		
+	\end{block}
+\end{frame}
+
+\begin{frame}{Estado del Arte (II)}
+	\begin{block}{Modelos y Herramientas Diagnósticas}
+		
+		Los modelos más usados en cardiología incluyen:
+		\begin{itemize}
+			\item \textbf{SVM}: fuerte rendimiento en análisis de ECG y datos clínicos.
+			\item \textbf{k-NN}: útil en detección de arritmias y riesgo.
+			\item \textbf{Naïve Bayes y árboles de decisión}: empleados en datos tabulares y señales procesadas.
+		\end{itemize}
+		
+		\vspace{0.25cm}
+		
+		El diagnóstico clínico tradicional continúa basado en:
+		\begin{itemize}
+			\item Electrocardiograma (ECG)
+			\item Prueba de esfuerzo
+			\item Ecocardiograma
+			\item Análisis de laboratorio (troponinas, colesterol, glucosa)
+		\end{itemize}
+		
+		Estas herramientas siguen siendo el estándar y los modelos computacionales buscan complementarlas.
+		
+	\end{block}
+\end{frame}
+
+	% ----------------------------------------------------
+	
+	\begin{frame}{Metodología General}
+		\begin{block}{}
+		\begin{itemize}
+	\item Dataset clínico con múltiples variables relacionadas al estado cardíaco.
+	\item Proceso seguido:
+	\begin{enumerate}
+		\item Preprocesamiento y limpieza:
+		\begin{itemize}
+			\item Se eliminaron los registros con datos faltantes.
+			\item Se eliminaron los datos con valores anormales.
+			\item Se estandarizaron los datos.
+			\item Se codificaron los datos categóricos.
+		\end{itemize}
+		\item Selección de características.
+		\item Entrenamiento de modelos supervisados.
+		\item Evaluación y comparación usando métricas estándar.
+	\end{enumerate}
+\end{itemize}
+		\end{block}
+
+	\end{frame}
+	
+	% ----------------------------------------------------
+	% DATASET
+	\begin{frame}{Dataset Binario: \textit{Insuficiencia Cardíaca Predicción}}
+		\begin{block}{Origen del Dataset}
+			
+			El dataset \textit{HeartFailure}~\cite{HeartFailure} se construyó combinando cinco conjuntos de datos cardiovasculares, unificados en 11 atributos comunes. Esto permite obtener uno de los conjuntos más grandes usados en investigación clínica.
+			
+			\vspace{0.2cm}
+			
+			\textbf{Datasets incluidos:}
+			\begin{itemize}
+				\item Cleveland (303)
+				\item Hungarian (294)
+				\item Switzerland (123)
+				\item Long Beach VA (200)
+				\item Stalog (Heart) (270)
+			\end{itemize}
+			
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Dataset Binario: Características Generales}
+		\begin{block}{}
+			
+
+\begin{table}[htb]%[H]
+	\centering
+	\caption{Cantidad de registros utilizados.}
+	\label{tab:cant_datos_binarios}
+	\begin{tabular}{lc}
+		\toprule
+		\textbf{Cantidad de registros} & \textbf{918} \\
+		\textbf{Cantidad de atributos} & \textbf{11} \\
+		\textbf{Atributos Categóricos} & \textbf{5} \\
+		\textbf{Atributos Numéricos} & \textbf{6} \\
+		
+		\bottomrule
+	\end{tabular}
+\end{table}
+			
+		\end{block}
+		
+		\vspace{0.3cm}
+		
+		\begin{block}{Tipos de Atributos (Resumen)}
+			
+			Los atributos incluyen datos demográficos, clínicos, señales del ECG y medidas relacionadas al esfuerzo físico.
+			
+		\end{block}
+	\end{frame}
+	
+	
+	\begin{frame}{Atributos del Dataset Binario}
+
+			\begin{block}{Tipo de atributo del conjunto binario.}
+
+\begin{table}[htb]
+	%\caption{Tipo de atributo del conjunto binario.} 
+	\centering
+	\small 
+	\label{tab:tablebinario}
+	\begin{tabular}{llcc}
+		\toprule
+		\textbf{Atributo} & \textbf{Tipo de dato} & \textbf{¿Está codificado?} & \textbf{Unidad} \\
+		\hline
+		Age        & Numérico (\texttt{int}) & No & Años \\
+		\hline
+		Sex             & Categórico (\texttt{string}) & No & -\\
+		\hline
+		ChestPainType               & Categórico (\texttt{string}) & No & -\\
+		\hline
+		RestingBP     & Numérico (\texttt{int}) & No & mm Hg\\
+		\hline
+		Cholesterol    & Numérico (\texttt{int}) & No & mm/dl\\
+		\hline
+		FastingBS                 & Numérico (\texttt{int}) & Sí & mg/dl\\
+		\hline
+		RestingECG                      & Categórico (\texttt{string}) & No & -\\
+		\hline
+		MaxHR    & Numérico (\texttt{int}) & No & -\\
+		\hline
+		ExerciseAngina               & Categórico (\texttt{string}) & No & -\\
+		\hline
+		Oldpeak                 & Numérico (\texttt{float}) & No & ST en depresión\\
+		\hline
+		ST\_Slope                 & Categórico (\texttt{string}) & No & -\\
+		\hline
+		HeartDisease                 & Numérico (\texttt{int})     & Sí & -\\
+		\bottomrule
+	\end{tabular}
+	
+\end{table}
+\end{block}
+\end{frame}
+	
+	
+\begin{frame}{Descripción de Atributos (I)}
+	\begin{block}{Demográficos y Clínica General}
+		\begin{itemize}
+\item \textbf{Age:} Los pacientes tienen una media de edad de 53 años, con una edad máxima de 77 y de edad mínima  de 28, con proporciones de edad bastante bien distribuidas, siendo la menor de 0.11\% para algunas edades y la mayor de 4.14\% para otras edades.
+
+\item \textbf{Sex:} Refiere al sexo de los pacientes; hay una distribución de sexo del 78.98\% masculinos y el 21.02\%  femeninos.
+
+\item \textbf{ChestPainType::} Tipo del dolor en el pecho, con exactitud, dolor torácico causado por isquemia cardíaca.Tiene una distribución 18.85\% de angina atípica, luego un 22.11\% de dolor no anginoso, un 54.03\% asintomático, y un 5.01\% de dolor de pecho anginoso típico. 
+
+		\end{itemize}
+		
+
+		
+	\end{block}
+\end{frame}
+
+\begin{frame}{Descripción de Atributos (II)}
+	\begin{block}{Variables Clínicas}
+		\begin{itemize}
+\item \textbf{RestingBP:}  Se está describiendo la presión sanguínea en reposo, tiene un valor medio de 133.02, con un valor máximo de 200.00 y valor mínimo de 92.00. 
+
+\item \textbf{Cholesterol:} Este atributo es el colesterol sérico, la medida total de colesterol en sangre; tiene un valor medio en los pacientes de 199.02, con un valor máximo de 603.00 y un valor mínimo de 85.00. Se encuentra en miligramos por decilitro.  
+
+		\end{itemize}
+		
+
+		
+	\end{block}
+\end{frame}
+
+
+\begin{frame}{Descripción de Atributos (III)}
+	\begin{block}{Variables Clínicas}
+		\begin{itemize} 
+				\item \textbf{FastingBS:} Es la Glucosa en sangre en ayuno; hay un 76.66\% de registros con  valores de glucosa en sangre menores a 120 mg/dl, codificado en 0, y un 23.34\% con valores mayores a 120 mg/dl, codificado en 1.
+			
+			\item \textbf{RestingECG:} Son los resultados de electrocardiogramas en reposo; hay 60.09\% codificado en Normal, un 19.41\% codificado en ST (tiene una anormalidad en el estudio) y, por último, un 20.50\% codificado en LVH (probablemente una hipertrofia en el ventrículo izquierdo).
+		\end{itemize}
+		
+		
+		
+	\end{block}
+\end{frame}
+
+\begin{frame}{Descripción de Atributos (IV)}
+	\begin{block}{Esfuerzo, Señales y Variable Objetivo}
+		\begin{itemize}
+			
+		
+		\item \textbf{MaxHR:} Este atributo es el máximo ritmo cardíaco registrado, tiene una media en los pacientes de 136.79, con un valor máximo de 202.00 y un valor mínimo de 60.00.  
+		
+		\item \textbf{ExerciseAngina:} Es la angina producido por ejercicio, dolor en el pecho; donde hay un 59.54\% que no tenían dolor, codificado en N, y hay un 40.46\% que sí tenían dolor, codificado en Y.  
+		
+		\item \textbf{Oldpeak:} Valor máximo de depresión del segmento ST (en milímetros) registrado en todas las derivaciones contiguas durante una prueba de esfuerzo. Forma parte del cálculo del riesgo de un paciente de isquemia o infarto de miocardio; valores más altos indican un mayor riesgo de enfermedad coronaria; tiene una media de 0.90, valor máximo de 6.20 y valor mínimo de -0.10.  
+		
+		\end{itemize}
+		
+	\end{block}
+\end{frame}
+
+	
+\begin{frame}{Descripción de Atributos (V)}
+	\begin{block}{Esfuerzo, Señales y Variable Objetivo}
+				\begin{itemize}
+		\item \textbf{ST\_Slope:} La pendiente del segmento ST durante el ejercicio máximo; hay un 43.08\% en Up, un 50.05\% en Flat y luego un 6.87\% en Down [Up: pendiente ascendente, Flat: pendiente plana, Down: pendiente descendente].
+		
+		\item \textbf{HeartDisease (objetivo):}Variable de salida si posee una enfermedad cardíaca; donde hay un 44.71\% que no tiene enfermedad cardíaca, codificado en 0, y hay un 55.29\% que sí tienen enfermedad cardíaca, codificado en 1.
+		Siendo ésta la \textbf{variable objetivo}.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+	\begin{frame}{Descripción de los Métodos Utilizados}
+		
+		\begin{block}{Hiperparámetros}
+			Los modelos requieren \textbf{hiperparámetros}: valores fijados antes del entrenamiento 
+			que controlan complejidad, regularización o velocidad de aprendizaje.  
+			A diferencia de los parámetros internos, no se aprenden de los datos y deben seleccionarse mediante:
+			\begin{itemize}
+				\item experimentación,
+				\item validación cruzada,
+				\item búsqueda sistemática de hiperparámetros.
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Metodología de Selección de Hiperparámetros}
+		
+		\begin{block}{Implementación}
+			Se utilizaron las implementaciones estandarizadas de \texttt{scikit-learn}, 
+			que definen los hiperparámetros principales de cada modelo.
+			
+			La búsqueda de combinaciones se realizó mediante \textbf{Grid Search}, evaluando:
+			\begin{itemize}
+				\item kernels y grados polinomiales en SVM,
+				\item regularización L1/L2 en Regresión Logística,
+				\item profundidad, criterios de partición y número de árboles en Random Forest,
+				\item cantidad de vecinos en modelos basados en distancia.
+			\end{itemize}
+		\end{block}
+		
+		
+	\end{frame}
+	
+		\begin{frame}{Metodología de Selección de Hiperparámetros}
+		
+
+		\begin{block}{Criterio General}
+			Se partió de los valores por defecto y se ajustaron manualmente los hiperparámetros 
+			más influyentes para analizar su impacto en el desempeño, priorizando:
+			\begin{itemize}
+				\item reproducibilidad,
+				\item consistencia comparativa,
+				\item interpretabilidad del efecto de cada hiperparámetro.
+			\end{itemize}
+		\end{block}
+		
+	\end{frame}
+	
+	% ----------------------------------------------------
+	% MODELOS
+	\begin{frame}{Modelos Utilizados}
+		Los modelos fueron seleccionados por ser ampliamente usados en diagnóstico médico.
+		\begin{block}{}
+		\begin{itemize}
+	\item \textbf{Regresión Logística}  
+	Modelo lineal para clasificación. Calcula la probabilidad de pertenecer a una clase mediante la función sigmoide.  
+	Ideal para relaciones aproximadamente lineales.
+	
+	\item \textbf{Naïve Bayes}  
+	Modelo probabilístico basado en el Teorema de Bayes.  
+	Asume independencia entre atributos.  
+	Muy eficiente computacionalmente.
+	
+	\item \textbf{SVM (Support Vector Machines)}  
+	Busca maximizar el margen entre clases.  
+	Permite fronteras no lineales mediante kernels (RBF, polinómico).
+	
+	\item \textbf{Random Forest}  
+	Agrupación de múltiples árboles de decisión.  
+	Reduce varianza y mejora la generalización.  
+	Muy robusto a ruido y datos clínicos heterogéneos.
+\end{itemize}
+		\end{block}
+
+	\end{frame}
+	
+	% ----------------------------------------------------
+	%% BAYES
+	
+	\begin{frame}{Clasificador Naïve Bayes (I)}
+		
+		\begin{block}{Idea General}
+			El \textbf{Clasificador Naïve Bayes}~\cite{hand2001idiot} es un método supervisado probabilístico
+			basado en el \textit{Teorema de Bayes}.  
+			Asume \textbf{independencia condicional} entre los atributos dado la clase,
+			lo cual rara vez se cumple estrictamente, pero aun así funciona bien en la práctica.
+		\end{block}
+		
+		\begin{block}{Regla General}
+			\small
+			Para una clase $C_l$ y atributos $X_1,\ldots,X_d$:
+			
+			\[
+			P(Y = C_l \mid X_1=x_1, \ldots, X_d=x_d)
+			=
+			\frac{
+				P(X_1=x_1,\ldots,X_d=x_d \mid Y=C_l)\,P(Y=C_l)
+			}{
+				P(X_1=x_1,\ldots,X_d=x_d)
+			}
+			\]
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}{Clasificador Naïve Bayes (II)}
+		
+		\begin{block}{Independencia Condicional}
+			NB factoriza la verosimilitud como:
+			
+			\[
+			P(X_1=x_1,\ldots,X_d=x_d \mid Y=C_l)
+			=
+			\prod_{j=1}^{d} P(X_j = x_j \mid Y = C_l)
+			\]
+		\end{block}
+		
+		\begin{block}{Estimación de Probabilidades}
+			Para un atributo $X_j$ con valores posibles $x_{jv}$:
+			
+			\[
+			\hat{\theta}_{jvl}
+			=
+			P(X_j = x_{jv} \mid Y = C_l)
+			=
+			\frac{
+				|\{X_j = x_{jv} \wedge Y = C_l\}|
+			}{
+				|C_l|
+			}
+			\]
+			
+			\begin{itemize}
+				\item $\hat{\theta}_{jvl}$: probabilidad del valor $x_{jv}$ dentro de la clase $C_l$.
+				\item $|C_l|$: cantidad de registros de la clase.
+			\end{itemize}
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}{Clasificador Naïve Bayes (III)}
+		
+		\begin{block}{Probabilidad A Priori}
+			La probabilidad previa de cada clase se estima como:
+			
+			\[
+			\hat{\pi}_l = P(Y=C_l) = \frac{|\{Y=C_l\}|}{n}
+			\]
+			
+			\begin{itemize}
+				\item $\hat{\pi}_l$: frecuencia relativa de la clase.
+				\item $n$: tamaño total del conjunto de datos.
+			\end{itemize}
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}{Clasificador Naïve Bayes (IV): Caso Continuo}
+		
+		\begin{block}{Supuesto Gaussiano}
+			Para atributos continuos, NB usa la densidad Normal:
+			
+			\[
+			f(x)=
+			\frac{1}{\sigma\sqrt{2\pi}}
+			\exp\left[
+			-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2
+			\right]
+			\]
+		\end{block}
+		
+		\begin{block}{Regla de Decisión}
+			\[
+			\hat{Y} =
+			\underset{C_l}{\operatorname{argmax}}
+			\left[
+			\log P(Y=C_l) + 
+			\sum_{j=1}^{d}
+			\log f(x_j \mid \mu_{jl}, \sigma_{jl}^2)
+			\right]
+			\]
+			
+			\[
+			\hat{\mu}_{jl} = \frac{1}{|C_l|}\sum_{i:Y_i=C_l} x_{ij}
+			\qquad
+			\hat{\sigma}_{jl}^2 = 
+			\frac{1}{|C_l|}
+			\sum_{i:Y_i=C_l}(x_{ij}-\hat{\mu}_{jl})^2
+			\]
+		\end{block}
+		
+	\end{frame}
+%% -----------------------------------------------------------------------------------------------------------
+% Logistica
+
+\begin{frame}{Regresión Logística: Introducción y Motivación}
+	
+	\begin{block}{¿Qué es la Regresión Logística?~\cite{cramer2002origins}}
+		Técnica supervisada utilizada para modelar la probabilidad de pertenencia a una clase binaria.
+		\[
+		P(l_i = 1 \mid \mathbf{x}_i)
+		\]
+		Es un modelo:
+		\begin{itemize}
+			\item Lineal en los parámetros.
+			\item No lineal en la salida (usa función logística).
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Motivación}
+		\begin{itemize}
+			\item Permite interpretar coeficientes como cambios en las \emph{odds}.
+			\item Robusto y eficiente para datasets con atributos numéricos y categóricos.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}{Función Logística}
+	
+	\begin{block}{Probabilidad Condicional}
+		Para cada registro $\mathbf{x}_i = (x_{i1}, \dots, x_{iD})$:
+		\[
+		p(\mathbf{x}_i) =
+		\frac{\exp(\beta_0 + \sum_{j=1}^{D} \beta_j x_{ij})}
+		{1 + \exp(\beta_0 + \sum_{j=1}^{D} \beta_j x_{ij})}.
+		\]
+		
+		\begin{itemize}
+			\item $p(\mathbf{x}_i)$ es la probabilidad de clase positiva.
+			\item $\beta_j$ mide la influencia del atributo $x_j$.
+			\item El denominador asegura valores entre 0 y 1.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Función Logística}
+	
+	\begin{block}{Interpretación}
+		
+		Si el modelo aumenta el valor lineal
+		\[
+		z_i = \beta_0 + \sum_j \beta_j x_{ij},
+		\]
+		la probabilidad crece de forma sigmoidal.
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Transformación Logit}
+	
+	\begin{block}{Inversa de la Sigmoide}
+		La función logit transforma probabilidades en valores reales:
+		\[
+		\text{logit}(p) = 
+		\ln\left(\frac{p}{1-p}\right)
+		= \beta_0 + \sum_{j=1}^{D} \beta_j x_{ij}.
+		\]
+		
+		\begin{itemize}
+			\item Hace el modelo lineal en las \emph{odds}.
+			\item Permite interpretar coeficientes:
+			\[
+			e^{\beta_j} = \text{cambio multiplicativo en las odds}.
+			\]
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{¿Por qué es importante?}
+		\begin{itemize}
+			\item Facilita el entrenamiento (problema convexo).
+			\item Evita probabilidades fuera del rango $[0,1]$.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}{Entrenamiento: Máxima Verosimilitud}
+	
+	\begin{block}{Objetivo}
+		Encontrar parámetros $\beta$ que maximizan:
+		\[
+		\ell(\beta) =
+		\sum_{i=1}^{n} 
+		\left[
+		l_i \ln(p(\mathbf{x}_i)) +
+		(1 - l_i)\ln(1 - p(\mathbf{x}_i))
+		\right].
+		\]
+		
+		\begin{itemize}
+			\item Problema convexos → solución única.
+			\item No existe solución cerrada → se usan métodos iterativos.
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Por qué es log-verosimilitud}
+		\begin{itemize}
+			\item Evita productos numéricamente inestables.
+			\item Convierte productos en sumas → más fácil de optimizar.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Solvers para Regresión Logística}
+	
+	\begin{block}{Métodos Utilizados}
+		
+		\begin{itemize}
+			
+			\item \textbf{Newton-CG}:
+			\[
+			\beta^{(t+1)} = \beta^{(t)} - H^{-1} \nabla \tilde{J}
+			\]
+			\begin{itemize}
+				\item Utiliza información de \textbf{segunda derivada} (Hessiano).
+				\item Converge muy rápido cuando la función es suave.
+				\item Más costoso en memoria y tiempo porque requiere calcular o aproximar $H^{-1}$.
+				\item Adecuado para modelos con pocas características pero alta precisión.
+			\end{itemize}
+			\vspace{0.2cm}
+			
+			\item \textbf{L-BFGS} (Quasi-Newton):
+			\begin{itemize}
+				\item No calcula el Hessiano completo; construye una \textbf{aproximación eficiente}.
+				\item Menor uso de memoria que Newton-CG → ideal para datasets medianos/grandes.
+				\item Muy estable para problemas bien condicionados.
+				\item Soporta regularización L2.
+			\end{itemize}
+			\vspace{0.2cm}
+			
+			
+		\end{itemize}
+		
+	\end{block}
+\end{frame}
+
+
+\begin{frame}{Solvers para Regresión Logística}
+	
+	\begin{block}{Métodos Utilizados}
+		
+		\begin{itemize}
+			
+			\item \textbf{SAGA}:
+			\begin{itemize}
+				\item Variante moderna de \textbf{Stochastic Gradient Descent}.
+				\item Actualiza los parámetros utilizando un muestreo por observación.
+				\item Excelente para:
+				\begin{itemize}
+					\item datasets extremadamente grandes,
+					\item regularización L1 (Lasso),
+					\item modelos que requieren sparsidad en los coeficientes.
+				\end{itemize}
+				\item Convergencia rápida incluso en funciones no estrictamente suaves.
+			\end{itemize}
+			
+		\end{itemize}
+		
+	\end{block}
+\end{frame}
+
+
+\begin{frame}{Regularización}
+	
+
+	\begin{block}{Tipos de Regularización}
+		\small
+		\begin{itemize}
+			\item L1 → elimina coeficientes.
+			\item L2 → coeficientes pequeños pero no cero.
+			\item EN → combinación útil práctica.
+		\end{itemize}
+		
+		\textbf{L1 (Lasso):}
+		\[
+		\tilde{J}_{L1} = J + \alpha\sum_{j=1}^{D} |\beta_j|
+		\]
+		
+		\textbf{L2 (Ridge):}
+		\[
+		\tilde{J}_{L2} = J + \frac{1}{2}\alpha \sum_{j=1}^{D} \beta_j^2
+		\]
+		
+		\textbf{Elastic Net:}
+		\[
+		\tilde{J}_{EN} =
+		J +
+		\alpha\left(
+		\rho\sum_j |\beta_j| +
+		\frac{1-\rho}{2}\sum_j \beta_j^2
+		\right)
+		\]
+		
+	\end{block}
+	
+
+	
+\end{frame}
+
+
+\begin{frame}{Parámetro de Regularización ($C$)}
+	
+	\begin{block}{}
+		
+		La regresión logística incluye un término de regularización para controlar
+		la complejidad del modelo y evitar sobreajuste. El hiperparámetro $C$ es
+		el \textbf{inverso de la fuerza de regularización}:
+		
+		\[
+		\alpha = \frac{1}{C}
+		\]
+		
+		\begin{itemize}
+			\item \textbf{$C$ grande (poca regularización)}:
+			\begin{itemize}
+				\item El modelo se ajusta más a los datos de entrenamiento.
+				\item Los coeficientes pueden tomar valores grandes.
+				\item Mayor riesgo de \textit{overfitting}.
+			\end{itemize}
+			
+			\item \textbf{$C$ pequeño (alta regularización)}:
+			\begin{itemize}
+				\item Se penalizan los coeficientes grandes.
+				\item Reduce la complejidad del modelo.
+				\item Produce un modelo más estable y con mejor generalización.
+			\end{itemize}
+			
+		\end{itemize}
+		
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}{Estrategias Multiclase}
+	
+	\begin{block}{One-vs-Rest (OvR)}
+		\begin{itemize}
+			\item Entrena un clasificador por clase.
+			\item Cada modelo distingue: clase $l$ vs resto.
+			\item Simple y eficiente.
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Multinomial}
+		\begin{itemize}
+			\item Optimiza una única función de verosimilitud para todas las clases.
+			\item Usado con solvers \texttt{lbfgs} y \texttt{newton-cg}.
+			\item Mejora desempeño cuando las clases compiten entre sí.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+% ------------------------------------------------------------------------------------------------------------
+
+\begin{frame}{Árboles de Decisión: Introducción}
+	\begin{block}{Idea General}
+		Los \textbf{árboles de decisión} son modelos no paramétricos que construyen reglas de decisión
+		del tipo \textit{if–else} para clasificar ejemplos. Mediante particiones jerárquicas, el árbol divide
+		el espacio de atributos buscando \textbf{maximizar la pureza} en los nodos hijos.
+	\end{block}
+	
+	\begin{itemize}
+		\item Se evalúan divisiones sobre atributos y umbrales.
+		\item El cómputo pesado ocurre en la construcción del árbol; la predicción es muy rápida.
+		\item Cada nodo terminal representa una clase estimada.
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Probabilidad de Clase en un Nodo}
+	\begin{block}{Estimación de Probabilidades}
+		La probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_l$ se estima como:
+		\[
+		p(l \mid t) = \frac{N_l(t)}{N(t)},
+		\]
+		donde $N(t)$ es la cantidad total de ejemplos y $N_l(t)$ los de la clase $C_l$.
+	\end{block}
+	
+	\begin{itemize}
+		\item Es un cálculo computacionalmente muy barato.
+		\item Representa probabilidades empíricas (“equiprobables por frecuencia”).
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Impureza de Nodo}
+	\begin{block}{Requisitos de una función de impureza $\phi$}
+		Debe cumplir:
+		\begin{itemize}
+			\item $\phi(\mathbf{p}) \ge 0$ \hfill (no negatividad)
+			\item $\phi(\mathbf{p}) = 0$ si el nodo es puro
+			\item $\phi(\mathbf{p})$ máxima cuando todas las clases son equiprobables
+		\end{itemize}
+	\end{block}
+	
+	La impureza del nodo $t$ se define como:
+	\[
+	\iota(t) = \phi\big(p(1|t), \dots, p(K|t)\big).
+	\]
+	
+\end{frame}
+
+\begin{frame}{Funciones de Impureza Más Usadas}
+	
+	\textbf{Entropía de Shannon}
+	\[
+	H(D) = -\sum_{l=1}^L \frac{N_l(t)}{N(t)}
+	\log_2 \left( \frac{N_l(t)}{N(t)} \right).
+	\]
+	
+	\textbf{Índice de Gini}
+	\[
+	\text{Gini}(t) =
+	1 - \sum_{l=1}^L \left(\frac{N_l(t)}{N(t)}\right)^2.
+	\]
+	
+	\begin{itemize}
+		\item Ambos son 0 en nodos puros.
+		\item Crecen cuando las clases están mezcladas.
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Criterio de División}
+	\begin{block}{Reducción de Impureza}
+		La \textbf{reducción de impureza} generada al dividir el nodo $t$ en dos nodos hijos $t_1$ y $t_2$ mediante una partición $s$ se calcula como:
+		\[
+		\Delta \iota(s,t) =
+		\iota(t) - q_1 \iota(t_1) - q_2 \iota(t_2),
+		\]
+		donde $q_j = \frac{N(t_j)}{N(t)}$.
+	\end{block}
+	
+	\begin{itemize}
+		\item Se elige la división que maximiza $\Delta \iota$.
+		\item Esta métrica es el núcleo del algoritmo CART~\cite{quinlan1986induction}.
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Random Forest: Idea General}
+	
+	\begin{block}{Principio del Método}
+		Un \textbf{Random Forest}~\cite{Breiman2001} combina muchos árboles independientes,
+		cada uno entrenado sobre:
+		\begin{itemize}
+			\item un subconjunto \textit{bootstrap} de los datos,
+			\item un subconjunto aleatorio de atributos en cada división.
+		\end{itemize}
+		Esto reduce la varianza y mejora la generalización.
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Predicción en Random Forest}
+	
+	\begin{block}{Voto Mayoritario}
+		La clase predicha se obtiene mediante:
+		\[
+		\hat{y} =
+		\underset{l}{\operatorname{argmax}}
+		\sum_{a=1}^{A}
+		\mathbb{I}\big( \widehat{y_a}(\mathbf{x}) = l\big).
+		\]
+		 La \textbf{función indicadora}, definida como
+		\[
+		\mathbb{I}( \widehat{y_a}(\bm{x}) = l ) =
+		\begin{cases}
+			1, & \text{si el árbol } a \text{ asigna la clase $l$ al ejemplo $\bm x$}, \\
+			0, & \text{en caso contrario}.
+		\end{cases}
+		\]
+		Esta función contabiliza cuántos árboles votan por cada clase $l$, permitiendo que el modelo escoja aquella con mayor cantidad de votos.
+	\end{block}
+	
+	\begin{itemize}
+		\item Cada árbol vota una clase.
+		\item La predicción final es la clase más votada.
+	\end{itemize}
+	
+\end{frame}
+
+
+\begin{frame}{Hiperparámetros Principales}
+	
+	\begin{itemize}
+		\item \textbf{Criterio} (\texttt{gini}, \texttt{entropy}): mide la impureza.
+		\item \textbf{n\_estimators}: número de árboles.
+		\item \textbf{max\_depth}: profundidad máxima del árbol.
+		\item \textbf{max\_features}: número de atributos candidatos por división.
+		\item \textbf{min\_samples\_split}: mínimo de muestras para dividir.
+		\item \textbf{min\_samples\_leaf}: mínimo en una hoja.
+		\item \textbf{bootstrap}: usar o no remuestreo con reemplazo.
+	\end{itemize}
+	
+\end{frame}
+
+%-------------------------------------------------------------------------------------------------------------
+% SVM
+
+\begin{frame}{Máquinas de Soporte Vectorial (SVM)}
+	
+	\begin{block}{Idea General}
+		Las Máquinas de Soporte Vectorial~\cite{Cortes1995} buscan una función de decisión que
+		permita clasificar correctamente los datos, construyendo un \textbf{hiperplano óptimo}
+		que maximice el \textbf{margen} entre clases.
+		
+		\begin{itemize}
+			\item Operan sobre atributos numéricos → requieren codificación previa.
+			\item Sólo los \textbf{vectores de soporte} determinan la frontera.
+			\item El objetivo: maximizar la separación y mejorar la generalización.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}{Hiperplano y Margen}
+	
+	\begin{block}{Objetivo}
+		Entre todos los hiperplanos que separan las clases, SVM elige aquel que:
+		\[
+		\textbf{maximiza el margen } \varphi
+		\]
+		la distancia mínima entre el hiperplano y los puntos más cercanos de cada clase.
+	\end{block}
+	
+	\begin{block}{Ecuación del Hiperplano}
+		\[
+		\langle \bm{w}, \bm{x} \rangle + \beta = 0
+		\]
+		donde $\bm{w}$ es el vector normal al hiperplano y $\beta$ es el término independiente.
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Margen Rígido (Hard Margin)}
+	
+	\begin{block}{Caso Ideal: Datos Separables}
+		Se busca un hiperplano que clasifique perfectamente:
+		\[
+		y_i (\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 .
+		\]
+	
+	\end{block}
+	
+	\begin{block}{Problema de Optimización}
+		\[
+		\text{Minimizar } \frac{1}{2}\|\bm{w}\|^2 
+		\quad \text{sujeto a } 
+		y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1.
+		\]
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}{Margen Suave (Soft Margin)}
+	
+	\begin{block}{Motivación}
+		En la práctica los datos no son separables.  
+		Se permiten violaciones mediante \textbf{variables de holgura} $\xi_i \ge 0$.
+	\end{block}
+	
+	\begin{block}{Optimización con Penalización}
+		\[
+		\text{Minimizar } 
+		\frac{1}{2}\|\bm{w}\|^2 
+		+ C \sum_{i=1}^{n} \xi_i
+		\]
+		\[
+		\text{sujeto a } 
+		y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 - \xi_i.
+		\]
+	\end{block}
+	
+	\begin{itemize}
+		\item $C$ grande → penaliza errores → margen chico.
+		\item $C$ chico → permite errores → margen grande.
+	\end{itemize}
+	
+\end{frame}
+
+
+\begin{frame}{Formulación Dual}
+	
+	\begin{block}{Problema Dual}
+		\[
+		\text{Maximizar }
+		-\frac{1}{2} \sum_{i,\ell}
+		\alpha_i \alpha_\ell 
+		y_i y_\ell 
+		K(\bm{x}_i, \bm{x}_\ell)
+		+ \sum_{i} \alpha_i
+		\]
+		\[
+		\text{sujeto a } 
+		0 \le \alpha_i \le C,
+		\quad 
+		\sum_i \alpha_i y_i = 0.
+		\]
+	\end{block}
+	
+	\begin{itemize}
+		\item Sólo los puntos con $\alpha_i > 0$ son \textbf{vectores de soporte}.
+		\item La solución depende sólo de productos internos → clave para kernels.
+	\end{itemize}
+	
+\end{frame}
+
+
+\begin{frame}{Kernel Trick}
+	
+	\begin{block}{Motivación}
+		Cuando las clases no son separables linealmente, se proyectan los datos
+		a un espacio de mayor dimensión.
+	\end{block}
+	
+	\begin{block}{Idea Central}
+		Sin calcular la transformación explícita:
+		\[
+		\langle \phi(\bm{x}_i), \phi(\bm{x}_j) \rangle 
+		\quad \Rightarrow \quad K(\bm{x}_i, \bm{x}_j)
+		\]
+		donde $K$ es una \textbf{función kernel}.
+	\end{block}
+	
+	\begin{itemize}
+		\item SVM se vuelve capaz de aprender fronteras no lineales.
+		\item El costo computacional se mantiene manejable.
+	\end{itemize}
+	
+\end{frame}
+
+
+\begin{frame}{Funciones Kernel}
+	
+	\begin{block}{Kernels Comunes}
+		\begin{itemize}
+			\item \textbf{Lineal}:
+			\[
+			K(\bm{a},\bm{b})=\langle \bm{a},\bm{b} \rangle
+			\]
+			
+			\item \textbf{RBF / Gaussiano}:
+			\[
+			K(\bm{a},\bm{b}) = 
+			\exp\big(-\gamma \|\bm{a}-\bm{b}\|^2 \big)
+			\]
+			
+			\item \textbf{Polinómico}:
+			\[
+			K(\bm{a},\bm{b}) = 
+			(\langle \bm{a},\bm{b} \rangle + r)^q
+			\]
+			
+			\item \textbf{Sigmoide}:
+			\[
+			K(\bm{a},\bm{b}) = 
+			\tanh(\gamma\langle \bm{a},\bm{b} \rangle + r)
+			\]
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Hiperparámetros}
+	
+	\begin{block}{Principales}
+		\begin{itemize}
+			\item \textbf{C}: regula el balance margen–errores.
+			\item \textbf{kernel}: lineal, rbf, poly, sigmoid.
+			\item \boldmath$\gamma$\unboldmath: controla influencia local del punto.
+			\item \textbf{degree} ($d$): sólo para kernel polinómico.
+			\item \textbf{coef0} ($r$): usado por \texttt{poly} y \texttt{sigmoid}.
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Escalas de $\gamma$ en scikit-learn}
+		\[
+		\texttt{gamma = scale}: \frac{1}{D \cdot \text{Var}(X)}
+		\qquad
+		\texttt{gamma = auto}: \frac{1}{D}
+		\]
+	\end{block}
+	
+\end{frame}
+
+
+
+
+
+	
+% -----------------------------------------------------------------------------------------------------------	
+	% METRICAS
+	
+	\begin{frame}{Métricas de Rendimiento}
+		\begin{block}{Objetivo}
+			Evaluar el desempeño del calificador de cada modelo de Aprendizaje Automático mediante métricas de rendimiento que cuantifican la capacidad de clasificación.
+		\end{block}
+		
+		\begin{block}{Importancia}
+			El objetivo no es solo un buen rendimiento en datos de entrenamiento, sino la \textbf{capacidad de generalización} a entradas nuevas no vistas.
+		\end{block}
+		
+		\begin{block}{Validación Cruzada $K$-fold}
+			Se divide el conjunto de datos en $K$ pliegues $\{G_1, G_2, \dots, G_K\}$. Cada pliegue sirve como conjunto de prueba una vez y como entrenamiento $K-1$ veces.\\
+			Métrica promedio:
+			\[
+			\widehat{M} = \frac{1}{K} \sum_{i=1}^{K} M_i
+			\]
+		\end{block}
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Caso Binario: Matriz de Confusión}
+			Una matriz de confusión, que se puede observar en la Tabla~\ref{tab:matrizconfusionbinario}, es una forma simple de saber de qué forma está clasificando el algoritmo, donde una clase es considerada \textbf{positiva $P$} y la otra \textbf{negativa $N$}.		
+		\begin{block}{Matriz de Confusión}
+			
+		\vspace{0.3cm}
+\begin{table}[htb]
+
+	\centering
+	\label{tab:matrizconfusionbinario}
+	\resizebox{0.8\textwidth}{!}{
+	\begin{tabular}{|c|c|c|c|}
+		\cline{3-4}
+		\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{Predicción}} \\
+		\cline{3-4}
+		\multicolumn{2}{c|}{} & \textbf{Positivo} & \textbf{Negativo} \\
+		\hline
+		\multirow{2}{*}{\textbf{Verdad}} & \textbf{Positivo} & \cellcolor{TPcolor} \textbf{Verdadero Positivo (TP)} & \cellcolor{FNcolor} \textbf{Falso Negativo (FN)} \\
+		\cline{2-4}
+		& \textbf{Negativo} & \cellcolor{FNcolor} \textbf{Falso Positivo (FP)} & \cellcolor{TPcolor} \textbf{Verdadero Negativo (TN)} \\
+		\hline
+	\end{tabular}}
+\end{table}
+		\end{block}
+	\end{frame}
+	
+	
+	
+	
+	
+		\begin{frame}{Caso Binario: Matriz de Confusión}
+		\begin{block}{Definición}
+			Clasifica las predicciones en:
+			\begin{itemize}
+				\item \textbf{Verdaderos Positivos (TP):} Casos positivos correctamente clasificados.
+				\item \textbf{Verdaderos Negativos (TN):} Casos negativos correctamente clasificados.
+				\item \textbf{Falsos Positivos (FP):} Casos negativos clasificados como positivos.
+				\item \textbf{Falsos Negativos (FN):} Casos positivos clasificados como negativos.
+			\end{itemize}
+		\end{block}
+		
+	
+	\end{frame}
+	
+	\begin{frame}{Accuracy}
+		\begin{block}{Definición}
+			Proporción de instancias correctamente clasificadas:
+			\[
+			\text{Accuracy} = \frac{TP + TN}{TP + FP + TN + FN} = \frac{TP + TN}{\text{Total}}
+			\]
+		\end{block}
+		
+		\begin{block}{Conjunto de predicciones}
+			\[
+			\text{\textit{Accuracy}}(y, \hat{y}) = \frac{1}{n} \sum_{l=0}^{n-1} \mathbb{I}(\hat{y}_l = y_l), \quad
+			\mathbb{I}(\hat{y}_l = y_l) =
+			\begin{cases}
+				1,& \text{si } \hat{y}_l = y_l \\
+				0,& \text{en caso contrario}
+			\end{cases}
+			\]
+		\end{block}
+		
+		\begin{block}{Resumen}
+			\[
+			\text{Accuracy} = \frac{\text{Número de predicciones correctas}}{\text{Número total de muestras}}
+			\]
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Precision}
+		\begin{block}{Definición}
+			Mide la probabilidad de que la predicción positiva sea correcta:
+			\[
+			\text{Precision} = \frac{TP}{TP + FP}
+			\]
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Recall / Sensibilidad}
+		\begin{block}{Definición}
+			Mide la probabilidad de detectar un caso positivo real:
+			\[
+			\text{Recall} = \text{TPR} = \frac{TP}{TP + FN} = \frac{TP}{P}
+			\]
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{F-measure / F1-score}
+		\begin{block}{Definición general}
+			Media armónica ponderada de precision y recall:
+			\[
+			F_{\beta} = \frac{(1 + \beta_f^2) \, \text{precision} \cdot \text{recall}}{\beta_f^2 \text{precision} + \text{recall}}
+			\]
+		\end{block}
+		
+		\begin{block}{F1-score ($\beta_f=1$)}
+			\[
+			F1 = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
+			\]
+			\[
+			F1 = \frac{2\,TP}{2\,TP + FP + FN}
+			\]
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Área Bajo la Curva ROC (AUC)}
+		\begin{block}{Definición}
+			Mide la capacidad de un clasificador para distinguir entre clases.\\
+			La curva ROC grafica TPR vs FPR al variar el umbral de decisión.
+		\end{block}
+		
+		\begin{block}{Interpretación}
+			\begin{itemize}
+				\item Ideal: $(0,1)$ $\Rightarrow$ AUC = 1
+				\item Aleatorio: TPR = FPR $\Rightarrow$ AUC = 0.5
+				\item Razonable: $0.5 < \text{AUC} \le 1$
+			\end{itemize}
+		\end{block}
+		
+		\begin{block}{Ejes del gráfico}
+			\begin{itemize}
+				\item Eje Y: TPR
+				\item Eje X: FPR
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	
+%------------------------------%
+\begin{frame}{Importancia de la Característica}
+	\begin{block}{Definición}
+		Sea un modelo predictivo $\mathcal{M}$ entrenado sobre un conjunto de datos $X$, y sea $M$ la métrica de referencia del modelo sobre los datos originales.
+	\end{block}
+\end{frame}
+
+%------------------------------%
+\begin{frame}{Procedimiento: Paso 1}
+	\begin{block}{Iteración por atributo}
+		Para cada atributo $j$ del conjunto de datos:
+		\begin{enumerate}
+			\item Repetir el proceso $K$ veces (para reducir la varianza de la estimación):
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+%------------------------------%
+\begin{frame}{Procedimiento: Paso 2}
+	\begin{block}{Permutación de la característica}
+		Para cada repetición $k$:
+		\begin{enumerate}
+			\item Generar una versión alterada del conjunto de datos $X^{(k,j)}$ permutando aleatoriamente la columna $j$, manteniendo las demás columnas sin cambios.
+			\item Calcular la métrica $M$ del modelo sobre los datos permutados:
+			\[
+			M_{k,j} = \text{valor de la métrica $M$ del modelo $\mathcal{M}$ con $X^{(k,j)}$}
+			\]
+		\end{enumerate}
+	\end{block}
+\end{frame}
+
+%------------------------------%
+\begin{frame}{Procedimiento: Paso 3}
+	\begin{block}{Cálculo de importancia}
+		Calcular la importancia de la característica $j$ como la disminución promedio del puntaje respecto del puntaje de referencia:
+		\[
+		I_j = M - \frac{1}{K} \sum_{k=1}^{K} M_{k,j}
+		\]
+	\end{block}
+\end{frame}
+
+%------------------------------%
+\begin{frame}{Interpretación}
+	\begin{block}{Significado de $I_j$}
+		$ I_j $ mide la pérdida de desempeño al romper la relación entre la característica $j$ y la variable objetivo.\\
+		Valores más altos de $I_j$ $\Rightarrow$ características más relevantes para el modelo.
+	\end{block}
+\end{frame}
+	
+	
+	
+	
+	
+	% ----------------------------------------------------
+	
+	\begin{frame}{Resultados Principales}
+		\begin{itemize}
+			\item Se evaluaron todos los modelos sobre el mismo conjunto de datos.
+			\item Se compararon métricas como Accuracy, F1 y AUC.
+			\item Los resultados muestran diferencias claras según el modelo:
+			\begin{itemize}
+				\item Algunos modelos lineales funcionan bien en escenarios simples.
+				\item Modelos como Random Forest presentan mejor estabilidad y mayor AUC.
+				\item Naïve Bayes destaca por su velocidad.
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	% ----------------------------------------------------
+	
+	\begin{frame}{Análisis e Interpretación}
+		\begin{itemize}
+			\item Los modelos basados en árboles (Random Forest) tienden a capturar relaciones no lineales complejas.
+			\item SVM proporciona buenas fronteras de decisión cuando se emplean kernels adecuados.
+			\item Naïve Bayes funciona sorprendentemente bien incluso con suposiciones fuertes.
+			\item Regresión Logística es la más interpretable y útil como línea base.
+		\end{itemize}
+	\end{frame}
+	
+	% ----------------------------------------------------
+	
+	\begin{frame}{Conclusiones}
+		\begin{itemize}
+			\item Los modelos supervisados pueden asistir de manera efectiva en el análisis clínico.
+			\item Es fundamental seleccionar un modelo considerando:
+			\begin{itemize}
+				\item Interpretabilidad.
+				\item Métricas de desempeño.
+				\item Costo computacional.
+			\end{itemize}
+			\item Random Forest y SVM presentan ventajas claras en contextos médicos.
+		\end{itemize}
+	\end{frame}
+	
+	% ----------------------------------------------------
+	
+	\begin{frame}{Trabajo Futuro}
+		\begin{itemize}
+			\item Evaluar modelos más avanzados (Gradient Boosting, XGBoost, Redes Neuronales).
+			\item Incluir mayor cantidad de datos clínicos heterogéneos.
+			\item Agregar interpretabilidad avanzada (SHAP, LIME).
+			\item Optimizar hiperparámetros mediante búsqueda bayesiana.
+		\end{itemize}
+	\end{frame}
+	
+	% ----------------------------------------------------
+	
+	\begin{frame}{Gracias}
+		\centering
+		\Huge{Muchas gracias} \\
+		\vspace{0.3cm}
+		\large Preguntas
+	\end{frame}
+	
+	
+	
+\bibliographystyle{plain}
+\bibliography{Referencias}
+
+	
+\end{document}
