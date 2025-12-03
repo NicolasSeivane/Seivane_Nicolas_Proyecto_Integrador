@@ -13,8 +13,7 @@
 \usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
 \usepackage{incgraph,tikz}
-%\usepackage{caption}
-\usepackage{subcaption}
+
 \usepackage{amsfonts}
 %\usepackage{babel}
 \usepackage{color}
@@ -27,9 +26,8 @@
 \usepackage{titlepic}
 %\usepackage{longtable}
 %\usepackage{booktabs}
-%\usepackage{colortbl}
+\usepackage{colortbl}
 \usepackage{multirow}
-\usepackage{amsmath}
 \usepackage{etoolbox}
 %\usepackage{cite}    
 \usepackage{bm}
@@ -90,13 +88,16 @@
 	
 	
 	
-	\begin{frame}{Introducción}
-		\
-		\begin{block}{}
-			\
+	\begin{frame}{}
+		
+		\begin{block}{Introducción}
 		\begin{itemize}
 	\item Las enfermedades cardiovasculares son la causa número uno de muerte globalmente, con un estimado de 17.9 millones de vidas cada año, aproximadamente el 31\% de todas las muertes globales.
+\end{itemize}
+\end{block}
 \pause
+\begin{block}{Motivación}
+	\begin{itemize}
 	\item El objetivo general de este trabajo es comparar el rendimiento de diversas técnicas de Aprendizaje Automático Supervisado con el fin de recomendar aquella que presente el mejor desempeño al aplicarse sobre un conjunto de datos cardiológicos, con el fin de realizar predicciones de si un paciente tiene altas probabilidades de tener insuficiencia cardíaca.
 %% Incluir imagen sobre un hombre con dolor de pecho
 \end{itemize}
@@ -134,6 +135,11 @@
 		\end{block}
 
 
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.4\textwidth]{../diagnostico_medico}
+	\caption{Diagnóstico Médico. Fuente: \url{https://www.meditips.com/errores-de-diagnostico-clinico/}}
+	\end{figure}
 
 
 
@@ -193,6 +199,39 @@
 	 
 \end{frame}
 
+
+
+	\begin{frame}{Electrocardiograma}
+	
+	
+	\begin{block}{}
+		\centering
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../electro_cargiograma}
+	\caption{Electrocardiograma. Fuente: \url{https://campuscardio.com/caso-clinico/el-siguiente-electrocardiograma-cumple-con-los-requisitos-para-ser-un-ritmo-originado-en-el-nodo-sinusal/}}
+\end{figure}
+	\end{block}
+	
+\end{frame}
+
+
+
+\begin{frame}{Prueba de Esfuerzo}
+	
+	
+	\begin{block}{}
+		\centering
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../prueba-esfuerzo-cartoon}
+	\caption{Prueba de Esfuerzo. Fuente: \url{https://cardiologialosmochis.com/portfolio/prueba-de-esfuerzo/}}
+\end{figure}
+	\end{block}
+	
+\end{frame}
+
+
 	% ----------------------------------------------------
 	
 	\begin{frame}{Metodología General}
@@ -218,7 +257,7 @@
 		\item Entrenamiento de modelos supervisados.
 				\pause
 		\item Evaluación y comparación usando métricas estándar.
-				\pause
+
 	\end{enumerate}
 \end{itemize}
 		\end{block}
@@ -234,7 +273,7 @@
 			
 			\vspace{0.2cm}
 			
-			\textbf{Datasets incluidos:}
+			\textbf{Datasets incluidos (cantidad de registros aportados):}
 			\begin{itemize}
 				\item Cleveland (303)
 				\item Hungarian (294)
@@ -277,51 +316,9 @@
 	\end{frame}
 	
 	
-	\begin{frame}{Atributos del Dataset Binario}
 
-			\begin{block}{Tipo de atributo del conjunto binario.}
-
-\begin{table}[htb]
-	%\caption{Tipo de atributo del conjunto binario.} 
-	\centering
-	\small 
-	\label{tab:tablebinario}
-	\begin{tabular}{llcc}
-		\toprule
-		\textbf{Atributo} & \textbf{Tipo de dato} & \textbf{¿Está codificado?} & \textbf{Unidad} \\
-		\hline
-		Age        & Numérico (\texttt{int}) & No & Años \\
-		\hline
-		Sex             & Categórico (\texttt{string}) & No & -\\
-		\hline
-		ChestPainType               & Categórico (\texttt{string}) & No & -\\
-		\hline
-		RestingBP     & Numérico (\texttt{int}) & No & mm Hg\\
-		\hline
-		Cholesterol    & Numérico (\texttt{int}) & No & mm/dl\\
-		\hline
-		FastingBS                 & Numérico (\texttt{int}) & Sí & mg/dl\\
-		\hline
-		RestingECG                      & Categórico (\texttt{string}) & No & -\\
-		\hline
-		MaxHR    & Numérico (\texttt{int}) & No & -\\
-		\hline
-		ExerciseAngina               & Categórico (\texttt{string}) & No & -\\
-		\hline
-		Oldpeak                 & Numérico (\texttt{float}) & No & ST en depresión\\
-		\hline
-		ST\_Slope                 & Categórico (\texttt{string}) & No & -\\
-		\hline
-		HeartDisease                 & Numérico (\texttt{int})     & Sí & -\\
-		\bottomrule
-	\end{tabular}
 	
-\end{table}
-\end{block}
-\end{frame}
-	
-	
-\begin{frame}{Descripción de Atributos (I)}
+\begin{frame}{Descripción de Atributos}
 	
 		
 	\only<1>{   
@@ -390,7 +387,7 @@
 
 
 	
-\begin{frame}{Descripción de Atributos (V)}
+\begin{frame}{Descripción de Atributos}
 	\begin{block}{Esfuerzo, Señales y Variable Objetivo}
 				\begin{itemize}
 		\item \textbf{ST\_Slope:} La pendiente del segmento ST durante el ejercicio máximo; hay un 43.08\% en Up, un 50.05\% en Flat y luego un 6.87\% en Down [Up: pendiente ascendente, Flat: pendiente plana, Down: pendiente descendente].
@@ -400,6 +397,71 @@
 		\end{itemize}
 	\end{block}
 \end{frame}
+
+
+
+\begin{frame}{Segmento ST}
+	
+	
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]
+			\centering
+			\includegraphics[width=0.7\textwidth]{../ST segmento}
+			\caption{Segmento ST. Fuente: \url{https://litfl.com/st-segment-ecg-library/}}
+		\end{figure}
+	\end{block}
+	
+\end{frame}
+
+
+
+
+
+	\begin{frame}{Atributos del Dataset Binario}
+	
+	\begin{block}{Tipo de atributo del conjunto binario.}
+		
+		\begin{table}[htb]
+			%\caption{Tipo de atributo del conjunto binario.} 
+			\centering
+			\small 
+			\label{tab:tablebinario}
+			\begin{tabular}{llcc}
+				\toprule
+				\textbf{Atributo} & \textbf{Tipo de dato} & \textbf{¿Está codificado?} & \textbf{Unidad} \\
+				\hline
+				Age        & Numérico (\texttt{int}) & No & Años \\
+				\hline
+				Sex             & Categórico (\texttt{string}) & No & -\\
+				\hline
+				ChestPainType               & Categórico (\texttt{string}) & No & -\\
+				\hline
+				RestingBP     & Numérico (\texttt{int}) & No & mm Hg\\
+				\hline
+				Cholesterol    & Numérico (\texttt{int}) & No & mm/dl\\
+				\hline
+				FastingBS                 & Numérico (\texttt{int}) & Sí & mg/dl\\
+				\hline
+				RestingECG                      & Categórico (\texttt{string}) & No & -\\
+				\hline
+				MaxHR    & Numérico (\texttt{int}) & No & -\\
+				\hline
+				ExerciseAngina               & Categórico (\texttt{string}) & No & -\\
+				\hline
+				Oldpeak                 & Numérico (\texttt{float}) & No & ST en depresión\\
+				\hline
+				ST\_Slope                 & Categórico (\texttt{string}) & No & -\\
+				\hline
+				HeartDisease                 & Numérico (\texttt{int})     & Sí & -\\
+				\bottomrule
+			\end{tabular}
+			
+		\end{table}
+	\end{block}
+\end{frame}
+
+
 
 	\begin{frame}{Descripción de los Métodos Utilizados}
 		
@@ -433,24 +495,7 @@
 		
 	\end{frame}
 	
-		\begin{frame}{Metodología de Selección de Hiperparámetros}
 		
-
-		\begin{block}{Criterio General}
-			Se partió de los valores por defecto y se ajustaron manualmente los hiperparámetros 
-			más influyentes para analizar su impacto en el desempeño, priorizando:
-			\begin{itemize}
-				\pause
-				\item reproducibilidad,
-								\pause
-				\item consistencia comparativa,
-								\pause
-				\item compatibilidad de cada hiperparámetro.
-			\end{itemize}
-		\end{block}
-		
-	\end{frame}
-	
 	% ----------------------------------------------------
 	% MODELOS
 	\begin{frame}{Modelos Utilizados}
@@ -508,7 +553,8 @@
 		\end{block}
 		
 	\end{frame}
-					\pause
+
+
 	\begin{frame}{Clasificador Naïve Bayes (II)}
 		
 		\begin{block}{Independencia Condicional}
@@ -598,7 +644,7 @@
 	\end{frame}
 	
 	
-	\begin{frame}{Representación de Bayes Gaussiano}
+\begin{frame}{Representación de Bayes Gaussiano}
 		
 		
 		\begin{block}{}
@@ -611,6 +657,51 @@
 		\end{block}
 		
 	\end{frame}
+	
+	
+\begin{frame}{Representación de Bayes Gaussiano}
+	
+	
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.7\textwidth]{../st_slope_distribucion_real}
+			\caption{Comparación real de ST\_Slope en clase 1 y 0}
+		\end{figure}
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Representación de Bayes Gaussiano}
+	
+	
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.7\textwidth]{../colesterol_gauss}
+			\caption{Comparación de Colesterol en clase 1 y 0}
+		\end{figure}
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Representación de Bayes Gaussiano}
+	
+	
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.7\textwidth]{../colesterol_real}
+			\caption{Comparación real de Colesterol en clase 1 y 0}
+		\end{figure}
+	\end{block}
+	
+\end{frame}
 %% -----------------------------------------------------------------------------------------------------------
 % Logistica
 
@@ -637,23 +728,6 @@
 	
 \end{frame}
 
-
-
-
-
-
-\begin{frame}{Función Logística}
-	
-	\begin{block}{Interpretación}
-		
-		Si el modelo aumenta el valor lineal
-		\[
-		z_i = \beta_0 + \sum_j \beta_j x_{ij},
-		\]
-		la probabilidad crece de forma sigmoidal.
-	\end{block}
-	
-\end{frame}
 
 
 \begin{frame}{Transformación Logit}
@@ -683,6 +757,37 @@
 	\end{block}
 	
 \end{frame}
+
+\begin{frame}{Logística y Logit}
+	
+	
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.9\textwidth]{../funcion logit y logistica}
+			\caption{Comparación de Logística y Logit}
+		\end{figure}
+	\end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Representación de Logística}
+	
+	
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.7\textwidth]{../logistica_presentacion}
+			\caption{Frontera de Decisión de Regresión Logística.}
+		\end{figure}
+	\end{block}
+	
+\end{frame}
+
+
 
 \begin{frame}{Entrenamiento: Máxima Verosimilitud}
 	
@@ -951,6 +1056,20 @@
 	
 \end{frame}
 
+\begin{frame}{Árbol de Decisión}
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.9\textwidth]{../arbol_mas_chico}
+			\caption{Árbol de Decisión.}
+		\end{figure}
+	\end{block}
+\end{frame}
+
+
+
+
 \begin{frame}{Random Forest: Idea General}
 	
 	\begin{block}{Principio del Método}
@@ -963,6 +1082,18 @@
 		Esto reduce la varianza y mejora la generalización.
 	\end{block}
 	
+\end{frame}
+
+
+\begin{frame}{\textit{Bootstrap}}
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.45\textwidth]{../ChatGPT Image 3 dic 2025, 00_24_16}
+			\caption{Ejemplo muestra de \textit{bootstrap}.}
+		\end{figure}
+	\end{block}
 \end{frame}
 
 
@@ -993,6 +1124,21 @@
 	\end{itemize}
 	
 \end{frame}
+
+
+
+\begin{frame}{Árbol del bosque.}
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.85\textwidth]{../arbol_del_bosque}
+			\caption{Ejemplo de un árbol del bosque.}
+		\end{figure}
+	\end{block}
+\end{frame}
+
+
 
 
 \begin{frame}{Hiperparámetros Principales}
@@ -1144,6 +1290,21 @@
 	\end{itemize}
 	
 \end{frame}
+
+
+\begin{frame}{Kernel Trick}
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.65\textwidth]{../distitnos Kernels para datos SVM}
+			\caption{Ejemplo de distintos kernels en algunos atributos.}
+		\end{figure}
+	\end{block}
+\end{frame}
+
+
+
 
 
 \begin{frame}{Funciones Kernel}
@@ -1686,20 +1847,6 @@
 \end{frame}
 %---------------------------------------------------------
 
-\begin{frame}{Comparación de los Mejores Modelos}
-	
-
-	\begin{block}{}
-		\centering
-		\begin{figure}[htb]%[H]
-			\centering
-			\includegraphics[width=0.8\textwidth]{../mejores_modelos_barras_binario}
-			\caption{Comparación del desempeño de los mejores modelos en el caso binario.}
-			\label{fig:mejores_modelos_binario}
-		\end{figure}
-	\end{block}
-	
-\end{frame}
 
 
 
@@ -1751,6 +1898,20 @@
 }
 
 \only<2>{	
+
+	\begin{block}{Importancia de las características para NB en el caso binario.}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{../permutacion_nb}
+			\end{figure}
+		\end{block}
+
+}
+
+
+
+\only<3>{	
 	\begin{block}{Importancia de las características para RL en el caso binario.}
 		\centering
 
@@ -1777,7 +1938,23 @@
 	
 }
 
-\only<3>{	
+
+
+\only<4>{	
+
+	\begin{block}{Importancia de las características para RL en el caso binario.}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{../permutacion_rl}
+			\end{figure}
+		\end{block}
+
+}
+
+
+
+\only<5>{	
 	\begin{block}{Importancia de las características para RF en el caso binario.}
 		\centering
 
@@ -1802,7 +1979,20 @@
 	\end{block}
 }
 
-\only<4>{	
+
+\only<6>{	
+
+	\begin{block}{Importancia de las características para RF en el caso binario.}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{../permutacion_rf}
+			\end{figure}
+		\end{block}
+
+}
+
+\only<7>{	
 	\begin{block}{Importancia de las características para SVM en el caso binario.}
 		\centering
 
@@ -1827,7 +2017,22 @@
 }
 	
 
+\only<8>{	
+
+	\begin{block}{Importancia de las características para SVM en el caso binario.}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{../permutacion_svm}
+			\end{figure}
+		\end{block}
+
+}
+
+
 \end{frame}
+
+
 
 
 %---------------------------------------------------------

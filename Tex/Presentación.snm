@@ -1,6 +1,5 @@
-\beamer@slide {tab:cant_datos_binarios}{18}
-\beamer@slide {tab:tablebinario}{20}
-\beamer@slide {tab:matrizconfusionbinario}{68}
-\beamer@slide {fig:mejores_modelos_binario}{89}
-\beamer@slide {fig:mejores_modelos_binario}{91}
-\beamer@slide {fig:evolucion_metricas_binario}{97}
+\beamer@slide {tab:cant_datos_binarios}{19}
+\beamer@slide {tab:tablebinario}{27}
+\beamer@slide {tab:matrizconfusionbinario}{74}
+\beamer@slide {fig:mejores_modelos_binario}{95}
+\beamer@slide {fig:evolucion_metricas_binario}{106}
