@@ -25,9 +25,9 @@
 \usepackage{natbib}
 \usepackage{xcolor}
 \usepackage{titlepic}
-\usepackage{longtable}
-\usepackage{booktabs}
-\usepackage{colortbl}
+%\usepackage{longtable}
+%\usepackage{booktabs}
+%\usepackage{colortbl}
 \usepackage{multirow}
 \usepackage{amsmath}
 \usepackage{etoolbox}
@@ -96,7 +96,7 @@
 			\
 		\begin{itemize}
 	\item Las enfermedades cardiovasculares son la causa número uno de muerte globalmente, con un estimado de 17.9 millones de vidas cada año, aproximadamente el 31\% de todas las muertes globales.
-
+\pause
 	\item El objetivo general de este trabajo es comparar el rendimiento de diversas técnicas de Aprendizaje Automático Supervisado con el fin de recomendar aquella que presente el mejor desempeño al aplicarse sobre un conjunto de datos cardiológicos, con el fin de realizar predicciones de si un paciente tiene altas probabilidades de tener insuficiencia cardíaca.
 %% Incluir imagen sobre un hombre con dolor de pecho
 \end{itemize}
@@ -127,6 +127,7 @@
 		\begin{block}{}
 		\begin{itemize}
 	\item El proceso de diagnóstico médico puede ser extenso, incluso contando con la mejor disposición del personal de salud, ya que con frecuencia requiere la recopilación y análisis de datos provenientes de distintos estudios.
+	\pause
 	\item  El propósito de este trabajo es contribuir a agilizar dicho proceso, identificando técnicas que puedan ser utilizadas por los profesionales médicos como herramientas complementarias para realizar diagnósticos.
 %% Incluir imagen sobre diagnostico médico.
 \end{itemize}
@@ -140,7 +141,9 @@
 	
 	% ----------------------------------------------------
 	
-\begin{frame}{Estado del Arte (I)}
+\begin{frame}{Estado del Arte}
+	
+\only<1>{	
 	\begin{block}{Aprendizaje Automático en Cardiología}
 		
 		El Aprendizaje Automático se ha vuelto central en la investigación cardiovascular.  
@@ -157,9 +160,10 @@
 		\end{itemize}
 		
 	\end{block}
-\end{frame}
-
-\begin{frame}{Estado del Arte (II)}
+	 }
+	 
+\only<2>{
+	
 	\begin{block}{Modelos y Herramientas Diagnósticas}
 		
 		Los modelos más usados en cardiología incluyen:
@@ -182,6 +186,11 @@
 		Estas herramientas siguen siendo el estándar y los modelos computacionales buscan complementarlas.
 		
 	\end{block}
+
+
+}
+	 
+	 
 \end{frame}
 
 	% ----------------------------------------------------
@@ -193,15 +202,23 @@
 	\item Proceso seguido:
 	\begin{enumerate}
 		\item Preprocesamiento y limpieza:
+		\pause
 		\begin{itemize}
 			\item Se eliminaron los registros con datos faltantes.
+					\pause
 			\item Se eliminaron los datos con valores anormales.
+					\pause
 			\item Se estandarizaron los datos.
+					\pause
 			\item Se codificaron los datos categóricos.
+					\pause
 		\end{itemize}
 		\item Selección de características.
+				\pause
 		\item Entrenamiento de modelos supervisados.
+				\pause
 		\item Evaluación y comparación usando métricas estándar.
+				\pause
 	\end{enumerate}
 \end{itemize}
 		\end{block}
@@ -247,7 +264,7 @@
 		\bottomrule
 	\end{tabular}
 \end{table}
-			
+			\pause
 		\end{block}
 		
 		\vspace{0.3cm}
@@ -305,7 +322,10 @@
 	
 	
 \begin{frame}{Descripción de Atributos (I)}
-	\begin{block}{Demográficos y Clínica General}
+	
+		
+	\only<1>{   
+		\begin{block}{Demográficos y Clínica General}
 		\begin{itemize}
 \item \textbf{Age:} Los pacientes tienen una media de edad de 53 años, con una edad máxima de 77 y de edad mínima  de 28, con proporciones de edad bastante bien distribuidas, siendo la menor de 0.11\% para algunas edades y la mayor de 4.14\% para otras edades.
 
@@ -313,56 +333,61 @@
 
 \item \textbf{ChestPainType::} Tipo del dolor en el pecho, con exactitud, dolor torácico causado por isquemia cardíaca.Tiene una distribución 18.85\% de angina atípica, luego un 22.11\% de dolor no anginoso, un 54.03\% asintomático, y un 5.01\% de dolor de pecho anginoso típico. 
 
-		\end{itemize}
-		
-
-		
+		\end{itemize}	
 	\end{block}
+}
+
+
+	\only<2>{   	
+		
+		\begin{block}{Variables Clínicas}
+			\begin{itemize}
+				\item \textbf{RestingBP:}  Se está describiendo la presión sanguínea en reposo, tiene un valor medio de 133.02, con un valor máximo de 200.00 y valor mínimo de 92.00. 
+				
+				\item \textbf{Cholesterol:} Este atributo es el colesterol sérico, la medida total de colesterol en sangre; tiene un valor medio en los pacientes de 199.02, con un valor máximo de 603.00 y un valor mínimo de 85.00. Se encuentra en miligramos por decilitro.  
+				
+			\end{itemize}
+		\end{block}  
+	
+	}
+		
+		
+		
+		
+			\only<3>{   	\begin{block}{Variables Clínicas}
+					\begin{itemize} 
+						\item \textbf{FastingBS:} Es la Glucosa en sangre en ayuno; hay un 76.66\% de registros con  valores de glucosa en sangre menores a 120 mg/dl, codificado en 0, y un 23.34\% con valores mayores a 120 mg/dl, codificado en 1.
+						
+						\item \textbf{RestingECG:} Son los resultados de electrocardiogramas en reposo; hay 60.09\% codificado en Normal, un 19.41\% codificado en ST (tiene una anormalidad en el estudio) y, por último, un 20.50\% codificado en LVH (probablemente una hipertrofia en el ventrículo izquierdo).
+					\end{itemize}			
+				\end{block}
+			}
+				
+				
+				
+				
+				
+				
+					\only<4>{   	\begin{block}{Esfuerzo, Señales y Variable Objetivo}
+							\begin{itemize}
+								
+								
+								\item \textbf{MaxHR:} Este atributo es el máximo ritmo cardíaco registrado, tiene una media en los pacientes de 136.79, con un valor máximo de 202.00 y un valor mínimo de 60.00.  
+								
+								\item \textbf{ExerciseAngina:} Es la angina producido por ejercicio, dolor en el pecho; donde hay un 59.54\% que no tenían dolor, codificado en N, y hay un 40.46\% que sí tenían dolor, codificado en Y.  
+								
+								\item \textbf{Oldpeak:} Valor máximo de depresión del segmento ST (en milímetros) registrado en todas las derivaciones contiguas durante una prueba de esfuerzo. Forma parte del cálculo del riesgo de un paciente de isquemia o infarto de miocardio; valores más altos indican un mayor riesgo de enfermedad coronaria; tiene una media de 0.90, valor máximo de 6.20 y valor mínimo de -0.10.  
+								
+							\end{itemize}
+							
+						\end{block}
+					
+					}
+
+
 \end{frame}
 
-\begin{frame}{Descripción de Atributos (II)}
-	\begin{block}{Variables Clínicas}
-		\begin{itemize}
-\item \textbf{RestingBP:}  Se está describiendo la presión sanguínea en reposo, tiene un valor medio de 133.02, con un valor máximo de 200.00 y valor mínimo de 92.00. 
 
-\item \textbf{Cholesterol:} Este atributo es el colesterol sérico, la medida total de colesterol en sangre; tiene un valor medio en los pacientes de 199.02, con un valor máximo de 603.00 y un valor mínimo de 85.00. Se encuentra en miligramos por decilitro.  
-
-		\end{itemize}
-		
-
-		
-	\end{block}
-\end{frame}
-
-
-\begin{frame}{Descripción de Atributos (III)}
-	\begin{block}{Variables Clínicas}
-		\begin{itemize} 
-				\item \textbf{FastingBS:} Es la Glucosa en sangre en ayuno; hay un 76.66\% de registros con  valores de glucosa en sangre menores a 120 mg/dl, codificado en 0, y un 23.34\% con valores mayores a 120 mg/dl, codificado en 1.
-			
-			\item \textbf{RestingECG:} Son los resultados de electrocardiogramas en reposo; hay 60.09\% codificado en Normal, un 19.41\% codificado en ST (tiene una anormalidad en el estudio) y, por último, un 20.50\% codificado en LVH (probablemente una hipertrofia en el ventrículo izquierdo).
-		\end{itemize}
-		
-		
-		
-	\end{block}
-\end{frame}
-
-\begin{frame}{Descripción de Atributos (IV)}
-	\begin{block}{Esfuerzo, Señales y Variable Objetivo}
-		\begin{itemize}
-			
-		
-		\item \textbf{MaxHR:} Este atributo es el máximo ritmo cardíaco registrado, tiene una media en los pacientes de 136.79, con un valor máximo de 202.00 y un valor mínimo de 60.00.  
-		
-		\item \textbf{ExerciseAngina:} Es la angina producido por ejercicio, dolor en el pecho; donde hay un 59.54\% que no tenían dolor, codificado en N, y hay un 40.46\% que sí tenían dolor, codificado en Y.  
-		
-		\item \textbf{Oldpeak:} Valor máximo de depresión del segmento ST (en milímetros) registrado en todas las derivaciones contiguas durante una prueba de esfuerzo. Forma parte del cálculo del riesgo de un paciente de isquemia o infarto de miocardio; valores más altos indican un mayor riesgo de enfermedad coronaria; tiene una media de 0.90, valor máximo de 6.20 y valor mínimo de -0.10.  
-		
-		\end{itemize}
-		
-	\end{block}
-\end{frame}
 
 	
 \begin{frame}{Descripción de Atributos (V)}
@@ -415,9 +440,12 @@
 			Se partió de los valores por defecto y se ajustaron manualmente los hiperparámetros 
 			más influyentes para analizar su impacto en el desempeño, priorizando:
 			\begin{itemize}
+				\pause
 				\item reproducibilidad,
+								\pause
 				\item consistencia comparativa,
-				\item interpretabilidad del efecto de cada hiperparámetro.
+								\pause
+				\item compatibilidad de cada hiperparámetro.
 			\end{itemize}
 		\end{block}
 		
@@ -429,19 +457,20 @@
 		Los modelos fueron seleccionados por ser ampliamente usados en diagnóstico médico.
 		\begin{block}{}
 		\begin{itemize}
+							\pause
 	\item \textbf{Regresión Logística}  
 	Modelo lineal para clasificación. Calcula la probabilidad de pertenecer a una clase mediante la función sigmoide.  
 	Ideal para relaciones aproximadamente lineales.
-	
+					\pause
 	\item \textbf{Naïve Bayes}  
 	Modelo probabilístico basado en el Teorema de Bayes.  
 	Asume independencia entre atributos.  
 	Muy eficiente computacionalmente.
-	
+					\pause
 	\item \textbf{SVM (Support Vector Machines)}  
 	Busca maximizar el margen entre clases.  
 	Permite fronteras no lineales mediante kernels (RBF, polinómico).
-	
+					\pause
 	\item \textbf{Random Forest}  
 	Agrupación de múltiples árboles de decisión.  
 	Reduce varianza y mejora la generalización.  
@@ -479,7 +508,7 @@
 		\end{block}
 		
 	\end{frame}
-	
+					\pause
 	\begin{frame}{Clasificador Naïve Bayes (II)}
 		
 		\begin{block}{Independencia Condicional}
@@ -567,6 +596,21 @@
 		\end{block}
 		
 	\end{frame}
+	
+	
+	\begin{frame}{Representación de Bayes Gaussiano}
+		
+		
+		\begin{block}{}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{../Bayes_Presentacion}
+				\caption{Comparación de ST\_Slope en clase 1 y 0}
+			\end{figure}
+		\end{block}
+		
+	\end{frame}
 %% -----------------------------------------------------------------------------------------------------------
 % Logistica
 
@@ -593,24 +637,9 @@
 	
 \end{frame}
 
-\begin{frame}{Función Logística}
-	
-	\begin{block}{Probabilidad Condicional}
-		Para cada registro $\mathbf{x}_i = (x_{i1}, \dots, x_{iD})$:
-		\[
-		p(\mathbf{x}_i) =
-		\frac{\exp(\beta_0 + \sum_{j=1}^{D} \beta_j x_{ij})}
-		{1 + \exp(\beta_0 + \sum_{j=1}^{D} \beta_j x_{ij})}.
-		\]
-		
-		\begin{itemize}
-			\item $p(\mathbf{x}_i)$ es la probabilidad de clase positiva.
-			\item $\beta_j$ mide la influencia del atributo $x_j$.
-			\item El denominador asegura valores entre 0 y 1.
-		\end{itemize}
-	\end{block}
-	
-\end{frame}
+
+
+
 
 
 \begin{frame}{Función Logística}
@@ -1222,6 +1251,7 @@
 	\end{tabular}}
 \end{table}
 		\end{block}
+
 	\end{frame}
 	
 	
@@ -1377,59 +1407,600 @@
 \end{frame}
 	
 	
+
 	
 	
+%---------------------------------------------------------
+\begin{frame}{Resultados – Dataset Binario}
 	
-	% ----------------------------------------------------
-	
-	\begin{frame}{Resultados Principales}
+	\begin{block}{Descripción general}
 		\begin{itemize}
-			\item Se evaluaron todos los modelos sobre el mismo conjunto de datos.
-			\item Se compararon métricas como Accuracy, F1 y AUC.
-			\item Los resultados muestran diferencias claras según el modelo:
+			\item Se evaluaron NB, Regresión Logística, Random Forest y SVM.
+			\item Métricas: Accuracy, Recall, F1-Score, AUC y tiempo de entrenamiento.
+			\item Se probó \textbf{undersampling}, pero redujo la generalización.
+			\item Se decidió mantener la distribución original del dataset.
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Objetivo}
+		Evaluar cuál modelo obtiene el mejor rendimiento clasificando entre dos clases.
+	\end{block}
+	
+\end{frame}
+
+
+%---------------------------------------------------------
+
+		
+		
+\begin{frame}{Naive Bayes – Resultados}
+	
+	\begin{block}{Desempeño general}
+		\begin{itemize}
+			\item Modelo muy eficiente computacionalmente, con una muy buena capacidad clasificadora.
+			\item Los distintos valores de suavizado (\textit{var smoothing}) no generó diferencias.
+			\item Mantiene un rendimiento competitivo pese al supuesto de independencia condicional entre atributos.
+		\end{itemize}
+	\end{block}
+	
+	% --- TABLA 1: HIPERPARÁMETROS ---
+	\only<1>{
+	\begin{block}{Hiperparámetros evaluados}
+			\centering
+			\begin{tabular}{lcccccc}
+				\toprule
+				\textbf{Hiperparámetro} & \textbf{Valores evaluados} 
+				& & & & & \\   % columnas vacías para igualar estructura
+				\midrule
+				Suavizado & $10^{-9},\,10^{-8},\,10^{-7},\,10^{-6},\,10^{-5}$
+				& & & & & \\  % igual cantidad de columnas
+				\bottomrule
+				
+		\end{tabular}
+			\end{block}
+	}
+		
+		
+		% --- TABLA 2: RESULTADOS ---
+	\only<2>{
+	\begin{block}{Resultados del modelo}
+		\centering
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{lcccccc}
+				\toprule
+				\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} &
+				\textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+				\midrule
+				\makecell[l]{Todas las consideradas}
+				& 0.8420 & 0.8420 & 0.8420 & 0.9138 & 0.10 & 0.8433 \\
+				\bottomrule
+		\end{tabular}}
+	\end{block}
+}
+	
+	
+\end{frame}
+
+
+
+	
+
+%---------------------------------------------------------
+
+%---------------------------------------------------------
+\begin{frame}{Regresión Logística – Resultados}
+	
+	\begin{block}{Características del modelo}
+		\begin{itemize}
+			\item Modelo lineal, rápido y estable.
+			\item Obtuvo una buena capacidad clasificadora.
+			\item Opción eficiente en cuestión de tiempo.
+		\end{itemize}
+	\end{block}
+	
+	\only<1>{
+	\begin{block}{Hiperparámetros evaluados}
+		\centering
+		\begin{tabular}{ll}
+			\toprule
+			\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+			\midrule
+			$C$ & 0, 0.1, 0.01 \\
+			Penalidad & Ninguna, Lasso, Ridge, Elastic Net \\
+			\emph{Solver} & L-BFGS, SAGA, Newton-CG \\
+			Multiclase & OvR, \emph{multinomial} \\
+			\bottomrule
+		\end{tabular}
+	\end{block}
+}
+
+
+% --- TABLA 2: RESULTADOS ---
+\only<2>{
+	\begin{block}{Resultados del modelo}
+		\centering
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{lcccccc}
+				\toprule
+				\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+				\midrule
+				\makecell[l]{
+					$C = 1$\\
+					Penalidad = Lasso\\
+					\emph{Solver} = SAGA \\
+					Multiclase = OvR
+				} & 0.8485 & 0.8485 & 0.8481 & 0.9050 & 0.13 & 0.8495 \\
+				\bottomrule
+				\end{tabular}}
+	\end{block}
+}
+
+\end{frame}
+%---------------------------------------------------------
+
+%---------------------------------------------------------
+\begin{frame}{Random Forest – Resultados}
+	
+	\begin{block}{Desempeño general}
+		\begin{itemize}
+			\item Modelo con mejor rendimiento global.
+			\item Excelente capacidad de generalización.
+			\item Mayor costo computacional debido a la construcción del bosque, pero predicción más sencilla.
+		\end{itemize}
+	\end{block}
+	
+	\only<1>{
+		\begin{block}{Hiperparámetros evaluados}
+			\centering
+			\begin{tabular}{ll}
+				\toprule
+				\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+				\midrule
+				Criterio & \texttt{gini}, \texttt{entropy} \\
+				\texttt{max\_depth} & Ninguna, 3, 5, 7, 9 \\
+				\texttt{min\_samples\_split} & 2, 5, 10 \\
+				\texttt{min\_samples\_leaf} & 1, 2, 4 \\
+				\texttt{max\_features} & \texttt{None}, \texttt{sqrt}, \texttt{log2} \\
+				\bottomrule
+			\end{tabular}
+		\end{block}
+	}
+	
+	
+	% --- TABLA 2: RESULTADOS ---
+	\only<2>{
+		\begin{block}{Resultados del modelo}
+			\centering
+			\resizebox{\textwidth}{!}{
+					\begin{tabular}{lcccccc}
+					\toprule
+					\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+					\midrule
+					\makecell[l]{
+						Criterio = \texttt{entropy}\\
+						\texttt{max\_depth} = 7\\
+						\texttt{min\_samples\_split} = 5\\
+						\texttt{min\_samples\_leaf} = 1\\
+						\texttt{max\_features} = \texttt{sqrt}\\
+					} & 0.8780 & 0.8780 & 0.8775 & 0.9315 & 1.38 & 0.8731 \\
+					\bottomrule
+					\end{tabular}}
+		\end{block}
+	}
+	
+\end{frame}
+%---------------------------------------------------------
+
+%---------------------------------------------------------
+\begin{frame}{SVM – Resultados}
+	
+	\begin{block}{Comportamiento del modelo}
+		\begin{itemize}
+			\item Alta capacidad discriminatoria.
+			\item Kernel RBF fue el de mejor desempeño, por lo cual fue necesario cambiar la dimensionalidad para encontrar el hiperplano.
+			\item Tiempo de entrenamiento moderado.
+		\end{itemize}
+	\end{block}
+	
+	\only<1>{
+		\begin{block}{Hiperparámetros evaluados}
+			\centering
+		\begin{tabular}{ll}
+			\toprule
+			\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+			\midrule
+			$C$ & 0.001, 0.01, 0.1, 1, 10, 15, 20, 25 \\
+			\texttt{kernel} & \texttt{linear}, \texttt{poly}, \texttt{rbf}, \texttt{sigmoid} \\
+			$\gamma$ & \texttt{scale}, \texttt{auto}, 0.001, 0.01, 0.1, 1 \\
+			\texttt{degree} & $2, 3, \dots, 10$ \\
+			\bottomrule
+		\end{tabular}
+		\end{block}
+	}
+	
+	
+	% --- TABLA 2: RESULTADOS ---
+	\only<2>{
+		\begin{block}{Resultados del modelo}
+			\centering
+			\resizebox{\textwidth}{!}{
+				\begin{tabular}{lcccccc}
+					\toprule
+					\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+					\midrule
+					\makecell[l]{
+						$C = 1$\\
+						\texttt{kernel} = \texttt{rbf}\\
+						$\gamma$ = 0.1\\
+					} & 0.8616 & 0.8616 & 0.8609 &0.9232 &0.60 & 0.8628 \\
+					\bottomrule
+					\end{tabular}}
+		\end{block}
+	}
+	
+\end{frame}
+%---------------------------------------------------------
+
+
+
+
+%---------------------------------------------------------
+\begin{frame}{Comparación de los Mejores Modelos}
+	
+	\begin{block}{Conclusiones por desempeño}
+		\small
+		\begin{itemize}
+			\item Se observa que Random Forest obtiene la mayor puntuación en todas las métricas, seguido por la Regresión Logística y SVM.
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.7\textwidth]{../mejores_modelos_barras_binario}
+			\caption{Comparación del desempeño de los mejores modelos en el caso binario.}
+			\label{fig:mejores_modelos_binario}
+		\end{figure}
+	\end{block}
+	
+\end{frame}
+%---------------------------------------------------------
+
+
+%---------------------------------------------------------
+\begin{frame}{Importancia de Características – Permutation Importance}
+	
+	\begin{block}{Descripción}
+		\begin{itemize}
+			\item Se midió cómo varía la métrica del modelo al permutar cada feature.
+			\item Permite identificar las variables más influyentes.
+			\item Se calculó para NB, RL, RF y SVM.
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Hallazgo general}
+		\textbf{ST\_Slope} aparece como la característica más relevante en los cuatro modelos.
+	\end{block}
+	
+\end{frame}
+%---------------------------------------------------------
+
+\begin{frame}{Comparación de los Mejores Modelos}
+	
+
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.8\textwidth]{../mejores_modelos_barras_binario}
+			\caption{Comparación del desempeño de los mejores modelos en el caso binario.}
+			\label{fig:mejores_modelos_binario}
+		\end{figure}
+	\end{block}
+	
+\end{frame}
+
+
+
+
+%---------------------------------------------------------
+\begin{frame}{Evolución del Rendimiento por Número de Características}
+	
+	\begin{block}{Observaciones}
+		\begin{itemize}
+			\item Todos los modelos mejoran al incluir las variables más importantes.
+			\item RF y SVM muestran el patrón más estable y creciente.
+			\item Con pocas características ya alcanzan valores competitivos.
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Conclusión}
+		Es posible reducir el número total de características sin pérdida significativa de desempeño.
+	\end{block}
+	
+\end{frame}
+%---------------------------------------------------------
+
+
+\begin{frame}{Evolución del Rendimiento por Número de Características.}
+	
+	
+\only<1>{	
+	\begin{block}{Importancia de las características para NB en el caso binario.}
+		\centering
+	\begin{tabular}{lc}
+		\toprule
+		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+		\midrule
+		ST\_Slope & 0.027015 \\
+		ExerciseAngina & 0.023747 \\
+		Oldpeak & 0.018736 \\
+		ChestPainType & 0.018519 \\
+		Cholesterol & 0.014815 \\
+		Sex & 0.014270 \\
+		FastingBS & 0.004575 \\
+		RestingBP & 0.001852 \\
+		MaxHR & -0.000218 \\
+		RestingECG & -0.001198 \\
+		Age & -0.003595 \\
+		\bottomrule
+	\end{tabular}
+	\end{block}
+
+}
+
+\only<2>{	
+	\begin{block}{Importancia de las características para RL en el caso binario.}
+		\centering
+
+		\label{tab:rl_importancia_}
+		\begin{tabular}{lc}
+			\toprule
+			\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+			\midrule
+			ST\_Slope & 0.072440 \\
+			ExerciseAngina & 0.026797 \\
+			ChestPainType   &  0.020806\\
+			Sex           &    0.011329\\
+			FastingBS      &   0.010240\\
+			Cholesterol    &   0.009150\\
+			Oldpeak        &   0.006100\\
+			Age            &   0.003922\\
+			MaxHR          &   0.003268\\
+			RestingBP      &   0.000545\\
+			RestingECG     &   0.000218\\
+			\bottomrule
+		\end{tabular}
+
+	\end{block}
+	
+}
+
+\only<3>{	
+	\begin{block}{Importancia de las características para RF en el caso binario.}
+		\centering
+
+			\label{tab:rf_importancia}
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+				\midrule
+				ST\_Slope & 0.254265 \\
+				ChestPainType & 0.127319 \\
+				Oldpeak & 0.113156 \\
+				ExerciseAngina & 0.105952 \\
+				Cholesterol & 0.099872 \\
+				MaxHR & 0.088635 \\
+				Age & 0.065807 \\
+				RestingBP & 0.055053 \\
+				Sex & 0.040916 \\
+				FastingBS & 0.030069 \\
+				RestingECG & 0.018956 \\
+				\bottomrule
+			\end{tabular}
+	\end{block}
+}
+
+\only<4>{	
+	\begin{block}{Importancia de las características para SVM en el caso binario.}
+		\centering
+
+		\begin{tabular}{lc}
+			\toprule
+			\textbf{Característica} & \textbf{Importancia (Permutación)} \\
+			\midrule
+			ST\_Slope     &     0.106209\\
+			Cholesterol    &   0.031808\\
+			Oldpeak        &   0.024510\\
+			ChestPainType  &   0.023312\\
+			Sex            &   0.011438\\
+			MaxHR           &  0.008715\\
+			ExerciseAngina  &  0.008388\\
+			Age            &   0.007952\\
+			RestingBP       &  0.005773\\
+			RestingECG      &  0.004902\\
+			FastingBS      &   0.004575\\
+			\bottomrule
+		\end{tabular}
+	\end{block}
+}
+	
+
+\end{frame}
+
+
+%---------------------------------------------------------
+% ----------------------------------------------------
+
+\begin{frame}{Evolución al incorporar métricas.}
+	
+	
+\only<1>{
+	
+		\begin{block}{}
+		\centering
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../evolucion_metrica_binario}
+	\caption{Valores de \textit{Accuracy} según la cantidad de características en el caso binario.}
+	\label{fig:evolucion_metricas_binario}
+\end{figure}
+	\end{block}
+		
+}
+
+\only<2>{
+	
+	\begin{block}{}
+		\centering
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../evolucion_metrica_binario_auc}
+	\caption{Valores de $AUC$ según la cantidad de características en el caso binario.}
+	\label{fig:evolucion_metricas_binario_auc}
+\end{figure}
+	\end{block}
+	
+}
+
+\only<3>{
+	
+	\begin{block}{}
+		\centering
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../evolucion_metrica_binario_f1}
+	\caption{Valores de F1-Score según la cantidad de características en el caso binario.}
+	\label{fig:evolucion_metricas_binario_f1}
+\end{figure}
+	\end{block}
+	
+}
+	
+
+	
+\end{frame}
+
+
+
+
+
+
+
+%---------------------------------------------------------
+% ----------------------------------------------------
+
+
+\begin{frame}{Comparación Metodológica y Robustez}
+	
+	\only<1>{
+		\begin{block}{Random Forest}
 			\begin{itemize}
-				\item Algunos modelos lineales funcionan bien en escenarios simples.
-				\item Modelos como Random Forest presentan mejor estabilidad y mayor AUC.
-				\item Naïve Bayes destaca por su velocidad.
+				\item Mayor rendimiento en ambas tareas (binaria y multiclase).
+				\item Reduce el sobreajuste gracias al voto mayoritario.
+				\item Modela relaciones no lineales e interacciones complejas.
 			\end{itemize}
-		\end{itemize}
-	\end{frame}
+		\end{block}
+	}
 	
-	% ----------------------------------------------------
-	
-	\begin{frame}{Análisis e Interpretación}
-		\begin{itemize}
-			\item Los modelos basados en árboles (Random Forest) tienden a capturar relaciones no lineales complejas.
-			\item SVM proporciona buenas fronteras de decisión cuando se emplean kernels adecuados.
-			\item Naïve Bayes funciona sorprendentemente bien incluso con suposiciones fuertes.
-			\item Regresión Logística es la más interpretable y útil como línea base.
-		\end{itemize}
-	\end{frame}
-	
-	% ----------------------------------------------------
-	
-	\begin{frame}{Conclusiones}
-		\begin{itemize}
-			\item Los modelos supervisados pueden asistir de manera efectiva en el análisis clínico.
-			\item Es fundamental seleccionar un modelo considerando:
+	\only<2>{
+		\begin{block}{Máquinas de Soporte Vectorial}
 			\begin{itemize}
-				\item Interpretabilidad.
-				\item Métricas de desempeño.
-				\item Costo computacional.
+				\item Excelente rendimiento con kernels \textbf{RBF} y \textbf{polinómicos}.
+				\item El \textit{kernel trick} permite fronteras no lineales complejas.
+				\item Muy útil cuando los datos no son separables linealmente.
 			\end{itemize}
-			\item Random Forest y SVM presentan ventajas claras en contextos médicos.
-		\end{itemize}
-	\end{frame}
+		\end{block}
+	}
+	
+	\only<3>{
+		\begin{block}{Regresión Logística}
+			\begin{itemize}
+				\item Modelo lineal interpretable y de buena generalización.
+				\item Capta relaciones simples entre las características y la clase.
+				\item Menor capacidad que RF y SVM para fronteras no lineales.
+				\item Útil como modelo base por su estabilidad y claridad interpretativa.
+			\end{itemize}
+		\end{block}
+	}
+	
+	\only<4>{
+		\begin{block}{Naive Bayes}
+			\begin{itemize}
+				\item Extrema eficiencia computacional — entrenamiento casi instantáneo.
+				\item Supone independencia condicional entre atributos.
+				\item Aun cuando el supuesto no se cumple, mantiene buen rendimiento.
+				\item Muy competitivo como modelo inicial y para datasets pequeños.
+			\end{itemize}
+		\end{block}
+	}
+	
+\end{frame}
 	
 	% ----------------------------------------------------
 	
-	\begin{frame}{Trabajo Futuro}
-		\begin{itemize}
-			\item Evaluar modelos más avanzados (Gradient Boosting, XGBoost, Redes Neuronales).
-			\item Incluir mayor cantidad de datos clínicos heterogéneos.
-			\item Agregar interpretabilidad avanzada (SHAP, LIME).
-			\item Optimizar hiperparámetros mediante búsqueda bayesiana.
-		\end{itemize}
+	
+	% ----------------------------------------------------
+	\begin{frame}{Implicancias y Aplicación Clínica}
+		
+		\only<1>{
+			\begin{block}{Interpretabilidad vs. Desempeño}
+				\begin{itemize}
+					\item RF y SVM obtienen las mejores métricas, pero son menos interpretables.
+					\item RL y NB permiten explicaciones claras, valiosas en entornos clínicos.
+				\end{itemize}
+			\end{block}
+		}
+		
+		\only<2>{
+			\begin{block}{Coherencia con el conocimiento médico}
+				\begin{itemize}
+					\item Caso binario: destacan \textit{ST\_Slope}, \textit{ChestPainType}, \textit{Oldpeak}.
+					\item Caso multiclase: resaltan \textit{ASTV}, \textit{ALTV}, \textit{MSTV}.
+					\item Las variables importantes coinciden con indicadores usados en práctica clínica.
+				\end{itemize}
+			\end{block}
+		}
+		
+		\only<3>{
+			\begin{block}{Proyección a Implementaciones Médicas}
+				\begin{itemize}
+					\item Los modelos pueden integrarse a sistemas de apoyo al diagnóstico.
+					\item Necesitan validación clínica, calibración y análisis interpretativo.
+					\item La selección de características mejora eficiencia y confianza del sistema.
+				\end{itemize}
+			\end{block}
+		}
+		
+	\end{frame}
+	
+	
+	\begin{frame}{Mejoras Potenciales y Consideraciones}
+		
+		\begin{block}{Estrategias de Optimización}
+			\begin{itemize}
+				\item \textbf{Ajuste más fino de hiperparámetros:}
+				uso de \emph{Randomized Search} o \emph{Bayesian Optimization} para explorar más eficientemente el espacio,
+				y luego un \emph{Grid Search} focalizado.
+				\pause
+				
+				\item \textbf{Manipulación de características:}
+				aplicar técnicas como PCA o generar variables sintéticas para mejorar la calidad del espacio de representación.
+				\pause
+				
+				\item \textbf{Validación cruzada más robusta:}
+				incrementar la cantidad de particiones o emplear CV estratificada más exhaustiva.
+			\end{itemize}
+		\end{block}
+		
+		\pause
+		
+		\begin{block}{Conclusión General}
+			Los modelos muestran un desempeño altamente satisfactorio,
+			con margen de mejora a través de un refinamiento de hiperparámetros y un análisis más profundo de la estructura de los datos.
+		\end{block}
+		
 	\end{frame}
 	
 	% ----------------------------------------------------
