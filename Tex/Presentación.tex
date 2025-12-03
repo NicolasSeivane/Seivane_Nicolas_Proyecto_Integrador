@@ -13,6 +13,7 @@
 \usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
 \usepackage{incgraph,tikz}
+\usepackage{url}
 
 \usepackage{amsfonts}
 %\usepackage{babel}
@@ -147,89 +148,61 @@
 	
 	% ----------------------------------------------------
 	
-\begin{frame}{Estado del Arte}
-	
-\only<1>{	
-	\begin{block}{Aprendizaje Automático en Cardiología}
-		
-		El Aprendizaje Automático se ha vuelto central en la investigación cardiovascular.  
-		Isaksen et al.~\cite{isaksen2025evaluating} destacan desafíos como fuga de datos y desbalance de clases.  
-		Kumar y Kumar~\cite{kumar2021machine} revisan técnicas no invasivas basadas en ML para diagnóstico cardíaco.
-		
-		\vspace{0.25cm}
-		
-		Las variables cardiológicas suelen agruparse en:
-		\begin{itemize}
-			\item \textbf{Parámetros clínicos estructurados} (demografía, laboratorio).
-			\item \textbf{Señales cardíacas} (ECG, PCG).
-			\item \textbf{Imágenes médicas} (ECG, CMR, CCT, SPECT).
-		\end{itemize}
-		
-	\end{block}
-	 }
-	 
-\only<2>{
-	
-	\begin{block}{Modelos y Herramientas Diagnósticas}
-		
-		Los modelos más usados en cardiología incluyen:
-		\begin{itemize}
-			\item \textbf{SVM}: fuerte rendimiento en análisis de ECG y datos clínicos.
-			\item \textbf{k-NN}: útil en detección de arritmias y riesgo.
-			\item \textbf{Naïve Bayes y árboles de decisión}: empleados en datos tabulares y señales procesadas.
-		\end{itemize}
-		
-		\vspace{0.25cm}
-		
-		El diagnóstico clínico tradicional continúa basado en:
-		\begin{itemize}
-			\item Electrocardiograma (ECG)
-			\item Prueba de esfuerzo
-			\item Ecocardiograma
-			\item Análisis de laboratorio (troponinas, colesterol, glucosa)
-		\end{itemize}
-		
-		Estas herramientas siguen siendo el estándar y los modelos computacionales buscan complementarlas.
-		
-	\end{block}
-
-
-}
-	 
-	 
-\end{frame}
-
-
-
-	\begin{frame}{Electrocardiograma}
-	
-	
-	\begin{block}{}
-		\centering
-	\begin{figure}[htb]
-	\centering
-	\includegraphics[width=0.7\textwidth]{../electro_cargiograma}
-	\caption{Electrocardiograma. Fuente: \url{https://campuscardio.com/caso-clinico/el-siguiente-electrocardiograma-cumple-con-los-requisitos-para-ser-un-ritmo-originado-en-el-nodo-sinusal/}}
-\end{figure}
-	\end{block}
-	
-\end{frame}
+%\begin{frame}{Estado del Arte}
+%	
+%\only<1>{	
+%	\begin{block}{Aprendizaje Automático en Cardiología}
+%		
+%		El Aprendizaje Automático se ha vuelto central en la investigación cardiovascular.  
+%		Isaksen et al.~\cite{isaksen2025evaluating} destacan desafíos como fuga de datos y desbalance de clases.  
+%		Kumar y Kumar~\cite{kumar2021machine} revisan técnicas no invasivas basadas en ML para diagnóstico cardíaco.
+%		
+%		\vspace{0.25cm}
+%		
+%		Las variables cardiológicas suelen agruparse en:
+%		\begin{itemize}
+%			\item \textbf{Parámetros clínicos estructurados} (demografía, laboratorio).
+%			\item \textbf{Señales cardíacas} (ECG, PCG).
+%			\item \textbf{Imágenes médicas} (ECG, CMR, CCT, SPECT).
+%		\end{itemize}
+%		
+%	\end{block}
+%	 }
+%	 
+%\only<2>{
+%	
+%	\begin{block}{Modelos y Herramientas Diagnósticas}
+%		
+%		Los modelos más usados en cardiología incluyen:
+%		\begin{itemize}
+%			\item \textbf{SVM}: fuerte rendimiento en análisis de ECG y datos clínicos.
+%			\item \textbf{k-NN}: útil en detección de arritmias y riesgo.
+%			\item \textbf{Naïve Bayes y árboles de decisión}: empleados en datos tabulares y señales procesadas.
+%		\end{itemize}
+%		
+%		\vspace{0.25cm}
+%		
+%		El diagnóstico clínico tradicional continúa basado en:
+%		\begin{itemize}
+%			\item Electrocardiograma (ECG)
+%			\item Prueba de esfuerzo
+%			\item Ecocardiograma
+%			\item Análisis de laboratorio (troponinas, colesterol, glucosa)
+%		\end{itemize}
+%		
+%		Estas herramientas siguen siendo el estándar y los modelos computacionales buscan complementarlas.
+%		
+%	\end{block}
+%
+%
+%}
+%	 
+%	 
+%\end{frame}
 
 
 
-\begin{frame}{Prueba de Esfuerzo}
-	
-	
-	\begin{block}{}
-		\centering
-	\begin{figure}[htb]
-	\centering
-	\includegraphics[width=0.7\textwidth]{../prueba-esfuerzo-cartoon}
-	\caption{Prueba de Esfuerzo. Fuente: \url{https://cardiologialosmochis.com/portfolio/prueba-de-esfuerzo/}}
-\end{figure}
-	\end{block}
-	
-\end{frame}
+
 
 
 	% ----------------------------------------------------
@@ -293,7 +266,7 @@
 	\centering
 	\caption{Cantidad de registros utilizados.}
 	\label{tab:cant_datos_binarios}
-	\begin{tabular}{lc}
+	\begin{tabular}{lr}
 		\toprule
 		\textbf{Cantidad de registros} & \textbf{918} \\
 		\textbf{Cantidad de atributos} & \textbf{11} \\
@@ -308,97 +281,26 @@
 		
 		\vspace{0.3cm}
 		
-		\begin{block}{Tipos de Atributos (Resumen)}
+		\begin{block}{Tipos de Atributos}
 			
 			Los atributos incluyen datos demográficos, clínicos, señales del ECG y medidas relacionadas al esfuerzo físico.
 			
 		\end{block}
 	\end{frame}
 	
+	\begin{frame}{Electrocardiograma}
 	
-
 	
-\begin{frame}{Descripción de Atributos}
-	
-		
-	\only<1>{   
-		\begin{block}{Demográficos y Clínica General}
-		\begin{itemize}
-\item \textbf{Age:} Los pacientes tienen una media de edad de 53 años, con una edad máxima de 77 y de edad mínima  de 28, con proporciones de edad bastante bien distribuidas, siendo la menor de 0.11\% para algunas edades y la mayor de 4.14\% para otras edades.
-
-\item \textbf{Sex:} Refiere al sexo de los pacientes; hay una distribución de sexo del 78.98\% masculinos y el 21.02\%  femeninos.
-
-\item \textbf{ChestPainType::} Tipo del dolor en el pecho, con exactitud, dolor torácico causado por isquemia cardíaca.Tiene una distribución 18.85\% de angina atípica, luego un 22.11\% de dolor no anginoso, un 54.03\% asintomático, y un 5.01\% de dolor de pecho anginoso típico. 
-
-		\end{itemize}	
+	\begin{block}{}
+		\centering
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../electro_cargiograma}
+	\caption{Electrocardiograma. Fuente: \url{https://campuscardio.com/caso-clinico/el-siguiente-electrocardiograma-cumple-con-los-requisitos-para-ser-un-ritmo-originado-en-el-nodo-sinusal/}}
+\end{figure}
 	\end{block}
-}
-
-
-	\only<2>{   	
-		
-		\begin{block}{Variables Clínicas}
-			\begin{itemize}
-				\item \textbf{RestingBP:}  Se está describiendo la presión sanguínea en reposo, tiene un valor medio de 133.02, con un valor máximo de 200.00 y valor mínimo de 92.00. 
-				
-				\item \textbf{Cholesterol:} Este atributo es el colesterol sérico, la medida total de colesterol en sangre; tiene un valor medio en los pacientes de 199.02, con un valor máximo de 603.00 y un valor mínimo de 85.00. Se encuentra en miligramos por decilitro.  
-				
-			\end{itemize}
-		\end{block}  
 	
-	}
-		
-		
-		
-		
-			\only<3>{   	\begin{block}{Variables Clínicas}
-					\begin{itemize} 
-						\item \textbf{FastingBS:} Es la Glucosa en sangre en ayuno; hay un 76.66\% de registros con  valores de glucosa en sangre menores a 120 mg/dl, codificado en 0, y un 23.34\% con valores mayores a 120 mg/dl, codificado en 1.
-						
-						\item \textbf{RestingECG:} Son los resultados de electrocardiogramas en reposo; hay 60.09\% codificado en Normal, un 19.41\% codificado en ST (tiene una anormalidad en el estudio) y, por último, un 20.50\% codificado en LVH (probablemente una hipertrofia en el ventrículo izquierdo).
-					\end{itemize}			
-				\end{block}
-			}
-				
-				
-				
-				
-				
-				
-					\only<4>{   	\begin{block}{Esfuerzo, Señales y Variable Objetivo}
-							\begin{itemize}
-								
-								
-								\item \textbf{MaxHR:} Este atributo es el máximo ritmo cardíaco registrado, tiene una media en los pacientes de 136.79, con un valor máximo de 202.00 y un valor mínimo de 60.00.  
-								
-								\item \textbf{ExerciseAngina:} Es la angina producido por ejercicio, dolor en el pecho; donde hay un 59.54\% que no tenían dolor, codificado en N, y hay un 40.46\% que sí tenían dolor, codificado en Y.  
-								
-								\item \textbf{Oldpeak:} Valor máximo de depresión del segmento ST (en milímetros) registrado en todas las derivaciones contiguas durante una prueba de esfuerzo. Forma parte del cálculo del riesgo de un paciente de isquemia o infarto de miocardio; valores más altos indican un mayor riesgo de enfermedad coronaria; tiene una media de 0.90, valor máximo de 6.20 y valor mínimo de -0.10.  
-								
-							\end{itemize}
-							
-						\end{block}
-					
-					}
-
-
 \end{frame}
-
-
-
-	
-\begin{frame}{Descripción de Atributos}
-	\begin{block}{Esfuerzo, Señales y Variable Objetivo}
-				\begin{itemize}
-		\item \textbf{ST\_Slope:} La pendiente del segmento ST durante el ejercicio máximo; hay un 43.08\% en Up, un 50.05\% en Flat y luego un 6.87\% en Down [Up: pendiente ascendente, Flat: pendiente plana, Down: pendiente descendente].
-		
-		\item \textbf{HeartDisease (objetivo):}Variable de salida si posee una enfermedad cardíaca; donde hay un 44.71\% que no tiene enfermedad cardíaca, codificado en 0, y hay un 55.29\% que sí tienen enfermedad cardíaca, codificado en 1.
-		Siendo ésta la \textbf{variable objetivo}.
-		\end{itemize}
-	\end{block}
-\end{frame}
-
-
 
 \begin{frame}{Segmento ST}
 	
@@ -413,6 +315,106 @@
 	\end{block}
 	
 \end{frame}
+
+
+\begin{frame}{Prueba de Esfuerzo}
+	
+	
+	\begin{block}{}
+		\centering
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../prueba-esfuerzo-cartoon}
+	\caption{Prueba de Esfuerzo. Fuente: \url{https://cardiologialosmochis.com/portfolio/prueba-de-esfuerzo/}}
+\end{figure}
+	\end{block}
+	
+\end{frame}
+
+	
+%\begin{frame}{Descripción de Atributos}
+%	
+%		
+%	\only<1>{   
+%		\begin{block}{Demográficos y Clínica General}
+%		\begin{itemize}
+%\item \textbf{Age:} Los pacientes tienen una media de edad de 53 años, con una edad máxima de 77 y de edad mínima  de 28, con proporciones de edad bastante bien distribuidas, siendo la menor de 0.11\% para algunas edades y la mayor de 4.14\% para otras edades.
+%
+%\item \textbf{Sex:} Refiere al sexo de los pacientes; hay una distribución de sexo del 78.98\% masculinos y el 21.02\%  femeninos.
+%
+%\item \textbf{ChestPainType::} Tipo del dolor en el pecho, con exactitud, dolor torácico causado por isquemia cardíaca.Tiene una distribución 18.85\% de angina atípica, luego un 22.11\% de dolor no anginoso, un 54.03\% asintomático, y un 5.01\% de dolor de pecho anginoso típico. 
+%
+%		\end{itemize}	
+%	\end{block}
+%}
+%
+%
+%	\only<2>{   	
+%		
+%		\begin{block}{Variables Clínicas}
+%			\begin{itemize}
+%				\item \textbf{RestingBP:}  Se está describiendo la presión sanguínea en reposo, tiene un valor medio de 133.02, con un valor máximo de 200.00 y valor mínimo de 92.00. 
+%				
+%				\item \textbf{Cholesterol:} Este atributo es el colesterol sérico, la medida total de colesterol en sangre; tiene un valor medio en los pacientes de 199.02, con un valor máximo de 603.00 y un valor mínimo de 85.00. Se encuentra en miligramos por decilitro.  
+%				
+%			\end{itemize}
+%		\end{block}  
+%	
+%	}
+%		
+%		
+%		
+%		
+%			\only<3>{   	\begin{block}{Variables Clínicas}
+%					\begin{itemize} 
+%						\item \textbf{FastingBS:} Es la Glucosa en sangre en ayuno; hay un 76.66\% de registros con  valores de glucosa en sangre menores a 120 mg/dl, codificado en 0, y un 23.34\% con valores mayores a 120 mg/dl, codificado en 1.
+%						
+%						\item \textbf{RestingECG:} Son los resultados de electrocardiogramas en reposo; hay 60.09\% codificado en Normal, un 19.41\% codificado en ST (tiene una anormalidad en el estudio) y, por último, un 20.50\% codificado en LVH (probablemente una hipertrofia en el ventrículo izquierdo).
+%					\end{itemize}			
+%				\end{block}
+%			}
+%				
+%				
+%				
+%				
+%				
+%				
+%					\only<4>{   	\begin{block}{Esfuerzo, Señales y Variable Objetivo}
+%							\begin{itemize}
+%								
+%								
+%								\item \textbf{MaxHR:} Este atributo es el máximo ritmo cardíaco registrado, tiene una media en los pacientes de 136.79, con un valor máximo de 202.00 y un valor mínimo de 60.00.  
+%								
+%								\item \textbf{ExerciseAngina:} Es la angina producido por ejercicio, dolor en el pecho; donde hay un 59.54\% que no tenían dolor, codificado en N, y hay un 40.46\% que sí tenían dolor, codificado en Y.  
+%								
+%								\item \textbf{Oldpeak:} Valor máximo de depresión del segmento ST (en milímetros) registrado en todas las derivaciones contiguas durante una prueba de esfuerzo. Forma parte del cálculo del riesgo de un paciente de isquemia o infarto de miocardio; valores más altos indican un mayor riesgo de enfermedad coronaria; tiene una media de 0.90, valor máximo de 6.20 y valor mínimo de -0.10.  
+%								
+%							\end{itemize}
+%							
+%						\end{block}
+%					
+%					}
+%
+%
+%\end{frame}
+%
+%
+%
+%	
+%\begin{frame}{Descripción de Atributos}
+%	\begin{block}{Esfuerzo, Señales y Variable Objetivo}
+%				\begin{itemize}
+%		\item \textbf{ST\_Slope:} La pendiente del segmento ST durante el ejercicio máximo; hay un 43.08\% en Up, un 50.05\% en Flat y luego un 6.87\% en Down [Up: pendiente ascendente, Flat: pendiente plana, Down: pendiente descendente].
+%		
+%		\item \textbf{HeartDisease (objetivo):}Variable de salida si posee una enfermedad cardíaca; donde hay un 44.71\% que no tiene enfermedad cardíaca, codificado en 0, y hay un 55.29\% que sí tienen enfermedad cardíaca, codificado en 1.
+%		Siendo ésta la \textbf{variable objetivo}.
+%		\end{itemize}
+%	\end{block}
+%\end{frame}
+
+
+
+
 
 
 
@@ -463,63 +465,62 @@
 
 
 
-	\begin{frame}{Descripción de los Métodos Utilizados}
-		
-		\begin{block}{Hiperparámetros}
-			Los modelos requieren \textbf{hiperparámetros}: valores fijados antes del entrenamiento 
-			que controlan complejidad, regularización o velocidad de aprendizaje.  
-			A diferencia de los parámetros internos, no se aprenden de los datos y deben seleccionarse mediante:
-			\begin{itemize}
-				\item experimentación,
-				\item validación cruzada,
-				\item búsqueda sistemática de hiperparámetros.
-			\end{itemize}
-		\end{block}
-	\end{frame}
+%	\begin{frame}{Descripción de los Métodos Utilizados}
+%		
+%		\begin{block}{Hiperparámetros}
+%			Los modelos requieren \textbf{hiperparámetros}: valores fijados antes del entrenamiento 
+%			que controlan complejidad, regularización o velocidad de aprendizaje.  
+%			A diferencia de los parámetros internos, no se aprenden de los datos y deben seleccionarse mediante:
+%			\begin{itemize}
+%				\item experimentación,
+%				\item validación cruzada,
+%				\item búsqueda sistemática de hiperparámetros.
+%			\end{itemize}
+%		\end{block}
+%	\end{frame}
 	
-	\begin{frame}{Metodología de Selección de Hiperparámetros}
+%	\begin{frame}{Metodología de Selección de Hiperparámetros}
+%		
+%		\begin{block}{Implementación}
+%			Se utilizaron las implementaciones estandarizadas de \texttt{scikit-learn}, 
+%			que definen los hiperparámetros principales de cada modelo.
+%			
+%			La búsqueda de combinaciones se realizó mediante \textbf{Grid Search}, evaluando:
+%			\begin{itemize}
+%				\item kernels y grados polinomiales en SVM,
+%				\item regularización L1/L2 en Regresión Logística,
+%				\item profundidad, criterios de partición y número de árboles en Random Forest,
+%				\item cantidad de vecinos en modelos basados en distancia.
+%			\end{itemize}
+%		\end{block}
 		
-		\begin{block}{Implementación}
-			Se utilizaron las implementaciones estandarizadas de \texttt{scikit-learn}, 
-			que definen los hiperparámetros principales de cada modelo.
-			
-			La búsqueda de combinaciones se realizó mediante \textbf{Grid Search}, evaluando:
-			\begin{itemize}
-				\item kernels y grados polinomiales en SVM,
-				\item regularización L1/L2 en Regresión Logística,
-				\item profundidad, criterios de partición y número de árboles en Random Forest,
-				\item cantidad de vecinos en modelos basados en distancia.
-			\end{itemize}
-		\end{block}
 		
-		
-	\end{frame}
+%	\end{frame}
 	
 		
 	% ----------------------------------------------------
 	% MODELOS
 	\begin{frame}{Modelos Utilizados}
-		Los modelos fueron seleccionados por ser ampliamente usados en diagnóstico médico.
+%		Los modelos fueron seleccionados por ser ampliamente usados en diagnóstico médico.
 		\begin{block}{}
 		\begin{itemize}
-							\pause
-	\item \textbf{Regresión Logística}  
-	Modelo lineal para clasificación. Calcula la probabilidad de pertenecer a una clase mediante la función sigmoide.  
-	Ideal para relaciones aproximadamente lineales.
-					\pause
-	\item \textbf{Naïve Bayes}  
+	\item \textbf{Naïve Bayes}:  
 	Modelo probabilístico basado en el Teorema de Bayes.  
 	Asume independencia entre atributos.  
 	Muy eficiente computacionalmente.
 					\pause
-	\item \textbf{SVM (Support Vector Machines)}  
-	Busca maximizar el margen entre clases.  
-	Permite fronteras no lineales mediante kernels (RBF, polinómico).
+	\item \textbf{Regresión Logística}:
+	Modelo lineal para clasificación. Calcula la probabilidad de pertenecer a una clase mediante la función sigmoide.  
+	Ideal para relaciones aproximadamente lineales.
 					\pause
-	\item \textbf{Random Forest}  
+	\item \textbf{Random Forest}: 
 	Agrupación de múltiples árboles de decisión.  
 	Reduce varianza y mejora la generalización.  
 	Muy robusto a ruido y datos clínicos heterogéneos.
+\pause
+	\item \textbf{SVM (Support Vector Machines)}:  
+	Busca maximizar el margen entre clases.  
+	Permite fronteras no lineales mediante kernels (RBF, polinómico).
 \end{itemize}
 		\end{block}
 
@@ -1328,20 +1329,20 @@
 	
 	
 	
-	
-		\begin{frame}{Caso Binario: Matriz de Confusión}
-		\begin{block}{Definición}
-			Clasifica las predicciones en:
-			\begin{itemize}
-				\item \textbf{Verdaderos Positivos (TP):} Casos positivos correctamente clasificados.
-				\item \textbf{Verdaderos Negativos (TN):} Casos negativos correctamente clasificados.
-				\item \textbf{Falsos Positivos (FP):} Casos negativos clasificados como positivos.
-				\item \textbf{Falsos Negativos (FN):} Casos positivos clasificados como negativos.
-			\end{itemize}
-		\end{block}
-		
-	
-	\end{frame}
+%	
+%		\begin{frame}{Caso Binario: Matriz de Confusión}
+%		\begin{block}{Definición}
+%			Clasifica las predicciones en:
+%			\begin{itemize}
+%				\item \textbf{Verdaderos Positivos (TP):} Casos positivos correctamente clasificados.
+%				\item \textbf{Verdaderos Negativos (TN):} Casos negativos correctamente clasificados.
+%				\item \textbf{Falsos Positivos (FP):} Casos negativos clasificados como positivos.
+%				\item \textbf{Falsos Negativos (FN):} Casos positivos clasificados como negativos.
+%			\end{itemize}
+%		\end{block}
+%		
+%	
+%	\end{frame}
 	
 	\begin{frame}{Accuracy}
 		\begin{block}{Definición}
@@ -1469,30 +1470,30 @@
 \end{frame}
 
 
-%---------------------------------------------------------
-\begin{frame}{Resultados – Dataset Binario}
-	
-	\begin{block}{Descripción general}
-		\begin{itemize}
-			\item Se evaluaron NB, Regresión Logística, Random Forest y SVM.
-			\item Métricas: Accuracy, Recall, F1-Score, AUC y tiempo de entrenamiento.
-			\item Se probó \textbf{undersampling}, pero redujo la generalización.
-			\item Se decidió mantener la distribución original del dataset.
-		\end{itemize}
-	\end{block}
-	
-	\begin{block}{Objetivo}
-		Evaluar cuál modelo obtiene el mejor rendimiento clasificando entre dos clases.
-	\end{block}
-	
-\end{frame}
+%%---------------------------------------------------------
+%\begin{frame}{Resultados – Dataset Binario}
+%	
+%	\begin{block}{Descripción general}
+%		\begin{itemize}
+%			\item Se evaluaron NB, Regresión Logística, Random Forest y SVM.
+%			\item Métricas: Accuracy, Recall, F1-Score, AUC y tiempo de entrenamiento.
+%			\item Se probó \textbf{undersampling}, pero redujo la generalización.
+%			\item Se decidió mantener la distribución original del dataset.
+%		\end{itemize}
+%	\end{block}
+%	
+%	\begin{block}{Objetivo}
+%		Evaluar cuál modelo obtiene el mejor rendimiento clasificando entre dos clases.
+%	\end{block}
+%	
+%\end{frame}
 
 
 %---------------------------------------------------------
 
 		
 		
-\begin{frame}{Naive Bayes – Resultados}
+\begin{frame}{Naive Bayes – Resultados en el caso binario}
 	
 	\begin{block}{Desempeño general}
 		\begin{itemize}
@@ -1528,7 +1529,7 @@
 			\begin{tabular}{lcccccc}
 				\toprule
 				\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} &
-				\textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+				\textbf{F1-Score} & $\bm{AUC}$ & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 				\midrule
 				\makecell[l]{Todas las consideradas}
 				& 0.8420 & 0.8420 & 0.8420 & 0.9138 & 0.10 & 0.8433 \\
@@ -1581,7 +1582,7 @@
 		\resizebox{\textwidth}{!}{
 			\begin{tabular}{lcccccc}
 				\toprule
-				\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+				\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & $\bm{AUC}$ & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 				\midrule
 				\makecell[l]{
 					$C = 1$\\
@@ -1633,7 +1634,7 @@
 			\resizebox{\textwidth}{!}{
 					\begin{tabular}{lcccccc}
 					\toprule
-					\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+					\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & $\bm{AUC}$ & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 					\midrule
 					\makecell[l]{
 						Criterio = \texttt{entropy}\\
@@ -1685,7 +1686,7 @@
 			\resizebox{\textwidth}{!}{
 				\begin{tabular}{lcccccc}
 					\toprule
-					\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & \textbf{$AUC$} & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+					\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & $\bm{AUC}$ & \textbf{Tiempo (s)} & \textbf{Precisión} \\
 					\midrule
 					\makecell[l]{
 						$C = 1$\\
@@ -1768,7 +1769,7 @@
 %---------------------------------------------------------
 
 
-\begin{frame}{Evolución del Rendimiento por Número de Características.}
+\begin{frame}{Rendimiento según Número de Características.}
 	
 	
 \only<1>{	
