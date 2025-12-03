@@ -542,12 +542,12 @@
 			Para una clase $C_l$ y atributos $X_1,\ldots,X_d$:
 			
 			\[
-			P(Y = C_l \mid X_1=x_1, \ldots, X_d=x_d)
+			P(Y = C_l \mid X_1=x_1, \ldots, X_d=x_D)
 			=
 			\frac{
-				P(X_1=x_1,\ldots,X_d=x_d \mid Y=C_l)\,P(Y=C_l)
+				P(X_1=x_1,\ldots,X_D=x_D \mid Y=C_l)\,P(Y=C_l)
 			}{
-				P(X_1=x_1,\ldots,X_d=x_d)
+				P(X_1=x_1,\ldots,X_D=x_D)
 			}
 			\]
 		\end{block}
@@ -555,94 +555,61 @@
 	\end{frame}
 
 
-	\begin{frame}{Clasificador Naïve Bayes (II)}
-		
-		\begin{block}{Independencia Condicional}
-			NB factoriza la verosimilitud como:
-			
-			\[
-			P(X_1=x_1,\ldots,X_d=x_d \mid Y=C_l)
-			=
-			\prod_{j=1}^{d} P(X_j = x_j \mid Y = C_l)
-			\]
-		\end{block}
-		
-		\begin{block}{Estimación de Probabilidades}
-			Para un atributo $X_j$ con valores posibles $x_{jv}$:
-			
-			\[
-			\hat{\theta}_{jvl}
-			=
-			P(X_j = x_{jv} \mid Y = C_l)
-			=
-			\frac{
-				|\{X_j = x_{jv} \wedge Y = C_l\}|
-			}{
-				|C_l|
-			}
-			\]
-			
-			\begin{itemize}
-				\item $\hat{\theta}_{jvl}$: probabilidad del valor $x_{jv}$ dentro de la clase $C_l$.
-				\item $|C_l|$: cantidad de registros de la clase.
-			\end{itemize}
-		\end{block}
-		
-	\end{frame}
+\begin{frame}{Clasificador Naïve Bayes (II)}
 	
-	\begin{frame}{Clasificador Naïve Bayes (III)}
+
+	\begin{block}{Probabilidades A Priori y Condicionales}
 		
-		\begin{block}{Probabilidad A Priori}
-			La probabilidad previa de cada clase se estima como:
-			
-			\[
-			\hat{\pi}_l = P(Y=C_l) = \frac{|\{Y=C_l\}|}{n}
-			\]
-			
-			\begin{itemize}
-				\item $\hat{\pi}_l$: frecuencia relativa de la clase.
-				\item $n$: tamaño total del conjunto de datos.
-			\end{itemize}
-		\end{block}
-		
-	\end{frame}
+		\begin{itemize}
+			\item \textbf{A priori:} 
+			\(  \widehat{\pi}_l = P(Y = C_l) =
+			\frac{|C_l|}{n}   \)
+			\pause
+			\item \textbf{Condicionales (discretas):} 
+			\(\hat{\theta}_{jvl} = P(X_j=x_{jv} \mid Y=C_l) = \frac{|\{X_j=x_{jv} \wedge Y=C_l\}|}{|C_l|}\)
+		\end{itemize}
+	\end{block}
 	
-	\begin{frame}{Clasificador Naïve Bayes (IV): Caso Continuo}
-		
-		\begin{block}{Supuesto Gaussiano}
-			Para atributos continuos, NB usa la densidad Normal:
-			
+	\pause
+	\begin{block}{Atributos Continuos: Supuesto Gaussiano}
+		\small
+		Para atributos continuos, NB asume que cada $X_j$ sigue una distribución Normal dentro de cada clase $C_l$:
+		\[
+		f(x) =
+		\frac{1}{\sigma_{jl}\sqrt{2\pi}} 
+		\exp\Bigg[-\frac{1}{2}\Big(\frac{x - \mu_{jl}}{\sigma_{jl}}\Big)^2\Bigg]
+		\]
+		donde:
+		\begin{itemize}
+			\item $\mu_{jl}$ y $\sigma_{jl}^2$ son la media y varianza de $X_j$ en la clase $C_l$.
+			\item La regla de decisión es:
 			\[
-			f(x)=
-			\frac{1}{\sigma\sqrt{2\pi}}
-			\exp\left[
-			-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2
-			\right]
+			\hat{Y} = \arg\max_{C_l} \Big[\log P(Y=C_l) + \sum_{j=1}^{d} \log f(x_j \mid \mu_{jl}, \sigma_{jl}^2)\Big]
 			\]
-		\end{block}
-		
-		\begin{block}{Regla de Decisión}
-			\[
-			\hat{Y} =
-			\underset{C_l}{\operatorname{argmax}}
-			\left[
-			\log P(Y=C_l) + 
-			\sum_{j=1}^{d}
-			\log f(x_j \mid \mu_{jl}, \sigma_{jl}^2)
-			\right]
-			\]
-			
-			\[
-			\hat{\mu}_{jl} = \frac{1}{|C_l|}\sum_{i:Y_i=C_l} x_{ij}
-			\qquad
-			\hat{\sigma}_{jl}^2 = 
-			\frac{1}{|C_l|}
-			\sum_{i:Y_i=C_l}(x_{ij}-\hat{\mu}_{jl})^2
-			\]
-		\end{block}
-		
-	\end{frame}
+		\end{itemize}
+	\end{block}
 	
+	
+
+	
+	
+\end{frame}
+
+
+\begin{frame}{Esquema de Bayes Gaussiano}
+	
+	
+	\begin{block}{}
+	\centering
+	\begin{figure}[htb]%[H]
+		\centering
+		\includegraphics[width=0.55\textwidth]{../_- visual selection (1)}
+		\caption{Esquema.}
+	\end{figure}
+\end{block}
+	
+\end{frame}
+
 	
 \begin{frame}{Representación de Bayes Gaussiano}
 		
@@ -705,119 +672,90 @@
 %% -----------------------------------------------------------------------------------------------------------
 % Logistica
 
-\begin{frame}{Regresión Logística: Introducción y Motivación}
-	
+
+% ----------
+%  Prueba 1
+
+\begin{frame}{Regresión Logística: Concepto}
 	\begin{block}{¿Qué es la Regresión Logística?~\cite{cramer2002origins}}
-		Técnica supervisada utilizada para modelar la probabilidad de pertenencia a una clase binaria.
+		Modelo supervisado para predecir la probabilidad de pertenencia a una clase binaria:
 		\[
-		P(l_i = 1 \mid \mathbf{x}_i)
+		P(l_i=1 \mid \mathbf{x}_i) = \frac{1}{1 + e^{-(\beta_0 + \sum_j \beta_j x_{ij})}}
 		\]
-		Es un modelo:
 		\begin{itemize}
-			\item Lineal en los parámetros.
-			\item No lineal en la salida (usa función logística).
+			\item Lineal en parámetros, no lineal en salida.
+			\item Coeficientes interpretables: $e^{\beta_j}=$ cambio multiplicativo en las \emph{odds}.
 		\end{itemize}
 	\end{block}
 	
-	\begin{block}{Motivación}
+		\begin{block}{Motivación}
 		\begin{itemize}
 			\item Permite interpretar coeficientes como cambios en las \emph{odds}.
 			\item Robusto y eficiente para datasets con atributos numéricos y categóricos.
 		\end{itemize}
 	\end{block}
 	
-\end{frame}
-
-
-
-\begin{frame}{Transformación Logit}
-	
-	\begin{block}{Inversa de la Sigmoide}
-		La función logit transforma probabilidades en valores reales:
-		\[
-		\text{logit}(p) = 
-		\ln\left(\frac{p}{1-p}\right)
-		= \beta_0 + \sum_{j=1}^{D} \beta_j x_{ij}.
-		\]
-		
-		\begin{itemize}
-			\item Hace el modelo lineal en las \emph{odds}.
-			\item Permite interpretar coeficientes:
-			\[
-			e^{\beta_j} = \text{cambio multiplicativo en las odds}.
-			\]
-		\end{itemize}
-	\end{block}
-	
-	\begin{block}{¿Por qué es importante?}
-		\begin{itemize}
-			\item Facilita el entrenamiento (problema convexo).
-			\item Evita probabilidades fuera del rango $[0,1]$.
-		\end{itemize}
-	\end{block}
 	
 \end{frame}
 
 \begin{frame}{Logística y Logit}
-	
-	
-	\begin{block}{}
-		\centering
-		\begin{figure}[htb]%[H]
-			\centering
-			\includegraphics[width=0.9\textwidth]{../funcion logit y logistica}
-			\caption{Comparación de Logística y Logit}
-		\end{figure}
-	\end{block}
-	
-\end{frame}
 
 
-\begin{frame}{Representación de Logística}
-	
-	
-	\begin{block}{}
-		\centering
-		\begin{figure}[htb]%[H]
-			\centering
-			\includegraphics[width=0.7\textwidth]{../logistica_presentacion}
-			\caption{Frontera de Decisión de Regresión Logística.}
-		\end{figure}
-	\end{block}
-	
-\end{frame}
-
-
-
-\begin{frame}{Entrenamiento: Máxima Verosimilitud}
-	
-	\begin{block}{Objetivo}
-		Encontrar parámetros $\beta$ que maximizan:
-		\[
-		\ell(\beta) =
-		\sum_{i=1}^{n} 
-		\left[
-		l_i \ln(p(\mathbf{x}_i)) +
-		(1 - l_i)\ln(1 - p(\mathbf{x}_i))
-		\right].
-		\]
+		\begin{block}{Transformación Logit}
+			\small
+			\[
+			\text{logit}(p) = \ln\frac{p}{1-p} = \beta_0 + \sum_j \beta_j x_{ij}
+			\]
+			Convierte el modelo en lineal sobre las \emph{odds}, facilita el entrenamiento y evita probabilidades fuera de $[0,1]$.
+		\end{block}
 		
-		\begin{itemize}
-			\item Problema convexos → solución única.
-			\item No existe solución cerrada → se usan métodos iterativos.
-		\end{itemize}
-	\end{block}
-	
-	\begin{block}{Por qué es log-verosimilitud}
-		\begin{itemize}
-			\item Evita productos numéricamente inestables.
-			\item Convierte productos en sumas → más fácil de optimizar.
-		\end{itemize}
-	\end{block}
-	
+
+		\begin{figure}[htb]
+			\centering
+			\includegraphics[width=0.6\textwidth]{../funcion logit y logistica}
+			\caption{Logística vs Logit}
+		\end{figure}
+
 \end{frame}
 
 
+\begin{frame}{Frontera de Decisión y Entrenamiento}
+
+
+		\begin{block}{Entrenamiento por Máxima Verosimilitud}
+			\small
+			\[
+			\ell(\beta) = \sum_{i=1}^{n} \Big[ l_i \ln p(\mathbf{x}_i) + (1-l_i)\ln(1-p(\mathbf{x}_i)) \Big]
+			\]
+			\begin{itemize}
+				\item Problema convexo → solución única.
+				\item Se usan métodos iterativos (no hay solución cerrada).
+			\end{itemize}
+		\end{block}
+		
+
+		\begin{figure}[htb]
+			\centering
+			\includegraphics[width=0.45\textwidth]{../logistica_presentacion}
+			\caption{Frontera de Decisión}
+		\end{figure}
+
+\end{frame}
+
+\begin{frame}{Logística Aplicada a los datos}
+	
+	\begin{block}{}
+	\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.75\textwidth]{../logistica_real}
+	\caption{Regresión Logística aplicada al Colesterol.}
+\end{figure}
+	\end{block}
+
+	
+\end{frame}
+
+% ----- Prueba 2
 \begin{frame}{Solvers para Regresión Logística}
 	
 	\begin{block}{Métodos Utilizados}
@@ -985,6 +923,19 @@
 	
 \end{frame}
 
+\begin{frame}{Árbol de Decisión}
+	\begin{block}{}
+		\centering
+		\begin{figure}[htb]%[H]
+			\centering
+			\includegraphics[width=0.9\textwidth]{../arbol_mas_chico}
+			\caption{Árbol de Decisión.}
+		\end{figure}
+	\end{block}
+\end{frame}
+
+
+
 \begin{frame}{Probabilidad de Clase en un Nodo}
 	\begin{block}{Estimación de Probabilidades}
 		La probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_l$ se estima como:
@@ -1056,16 +1007,7 @@
 	
 \end{frame}
 
-\begin{frame}{Árbol de Decisión}
-	\begin{block}{}
-		\centering
-		\begin{figure}[htb]%[H]
-			\centering
-			\includegraphics[width=0.9\textwidth]{../arbol_mas_chico}
-			\caption{Árbol de Decisión.}
-		\end{figure}
-	\end{block}
-\end{frame}
+
 
 
 
@@ -1175,97 +1117,65 @@
 \end{frame}
 
 \begin{frame}{Hiperplano y Margen}
-	
-	\begin{block}{Objetivo}
-		Entre todos los hiperplanos que separan las clases, SVM elige aquel que:
-		\[
-		\textbf{maximiza el margen } \varphi
-		\]
-		la distancia mínima entre el hiperplano y los puntos más cercanos de cada clase.
-	\end{block}
-	
-	\begin{block}{Ecuación del Hiperplano}
+	\begin{block}{Ecuación del hiperplano}
 		\[
 		\langle \bm{w}, \bm{x} \rangle + \beta = 0
 		\]
-		donde $\bm{w}$ es el vector normal al hiperplano y $\beta$ es el término independiente.
 	\end{block}
 	
-\end{frame}
-
-
-\begin{frame}{Margen Rígido (Hard Margin)}
-	
-	\begin{block}{Caso Ideal: Datos Separables}
-		Se busca un hiperplano que clasifique perfectamente:
+	\begin{block}{Maximizar Margen}
 		\[
-		y_i (\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 .
-		\]
-	
-	\end{block}
-	
-	\begin{block}{Problema de Optimización}
-		\[
-		\text{Minimizar } \frac{1}{2}\|\bm{w}\|^2 
-		\quad \text{sujeto a } 
-		y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1.
-		\]
-	\end{block}
-	
-\end{frame}
-
-\begin{frame}{Margen Suave (Soft Margin)}
-	
-	\begin{block}{Motivación}
-		En la práctica los datos no son separables.  
-		Se permiten violaciones mediante \textbf{variables de holgura} $\xi_i \ge 0$.
-	\end{block}
-	
-	\begin{block}{Optimización con Penalización}
-		\[
-		\text{Minimizar } 
-		\frac{1}{2}\|\bm{w}\|^2 
-		+ C \sum_{i=1}^{n} \xi_i
-		\]
-		\[
-		\text{sujeto a } 
-		y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 - \xi_i.
+		\varphi = \text{distancia mínima a los puntos más cercanos de cada clase}
 		\]
 	\end{block}
 	
 	\begin{itemize}
-		\item $C$ grande → penaliza errores → margen chico.
-		\item $C$ chico → permite errores → margen grande.
+		\item \textbf{Hard Margin:} $y_i(\langle \bm{w},\bm{x}_i\rangle + \beta)\ge 1$
+		\item \textbf{Soft Margin:} permite violaciones $\xi_i \ge 0$, minimizar
+		$\frac{1}{2}\|\bm{w}\|^2 + C \sum_i \xi_i$
 	\end{itemize}
-	
 \end{frame}
 
 
-\begin{frame}{Formulación Dual}
+\begin{frame}{Comparación: Hard Margin vs Soft Margin}
+	\begin{minipage}{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../margen_duro}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{../margen_suave}
+	\end{minipage}
 	
+	\vspace{0.3cm}
+	
+	\begin{itemize}
+		\item \textbf{Hard Margin:} margen máximo, sin errores, solo funciona si los datos son separables.
+		\item \textbf{Soft Margin:} permite errores, generaliza mejor si los datos tienen ruido o solapamiento.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Formulación Dual y Kernel Trick}
 	\begin{block}{Problema Dual}
 		\[
-		\text{Maximizar }
-		-\frac{1}{2} \sum_{i,\ell}
-		\alpha_i \alpha_\ell 
-		y_i y_\ell 
-		K(\bm{x}_i, \bm{x}_\ell)
-		+ \sum_{i} \alpha_i
+		\text{Max } -\frac{1}{2}\sum_{i,\ell} \alpha_i\alpha_\ell y_i y_\ell K(\bm{x}_i,\bm{x}_\ell) + \sum_i \alpha_i
 		\]
 		\[
-		\text{sujeto a } 
-		0 \le \alpha_i \le C,
-		\quad 
-		\sum_i \alpha_i y_i = 0.
+		0 \le \alpha_i \le C, \quad \sum_i \alpha_i y_i = 0
 		\]
 	\end{block}
 	
 	\begin{itemize}
-		\item Sólo los puntos con $\alpha_i > 0$ son \textbf{vectores de soporte}.
-		\item La solución depende sólo de productos internos → clave para kernels.
+		\item Solo los puntos con $\alpha_i>0$ son vectores de soporte.
+		\item La solución depende de productos internos → permite usar kernels.
 	\end{itemize}
 	
+	\begin{block}{Kernels Comunes}
+		\textbf{Lineal, RBF, Polinómico, Sigmoide}
+	\end{block}
 \end{frame}
+
 
 
 \begin{frame}{Kernel Trick}
@@ -1521,56 +1431,44 @@
 %------------------------------%
 \begin{frame}{Importancia de la Característica}
 	\begin{block}{Definición}
-		Sea un modelo predictivo $\mathcal{M}$ entrenado sobre un conjunto de datos $X$, y sea $M$ la métrica de referencia del modelo sobre los datos originales.
+		Sea un modelo predictivo $\mathcal{M}$ entrenado sobre $X$, y $M$ la métrica de referencia del modelo sobre los datos originales.
 	\end{block}
-\end{frame}
-
-%------------------------------%
-\begin{frame}{Procedimiento: Paso 1}
-	\begin{block}{Iteración por atributo}
-		Para cada atributo $j$ del conjunto de datos:
-		\begin{enumerate}
-			\item Repetir el proceso $K$ veces (para reducir la varianza de la estimación):
-		\end{enumerate}
+	
+	\pause
+	\begin{block}{Paso 1: Iteración por atributo}
+		Para cada atributo $j$ del conjunto de datos, repetir el proceso $K$ veces para reducir la varianza de la estimación.
 	\end{block}
-\end{frame}
-
-%------------------------------%
-\begin{frame}{Procedimiento: Paso 2}
-	\begin{block}{Permutación de la característica}
-		Para cada repetición $k$:
+	
+	\pause
+	\begin{block}{Paso 2: Permutación de la característica}
 		\begin{enumerate}
-			\item Generar una versión alterada del conjunto de datos $X^{(k,j)}$ permutando aleatoriamente la columna $j$, manteniendo las demás columnas sin cambios.
-			\item Calcular la métrica $M$ del modelo sobre los datos permutados:
+			\item Generar $X^{(k,j)}$ permutando aleatoriamente la columna $j$, dejando las demás columnas igual.
+			\item Calcular la métrica del modelo sobre los datos permutados:
 			\[
-			M_{k,j} = \text{valor de la métrica $M$ del modelo $\mathcal{M}$ con $X^{(k,j)}$}
+			M_{k,j} = \text{métrica con } X^{(k,j)}
 			\]
 		\end{enumerate}
 	\end{block}
 \end{frame}
 
 %------------------------------%
-\begin{frame}{Procedimiento: Paso 3}
-	\begin{block}{Cálculo de importancia}
-		Calcular la importancia de la característica $j$ como la disminución promedio del puntaje respecto del puntaje de referencia:
+
+\begin{frame}{Paso 3: Cálculo de importancia}
+	\begin{block}{Importancia de la característica $j$}
+		Calcular la disminución promedio de la métrica respecto al puntaje original:
 		\[
 		I_j = M - \frac{1}{K} \sum_{k=1}^{K} M_{k,j}
 		\]
 	\end{block}
+	
+	\pause
+	\begin{itemize}
+		\item $I_j$ grande → la característica es muy importante para el modelo.
+		\item $I_j$ cercano a 0 → la característica tiene poco efecto.
+	\end{itemize}
 \end{frame}
 
-%------------------------------%
-\begin{frame}{Interpretación}
-	\begin{block}{Significado de $I_j$}
-		$ I_j $ mide la pérdida de desempeño al romper la relación entre la característica $j$ y la variable objetivo.\\
-		Valores más altos de $I_j$ $\Rightarrow$ características más relevantes para el modelo.
-	\end{block}
-\end{frame}
-	
-	
 
-	
-	
 %---------------------------------------------------------
 \begin{frame}{Resultados – Dataset Binario}
 	
@@ -2215,6 +2113,283 @@
 		\Huge{Muchas gracias} \\
 		\vspace{0.3cm}
 		\large Preguntas
+	\end{frame}
+	
+	
+	\section{Apéndice.}
+
+	\begin{frame}{}
+		\centering
+		\Huge{Apéndice.}
+	\end{frame}
+	
+		\begin{frame}{Clasificador Naïve Bayes (II)}
+		
+		\begin{block}{Independencia Condicional}
+			NB factoriza la verosimilitud como:
+			
+			\[
+			P(X_1=x_1,\ldots,X_d=x_d \mid Y=C_l)
+			=
+			\prod_{j=1}^{d} P(X_j = x_j \mid Y = C_l)
+			\]
+		\end{block}
+		
+		\begin{block}{Estimación de Probabilidades}
+			Para un atributo $X_j$ con valores posibles $x_{jv}$:
+			
+			\[
+			\hat{\theta}_{jvl}
+			=
+			P(X_j = x_{jv} \mid Y = C_l)
+			=
+			\frac{
+				|\{X_j = x_{jv} \wedge Y = C_l\}|
+			}{
+				|C_l|
+			}
+			\]
+			
+			\begin{itemize}
+				\item $\hat{\theta}_{jvl}$: probabilidad del valor $x_{jv}$ dentro de la clase $C_l$.
+				\item $|C_l|$: cantidad de registros de la clase.
+			\end{itemize}
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}{Clasificador Naïve Bayes (III)}
+		
+		\begin{block}{Probabilidad A Priori}
+			La probabilidad previa de cada clase se estima como:
+			
+			\[
+			\hat{\pi}_l = P(Y=C_l) = \frac{|\{Y=C_l\}|}{n}
+			\]
+			
+			\begin{itemize}
+				\item $\hat{\pi}_l$: frecuencia relativa de la clase.
+				\item $n$: tamaño total del conjunto de datos.
+			\end{itemize}
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}{Clasificador Naïve Bayes (IV): Caso Continuo}
+		
+		\begin{block}{Supuesto Gaussiano}
+			Para atributos continuos, NB usa la densidad Normal:
+			
+			\[
+			f(x)=
+			\frac{1}{\sigma\sqrt{2\pi}}
+			\exp\left[
+			-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2
+			\right]
+			\]
+		\end{block}
+		
+		\begin{block}{Regla de Decisión}
+			\[
+			\hat{Y} =
+			\underset{C_l}{\operatorname{argmax}}
+			\left[
+			\log P(Y=C_l) + 
+			\sum_{j=1}^{d}
+			\log f(x_j \mid \mu_{jl}, \sigma_{jl}^2)
+			\right]
+			\]
+			
+			\[
+			\hat{\mu}_{jl} = \frac{1}{|C_l|}\sum_{i:Y_i=C_l} x_{ij}
+			\qquad
+			\hat{\sigma}_{jl}^2 = 
+			\frac{1}{|C_l|}
+			\sum_{i:Y_i=C_l}(x_{ij}-\hat{\mu}_{jl})^2
+			\]
+		\end{block}
+		
+	\end{frame}
+	
+	
+	\begin{frame}{Transformación Logit}
+		
+		\begin{block}{Inversa de la Sigmoide}
+			La función logit transforma probabilidades en valores reales:
+			\[
+			\text{logit}(p) = 
+			\ln\left(\frac{p}{1-p}\right)
+			= \beta_0 + \sum_{j=1}^{D} \beta_j x_{ij}.
+			\]
+			
+			\begin{itemize}
+				\item Hace el modelo lineal en las \emph{odds}.
+				\item Permite interpretar coeficientes:
+				\[
+				e^{\beta_j} = \text{cambio multiplicativo en las odds}.
+				\]
+			\end{itemize}
+		\end{block}
+		
+		\begin{block}{¿Por qué es importante?}
+			\begin{itemize}
+				\item Facilita el entrenamiento (problema convexo).
+				\item Evita probabilidades fuera del rango $[0,1]$.
+			\end{itemize}
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}{Logística y Logit}
+		
+		
+		\begin{block}{}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.9\textwidth]{../funcion logit y logistica}
+				\caption{Comparación de Logística y Logit}
+			\end{figure}
+		\end{block}
+		
+	\end{frame}
+	
+	
+	\begin{frame}{Representación de Logística}
+		
+		
+		\begin{block}{}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{../logistica_presentacion}
+				\caption{Frontera de Decisión de Regresión Logística.}
+			\end{figure}
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}{Entrenamiento: Máxima Verosimilitud}
+		
+		\begin{block}{Objetivo}
+			Encontrar parámetros $\beta$ que maximizan:
+			\[
+			\ell(\beta) =
+			\sum_{i=1}^{n} 
+			\left[
+			l_i \ln(p(\mathbf{x}_i)) +
+			(1 - l_i)\ln(1 - p(\mathbf{x}_i))
+			\right].
+			\]
+			
+			\begin{itemize}
+				\item Problema convexos → solución única.
+				\item No existe solución cerrada → se usan métodos iterativos.
+			\end{itemize}
+		\end{block}
+		
+		\begin{block}{Por qué es log-verosimilitud}
+			\begin{itemize}
+				\item Evita productos numéricamente inestables.
+				\item Convierte productos en sumas → más fácil de optimizar.
+			\end{itemize}
+		\end{block}
+		
+	\end{frame}
+	
+	
+	
+	\begin{frame}{Hiperplano y Margen}
+		
+		\begin{block}{Objetivo}
+			Entre todos los hiperplanos que separan las clases, SVM elige aquel que:
+			\[
+			\textbf{maximiza el margen } \varphi
+			\]
+			la distancia mínima entre el hiperplano y los puntos más cercanos de cada clase.
+		\end{block}
+		
+		\begin{block}{Ecuación del Hiperplano}
+			\[
+			\langle \bm{w}, \bm{x} \rangle + \beta = 0
+			\]
+			donde $\bm{w}$ es el vector normal al hiperplano y $\beta$ es el término independiente.
+		\end{block}
+		
+	\end{frame}
+	
+	
+	\begin{frame}{Margen Rígido (Hard Margin)}
+		
+		\begin{block}{Caso Ideal: Datos Separables}
+			Se busca un hiperplano que clasifique perfectamente:
+			\[
+			y_i (\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 .
+			\]
+			
+		\end{block}
+		
+		\begin{block}{Problema de Optimización}
+			\[
+			\text{Minimizar } \frac{1}{2}\|\bm{w}\|^2 
+			\quad \text{sujeto a } 
+			y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1.
+			\]
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}{Margen Suave (Soft Margin)}
+		
+		\begin{block}{Motivación}
+			En la práctica los datos no son separables.  
+			Se permiten violaciones mediante \textbf{variables de holgura} $\xi_i \ge 0$.
+		\end{block}
+		
+		\begin{block}{Optimización con Penalización}
+			\[
+			\text{Minimizar } 
+			\frac{1}{2}\|\bm{w}\|^2 
+			+ C \sum_{i=1}^{n} \xi_i
+			\]
+			\[
+			\text{sujeto a } 
+			y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 - \xi_i.
+			\]
+		\end{block}
+		
+		\begin{itemize}
+			\item $C$ grande → penaliza errores → margen chico.
+			\item $C$ chico → permite errores → margen grande.
+		\end{itemize}
+		
+	\end{frame}
+	
+	
+	\begin{frame}{Formulación Dual}
+		
+		\begin{block}{Problema Dual}
+			\[
+			\text{Maximizar }
+			-\frac{1}{2} \sum_{i,\ell}
+			\alpha_i \alpha_\ell 
+			y_i y_\ell 
+			K(\bm{x}_i, \bm{x}_\ell)
+			+ \sum_{i} \alpha_i
+			\]
+			\[
+			\text{sujeto a } 
+			0 \le \alpha_i \le C,
+			\quad 
+			\sum_i \alpha_i y_i = 0.
+			\]
+		\end{block}
+		
+		\begin{itemize}
+			\item Sólo los puntos con $\alpha_i > 0$ son \textbf{vectores de soporte}.
+			\item La solución depende sólo de productos internos → clave para kernels.
+		\end{itemize}
+		
 	\end{frame}
 	
 	
