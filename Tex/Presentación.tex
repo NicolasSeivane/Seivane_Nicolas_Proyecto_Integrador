@@ -37,6 +37,10 @@
 
 
 \renewcommand{\raggedright}{\leftskip=0pt \rightskip=0pt plus 0cm}
+\renewcommand{\figurename}{Imagen}
+\usepackage{caption}
+
+\captionsetup[figure]{name=Imagen}
 
 
 
@@ -210,7 +214,7 @@
 	\begin{frame}{Metodología General}
 		\begin{block}{}
 		\begin{itemize}
-	\item Dataset clínico con múltiples variables relacionadas al estado cardíaco.
+	\item \emph{Dataset} clínico con múltiples variables relacionadas al estado cardíaco.
 	\item Proceso seguido:
 	\begin{enumerate}
 		\item Preprocesamiento y limpieza:
@@ -239,14 +243,14 @@
 	
 	% ----------------------------------------------------
 	% DATASET
-	\begin{frame}{Dataset Binario: \textit{Insuficiencia Cardíaca Predicción}}
-		\begin{block}{Origen del Dataset}
+	\begin{frame}{\emph{Dataset} Binario: \textit{Insuficiencia Cardíaca Predicción}}
+		\begin{block}{Origen del \emph{Dataset}}
 			
-			El dataset \textit{HeartFailure}~\cite{HeartFailure} se construyó combinando cinco conjuntos de datos cardiovasculares, unificados en 11 atributos comunes. Esto permite obtener uno de los conjuntos más grandes usados en investigación clínica.
+			El \emph{dataset} \textit{HeartFailure}~\cite{HeartFailure} se construyó combinando cinco conjuntos de datos cardiovasculares, unificados en 11 atributos comunes. Esto permite obtener uno de los conjuntos más grandes usados en investigación clínica.
 			
 			\vspace{0.2cm}
 			
-			\textbf{Datasets incluidos (cantidad de registros aportados):}
+			\textbf{\emph{Datasets} incluidos (cantidad de registros aportados):}
 			\begin{itemize}
 				\item Cleveland (303)
 				\item Hungarian (294)
@@ -258,14 +262,15 @@
 		\end{block}
 	\end{frame}
 	
-	\begin{frame}{Dataset Binario: Características Generales}
+	
+	
+\begin{frame}{\emph{Dataset} Binario: Características Generales}
 		\begin{block}{}
 			
 
 \begin{table}[htb]%[H]
 	\centering
 	\caption{Cantidad de registros utilizados.}
-	\label{tab:cant_datos_binarios}
 	\begin{tabular}{lr}
 		\toprule
 		\textbf{Cantidad de registros} & \textbf{918} \\
@@ -276,9 +281,9 @@
 		\bottomrule
 	\end{tabular}
 \end{table}
-			\pause
 		\end{block}
 		
+					\pause
 		\vspace{0.3cm}
 		
 		\begin{block}{Tipos de Atributos}
@@ -288,7 +293,68 @@
 		\end{block}
 	\end{frame}
 	
-	\begin{frame}{Electrocardiograma}
+	
+	
+\begin{frame}{\emph{Dataset} Multiclase: \emph{Cardiotocografía Predicción}}
+	\begin{block}{Origen del \emph{Dataset}}
+		
+		En el \emph{dataset}~\cite{Cardiotocografia} utilizado, se procesaron automáticamente 2126 cardiotocogramas fetales y se midieron sus características diagnósticas. Tres obstetras expertos clasificaron los CTG, asignando una etiqueta de clasificación consensuada. La clasificación se realizó con respecto al estado fetal, el cual puede ser normal, sospechoso o patológico.
+		\vspace{0.2cm}
+		
+	\end{block}
+	
+	\pause
+	
+	\begin{block}{Variable objetivo}
+		
+			
+		La variable objetivo es \textbf{CLASS}, que clasifica el estado fetal en 
+		\emph{normal (N)}, \emph{sospechoso (S)} o \emph{patológico (P)}.
+			
+	\end{block}
+	
+
+\end{frame}
+	
+
+	\begin{frame}{\emph{Dataset} Multiclase: Características Generales}
+	\begin{block}{}
+		
+		
+	\begin{table}[htb]%[H]
+			\centering
+			\caption{Cantidad de registros utilizados.}
+			\begin{tabular}{lr}
+				\toprule
+				\textbf{Cantidad de registros} & \textbf{2115} \\
+				\textbf{Cantidad de atributos} & \textbf{21} \\
+				\textbf{Atributos Categóricos} & \textbf{0} \\
+				\textbf{Atributos Numéricos} & \textbf{21} \\
+				
+				\bottomrule
+			\end{tabular}
+		\end{table}
+	\end{block}
+	
+	\vspace{0.3cm}
+	
+	\pause
+	
+\begin{block}{Tipos de Atributos}
+	
+	El conjunto de datos incluye variables relacionadas con la \textbf{frecuencia cardíaca fetal}, 
+	las \textbf{aceleraciones y desaceleraciones}, los \textbf{movimientos fetales}, la 
+	\textbf{actividad uterina}, así como medidas de \textbf{variabilidad a corto y largo plazo} 
+	(ASTV, MSTV, ALTV, MLTV). 
+	
+\end{block}
+
+
+\end{frame}
+
+	
+	
+\begin{frame}{Electrocardiograma}
 	
 	
 	\begin{block}{}
@@ -298,9 +364,17 @@
 	\includegraphics[width=0.7\textwidth]{../electro_cargiograma}
 	\caption{Electrocardiograma. Fuente: \url{https://campuscardio.com/caso-clinico/el-siguiente-electrocardiograma-cumple-con-los-requisitos-para-ser-un-ritmo-originado-en-el-nodo-sinusal/}}
 \end{figure}
+
+
 	\end{block}
 	
 \end{frame}
+
+
+
+
+
+
 
 \begin{frame}{Segmento ST}
 	
@@ -331,7 +405,18 @@
 	
 \end{frame}
 
+\begin{frame}{Cardiotocografía}
 	
+	\begin{block}{Registro CTG}
+		\centering
+		\begin{figure}[htb]
+			\centering
+			\includegraphics[width=0.7\textwidth]{../cardiotografia}
+			\caption{Ejemplo de registro de cardiotocografía (CTG). Fuente: Wikipedia.}
+		\end{figure}
+	\end{block}
+	
+\end{frame}
 %\begin{frame}{Descripción de Atributos}
 %	
 %		
@@ -420,7 +505,7 @@
 
 
 
-	\begin{frame}{Atributos del Dataset Binario}
+	\begin{frame}{Atributos del \emph{Dataset} Binario}
 	
 	\begin{block}{Tipo de atributo del conjunto binario.}
 		
@@ -465,6 +550,71 @@
 
 
 
+	\begin{frame}{Atributos del \emph{Dataset} Multiclase}
+	
+	\begin{block}{Tipo de atributo del conjunto multiclase.}
+\tiny
+
+		\begin{table}[htb]
+		\centering
+		
+		
+		\begin{tabular}{llrrr}
+			\toprule
+			\textbf{Atributo} & \textbf{Tipo de dato} & \textbf{Media} & \textbf{Máximo} & \textbf{Mínimo}\\
+			\hline
+			LB        & Numérico (\texttt{int}) & 133.301 &160.000 &106.000\\
+			
+			\hline
+			AC             & Numérico (\texttt{float}) & 0.003 & 0.019 & 0.000\\
+			\hline
+			FM               & Numérico (\texttt{float})& 0.009 & 0.481 & 0.000\\
+			\hline
+			UC     & Numérico (\texttt{float}) & 0.004 &0.015 &0.000\\
+			\hline
+			DL    & Numérico (\texttt{float})&0.001 & 0.015 & 0.000\\
+			\hline
+			DS                 & Numérico (\texttt{float})&- &- &-\\
+			\hline
+			DP                      & Numérico (\texttt{float})&- &- &-\\
+			\hline
+			ASTV    & Numérico (\texttt{int}) &46.977 &87.000 &12.000\\
+			\hline
+			MSTV               & Numérico (\texttt{float}) &1.335 & 7.000&0.200\\
+			\hline
+			ALTV                 & Numérico (\texttt{int}) &9.759 &91.000 &0.000\\
+			\hline
+			MLTV                 & Numérico (\texttt{float})&8.170 &50.700 &0.000\\
+			\hline
+			Width                 & Numérico (\texttt{int}) &70.511 &180.000 &3.000\\
+			\hline
+			Min                 & Numérico (\texttt{int}) &93.574 &159.000 &50.000\\
+			\hline
+			Max                 & Numérico (\texttt{int})  &164.085 &238.000 &122.000\\
+			\hline
+			Nmax                 & Numérico (\texttt{int})  &4.075 &18.000 &0.000\\
+			\hline
+			Nzeros                 & Numérico (\texttt{int})  &- &- &-\\
+			\hline
+			Mode                 & Numérico (\texttt{int})  &137.448 &187.000 &60.000\\
+			\hline
+			Mean                 & Numérico (\texttt{int})& 134.596& 182.000&73.000 \\
+			\hline
+			Median                 & Numérico (\texttt{int}) &138.084 &186.000 &77.000 \\
+			\hline
+			Variance                 & Numérico (\texttt{int})&18.891 &269.000 &0.000 \\
+			\hline
+			Tendency                 & Numérico (\texttt{int})&- &- &- \\
+			\hline
+			NSP                 & Categórico (\texttt{string}) &- &- &-\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	
+	\end{block}
+\end{frame}
+
 %	\begin{frame}{Descripción de los Métodos Utilizados}
 %		
 %		\begin{block}{Hiperparámetros}
@@ -504,7 +654,7 @@
 %		Los modelos fueron seleccionados por ser ampliamente usados en diagnóstico médico.
 		\begin{block}{}
 		\begin{itemize}
-	\item \textbf{Naïve Bayes}:  
+	\item \textbf{Naive Bayes}:  
 	Modelo probabilístico basado en el Teorema de Bayes.  
 	Asume independencia entre atributos.  
 	Muy eficiente computacionalmente.
@@ -529,751 +679,699 @@
 	% ----------------------------------------------------
 	%% BAYES
 	
-	\begin{frame}{Clasificador Naïve Bayes (I)}
-		
-		\begin{block}{Idea General}
-			El \textbf{Clasificador Naïve Bayes}~\cite{hand2001idiot} es un método supervisado probabilístico
-			basado en el \textit{Teorema de Bayes}.  
-			Asume \textbf{independencia condicional} entre los atributos dado la clase,
-			lo cual rara vez se cumple estrictamente, pero aun así funciona bien en la práctica.
-		\end{block}
-		
-		\begin{block}{Regla General}
-			\small
-			Para una clase $C_l$ y atributos $X_1,\ldots,X_d$:
-			
-			\[
-			P(Y = C_l \mid X_1=x_1, \ldots, X_d=x_D)
-			=
-			\frac{
-				P(X_1=x_1,\ldots,X_D=x_D \mid Y=C_l)\,P(Y=C_l)
-			}{
-				P(X_1=x_1,\ldots,X_D=x_D)
-			}
-			\]
-		\end{block}
-		
-	\end{frame}
-
-
-\begin{frame}{Clasificador Naïve Bayes (II)}
-	
-
-	\begin{block}{Probabilidades A Priori y Condicionales}
-		
-		\begin{itemize}
-			\item \textbf{A priori:} 
-			\(  \widehat{\pi}_l = P(Y = C_l) =
-			\frac{|C_l|}{n}   \)
-			\pause
-			\item \textbf{Condicionales (discretas):} 
-			\(\hat{\theta}_{jvl} = P(X_j=x_{jv} \mid Y=C_l) = \frac{|\{X_j=x_{jv} \wedge Y=C_l\}|}{|C_l|}\)
-		\end{itemize}
-	\end{block}
-	
-	\pause
-	\begin{block}{Atributos Continuos: Supuesto Gaussiano}
-		\small
-		Para atributos continuos, NB asume que cada $X_j$ sigue una distribución Normal dentro de cada clase $C_l$:
-		\[
-		f(x) =
-		\frac{1}{\sigma_{jl}\sqrt{2\pi}} 
-		\exp\Bigg[-\frac{1}{2}\Big(\frac{x - \mu_{jl}}{\sigma_{jl}}\Big)^2\Bigg]
-		\]
-		donde:
-		\begin{itemize}
-			\item $\mu_{jl}$ y $\sigma_{jl}^2$ son la media y varianza de $X_j$ en la clase $C_l$.
-			\item La regla de decisión es:
-			\[
-			\hat{Y} = \arg\max_{C_l} \Big[\log P(Y=C_l) + \sum_{j=1}^{d} \log f(x_j \mid \mu_{jl}, \sigma_{jl}^2)\Big]
-			\]
-		\end{itemize}
-	\end{block}
-	
-	
-
-	
-	
-\end{frame}
-
-
-\begin{frame}{Esquema de Bayes Gaussiano}
-	
-	
-	\begin{block}{}
-	\centering
-	\begin{figure}[htb]%[H]
-		\centering
-		\includegraphics[width=0.55\textwidth]{../_- visual selection (1)}
-		\caption{Esquema.}
-	\end{figure}
-\end{block}
-	
-\end{frame}
-
-	
-\begin{frame}{Representación de Bayes Gaussiano}
-		
-		
-		\begin{block}{}
-			\centering
-			\begin{figure}[htb]%[H]
-				\centering
-				\includegraphics[width=0.7\textwidth]{../Bayes_Presentacion}
-				\caption{Comparación de ST\_Slope en clase 1 y 0}
-			\end{figure}
-		\end{block}
-		
-	\end{frame}
-	
-	
-\begin{frame}{Representación de Bayes Gaussiano}
-	
-	
-	\begin{block}{}
-		\centering
-		\begin{figure}[htb]%[H]
-			\centering
-			\includegraphics[width=0.7\textwidth]{../st_slope_distribucion_real}
-			\caption{Comparación real de ST\_Slope en clase 1 y 0}
-		\end{figure}
-	\end{block}
-	
-\end{frame}
-
-
-\begin{frame}{Representación de Bayes Gaussiano}
-	
-	
-	\begin{block}{}
-		\centering
-		\begin{figure}[htb]%[H]
-			\centering
-			\includegraphics[width=0.7\textwidth]{../colesterol_gauss}
-			\caption{Comparación de Colesterol en clase 1 y 0}
-		\end{figure}
-	\end{block}
-	
-\end{frame}
-
-
-\begin{frame}{Representación de Bayes Gaussiano}
-	
-	
-	\begin{block}{}
-		\centering
-		\begin{figure}[htb]%[H]
-			\centering
-			\includegraphics[width=0.7\textwidth]{../colesterol_real}
-			\caption{Comparación real de Colesterol en clase 1 y 0}
-		\end{figure}
-	\end{block}
-	
-\end{frame}
-%% -----------------------------------------------------------------------------------------------------------
-% Logistica
-
-
-% ----------
-%  Prueba 1
-
-\begin{frame}{Regresión Logística: Concepto}
-	\begin{block}{¿Qué es la Regresión Logística?~\cite{cramer2002origins}}
-		Modelo supervisado para predecir la probabilidad de pertenencia a una clase binaria:
-		\[
-		P(l_i=1 \mid \mathbf{x}_i) = \frac{1}{1 + e^{-(\beta_0 + \sum_j \beta_j x_{ij})}}
-		\]
-		\begin{itemize}
-			\item Lineal en parámetros, no lineal en salida.
-			\item Coeficientes interpretables: $e^{\beta_j}=$ cambio multiplicativo en las \emph{odds}.
-		\end{itemize}
-	\end{block}
-	
-		\begin{block}{Motivación}
-		\begin{itemize}
-			\item Permite interpretar coeficientes como cambios en las \emph{odds}.
-			\item Robusto y eficiente para datasets con atributos numéricos y categóricos.
-		\end{itemize}
-	\end{block}
-	
-	
-\end{frame}
-
-\begin{frame}{Logística y Logit}
-
-
-		\begin{block}{Transformación Logit}
-			\small
-			\[
-			\text{logit}(p) = \ln\frac{p}{1-p} = \beta_0 + \sum_j \beta_j x_{ij}
-			\]
-			Convierte el modelo en lineal sobre las \emph{odds}, facilita el entrenamiento y evita probabilidades fuera de $[0,1]$.
-		\end{block}
-		
-
-		\begin{figure}[htb]
-			\centering
-			\includegraphics[width=0.6\textwidth]{../funcion logit y logistica}
-			\caption{Logística vs Logit}
-		\end{figure}
-
-\end{frame}
-
-
-\begin{frame}{Frontera de Decisión y Entrenamiento}
-
-
-		\begin{block}{Entrenamiento por Máxima Verosimilitud}
-			\small
-			\[
-			\ell(\beta) = \sum_{i=1}^{n} \Big[ l_i \ln p(\mathbf{x}_i) + (1-l_i)\ln(1-p(\mathbf{x}_i)) \Big]
-			\]
-			\begin{itemize}
-				\item Problema convexo → solución única.
-				\item Se usan métodos iterativos (no hay solución cerrada).
-			\end{itemize}
-		\end{block}
-		
-
-		\begin{figure}[htb]
-			\centering
-			\includegraphics[width=0.45\textwidth]{../logistica_presentacion}
-			\caption{Frontera de Decisión}
-		\end{figure}
-
-\end{frame}
-
-\begin{frame}{Logística Aplicada a los datos}
-	
-	\begin{block}{}
-	\begin{figure}[htb]
-	\centering
-	\includegraphics[width=0.75\textwidth]{../logistica_real}
-	\caption{Regresión Logística aplicada al Colesterol.}
-\end{figure}
-	\end{block}
-
-	
-\end{frame}
-
-% ----- Prueba 2
-\begin{frame}{Solvers para Regresión Logística}
-	
-	\begin{block}{Métodos Utilizados}
-		
-		\begin{itemize}
-			
-			\item \textbf{Newton-CG}:
-			\[
-			\beta^{(t+1)} = \beta^{(t)} - H^{-1} \nabla \tilde{J}
-			\]
-			\begin{itemize}
-				\item Utiliza información de \textbf{segunda derivada} (Hessiano).
-				\item Converge muy rápido cuando la función es suave.
-				\item Más costoso en memoria y tiempo porque requiere calcular o aproximar $H^{-1}$.
-				\item Adecuado para modelos con pocas características pero alta precisión.
-			\end{itemize}
-			\vspace{0.2cm}
-			
-			\item \textbf{L-BFGS} (Quasi-Newton):
-			\begin{itemize}
-				\item No calcula el Hessiano completo; construye una \textbf{aproximación eficiente}.
-				\item Menor uso de memoria que Newton-CG → ideal para datasets medianos/grandes.
-				\item Muy estable para problemas bien condicionados.
-				\item Soporta regularización L2.
-			\end{itemize}
-			\vspace{0.2cm}
-			
-			
-		\end{itemize}
-		
-	\end{block}
-\end{frame}
-
-
-\begin{frame}{Solvers para Regresión Logística}
-	
-	\begin{block}{Métodos Utilizados}
-		
-		\begin{itemize}
-			
-			\item \textbf{SAGA}:
-			\begin{itemize}
-				\item Variante moderna de \textbf{Stochastic Gradient Descent}.
-				\item Actualiza los parámetros utilizando un muestreo por observación.
-				\item Excelente para:
-				\begin{itemize}
-					\item datasets extremadamente grandes,
-					\item regularización L1 (Lasso),
-					\item modelos que requieren sparsidad en los coeficientes.
-				\end{itemize}
-				\item Convergencia rápida incluso en funciones no estrictamente suaves.
-			\end{itemize}
-			
-		\end{itemize}
-		
-	\end{block}
-\end{frame}
-
-
-\begin{frame}{Regularización}
-	
-
-	\begin{block}{Tipos de Regularización}
-		\small
-		\begin{itemize}
-			\item L1 → elimina coeficientes.
-			\item L2 → coeficientes pequeños pero no cero.
-			\item EN → combinación útil práctica.
-		\end{itemize}
-		
-		\textbf{L1 (Lasso):}
-		\[
-		\tilde{J}_{L1} = J + \alpha\sum_{j=1}^{D} |\beta_j|
-		\]
-		
-		\textbf{L2 (Ridge):}
-		\[
-		\tilde{J}_{L2} = J + \frac{1}{2}\alpha \sum_{j=1}^{D} \beta_j^2
-		\]
-		
-		\textbf{Elastic Net:}
-		\[
-		\tilde{J}_{EN} =
-		J +
-		\alpha\left(
-		\rho\sum_j |\beta_j| +
-		\frac{1-\rho}{2}\sum_j \beta_j^2
-		\right)
-		\]
-		
-	\end{block}
-	
-
-	
-\end{frame}
-
-
-\begin{frame}{Parámetro de Regularización ($C$)}
-	
-	\begin{block}{}
-		
-		La regresión logística incluye un término de regularización para controlar
-		la complejidad del modelo y evitar sobreajuste. El hiperparámetro $C$ es
-		el \textbf{inverso de la fuerza de regularización}:
-		
-		\[
-		\alpha = \frac{1}{C}
-		\]
-		
-		\begin{itemize}
-			\item \textbf{$C$ grande (poca regularización)}:
-			\begin{itemize}
-				\item El modelo se ajusta más a los datos de entrenamiento.
-				\item Los coeficientes pueden tomar valores grandes.
-				\item Mayor riesgo de \textit{overfitting}.
-			\end{itemize}
-			
-			\item \textbf{$C$ pequeño (alta regularización)}:
-			\begin{itemize}
-				\item Se penalizan los coeficientes grandes.
-				\item Reduce la complejidad del modelo.
-				\item Produce un modelo más estable y con mejor generalización.
-			\end{itemize}
-			
-		\end{itemize}
-		
-	\end{block}
-	
-\end{frame}
-
-\begin{frame}{Estrategias Multiclase}
-	
-	\begin{block}{One-vs-Rest (OvR)}
-		\begin{itemize}
-			\item Entrena un clasificador por clase.
-			\item Cada modelo distingue: clase $l$ vs resto.
-			\item Simple y eficiente.
-		\end{itemize}
-	\end{block}
-	
-	\begin{block}{Multinomial}
-		\begin{itemize}
-			\item Optimiza una única función de verosimilitud para todas las clases.
-			\item Usado con solvers \texttt{lbfgs} y \texttt{newton-cg}.
-			\item Mejora desempeño cuando las clases compiten entre sí.
-		\end{itemize}
-	\end{block}
-	
-\end{frame}
-
-% ------------------------------------------------------------------------------------------------------------
-
-\begin{frame}{Árboles de Decisión: Introducción}
-	\begin{block}{Idea General}
-		Los \textbf{árboles de decisión} son modelos no paramétricos que construyen reglas de decisión
-		del tipo \textit{if–else} para clasificar ejemplos. Mediante particiones jerárquicas, el árbol divide
-		el espacio de atributos buscando \textbf{maximizar la pureza} en los nodos hijos.
-	\end{block}
-	
-	\begin{itemize}
-		\item Se evalúan divisiones sobre atributos y umbrales.
-		\item El cómputo pesado ocurre en la construcción del árbol; la predicción es muy rápida.
-		\item Cada nodo terminal representa una clase estimada.
-	\end{itemize}
-	
-\end{frame}
-
-\begin{frame}{Árbol de Decisión}
-	\begin{block}{}
-		\centering
-		\begin{figure}[htb]%[H]
-			\centering
-			\includegraphics[width=0.9\textwidth]{../arbol_mas_chico}
-			\caption{Árbol de Decisión.}
-		\end{figure}
-	\end{block}
-\end{frame}
-
-
-
-\begin{frame}{Probabilidad de Clase en un Nodo}
-	\begin{block}{Estimación de Probabilidades}
-		La probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_l$ se estima como:
-		\[
-		p(l \mid t) = \frac{N_l(t)}{N(t)},
-		\]
-		donde $N(t)$ es la cantidad total de ejemplos y $N_l(t)$ los de la clase $C_l$.
-	\end{block}
-	
-	\begin{itemize}
-		\item Es un cálculo computacionalmente muy barato.
-		\item Representa probabilidades empíricas (“equiprobables por frecuencia”).
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}{Impureza de Nodo}
-	\begin{block}{Requisitos de una función de impureza $\phi$}
-		Debe cumplir:
-		\begin{itemize}
-			\item $\phi(\mathbf{p}) \ge 0$ \hfill (no negatividad)
-			\item $\phi(\mathbf{p}) = 0$ si el nodo es puro
-			\item $\phi(\mathbf{p})$ máxima cuando todas las clases son equiprobables
-		\end{itemize}
-	\end{block}
-	
-	La impureza del nodo $t$ se define como:
-	\[
-	\iota(t) = \phi\big(p(1|t), \dots, p(K|t)\big).
-	\]
-	
-\end{frame}
-
-\begin{frame}{Funciones de Impureza Más Usadas}
-	
-	\textbf{Entropía de Shannon}
-	\[
-	H(D) = -\sum_{l=1}^L \frac{N_l(t)}{N(t)}
-	\log_2 \left( \frac{N_l(t)}{N(t)} \right).
-	\]
-	
-	\textbf{Índice de Gini}
-	\[
-	\text{Gini}(t) =
-	1 - \sum_{l=1}^L \left(\frac{N_l(t)}{N(t)}\right)^2.
-	\]
-	
-	\begin{itemize}
-		\item Ambos son 0 en nodos puros.
-		\item Crecen cuando las clases están mezcladas.
-	\end{itemize}
-	
-\end{frame}
-
-\begin{frame}{Criterio de División}
-	\begin{block}{Reducción de Impureza}
-		La \textbf{reducción de impureza} generada al dividir el nodo $t$ en dos nodos hijos $t_1$ y $t_2$ mediante una partición $s$ se calcula como:
-		\[
-		\Delta \iota(s,t) =
-		\iota(t) - q_1 \iota(t_1) - q_2 \iota(t_2),
-		\]
-		donde $q_j = \frac{N(t_j)}{N(t)}$.
-	\end{block}
-	
-	\begin{itemize}
-		\item Se elige la división que maximiza $\Delta \iota$.
-		\item Esta métrica es el núcleo del algoritmo CART~\cite{quinlan1986induction}.
-	\end{itemize}
-	
-\end{frame}
-
-
-
-
-
-
-\begin{frame}{Random Forest: Idea General}
-	
-	\begin{block}{Principio del Método}
-		Un \textbf{Random Forest}~\cite{Breiman2001} combina muchos árboles independientes,
-		cada uno entrenado sobre:
-		\begin{itemize}
-			\item un subconjunto \textit{bootstrap} de los datos,
-			\item un subconjunto aleatorio de atributos en cada división.
-		\end{itemize}
-		Esto reduce la varianza y mejora la generalización.
-	\end{block}
-	
-\end{frame}
-
-
-\begin{frame}{\textit{Bootstrap}}
-	\begin{block}{}
-		\centering
-		\begin{figure}[htb]%[H]
-			\centering
-			\includegraphics[width=0.45\textwidth]{../ChatGPT Image 3 dic 2025, 00_24_16}
-			\caption{Ejemplo muestra de \textit{bootstrap}.}
-		\end{figure}
-	\end{block}
-\end{frame}
-
-
-\begin{frame}{Predicción en Random Forest}
-	
-	\begin{block}{Voto Mayoritario}
-		La clase predicha se obtiene mediante:
-		\[
-		\hat{y} =
-		\underset{l}{\operatorname{argmax}}
-		\sum_{a=1}^{A}
-		\mathbb{I}\big( \widehat{y_a}(\mathbf{x}) = l\big).
-		\]
-		 La \textbf{función indicadora}, definida como
-		\[
-		\mathbb{I}( \widehat{y_a}(\bm{x}) = l ) =
-		\begin{cases}
-			1, & \text{si el árbol } a \text{ asigna la clase $l$ al ejemplo $\bm x$}, \\
-			0, & \text{en caso contrario}.
-		\end{cases}
-		\]
-		Esta función contabiliza cuántos árboles votan por cada clase $l$, permitiendo que el modelo escoja aquella con mayor cantidad de votos.
-	\end{block}
-	
-	\begin{itemize}
-		\item Cada árbol vota una clase.
-		\item La predicción final es la clase más votada.
-	\end{itemize}
-	
-\end{frame}
-
-
-
-\begin{frame}{Árbol del bosque.}
-	\begin{block}{}
-		\centering
-		\begin{figure}[htb]%[H]
-			\centering
-			\includegraphics[width=0.85\textwidth]{../arbol_del_bosque}
-			\caption{Ejemplo de un árbol del bosque.}
-		\end{figure}
-	\end{block}
-\end{frame}
-
-
-
-
-\begin{frame}{Hiperparámetros Principales}
-	
-	\begin{itemize}
-		\item \textbf{Criterio} (\texttt{gini}, \texttt{entropy}): mide la impureza.
-		\item \textbf{n\_estimators}: número de árboles.
-		\item \textbf{max\_depth}: profundidad máxima del árbol.
-		\item \textbf{max\_features}: número de atributos candidatos por división.
-		\item \textbf{min\_samples\_split}: mínimo de muestras para dividir.
-		\item \textbf{min\_samples\_leaf}: mínimo en una hoja.
-		\item \textbf{bootstrap}: usar o no remuestreo con reemplazo.
-	\end{itemize}
-	
-\end{frame}
-
-%-------------------------------------------------------------------------------------------------------------
-% SVM
-
-\begin{frame}{Máquinas de Soporte Vectorial (SVM)}
-	
-	\begin{block}{Idea General}
-		Las Máquinas de Soporte Vectorial~\cite{Cortes1995} buscan una función de decisión que
-		permita clasificar correctamente los datos, construyendo un \textbf{hiperplano óptimo}
-		que maximice el \textbf{margen} entre clases.
-		
-		\begin{itemize}
-			\item Operan sobre atributos numéricos → requieren codificación previa.
-			\item Sólo los \textbf{vectores de soporte} determinan la frontera.
-			\item El objetivo: maximizar la separación y mejorar la generalización.
-		\end{itemize}
-	\end{block}
-	
-\end{frame}
-
-\begin{frame}{Hiperplano y Margen}
-	\begin{block}{Ecuación del hiperplano}
-		\[
-		\langle \bm{w}, \bm{x} \rangle + \beta = 0
-		\]
-	\end{block}
-	
-	\begin{block}{Maximizar Margen}
-		\[
-		\varphi = \text{distancia mínima a los puntos más cercanos de cada clase}
-		\]
-	\end{block}
-	
-	\begin{itemize}
-		\item \textbf{Hard Margin:} $y_i(\langle \bm{w},\bm{x}_i\rangle + \beta)\ge 1$
-		\item \textbf{Soft Margin:} permite violaciones $\xi_i \ge 0$, minimizar
-		$\frac{1}{2}\|\bm{w}\|^2 + C \sum_i \xi_i$
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}{Comparación: Hard Margin vs Soft Margin}
-	\begin{minipage}{0.48\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{../margen_duro}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.48\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{../margen_suave}
-	\end{minipage}
-	
-	\vspace{0.3cm}
-	
-	\begin{itemize}
-		\item \textbf{Hard Margin:} margen máximo, sin errores, solo funciona si los datos son separables.
-		\item \textbf{Soft Margin:} permite errores, generaliza mejor si los datos tienen ruido o solapamiento.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Formulación Dual y Kernel Trick}
-	\begin{block}{Problema Dual}
-		\[
-		\text{Max } -\frac{1}{2}\sum_{i,\ell} \alpha_i\alpha_\ell y_i y_\ell K(\bm{x}_i,\bm{x}_\ell) + \sum_i \alpha_i
-		\]
-		\[
-		0 \le \alpha_i \le C, \quad \sum_i \alpha_i y_i = 0
-		\]
-	\end{block}
-	
-	\begin{itemize}
-		\item Solo los puntos con $\alpha_i>0$ son vectores de soporte.
-		\item La solución depende de productos internos → permite usar kernels.
-	\end{itemize}
-	
-	\begin{block}{Kernels Comunes}
-		\textbf{Lineal, RBF, Polinómico, Sigmoide}
-	\end{block}
-\end{frame}
-
-
-
-\begin{frame}{Kernel Trick}
-	
-	\begin{block}{Motivación}
-		Cuando las clases no son separables linealmente, se proyectan los datos
-		a un espacio de mayor dimensión.
-	\end{block}
-	
-	\begin{block}{Idea Central}
-		Sin calcular la transformación explícita:
-		\[
-		\langle \phi(\bm{x}_i), \phi(\bm{x}_j) \rangle 
-		\quad \Rightarrow \quad K(\bm{x}_i, \bm{x}_j)
-		\]
-		donde $K$ es una \textbf{función kernel}.
-	\end{block}
-	
-	\begin{itemize}
-		\item SVM se vuelve capaz de aprender fronteras no lineales.
-		\item El costo computacional se mantiene manejable.
-	\end{itemize}
-	
-\end{frame}
-
-
-\begin{frame}{Kernel Trick}
-	\begin{block}{}
-		\centering
-		\begin{figure}[htb]%[H]
-			\centering
-			\includegraphics[width=0.65\textwidth]{../distitnos Kernels para datos SVM}
-			\caption{Ejemplo de distintos kernels en algunos atributos.}
-		\end{figure}
-	\end{block}
-\end{frame}
-
-
-
-
-
-\begin{frame}{Funciones Kernel}
-	
-	\begin{block}{Kernels Comunes}
-		\begin{itemize}
-			\item \textbf{Lineal}:
-			\[
-			K(\bm{a},\bm{b})=\langle \bm{a},\bm{b} \rangle
-			\]
-			
-			\item \textbf{RBF / Gaussiano}:
-			\[
-			K(\bm{a},\bm{b}) = 
-			\exp\big(-\gamma \|\bm{a}-\bm{b}\|^2 \big)
-			\]
-			
-			\item \textbf{Polinómico}:
-			\[
-			K(\bm{a},\bm{b}) = 
-			(\langle \bm{a},\bm{b} \rangle + r)^q
-			\]
-			
-			\item \textbf{Sigmoide}:
-			\[
-			K(\bm{a},\bm{b}) = 
-			\tanh(\gamma\langle \bm{a},\bm{b} \rangle + r)
-			\]
-		\end{itemize}
-	\end{block}
-	
-\end{frame}
-
-
-\begin{frame}{Hiperparámetros}
-	
-	\begin{block}{Principales}
-		\begin{itemize}
-			\item \textbf{C}: regula el balance margen–errores.
-			\item \textbf{kernel}: lineal, rbf, poly, sigmoid.
-			\item \boldmath$\gamma$\unboldmath: controla influencia local del punto.
-			\item \textbf{degree} ($d$): sólo para kernel polinómico.
-			\item \textbf{coef0} ($r$): usado por \texttt{poly} y \texttt{sigmoid}.
-		\end{itemize}
-	\end{block}
-	
-	\begin{block}{Escalas de $\gamma$ en scikit-learn}
-		\[
-		\texttt{gamma = scale}: \frac{1}{D \cdot \text{Var}(X)}
-		\qquad
-		\texttt{gamma = auto}: \frac{1}{D}
-		\]
-	\end{block}
-	
-\end{frame}
-
-
-
+%	\begin{frame}{Clasificador Naïve Bayes (I)}
+%		
+%		\begin{block}{Idea General}
+%			El \textbf{Clasificador Naïve Bayes}~\cite{hand2001idiot} es un método supervisado probabilístico
+%			basado en el \textit{Teorema de Bayes}.  
+%			Asume \textbf{independencia condicional} entre los atributos dado la clase,
+%			lo cual rara vez se cumple estrictamente, pero aun así funciona bien en la práctica.
+%		\end{block}
+%		
+%		\begin{block}{Regla General}
+%			\small
+%			Para una clase $C_l$ y atributos $X_1,\ldots,X_d$:
+%			
+%			\[
+%			P(Y = C_l \mid X_1=x_1, \ldots, X_d=x_D)
+%			=
+%			\frac{
+%				P(X_1=x_1,\ldots,X_D=x_D \mid Y=C_l)\,P(Y=C_l)
+%			}{
+%				P(X_1=x_1,\ldots,X_D=x_D)
+%			}
+%			\]
+%		\end{block}
+%		
+%	\end{frame}
+%
+%
+%\begin{frame}{Clasificador Naïve Bayes (II)}
+%	
+%
+%	\begin{block}{Probabilidades A Priori y Condicionales}
+%		
+%		\begin{itemize}
+%			\item \textbf{A priori:} 
+%			\(  \widehat{\pi}_l = P(Y = C_l) =
+%			\frac{|C_l|}{n}   \)
+%			\pause
+%			\item \textbf{Condicionales (discretas):} 
+%			\(\hat{\theta}_{jvl} = P(X_j=x_{jv} \mid Y=C_l) = \frac{|\{X_j=x_{jv} \wedge Y=C_l\}|}{|C_l|}\)
+%		\end{itemize}
+%	\end{block}
+%	
+%	\pause
+%	\begin{block}{Atributos Continuos: Supuesto Gaussiano}
+%		\small
+%		Para atributos continuos, NB asume que cada $X_j$ sigue una distribución Normal dentro de cada clase $C_l$:
+%		\[
+%		f(x) =
+%		\frac{1}{\sigma_{jl}\sqrt{2\pi}} 
+%		\exp\Bigg[-\frac{1}{2}\Big(\frac{x - \mu_{jl}}{\sigma_{jl}}\Big)^2\Bigg]
+%		\]
+%		donde:
+%		\begin{itemize}
+%			\item $\mu_{jl}$ y $\sigma_{jl}^2$ son la media y varianza de $X_j$ en la clase $C_l$.
+%			\item La regla de decisión es:
+%			\[
+%			\hat{Y} = \arg\max_{C_l} \Big[\log P(Y=C_l) + \sum_{j=1}^{d} \log f(x_j \mid \mu_{jl}, \sigma_{jl}^2)\Big]
+%			\]
+%		\end{itemize}
+%	\end{block}
+%	
+%	
+%
+%	
+%	
+%\end{frame}
+%
+%
+
+%	
+%\begin{frame}{Representación de Bayes Gaussiano}
+%		
+%		
+%		\begin{block}{}
+%			\centering
+%			\begin{figure}[htb]%[H]
+%				\centering
+%				\includegraphics[width=0.7\textwidth]{../Bayes_Presentacion}
+%				\caption{Comparación de ST\_Slope en clase 1 y 0}
+%			\end{figure}
+%		\end{block}
+%		
+%	\end{frame}
+%	
+%	
+%\begin{frame}{Representación de Bayes Gaussiano}
+%	
+%	
+%	\begin{block}{}
+%		\centering
+%		\begin{figure}[htb]%[H]
+%			\centering
+%			\includegraphics[width=0.7\textwidth]{../st_slope_distribucion_real}
+%			\caption{Comparación real de ST\_Slope en clase 1 y 0}
+%		\end{figure}
+%	\end{block}
+%	
+%\end{frame}
+%
+%
+%\begin{frame}{Representación de Bayes Gaussiano}
+%	
+%	
+%	\begin{block}{}
+%		\centering
+%		\begin{figure}[htb]%[H]
+%			\centering
+%			\includegraphics[width=0.7\textwidth]{../colesterol_gauss}
+%			\caption{Comparación de Colesterol en clase 1 y 0}
+%		\end{figure}
+%	\end{block}
+%	
+%\end{frame}
+%
+%
+%\begin{frame}{Representación de Bayes Gaussiano}
+%	
+%	
+%	\begin{block}{}
+%		\centering
+%		\begin{figure}[htb]%[H]
+%			\centering
+%			\includegraphics[width=0.7\textwidth]{../colesterol_real}
+%			\caption{Comparación real de Colesterol en clase 1 y 0}
+%		\end{figure}
+%	\end{block}
+%	
+%\end{frame}
+%%% -----------------------------------------------------------------------------------------------------------
+%% Logistica
+%
+%
+%% ----------
+%%  Prueba 1
+%
+%\begin{frame}{Regresión Logística: Concepto}
+%	\begin{block}{¿Qué es la Regresión Logística?~\cite{cramer2002origins}}
+%		Modelo supervisado para predecir la probabilidad de pertenencia a una clase binaria:
+%		\[
+%		P(l_i=1 \mid \mathbf{x}_i) = \frac{1}{1 + e^{-(\beta_0 + \sum_j \beta_j x_{ij})}}
+%		\]
+%		\begin{itemize}
+%			\item Lineal en parámetros, no lineal en salida.
+%			\item Coeficientes interpretables: $e^{\beta_j}=$ cambio multiplicativo en las \emph{odds}.
+%		\end{itemize}
+%	\end{block}
+%	
+%		\begin{block}{Motivación}
+%		\begin{itemize}
+%			\item Permite interpretar coeficientes como cambios en las \emph{odds}.
+%			\item Robusto y eficiente para datasets con atributos numéricos y categóricos.
+%		\end{itemize}
+%	\end{block}
+%	
+%	
+%\end{frame}
+%
+%\begin{frame}{Logística y Logit}
+%
+%
+%		\begin{block}{Transformación Logit}
+%			\small
+%			\[
+%			\text{logit}(p) = \ln\frac{p}{1-p} = \beta_0 + \sum_j \beta_j x_{ij}
+%			\]
+%			Convierte el modelo en lineal sobre las \emph{odds}, facilita el entrenamiento y evita probabilidades fuera de $[0,1]$.
+%		\end{block}
+%		
+%
+%		\begin{figure}[htb]
+%			\centering
+%			\includegraphics[width=0.6\textwidth]{../funcion logit y logistica}
+%			\caption{Logística vs Logit}
+%		\end{figure}
+%
+%\end{frame}
+%
+%
+%\begin{frame}{Frontera de Decisión y Entrenamiento}
+%
+%
+%		\begin{block}{Entrenamiento por Máxima Verosimilitud}
+%			\small
+%			\[
+%			\ell(\beta) = \sum_{i=1}^{n} \Big[ l_i \ln p(\mathbf{x}_i) + (1-l_i)\ln(1-p(\mathbf{x}_i)) \Big]
+%			\]
+%			\begin{itemize}
+%				\item Problema convexo → solución única.
+%				\item Se usan métodos iterativos (no hay solución cerrada).
+%			\end{itemize}
+%		\end{block}
+%		
+%
+%		\begin{figure}[htb]
+%			\centering
+%			\includegraphics[width=0.45\textwidth]{../logistica_presentacion}
+%			\caption{Frontera de Decisión}
+%		\end{figure}
+%
+%\end{frame}
+%
+
+%
+%% ----- Prueba 2
+%\begin{frame}{Solvers para Regresión Logística}
+%	
+%	\begin{block}{Métodos Utilizados}
+%		
+%		\begin{itemize}
+%			
+%			\item \textbf{Newton-CG}:
+%			\[
+%			\beta^{(t+1)} = \beta^{(t)} - H^{-1} \nabla \tilde{J}
+%			\]
+%			\begin{itemize}
+%				\item Utiliza información de \textbf{segunda derivada} (Hessiano).
+%				\item Converge muy rápido cuando la función es suave.
+%				\item Más costoso en memoria y tiempo porque requiere calcular o aproximar $H^{-1}$.
+%				\item Adecuado para modelos con pocas características pero alta precisión.
+%			\end{itemize}
+%			\vspace{0.2cm}
+%			
+%			\item \textbf{L-BFGS} (Quasi-Newton):
+%			\begin{itemize}
+%				\item No calcula el Hessiano completo; construye una \textbf{aproximación eficiente}.
+%				\item Menor uso de memoria que Newton-CG → ideal para datasets medianos/grandes.
+%				\item Muy estable para problemas bien condicionados.
+%				\item Soporta regularización L2.
+%			\end{itemize}
+%			\vspace{0.2cm}
+%			
+%			
+%		\end{itemize}
+%		
+%	\end{block}
+%\end{frame}
+%
+%
+%\begin{frame}{Solvers para Regresión Logística}
+%	
+%	\begin{block}{Métodos Utilizados}
+%		
+%		\begin{itemize}
+%			
+%			\item \textbf{SAGA}:
+%			\begin{itemize}
+%				\item Variante moderna de \textbf{Stochastic Gradient Descent}.
+%				\item Actualiza los parámetros utilizando un muestreo por observación.
+%				\item Excelente para:
+%				\begin{itemize}
+%					\item datasets extremadamente grandes,
+%					\item regularización L1 (Lasso),
+%					\item modelos que requieren sparsidad en los coeficientes.
+%				\end{itemize}
+%				\item Convergencia rápida incluso en funciones no estrictamente suaves.
+%			\end{itemize}
+%			
+%		\end{itemize}
+%		
+%	\end{block}
+%\end{frame}
+%
+%
+%\begin{frame}{Regularización}
+%	
+%
+%	\begin{block}{Tipos de Regularización}
+%		\small
+%		\begin{itemize}
+%			\item L1 → elimina coeficientes.
+%			\item L2 → coeficientes pequeños pero no cero.
+%			\item EN → combinación útil práctica.
+%		\end{itemize}
+%		
+%		\textbf{L1 (Lasso):}
+%		\[
+%		\tilde{J}_{L1} = J + \alpha\sum_{j=1}^{D} |\beta_j|
+%		\]
+%		
+%		\textbf{L2 (Ridge):}
+%		\[
+%		\tilde{J}_{L2} = J + \frac{1}{2}\alpha \sum_{j=1}^{D} \beta_j^2
+%		\]
+%		
+%		\textbf{Elastic Net:}
+%		\[
+%		\tilde{J}_{EN} =
+%		J +
+%		\alpha\left(
+%		\rho\sum_j |\beta_j| +
+%		\frac{1-\rho}{2}\sum_j \beta_j^2
+%		\right)
+%		\]
+%		
+%	\end{block}
+%	
+%
+%	
+%\end{frame}
+%
+%
+%\begin{frame}{Parámetro de Regularización ($C$)}
+%	
+%	\begin{block}{}
+%		
+%		La regresión logística incluye un término de regularización para controlar
+%		la complejidad del modelo y evitar sobreajuste. El hiperparámetro $C$ es
+%		el \textbf{inverso de la fuerza de regularización}:
+%		
+%		\[
+%		\alpha = \frac{1}{C}
+%		\]
+%		
+%		\begin{itemize}
+%			\item \textbf{$C$ grande (poca regularización)}:
+%			\begin{itemize}
+%				\item El modelo se ajusta más a los datos de entrenamiento.
+%				\item Los coeficientes pueden tomar valores grandes.
+%				\item Mayor riesgo de \textit{overfitting}.
+%			\end{itemize}
+%			
+%			\item \textbf{$C$ pequeño (alta regularización)}:
+%			\begin{itemize}
+%				\item Se penalizan los coeficientes grandes.
+%				\item Reduce la complejidad del modelo.
+%				\item Produce un modelo más estable y con mejor generalización.
+%			\end{itemize}
+%			
+%		\end{itemize}
+%		
+%	\end{block}
+%	
+%\end{frame}
+%
+%\begin{frame}{Estrategias Multiclase}
+%	
+%	\begin{block}{One-vs-Rest (OvR)}
+%		\begin{itemize}
+%			\item Entrena un clasificador por clase.
+%			\item Cada modelo distingue: clase $l$ vs resto.
+%			\item Simple y eficiente.
+%		\end{itemize}
+%	\end{block}
+%	
+%	\begin{block}{Multinomial}
+%		\begin{itemize}
+%			\item Optimiza una única función de verosimilitud para todas las clases.
+%			\item Usado con solvers \texttt{lbfgs} y \texttt{newton-cg}.
+%			\item Mejora desempeño cuando las clases compiten entre sí.
+%		\end{itemize}
+%	\end{block}
+%	
+%\end{frame}
+%
+%% ------------------------------------------------------------------------------------------------------------
+%
+%\begin{frame}{Árboles de Decisión: Introducción}
+%	\begin{block}{Idea General}
+%		Los \textbf{árboles de decisión} son modelos no paramétricos que construyen reglas de decisión
+%		del tipo \textit{if–else} para clasificar ejemplos. Mediante particiones jerárquicas, el árbol divide
+%		el espacio de atributos buscando \textbf{maximizar la pureza} en los nodos hijos.
+%	\end{block}
+%	
+%	\begin{itemize}
+%		\item Se evalúan divisiones sobre atributos y umbrales.
+%		\item El cómputo pesado ocurre en la construcción del árbol; la predicción es muy rápida.
+%		\item Cada nodo terminal representa una clase estimada.
+%	\end{itemize}
+%	
+%\end{frame}
+%
+
+%
+%
+%
+%\begin{frame}{Probabilidad de Clase en un Nodo}
+%	\begin{block}{Estimación de Probabilidades}
+%		La probabilidad de que un ejemplo en el nodo $t$ pertenezca a la clase $C_l$ se estima como:
+%		\[
+%		p(l \mid t) = \frac{N_l(t)}{N(t)},
+%		\]
+%		donde $N(t)$ es la cantidad total de ejemplos y $N_l(t)$ los de la clase $C_l$.
+%	\end{block}
+%	
+%	\begin{itemize}
+%		\item Es un cálculo computacionalmente muy barato.
+%		\item Representa probabilidades empíricas (“equiprobables por frecuencia”).
+%	\end{itemize}
+%\end{frame}
+%
+%
+%\begin{frame}{Impureza de Nodo}
+%	\begin{block}{Requisitos de una función de impureza $\phi$}
+%		Debe cumplir:
+%		\begin{itemize}
+%			\item $\phi(\mathbf{p}) \ge 0$ \hfill (no negatividad)
+%			\item $\phi(\mathbf{p}) = 0$ si el nodo es puro
+%			\item $\phi(\mathbf{p})$ máxima cuando todas las clases son equiprobables
+%		\end{itemize}
+%	\end{block}
+%	
+%	La impureza del nodo $t$ se define como:
+%	\[
+%	\iota(t) = \phi\big(p(1|t), \dots, p(K|t)\big).
+%	\]
+%	
+%\end{frame}
+%
+%\begin{frame}{Funciones de Impureza Más Usadas}
+%	
+%	\textbf{Entropía de Shannon}
+%	\[
+%	H(D) = -\sum_{l=1}^L \frac{N_l(t)}{N(t)}
+%	\log_2 \left( \frac{N_l(t)}{N(t)} \right).
+%	\]
+%	
+%	\textbf{Índice de Gini}
+%	\[
+%	\text{Gini}(t) =
+%	1 - \sum_{l=1}^L \left(\frac{N_l(t)}{N(t)}\right)^2.
+%	\]
+%	
+%	\begin{itemize}
+%		\item Ambos son 0 en nodos puros.
+%		\item Crecen cuando las clases están mezcladas.
+%	\end{itemize}
+%	
+%\end{frame}
+%
+%\begin{frame}{Criterio de División}
+%	\begin{block}{Reducción de Impureza}
+%		La \textbf{reducción de impureza} generada al dividir el nodo $t$ en dos nodos hijos $t_1$ y $t_2$ mediante una partición $s$ se calcula como:
+%		\[
+%		\Delta \iota(s,t) =
+%		\iota(t) - q_1 \iota(t_1) - q_2 \iota(t_2),
+%		\]
+%		donde $q_j = \frac{N(t_j)}{N(t)}$.
+%	\end{block}
+%	
+%	\begin{itemize}
+%		\item Se elige la división que maximiza $\Delta \iota$.
+%		\item Esta métrica es el núcleo del algoritmo CART~\cite{quinlan1986induction}.
+%	\end{itemize}
+%	
+%\end{frame}
+%
+%
+%
+%
+%
+%
+%\begin{frame}{Random Forest: Idea General}
+%	
+%	\begin{block}{Principio del Método}
+%		Un \textbf{Random Forest}~\cite{Breiman2001} combina muchos árboles independientes,
+%		cada uno entrenado sobre:
+%		\begin{itemize}
+%			\item un subconjunto \textit{bootstrap} de los datos,
+%			\item un subconjunto aleatorio de atributos en cada división.
+%		\end{itemize}
+%		Esto reduce la varianza y mejora la generalización.
+%	\end{block}
+%	
+%\end{frame}
+%
+%
+
+%
+%
+%\begin{frame}{Predicción en Random Forest}
+%	
+%	\begin{block}{Voto Mayoritario}
+%		La clase predicha se obtiene mediante:
+%		\[
+%		\hat{y} =
+%		\underset{l}{\operatorname{argmax}}
+%		\sum_{a=1}^{A}
+%		\mathbb{I}\big( \widehat{y_a}(\mathbf{x}) = l\big).
+%		\]
+%		 La \textbf{función indicadora}, definida como
+%		\[
+%		\mathbb{I}( \widehat{y_a}(\bm{x}) = l ) =
+%		\begin{cases}
+%			1, & \text{si el árbol } a \text{ asigna la clase $l$ al ejemplo $\bm x$}, \\
+%			0, & \text{en caso contrario}.
+%		\end{cases}
+%		\]
+%		Esta función contabiliza cuántos árboles votan por cada clase $l$, permitiendo que el modelo escoja aquella con mayor cantidad de votos.
+%	\end{block}
+%	
+%	\begin{itemize}
+%		\item Cada árbol vota una clase.
+%		\item La predicción final es la clase más votada.
+%	\end{itemize}
+%	
+%\end{frame}
+%
+%
+%
+
+%
+%
+%
+%\begin{frame}{Hiperparámetros Principales}
+%	
+%	\begin{itemize}
+%		\item \textbf{Criterio} (\texttt{gini}, \texttt{entropy}): mide la impureza.
+%		\item \textbf{n\_estimators}: número de árboles.
+%		\item \textbf{max\_depth}: profundidad máxima del árbol.
+%		\item \textbf{max\_features}: número de atributos candidatos por división.
+%		\item \textbf{min\_samples\_split}: mínimo de muestras para dividir.
+%		\item \textbf{min\_samples\_leaf}: mínimo en una hoja.
+%		\item \textbf{bootstrap}: usar o no remuestreo con reemplazo.
+%	\end{itemize}
+%	
+%\end{frame}
+%
+%%-------------------------------------------------------------------------------------------------------------
+%% SVM
+%
+%\begin{frame}{Máquinas de Soporte Vectorial (SVM)}
+%	
+%	\begin{block}{Idea General}
+%		Las Máquinas de Soporte Vectorial~\cite{Cortes1995} buscan una función de decisión que
+%		permita clasificar correctamente los datos, construyendo un \textbf{hiperplano óptimo}
+%		que maximice el \textbf{margen} entre clases.
+%		
+%		\begin{itemize}
+%			\item Operan sobre atributos numéricos → requieren codificación previa.
+%			\item Sólo los \textbf{vectores de soporte} determinan la frontera.
+%			\item El objetivo: maximizar la separación y mejorar la generalización.
+%		\end{itemize}
+%	\end{block}
+%	
+%\end{frame}
+%
+%\begin{frame}{Hiperplano y Margen}
+%	\begin{block}{Ecuación del hiperplano}
+%		\[
+%		\langle \bm{w}, \bm{x} \rangle + \beta = 0
+%		\]
+%	\end{block}
+%	
+%	\begin{block}{Maximizar Margen}
+%		\[
+%		\varphi = \text{distancia mínima a los puntos más cercanos de cada clase}
+%		\]
+%	\end{block}
+%	
+%	\begin{itemize}
+%		\item \textbf{Hard Margin:} $y_i(\langle \bm{w},\bm{x}_i\rangle + \beta)\ge 1$
+%		\item \textbf{Soft Margin:} permite violaciones $\xi_i \ge 0$, minimizar
+%		$\frac{1}{2}\|\bm{w}\|^2 + C \sum_i \xi_i$
+%	\end{itemize}
+%\end{frame}
+%
+%
+%\begin{frame}{Comparación: Hard Margin vs Soft Margin}
+%	\begin{minipage}{0.48\textwidth}
+%		\centering
+%		\includegraphics[width=\textwidth]{../margen_duro}
+%	\end{minipage}
+%	\hfill
+%	\begin{minipage}{0.48\textwidth}
+%		\centering
+%		\includegraphics[width=\textwidth]{../margen_suave}
+%	\end{minipage}
+%	
+%	\vspace{0.3cm}
+%	
+%	\begin{itemize}
+%		\item \textbf{Hard Margin:} margen máximo, sin errores, solo funciona si los datos son separables.
+%		\item \textbf{Soft Margin:} permite errores, generaliza mejor si los datos tienen ruido o solapamiento.
+%	\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Formulación Dual y Kernel Trick}
+%	\begin{block}{Problema Dual}
+%		\[
+%		\text{Max } -\frac{1}{2}\sum_{i,\ell} \alpha_i\alpha_\ell y_i y_\ell K(\bm{x}_i,\bm{x}_\ell) + \sum_i \alpha_i
+%		\]
+%		\[
+%		0 \le \alpha_i \le C, \quad \sum_i \alpha_i y_i = 0
+%		\]
+%	\end{block}
+%	
+%	\begin{itemize}
+%		\item Solo los puntos con $\alpha_i>0$ son vectores de soporte.
+%		\item La solución depende de productos internos → permite usar kernels.
+%	\end{itemize}
+%	
+%	\begin{block}{Kernels Comunes}
+%		\textbf{Lineal, RBF, Polinómico, Sigmoide}
+%	\end{block}
+%\end{frame}
+%
+%
+%
+%\begin{frame}{Kernel Trick}
+%	
+%	\begin{block}{Motivación}
+%		Cuando las clases no son separables linealmente, se proyectan los datos
+%		a un espacio de mayor dimensión.
+%	\end{block}
+%	
+%	\begin{block}{Idea Central}
+%		Sin calcular la transformación explícita:
+%		\[
+%		\langle \phi(\bm{x}_i), \phi(\bm{x}_j) \rangle 
+%		\quad \Rightarrow \quad K(\bm{x}_i, \bm{x}_j)
+%		\]
+%		donde $K$ es una \textbf{función kernel}.
+%	\end{block}
+%	
+%	\begin{itemize}
+%		\item SVM se vuelve capaz de aprender fronteras no lineales.
+%		\item El costo computacional se mantiene manejable.
+%	\end{itemize}
+%	
+%\end{frame}
+%
+%
+%\begin{frame}{Kernel Trick}
+%	\begin{block}{}
+%		\centering
+%		\begin{figure}[htb]%[H]
+%			\centering
+%			\includegraphics[width=0.65\textwidth]{../distitnos Kernels para datos SVM}
+%			\caption{Ejemplo de distintos kernels en algunos atributos.}
+%		\end{figure}
+%	\end{block}
+%\end{frame}
+%
+%
+%
+%
+%
+%\begin{frame}{Funciones Kernel}
+%	
+%	\begin{block}{Kernels Comunes}
+%		\begin{itemize}
+%			\item \textbf{Lineal}:
+%			\[
+%			K(\bm{a},\bm{b})=\langle \bm{a},\bm{b} \rangle
+%			\]
+%			
+%			\item \textbf{RBF / Gaussiano}:
+%			\[
+%			K(\bm{a},\bm{b}) = 
+%			\exp\big(-\gamma \|\bm{a}-\bm{b}\|^2 \big)
+%			\]
+%			
+%			\item \textbf{Polinómico}:
+%			\[
+%			K(\bm{a},\bm{b}) = 
+%			(\langle \bm{a},\bm{b} \rangle + r)^q
+%			\]
+%			
+%			\item \textbf{Sigmoide}:
+%			\[
+%			K(\bm{a},\bm{b}) = 
+%			\tanh(\gamma\langle \bm{a},\bm{b} \rangle + r)
+%			\]
+%		\end{itemize}
+%	\end{block}
+%	
+%\end{frame}
+%
+%
+%\begin{frame}{Hiperparámetros}
+%	
+%	\begin{block}{Principales}
+%		\begin{itemize}
+%			\item \textbf{C}: regula el balance margen–errores.
+%			\item \textbf{kernel}: lineal, rbf, poly, sigmoid.
+%			\item \boldmath$\gamma$\unboldmath: controla influencia local del punto.
+%			\item \textbf{degree} ($d$): sólo para kernel polinómico.
+%			\item \textbf{coef0} ($r$): usado por \texttt{poly} y \texttt{sigmoid}.
+%		\end{itemize}
+%	\end{block}
+%	
+%	\begin{block}{Escalas de $\gamma$ en scikit-learn}
+%		\[
+%		\texttt{gamma = scale}: \frac{1}{D \cdot \text{Var}(X)}
+%		\qquad
+%		\texttt{gamma = auto}: \frac{1}{D}
+%		\]
+%	\end{block}
+%	
+%\end{frame}
+%
+%
+%
 
 
 	
@@ -1281,14 +1379,17 @@
 	% METRICAS
 	
 	\begin{frame}{Métricas de Rendimiento}
+		\pause
 		\begin{block}{Objetivo}
 			Evaluar el desempeño del calificador de cada modelo de Aprendizaje Automático mediante métricas de rendimiento que cuantifican la capacidad de clasificación.
 		\end{block}
 		
+		\pause
 		\begin{block}{Importancia}
 			El objetivo no es solo un buen rendimiento en datos de entrenamiento, sino la \textbf{capacidad de generalización} a entradas nuevas no vistas.
 		\end{block}
 		
+		\pause
 		\begin{block}{Validación Cruzada $K$-fold}
 			Se divide el conjunto de datos en $K$ pliegues $\{G_1, G_2, \dots, G_K\}$. Cada pliegue sirve como conjunto de prueba una vez y como entrenamiento $K-1$ veces.\\
 			Métrica promedio:
@@ -1344,17 +1445,17 @@
 %	
 %	\end{frame}
 	
-	\begin{frame}{Accuracy}
+	\begin{frame}{\emph{Accuracy}}
 		\begin{block}{Definición}
 			Proporción de instancias correctamente clasificadas:
 			\[
-			\text{Accuracy} = \frac{TP + TN}{TP + FP + TN + FN} = \frac{TP + TN}{\text{Total}}
+			\text{\emph{Accuracy}} = \frac{TP + TN}{TP + FP + TN + FN} = \frac{TP + TN}{\text{Total}}
 			\]
 		\end{block}
 		
 		\begin{block}{Conjunto de predicciones}
 			\[
-			\text{\textit{Accuracy}}(y, \hat{y}) = \frac{1}{n} \sum_{l=0}^{n-1} \mathbb{I}(\hat{y}_l = y_l), \quad
+			\text{\textit{\emph{Accuracy}}}(y, \hat{y}) = \frac{1}{n} \sum_{l=0}^{n-1} \mathbb{I}(\hat{y}_l = y_l), \quad
 			\mathbb{I}(\hat{y}_l = y_l) =
 			\begin{cases}
 				1,& \text{si } \hat{y}_l = y_l \\
@@ -1365,40 +1466,40 @@
 		
 		\begin{block}{Resumen}
 			\[
-			\text{Accuracy} = \frac{\text{Número de predicciones correctas}}{\text{Número total de muestras}}
+			\text{\emph{Accuracy}} = \frac{\text{Número de predicciones correctas}}{\text{Número total de muestras}}
 			\]
 		\end{block}
 	\end{frame}
 	
-	\begin{frame}{Precision}
+	\begin{frame}{Precisión}
 		\begin{block}{Definición}
 			Mide la probabilidad de que la predicción positiva sea correcta:
 			\[
-			\text{Precision} = \frac{TP}{TP + FP}
+			\text{Precisión} = \frac{TP}{TP + FP}
 			\]
 		\end{block}
 	\end{frame}
 	
-	\begin{frame}{Recall / Sensibilidad}
+	\begin{frame}{\emph{Recall} / Sensibilidad}
 		\begin{block}{Definición}
 			Mide la probabilidad de detectar un caso positivo real:
 			\[
-			\text{Recall} = \text{TPR} = \frac{TP}{TP + FN} = \frac{TP}{P}
+			\text{\emph{Recall}} = \text{TPR} = \frac{TP}{TP + FN} = \frac{TP}{P}
 			\]
 		\end{block}
 	\end{frame}
 	
 	\begin{frame}{F-measure / F1-score}
 		\begin{block}{Definición general}
-			Media armónica ponderada de precision y recall:
+			Media armónica ponderada de precisión y \emph{recall}:
 			\[
-			F_{\beta} = \frac{(1 + \beta_f^2) \, \text{precision} \cdot \text{recall}}{\beta_f^2 \text{precision} + \text{recall}}
+			F_{\beta} = \frac{(1 + \beta_f^2) \, \text{precisión} \cdot \text{\emph{recall}}}{\beta_f^2 \text{precisión} + \text{\emph{recall}}}
 			\]
 		\end{block}
 		
 		\begin{block}{F1-score ($\beta_f=1$)}
 			\[
-			F1 = 2 \cdot \frac{\text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
+			F1 = 2 \cdot \frac{\text{precisión} \cdot \text{\emph{recall}}}{\text{precisión} + \text{\emph{recall}}}
 			\]
 			\[
 			F1 = \frac{2\,TP}{2\,TP + FP + FN}
@@ -1467,8 +1568,14 @@
 		\item $I_j$ grande → la característica es muy importante para el modelo.
 		\item $I_j$ cercano a 0 → la característica tiene poco efecto.
 	\end{itemize}
-\end{frame}
 
+\pause
+	\begin{block}{Caso Multiclase}
+En el caso multiclase, las métricas de evaluación se definen de manera análoga al caso binario.
+En situaciones particulares, la clasificación se implementa mediante el enfoque uno contra todos (\emph{one-vs-rest}), en el cual se entrena un modelo por cada clase considerando a dicha clase como positiva y al resto como negativa.
+\end{block}
+
+\end{frame}
 
 %%---------------------------------------------------------
 %\begin{frame}{Resultados – Dataset Binario}
@@ -1543,12 +1650,61 @@
 
 
 
+\begin{frame}{Naive Bayes – Resultados en el caso multiclase}
+	
+	\begin{block}{Desempeño general}
+		\begin{itemize}
+			\item Modelo muy eficiente computacionalmente, con una muy buena capacidad clasificadora.
+			\item Los distintos valores de suavizado (\textit{var smoothing}) no generó diferencias.
+		\end{itemize}
+	\end{block}
+	
+	% --- TABLA 1: HIPERPARÁMETROS ---
+	\only<1>{
+		\begin{block}{Hiperparámetros evaluados}
+			\centering
+			\begin{tabular}{lcccccc}
+				\toprule
+				\textbf{Hiperparámetro} & \textbf{Valores evaluados} 
+				& & & & & \\   % columnas vacías para igualar estructura
+				\midrule
+				Suavizado & $10^{-9},\,10^{-8},\,10^{-7},\,10^{-6},\,10^{-5}$
+				& & & & & \\  % igual cantidad de columnas
+				\bottomrule
+				
+			\end{tabular}
+		\end{block}
+	}
+	
+	
+	% --- TABLA 2: RESULTADOS ---
+	\only<2>{
+		\begin{block}{Resultados del modelo}
+			\centering
+			\resizebox{\textwidth}{!}{
+				\begin{tabular}{lcccccc}
+					\toprule
+					\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & $\bm{AUC}$ & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+					\midrule
+					\makecell[l]{
+						Todas las consideradas
+						%			var\_smoothing =\\
+						%			 Cualquiera\\
+					} & 0.8208 & 0.8208 & 0.8366 & 0.9112 & 0.11 & 0.8747 \\
+					\bottomrule
+					\end{tabular}}
+		\end{block}
+	}
+	
+	
+\end{frame}
+
 	
 
 %---------------------------------------------------------
 
 %---------------------------------------------------------
-\begin{frame}{Regresión Logística – Resultados}
+\begin{frame}{Regresión Logística – Resultados en el caso binario}
 	
 	\begin{block}{Características del modelo}
 		\begin{itemize}
@@ -1568,7 +1724,6 @@
 			$C$ & 0, 0.1, 0.01 \\
 			Penalidad & Ninguna, Lasso, Ridge, Elastic Net \\
 			\emph{Solver} & L-BFGS, SAGA, Newton-CG \\
-			Multiclase & OvR, \emph{multinomial} \\
 			\bottomrule
 		\end{tabular}
 	\end{block}
@@ -1588,7 +1743,6 @@
 					$C = 1$\\
 					Penalidad = Lasso\\
 					\emph{Solver} = SAGA \\
-					Multiclase = OvR
 				} & 0.8485 & 0.8485 & 0.8481 & 0.9050 & 0.13 & 0.8495 \\
 				\bottomrule
 				\end{tabular}}
@@ -1596,10 +1750,64 @@
 }
 
 \end{frame}
+
+
+
+
+
+
+\begin{frame}{Regresión Logística – Resultados en el caso multiclase}
+	
+	\begin{block}{Características del modelo}
+		\begin{itemize}
+			\item Modelo lineal, rápido y estable.
+			\item Obtuvo una buena capacidad clasificadora.
+			\item Opción eficiente en cuestión de tiempo.
+		\end{itemize}
+	\end{block}
+	
+	\only<1>{
+		\begin{block}{Hiperparámetros evaluados}
+			\centering
+		\begin{tabular}{ll}
+			\toprule
+			\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+			\midrule
+			$C$ & 0.01, 0.1, 1, 10 \\
+			Penalidad & Ninguna, Ridge, Elastic Net \\
+			\emph{Solver} & L-BFGS, SAGA, Newton-CG \\
+			Multiclase & OvR, \emph{multinomial} \\
+			\bottomrule
+		\end{tabular}
+		\end{block}
+	}
+	
+	
+	% --- TABLA 2: RESULTADOS ---
+	\only<2>{
+		\begin{block}{Resultados del modelo}
+			\centering
+			\resizebox{\textwidth}{!}{
+				\begin{tabular}{lcccccc}
+					\toprule
+					\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & $\bm{AUC}$ & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+					\midrule
+					\makecell[l]{
+						$C = 1$\\
+						Penalidad = Ninguna\\
+						\emph{Solver} = Newton-CG\\
+						Multiclase = OvR
+					} & 0.8978 & 0.8978 & 0.8953 & 0.9644 & 0.30 & 0.8945 \\
+					\bottomrule
+					\end{tabular}}
+		\end{block}
+	}
+	
+\end{frame}
 %---------------------------------------------------------
 
 %---------------------------------------------------------
-\begin{frame}{Random Forest – Resultados}
+\begin{frame}{Random Forest – Resultados en el caso binario}
 	
 	\begin{block}{Desempeño general}
 		\begin{itemize}
@@ -1649,10 +1857,66 @@
 	}
 	
 \end{frame}
+
+
+
+
+
+\begin{frame}{Random Forest – Resultados en el caso multiclase}
+	
+	\begin{block}{Desempeño general}
+		\begin{itemize}
+			\item Modelo con mejor rendimiento global.
+			\item Excelente capacidad de generalización.
+			\item Mayor costo computacional debido a la construcción del bosque, pero predicción más sencilla.
+		\end{itemize}
+	\end{block}
+	
+	\only<1>{
+		\begin{block}{Hiperparámetros evaluados}
+			\centering
+		\begin{tabular}{ll}
+		\toprule
+		\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+		\midrule
+		Criterio & \texttt{gini}, \texttt{entropy} \\
+		\texttt{max\_depth} & Ninguna, 3, 5, 7, 9 \\
+		\texttt{min\_samples\_split} & 2, 5, 10 \\
+		\texttt{min\_samples\_leaf} & 1, 2, 4 \\
+		\texttt{max\_features} & \texttt{None}, \texttt{sqrt}, \texttt{log2} \\
+		\bottomrule
+	\end{tabular}
+			\end{block}
+	}
+	
+	
+	% --- TABLA 2: RESULTADOS ---
+	\only<2>{
+		\begin{block}{Resultados del modelo}
+			\centering
+			\resizebox{\textwidth}{!}{
+				\begin{tabular}{lcccccc}
+					\toprule
+					\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & $\bm{AUC}$ & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+					\midrule
+					\makecell[l]{
+						Criterio = \texttt{gini}\\
+						\texttt{max\_depth} = Ninguna\\
+						\texttt{min\_samples\_split} = 2\\
+						\texttt{min\_samples\_leaf} = 1\\
+						\texttt{max\_features} = \texttt{sqrt}\\
+					} & 0.9432 & 0.9432 &0.9412 & 0.9868 & 2.24& 0.9417\\
+					\bottomrule
+				\end{tabular}
+		}
+		\end{block}
+	}
+	
+\end{frame}
 %---------------------------------------------------------
 
 %---------------------------------------------------------
-\begin{frame}{SVM – Resultados}
+\begin{frame}{SVM – Resultados en el caso binario}
 	
 	\begin{block}{Comportamiento del modelo}
 		\begin{itemize}
@@ -1694,18 +1958,75 @@
 						$\gamma$ = 0.1\\
 					} & 0.8616 & 0.8616 & 0.8609 &0.9232 &0.60 & 0.8628 \\
 					\bottomrule
-					\end{tabular}}
+				\end{tabular}
+				
+			}
 		\end{block}
 	}
 	
 \end{frame}
+
+
+
+\begin{frame}{SVM – Resultados en el caso multiclase}
+	
+	\begin{block}{Comportamiento del modelo}
+		\begin{itemize}
+			\item Alta capacidad discriminatoria.
+			\item Kernel Polinomico fue el de mejor desempeño, por lo cual fue necesario cambiar la dimensionalidad para encontrar el hiperplano.
+			\item Tiempo de entrenamiento moderado.
+		\end{itemize}
+	\end{block}
+	
+	\only<1>{
+		\begin{block}{Hiperparámetros evaluados}
+			\centering
+		\begin{tabular}{ll}
+			\toprule
+			\textbf{Hiperparámetro} & \textbf{Valores evaluados} \\
+			\midrule
+			$C$ & 0.001, 0.01, 0.1, 1, 10, 15, 20, 25 \\
+			\texttt{kernel} & \texttt{linear}, \texttt{poly}, \texttt{rbf}, \texttt{sigmoid} \\
+			$\gamma$ & \texttt{scale}, \texttt{auto}, 0.001, 0.01, 0.1, 1 \\
+			\texttt{degree} & $2,3, \dots,10$ \\
+			\bottomrule
+		\end{tabular}
+		\end{block}
+	}
+	
+	
+	% --- TABLA 2: RESULTADOS ---
+	\only<2>{
+		\begin{block}{Resultados del modelo}
+			\centering
+			\resizebox{\textwidth}{!}{
+					\begin{tabular}{lcccccc}
+					\toprule
+					\textbf{Configuración} & \textbf{\emph{Accuracy}} & \textbf{Recall} & \textbf{F1-Score} & $\bm{AUC}$ & \textbf{Tiempo (s)} & \textbf{Precisión} \\
+					\midrule
+					\makecell[l]{
+						$C = 0.1$\\
+						\texttt{kernel} = \texttt{poly}\\
+						$\gamma = 1$\\
+						\texttt{degree} = 2\\
+					} & 0.9082 & 0.9082 & 0.9064 & 0.9556 & 1.45 & 0.9057 \\
+					\bottomrule
+					\end{tabular}
+				
+				}
+		\end{block}
+	}
+	
+\end{frame}
+
+
 %---------------------------------------------------------
 
 
 
 
 %---------------------------------------------------------
-\begin{frame}{Comparación de los Mejores Modelos}
+\begin{frame}{Comparación de los mejores modelos en el caso binario}
 	
 	\begin{block}{Conclusiones por desempeño}
 		\small
@@ -1725,6 +2046,27 @@
 	\end{block}
 	
 \end{frame}
+
+
+\begin{frame}{Comparación de los mejores modelos en el caso multiclase}
+	
+	\begin{block}{Conclusiones por desempeño}
+		\small
+		\begin{itemize}
+			\item Se observa que Random Forest obtiene la mayor puntuación en todas las métricas, seguido por SVM.
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{}
+		\centering
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../mejores_modelos_barras_multiclase}
+	\caption{Comparación del desempeño de los mejores modelos en el caso multiclase.}
+\end{figure}
+	\end{block}
+	
+\end{frame}
 %---------------------------------------------------------
 
 
@@ -1740,7 +2082,9 @@
 	\end{block}
 	
 	\begin{block}{Hallazgo general}
-		\textbf{ST\_Slope} aparece como la característica más relevante en los cuatro modelos.
+		\textbf{ST\_Slope}, \textbf{Oldpeak} y \textbf{ChestPainType} aparecen como la características más relevantes en los cuatro modelos en caso binario.\\
+		\textbf{ASTV}, \textbf{ALTV} y \textbf{MSTV} aparecen como la características más relevantes en los cuatro modelos en caso multiclase.
+		
 	\end{block}
 	
 \end{frame}
@@ -1750,8 +2094,122 @@
 
 
 
+
 %---------------------------------------------------------
-\begin{frame}{Evolución del Rendimiento por Número de Características}
+
+
+\begin{frame}{Rendimiento según Número de Características.}
+	
+	
+\only<1>{	
+	\begin{block}{Importancia de las características para NB en el caso binario.}
+	\centering
+	\begin{figure}[htb]%[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{../permutacion_nb}
+	\end{figure}
+\end{block}
+
+}
+
+\only<2>{	
+
+	\begin{block}{Importancia de las características para NB en el caso multiclase.}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{../permutacion_nb_multi}
+			\end{figure}
+		\end{block}
+
+}
+
+
+
+\only<3>{	
+	\begin{block}{Importancia de las características para RL en el caso binario.}
+	\centering
+	\begin{figure}[htb]%[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{../permutacion_rl}
+	\end{figure}
+\end{block}
+	
+}
+
+
+
+\only<4>{	
+
+	\begin{block}{Importancia de las características para RL en el caso multiclase.}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{../permutacion_rl_multi}
+			\end{figure}
+		\end{block}
+
+}
+
+
+
+\only<5>{	
+	\begin{block}{Importancia de las características para RF en el caso binario.}
+	\centering
+	\begin{figure}[htb]%[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{../permutacion_rf}
+	\end{figure}
+\end{block}
+}
+
+
+\only<6>{	
+
+	\begin{block}{Importancia de las características para RF en el caso multiclase.}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{../permutacion_rf_multi}
+			\end{figure}
+		\end{block}
+
+}
+
+\only<7>{	
+	\begin{block}{Importancia de las características para SVM en el caso binario.}
+	\centering
+	\begin{figure}[htb]%[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{../permutacion_svm}
+	\end{figure}
+\end{block}
+}
+	
+
+\only<8>{	
+
+	\begin{block}{Importancia de las características para SVM en el caso multiclase.}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{../permutacion_svm_multi}
+			\end{figure}
+		\end{block}
+
+}
+
+
+\end{frame}
+
+
+
+
+%---------------------------------------------------------
+
+
+%---------------------------------------------------------
+\begin{frame}{Rendimiento del Rendimiento por Número de Características}
 	
 	\begin{block}{Observaciones}
 		\begin{itemize}
@@ -1766,178 +2224,10 @@
 	\end{block}
 	
 \end{frame}
-%---------------------------------------------------------
 
-
-\begin{frame}{Rendimiento según Número de Características.}
-	
-	
-\only<1>{	
-	\begin{block}{Importancia de las características para NB en el caso binario.}
-		\centering
-	\begin{tabular}{lc}
-		\toprule
-		\textbf{Característica} & \textbf{Importancia (Permutación)} \\
-		\midrule
-		ST\_Slope & 0.027015 \\
-		ExerciseAngina & 0.023747 \\
-		Oldpeak & 0.018736 \\
-		ChestPainType & 0.018519 \\
-		Cholesterol & 0.014815 \\
-		Sex & 0.014270 \\
-		FastingBS & 0.004575 \\
-		RestingBP & 0.001852 \\
-		MaxHR & -0.000218 \\
-		RestingECG & -0.001198 \\
-		Age & -0.003595 \\
-		\bottomrule
-	\end{tabular}
-	\end{block}
-
-}
-
-\only<2>{	
-
-	\begin{block}{Importancia de las características para NB en el caso binario.}
-			\centering
-			\begin{figure}[htb]%[H]
-				\centering
-				\includegraphics[width=0.7\textwidth]{../permutacion_nb}
-			\end{figure}
-		\end{block}
-
-}
-
-
-
-\only<3>{	
-	\begin{block}{Importancia de las características para RL en el caso binario.}
-		\centering
-
-		\label{tab:rl_importancia_}
-		\begin{tabular}{lc}
-			\toprule
-			\textbf{Característica} & \textbf{Importancia (Permutación)} \\
-			\midrule
-			ST\_Slope & 0.072440 \\
-			ExerciseAngina & 0.026797 \\
-			ChestPainType   &  0.020806\\
-			Sex           &    0.011329\\
-			FastingBS      &   0.010240\\
-			Cholesterol    &   0.009150\\
-			Oldpeak        &   0.006100\\
-			Age            &   0.003922\\
-			MaxHR          &   0.003268\\
-			RestingBP      &   0.000545\\
-			RestingECG     &   0.000218\\
-			\bottomrule
-		\end{tabular}
-
-	\end{block}
-	
-}
-
-
-
-\only<4>{	
-
-	\begin{block}{Importancia de las características para RL en el caso binario.}
-			\centering
-			\begin{figure}[htb]%[H]
-				\centering
-				\includegraphics[width=0.7\textwidth]{../permutacion_rl}
-			\end{figure}
-		\end{block}
-
-}
-
-
-
-\only<5>{	
-	\begin{block}{Importancia de las características para RF en el caso binario.}
-		\centering
-
-			\label{tab:rf_importancia}
-			\begin{tabular}{lc}
-				\toprule
-				\textbf{Característica} & \textbf{Importancia (Permutación)} \\
-				\midrule
-				ST\_Slope & 0.254265 \\
-				ChestPainType & 0.127319 \\
-				Oldpeak & 0.113156 \\
-				ExerciseAngina & 0.105952 \\
-				Cholesterol & 0.099872 \\
-				MaxHR & 0.088635 \\
-				Age & 0.065807 \\
-				RestingBP & 0.055053 \\
-				Sex & 0.040916 \\
-				FastingBS & 0.030069 \\
-				RestingECG & 0.018956 \\
-				\bottomrule
-			\end{tabular}
-	\end{block}
-}
-
-
-\only<6>{	
-
-	\begin{block}{Importancia de las características para RF en el caso binario.}
-			\centering
-			\begin{figure}[htb]%[H]
-				\centering
-				\includegraphics[width=0.7\textwidth]{../permutacion_rf}
-			\end{figure}
-		\end{block}
-
-}
-
-\only<7>{	
-	\begin{block}{Importancia de las características para SVM en el caso binario.}
-		\centering
-
-		\begin{tabular}{lc}
-			\toprule
-			\textbf{Característica} & \textbf{Importancia (Permutación)} \\
-			\midrule
-			ST\_Slope     &     0.106209\\
-			Cholesterol    &   0.031808\\
-			Oldpeak        &   0.024510\\
-			ChestPainType  &   0.023312\\
-			Sex            &   0.011438\\
-			MaxHR           &  0.008715\\
-			ExerciseAngina  &  0.008388\\
-			Age            &   0.007952\\
-			RestingBP       &  0.005773\\
-			RestingECG      &  0.004902\\
-			FastingBS      &   0.004575\\
-			\bottomrule
-		\end{tabular}
-	\end{block}
-}
-	
-
-\only<8>{	
-
-	\begin{block}{Importancia de las características para SVM en el caso binario.}
-			\centering
-			\begin{figure}[htb]%[H]
-				\centering
-				\includegraphics[width=0.7\textwidth]{../permutacion_svm}
-			\end{figure}
-		\end{block}
-
-}
-
-
-\end{frame}
-
-
-
-
-%---------------------------------------------------------
 % ----------------------------------------------------
 
-\begin{frame}{Evolución al incorporar métricas.}
+\begin{frame}{Rendimiento al incorporar métricas en el caso binario.}
 	
 	
 \only<1>{
@@ -1990,13 +2280,61 @@
 
 
 
+\begin{frame}{Rendimiento al incorporar métricas en el caso multiclase.}
+	
+	
+	\only<1>{
+		
+		\begin{block}{}
+			\centering
+			\begin{figure}[htb]
+				\centering
+				\includegraphics[width=0.8\textwidth]{../evolucion_metrica_multiclase}
+				\caption{Valores de \textit{Accuracy} según la cantidad de características en el caso multiclase.}
+			\end{figure}
+		\end{block}
+		
+	}
+	
+	\only<2>{
+		
+		\begin{block}{}
+			\centering
+			\begin{figure}[htb]
+				\centering
+				\includegraphics[width=0.8\textwidth]{../evolucion_metrica_multiclase_auc}
+				\caption{Valores de $AUC$ según la cantidad de características en el caso multiclase.}
+			\end{figure}
+		\end{block}
+		
+	}
+	
+	\only<3>{
+		
+		\begin{block}{}
+			\centering
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../evolucion_metrica_multiclase_F1}
+	\caption{Valores de F1-Score según la cantidad de características en el caso multiclase..}
+\end{figure}
+		\end{block}
+		
+	}
+	
+	
+	
+\end{frame}
+
+
+
 
 
 %---------------------------------------------------------
 % ----------------------------------------------------
 
 
-\begin{frame}{Comparación Metodológica y Robustez}
+\begin{frame}{Conclusiones}
 	
 	\only<1>{
 		\begin{block}{Random Forest}
@@ -2035,7 +2373,7 @@
 				\item Extrema eficiencia computacional — entrenamiento casi instantáneo.
 				\item Supone independencia condicional entre atributos.
 				\item Aun cuando el supuesto no se cumple, mantiene buen rendimiento.
-				\item Muy competitivo como modelo inicial y para datasets pequeños.
+				\item Muy competitivo como modelo inicial y para \emph{datasets} pequeños.
 			\end{itemize}
 		\end{block}
 	}
@@ -2048,16 +2386,6 @@
 	% ----------------------------------------------------
 	\begin{frame}{Implicancias y Aplicación Clínica}
 		
-		\only<1>{
-			\begin{block}{Interpretabilidad vs. Desempeño}
-				\begin{itemize}
-					\item RF y SVM obtienen las mejores métricas, pero son menos interpretables.
-					\item RL y NB permiten explicaciones claras, valiosas en entornos clínicos.
-				\end{itemize}
-			\end{block}
-		}
-		
-		\only<2>{
 			\begin{block}{Coherencia con el conocimiento médico}
 				\begin{itemize}
 					\item Caso binario: destacan \textit{ST\_Slope}, \textit{ChestPainType}, \textit{Oldpeak}.
@@ -2065,9 +2393,7 @@
 					\item Las variables importantes coinciden con indicadores usados en práctica clínica.
 				\end{itemize}
 			\end{block}
-		}
-		
-		\only<3>{
+\pause
 			\begin{block}{Proyección a Implementaciones Médicas}
 				\begin{itemize}
 					\item Los modelos pueden integrarse a sistemas de apoyo al diagnóstico.
@@ -2075,7 +2401,6 @@
 					\item La selección de características mejora eficiencia y confianza del sistema.
 				\end{itemize}
 			\end{block}
-		}
 		
 	\end{frame}
 	
@@ -2124,122 +2449,139 @@
 		\Huge{Apéndice.}
 	\end{frame}
 	
-		\begin{frame}{Clasificador Naïve Bayes (II)}
+%		\begin{frame}{Clasificador Naïve Bayes (II)}
+%		
+%		\begin{block}{Independencia Condicional}
+%			NB factoriza la verosimilitud como:
+%			
+%			\[
+%			P(X_1=x_1,\ldots,X_d=x_d \mid Y=C_l)
+%			=
+%			\prod_{j=1}^{d} P(X_j = x_j \mid Y = C_l)
+%			\]
+%		\end{block}
+%		
+%		\begin{block}{Estimación de Probabilidades}
+%			Para un atributo $X_j$ con valores posibles $x_{jv}$:
+%			
+%			\[
+%			\hat{\theta}_{jvl}
+%			=
+%			P(X_j = x_{jv} \mid Y = C_l)
+%			=
+%			\frac{
+%				|\{X_j = x_{jv} \wedge Y = C_l\}|
+%			}{
+%				|C_l|
+%			}
+%			\]
+%			
+%			\begin{itemize}
+%				\item $\hat{\theta}_{jvl}$: probabilidad del valor $x_{jv}$ dentro de la clase $C_l$.
+%				\item $|C_l|$: cantidad de registros de la clase.
+%			\end{itemize}
+%		\end{block}
+%		
+%	\end{frame}
+%	
+%	\begin{frame}{Clasificador Naïve Bayes (III)}
+%		
+%		\begin{block}{Probabilidad A Priori}
+%			La probabilidad previa de cada clase se estima como:
+%			
+%			\[
+%			\hat{\pi}_l = P(Y=C_l) = \frac{|\{Y=C_l\}|}{n}
+%			\]
+%			
+%			\begin{itemize}
+%				\item $\hat{\pi}_l$: frecuencia relativa de la clase.
+%				\item $n$: tamaño total del conjunto de datos.
+%			\end{itemize}
+%		\end{block}
+%		
+%	\end{frame}
+%	
+%	\begin{frame}{Clasificador Naïve Bayes (IV): Caso Continuo}
+%		
+%		\begin{block}{Supuesto Gaussiano}
+%			Para atributos continuos, NB usa la densidad Normal:
+%			
+%			\[
+%			f(x)=
+%			\frac{1}{\sigma\sqrt{2\pi}}
+%			\exp\left[
+%			-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2
+%			\right]
+%			\]
+%		\end{block}
+%		
+%		\begin{block}{Regla de Decisión}
+%			\[
+%			\hat{Y} =
+%			\underset{C_l}{\operatorname{argmax}}
+%			\left[
+%			\log P(Y=C_l) + 
+%			\sum_{j=1}^{d}
+%			\log f(x_j \mid \mu_{jl}, \sigma_{jl}^2)
+%			\right]
+%			\]
+%			
+%			\[
+%			\hat{\mu}_{jl} = \frac{1}{|C_l|}\sum_{i:Y_i=C_l} x_{ij}
+%			\qquad
+%			\hat{\sigma}_{jl}^2 = 
+%			\frac{1}{|C_l|}
+%			\sum_{i:Y_i=C_l}(x_{ij}-\hat{\mu}_{jl})^2
+%			\]
+%		\end{block}
+%		
+%	\end{frame}
+%	
+%	
+%	\begin{frame}{Transformación Logit}
+%		
+%		\begin{block}{Inversa de la Sigmoide}
+%			La función logit transforma probabilidades en valores reales:
+%			\[
+%			\text{logit}(p) = 
+%			\ln\left(\frac{p}{1-p}\right)
+%			= \beta_0 + \sum_{j=1}^{D} \beta_j x_{ij}.
+%			\]
+%			
+%			\begin{itemize}
+%				\item Hace el modelo lineal en las \emph{odds}.
+%				\item Permite interpretar coeficientes:
+%				\[
+%				e^{\beta_j} = \text{cambio multiplicativo en las odds}.
+%				\]
+%			\end{itemize}
+%		\end{block}
+%		
+%		\begin{block}{¿Por qué es importante?}
+%			\begin{itemize}
+%				\item Facilita el entrenamiento (problema convexo).
+%				\item Evita probabilidades fuera del rango $[0,1]$.
+%			\end{itemize}
+%		\end{block}
+%		
+%	\end{frame}
+	
 		
-		\begin{block}{Independencia Condicional}
-			NB factoriza la verosimilitud como:
-			
-			\[
-			P(X_1=x_1,\ldots,X_d=x_d \mid Y=C_l)
-			=
-			\prod_{j=1}^{d} P(X_j = x_j \mid Y = C_l)
-			\]
-		\end{block}
+	\begin{frame}{Esquema de Bayes Gaussiano}
 		
-		\begin{block}{Estimación de Probabilidades}
-			Para un atributo $X_j$ con valores posibles $x_{jv}$:
-			
-			\[
-			\hat{\theta}_{jvl}
-			=
-			P(X_j = x_{jv} \mid Y = C_l)
-			=
-			\frac{
-				|\{X_j = x_{jv} \wedge Y = C_l\}|
-			}{
-				|C_l|
-			}
-			\]
-			
-			\begin{itemize}
-				\item $\hat{\theta}_{jvl}$: probabilidad del valor $x_{jv}$ dentro de la clase $C_l$.
-				\item $|C_l|$: cantidad de registros de la clase.
-			\end{itemize}
+		
+		\begin{block}{}
+			\centering
+			\begin{figure}[htb]%[H]
+				\centering
+				\includegraphics[width=0.55\textwidth]{../_- visual selection (1)}
+				\caption{Esquema.}
+			\end{figure}
 		\end{block}
 		
 	\end{frame}
 	
-	\begin{frame}{Clasificador Naïve Bayes (III)}
-		
-		\begin{block}{Probabilidad A Priori}
-			La probabilidad previa de cada clase se estima como:
-			
-			\[
-			\hat{\pi}_l = P(Y=C_l) = \frac{|\{Y=C_l\}|}{n}
-			\]
-			
-			\begin{itemize}
-				\item $\hat{\pi}_l$: frecuencia relativa de la clase.
-				\item $n$: tamaño total del conjunto de datos.
-			\end{itemize}
-		\end{block}
-		
-	\end{frame}
 	
-	\begin{frame}{Clasificador Naïve Bayes (IV): Caso Continuo}
-		
-		\begin{block}{Supuesto Gaussiano}
-			Para atributos continuos, NB usa la densidad Normal:
-			
-			\[
-			f(x)=
-			\frac{1}{\sigma\sqrt{2\pi}}
-			\exp\left[
-			-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2
-			\right]
-			\]
-		\end{block}
-		
-		\begin{block}{Regla de Decisión}
-			\[
-			\hat{Y} =
-			\underset{C_l}{\operatorname{argmax}}
-			\left[
-			\log P(Y=C_l) + 
-			\sum_{j=1}^{d}
-			\log f(x_j \mid \mu_{jl}, \sigma_{jl}^2)
-			\right]
-			\]
-			
-			\[
-			\hat{\mu}_{jl} = \frac{1}{|C_l|}\sum_{i:Y_i=C_l} x_{ij}
-			\qquad
-			\hat{\sigma}_{jl}^2 = 
-			\frac{1}{|C_l|}
-			\sum_{i:Y_i=C_l}(x_{ij}-\hat{\mu}_{jl})^2
-			\]
-		\end{block}
-		
-	\end{frame}
-	
-	
-	\begin{frame}{Transformación Logit}
-		
-		\begin{block}{Inversa de la Sigmoide}
-			La función logit transforma probabilidades en valores reales:
-			\[
-			\text{logit}(p) = 
-			\ln\left(\frac{p}{1-p}\right)
-			= \beta_0 + \sum_{j=1}^{D} \beta_j x_{ij}.
-			\]
-			
-			\begin{itemize}
-				\item Hace el modelo lineal en las \emph{odds}.
-				\item Permite interpretar coeficientes:
-				\[
-				e^{\beta_j} = \text{cambio multiplicativo en las odds}.
-				\]
-			\end{itemize}
-		\end{block}
-		
-		\begin{block}{¿Por qué es importante?}
-			\begin{itemize}
-				\item Facilita el entrenamiento (problema convexo).
-				\item Evita probabilidades fuera del rango $[0,1]$.
-			\end{itemize}
-		\end{block}
-		
-	\end{frame}
 	
 	\begin{frame}{Logística y Logit}
 		
@@ -2270,129 +2612,191 @@
 		
 	\end{frame}
 	
-	\begin{frame}{Entrenamiento: Máxima Verosimilitud}
+	
+	\begin{frame}{Logística Aplicada a los datos}
 		
-		\begin{block}{Objetivo}
-			Encontrar parámetros $\beta$ que maximizan:
-			\[
-			\ell(\beta) =
-			\sum_{i=1}^{n} 
-			\left[
-			l_i \ln(p(\mathbf{x}_i)) +
-			(1 - l_i)\ln(1 - p(\mathbf{x}_i))
-			\right].
-			\]
+		\begin{block}{}
+			\begin{figure}[htb]
+				\centering
+				\includegraphics[width=0.75\textwidth]{../logistica_real}
+				\caption{Regresión Logística aplicada al Colesterol.}
+			\end{figure}
+				\end{block}
+		
 			
-			\begin{itemize}
-				\item Problema convexos → solución única.
-				\item No existe solución cerrada → se usan métodos iterativos.
-			\end{itemize}
-		\end{block}
-		
-		\begin{block}{Por qué es log-verosimilitud}
-			\begin{itemize}
-				\item Evita productos numéricamente inestables.
-				\item Convierte productos en sumas → más fácil de optimizar.
-			\end{itemize}
-		\end{block}
-		
+		\end{frame}
+	
+%	\begin{frame}{Entrenamiento: Máxima Verosimilitud}
+%		
+%		\begin{block}{Objetivo}
+%			Encontrar parámetros $\beta$ que maximizan:
+%			\[
+%			\ell(\beta) =
+%			\sum_{i=1}^{n} 
+%			\left[
+%			l_i \ln(p(\mathbf{x}_i)) +
+%			(1 - l_i)\ln(1 - p(\mathbf{x}_i))
+%			\right].
+%			\]
+%			
+%			\begin{itemize}
+%				\item Problema convexos → solución única.
+%				\item No existe solución cerrada → se usan métodos iterativos.
+%			\end{itemize}
+%		\end{block}
+%		
+%		\begin{block}{Por qué es log-verosimilitud}
+%			\begin{itemize}
+%				\item Evita productos numéricamente inestables.
+%				\item Convierte productos en sumas → más fácil de optimizar.
+%			\end{itemize}
+%		\end{block}
+%		
+%	\end{frame}
+%	
+%	
+%	
+%	\begin{frame}{Hiperplano y Margen}
+%		
+%		\begin{block}{Objetivo}
+%			Entre todos los hiperplanos que separan las clases, SVM elige aquel que:
+%			\[
+%			\textbf{maximiza el margen } \varphi
+%			\]
+%			la distancia mínima entre el hiperplano y los puntos más cercanos de cada clase.
+%		\end{block}
+%		
+%		\begin{block}{Ecuación del Hiperplano}
+%			\[
+%			\langle \bm{w}, \bm{x} \rangle + \beta = 0
+%			\]
+%			donde $\bm{w}$ es el vector normal al hiperplano y $\beta$ es el término independiente.
+%		\end{block}
+%		
+%	\end{frame}
+%	
+%	
+%	\begin{frame}{Margen Rígido (Hard Margin)}
+%		
+%		\begin{block}{Caso Ideal: Datos Separables}
+%			Se busca un hiperplano que clasifique perfectamente:
+%			\[
+%			y_i (\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 .
+%			\]
+%			
+%		\end{block}
+%		
+%		\begin{block}{Problema de Optimización}
+%			\[
+%			\text{Minimizar } \frac{1}{2}\|\bm{w}\|^2 
+%			\quad \text{sujeto a } 
+%			y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1.
+%			\]
+%		\end{block}
+%		
+%	\end{frame}
+%	
+%	\begin{frame}{Margen Suave (Soft Margin)}
+%		
+%		\begin{block}{Motivación}
+%			En la práctica los datos no son separables.  
+%			Se permiten violaciones mediante \textbf{variables de holgura} $\xi_i \ge 0$.
+%		\end{block}
+%		
+%		\begin{block}{Optimización con Penalización}
+%			\[
+%			\text{Minimizar } 
+%			\frac{1}{2}\|\bm{w}\|^2 
+%			+ C \sum_{i=1}^{n} \xi_i
+%			\]
+%			\[
+%			\text{sujeto a } 
+%			y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 - \xi_i.
+%			\]
+%		\end{block}
+%		
+%		\begin{itemize}
+%			\item $C$ grande → penaliza errores → margen chico.
+%			\item $C$ chico → permite errores → margen grande.
+%		\end{itemize}
+%		
+%	\end{frame}
+%	
+%	
+%	\begin{frame}{Formulación Dual}
+%		
+%		\begin{block}{Problema Dual}
+%			\[
+%			\text{Maximizar }
+%			-\frac{1}{2} \sum_{i,\ell}
+%			\alpha_i \alpha_\ell 
+%			y_i y_\ell 
+%			K(\bm{x}_i, \bm{x}_\ell)
+%			+ \sum_{i} \alpha_i
+%			\]
+%			\[
+%			\text{sujeto a } 
+%			0 \le \alpha_i \le C,
+%			\quad 
+%			\sum_i \alpha_i y_i = 0.
+%			\]
+%		\end{block}
+%		
+%		\begin{itemize}
+%			\item Sólo los puntos con $\alpha_i > 0$ son \textbf{vectores de soporte}.
+%			\item La solución depende sólo de productos internos → clave para kernels.
+%		\end{itemize}
+%		
+%	\end{frame}
+	
+	
+	\begin{frame}{Árbol de Decisión}
+		\begin{block}{}
+				\centering
+			\begin{figure}[htb]%[H]
+						\centering
+					\includegraphics[width=0.9\textwidth]{../arbol_mas_chico}
+						\caption{Árbol de Decisión.}
+					\end{figure}
+			\end{block}
 	\end{frame}
 	
 	
-	
-	\begin{frame}{Hiperplano y Margen}
-		
-		\begin{block}{Objetivo}
-			Entre todos los hiperplanos que separan las clases, SVM elige aquel que:
-			\[
-			\textbf{maximiza el margen } \varphi
-			\]
-			la distancia mínima entre el hiperplano y los puntos más cercanos de cada clase.
-		\end{block}
-		
-		\begin{block}{Ecuación del Hiperplano}
-			\[
-			\langle \bm{w}, \bm{x} \rangle + \beta = 0
-			\]
-			donde $\bm{w}$ es el vector normal al hiperplano y $\beta$ es el término independiente.
-		\end{block}
-		
+	\begin{frame}{Árbol del bosque.}
+		\begin{block}{}
+				\centering
+				\begin{figure}[htb]%[H]
+						\centering
+						\includegraphics[width=0.85\textwidth]{../arbol_del_bosque}
+						\caption{Ejemplo de un árbol del bosque.}
+					\end{figure}
+			\end{block}
+	\end{frame}
+	\begin{frame}{\textit{Bootstrap}}
+		\begin{block}{}
+				\centering
+				\begin{figure}[htb]%[H]
+						\centering
+					\includegraphics[width=0.45\textwidth]{../ChatGPT Image 3 dic 2025, 00_24_16}
+						\caption{Ejemplo muestra de \textit{bootstrap}.}
+					\end{figure}
+			\end{block}
 	\end{frame}
 	
 	
-	\begin{frame}{Margen Rígido (Hard Margin)}
-		
-		\begin{block}{Caso Ideal: Datos Separables}
-			Se busca un hiperplano que clasifique perfectamente:
-			\[
-			y_i (\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 .
-			\]
-			
+\begin{frame}{Kernel Trick}
+	\begin{block}{}
+			\centering
+		\begin{figure}[htb]%[H]
+					\centering
+					\includegraphics[width=0.65\textwidth]{../distitnos Kernels para datos SVM}
+					\caption{Ejemplo de distintos kernels en algunos atributos.}
+				\end{figure}
 		\end{block}
+\end{frame}
 		
-		\begin{block}{Problema de Optimización}
-			\[
-			\text{Minimizar } \frac{1}{2}\|\bm{w}\|^2 
-			\quad \text{sujeto a } 
-			y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1.
-			\]
-		\end{block}
 		
-	\end{frame}
-	
-	\begin{frame}{Margen Suave (Soft Margin)}
 		
-		\begin{block}{Motivación}
-			En la práctica los datos no son separables.  
-			Se permiten violaciones mediante \textbf{variables de holgura} $\xi_i \ge 0$.
-		\end{block}
-		
-		\begin{block}{Optimización con Penalización}
-			\[
-			\text{Minimizar } 
-			\frac{1}{2}\|\bm{w}\|^2 
-			+ C \sum_{i=1}^{n} \xi_i
-			\]
-			\[
-			\text{sujeto a } 
-			y_i(\langle \bm{w}, \bm{x}_i \rangle + \beta) \ge 1 - \xi_i.
-			\]
-		\end{block}
-		
-		\begin{itemize}
-			\item $C$ grande → penaliza errores → margen chico.
-			\item $C$ chico → permite errores → margen grande.
-		\end{itemize}
-		
-	\end{frame}
-	
-	
-	\begin{frame}{Formulación Dual}
-		
-		\begin{block}{Problema Dual}
-			\[
-			\text{Maximizar }
-			-\frac{1}{2} \sum_{i,\ell}
-			\alpha_i \alpha_\ell 
-			y_i y_\ell 
-			K(\bm{x}_i, \bm{x}_\ell)
-			+ \sum_{i} \alpha_i
-			\]
-			\[
-			\text{sujeto a } 
-			0 \le \alpha_i \le C,
-			\quad 
-			\sum_i \alpha_i y_i = 0.
-			\]
-		\end{block}
-		
-		\begin{itemize}
-			\item Sólo los puntos con $\alpha_i > 0$ son \textbf{vectores de soporte}.
-			\item La solución depende sólo de productos internos → clave para kernels.
-		\end{itemize}
-		
-	\end{frame}
-	
 	
 	
 \bibliographystyle{plain}
