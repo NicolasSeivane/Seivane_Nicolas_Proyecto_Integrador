@@ -1,0 +1,250 @@
+\documentclass[12pt,a4paper]{article}
+
+% ----------------------------
+% PAQUETES
+% ----------------------------
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{float}
+\usepackage{newtxtext,newtxmath} % Times New Roman
+
+% ----------------------------
+% MÁRGENES OFICIALES
+% ----------------------------
+\geometry{
+	top=3cm,
+	bottom=2cm,
+	left=2cm,
+	right=2cm
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0.5cm}
+\setlength{\parskip}{0.2cm}
+\setlength{\columnsep}{1cm}  
+
+% ----------------------------
+% FORMATO DE SECCIONES (MAYÚSCULAS)
+% ----------------------------
+\titleformat{\section}
+{\normalfont\bfseries\uppercase}
+{}
+{0em}
+{}
+
+\titlespacing*{\section}{0pt}{1em}{0.5em}
+
+% ----------------------------
+% DOCUMENTO
+% ----------------------------
+\begin{document}
+	
+	% ----------------------------
+	% TÍTULO Y AUTORES (ANCHO COMPLETO)
+	% ----------------------------
+	\begin{center}
+		{\Large\bfseries {COMPARACIÓN DE TÉCNICAS DE APRENDIZAJE AUTOMÁTICO SUPERVISADO APLICADAS A DATOS CARDIOLÓGICOS}} \\[0.5cm]
+		
+		\emph{Nicolás Seivane}$^{1}$, \emph{Andrea Alejandra Rey}$^{1,2}$ \\[0.3cm]
+		
+		$^{1}$\emph{Laboratorio de Investigación y Desarrollo Experimental en Computación} \\[0.3cm]
+
+		 \emph{Universidad Nacional de Hurlingham}\\[0.3cm]
+		
+		$^{2}$\emph{CPSI, Universidad tecnológica Nacional, Regional Buenos Aires} \\[1cm]
+		
+		\emph{seivanenicolas@gmail.com}, \emph{andrea.rey@unahur.edu.ar}
+	\end{center}
+	
+	\vspace{0.3cm}
+	
+	% ----------------------------
+	% RESUMEN (ANCHO COMPLETO)
+	% ----------------------------
+
+	
+	% ----------------------------
+	% INICIO DOBLE COLUMNA
+	% ----------------------------
+	\begin{multicols}{2}
+		
+		% ----------------------------
+		
+		\section*{RESUMEN}
+		
+		\noindent
+		En este trabajo se realiza un análisis comparativo de técnicas de Aprendizaje Automático Supervisado aplicadas a datos cardiológicos para evaluar la clasificación de riesgo en pacientes de poseer una afección cardiaca. Se implementaron y evaluaron los algoritmos Naïve Bayes, Regresión Logística, Árboles de Decisión, Random Forest y Máquinas de Vectores de Soporte (SVM). El estudio abarca tanto un caso binario de insuficiencia cardíaca como uno multiclase de cardiotocografía fetal. Los resultados indican que el método con mejor desempeño general es Random Forest, logrando una alta capacidad de generalización en ambos escenarios.
+
+
+		\vspace{0.3cm}
+		
+		
+		\textbf{Palabras clave:} Aprendizaje Automático, Cardiología, Clasificación, Random Forest.
+
+		
+
+		
+
+		\vspace{0.8cm}
+		% ----------------------------
+		
+		\section*{CONTEXTO}
+		\noindent
+		% NS: No se muy bien que poner aca.
+		
+		Esta investigación se inserta en la línea de ??? del Laboratorio de Investigación y Desarrollo Experimental en Computación (LIDEC) de la Universidad Nacional de Hurlingham (UNAHUR). El proyecto busca desarrollar... %NS: Esto sería?  ¿¿¿herramientas computacionales complementarias para agilizar el diagnóstico médico cardiovascular y reconocer atributos significativos en los estudios clínicos???
+		
+		
+				\vspace{0.8cm}
+		% ----------------------------
+		\section*{INTRODUCCIÓN}
+		\noindent
+		
+		
+		Las enfermedades cardiovasculares representan la principal causa de muerte a nivel mundial, cobrando aproximadamente 17,9 millones de vidas al año, lo que equivale al 31\% de las defunciones globales. El proceso de diagnóstico tradicional, aunque efectivo, puede ser extenso y depende del análisis de parámetros clínicos estructurados, señales cardíacas (como el ECG) e imágenes médicas. Herramientas como el electrocardiograma, las pruebas de esfuerzo y los ecocardiogramas son el estándar clínico actual, pero requieren una interpretación experta que puede beneficiarse de la agilidad de los modelos computacionales.
+		
+		El objetivo central de este estudio es identificar una técnica de aprendizaje automático óptima que permita realizar predicciones precisas sobre la probabilidad de insuficiencia cardíaca. Se exploran no solo casos de clasificación binaria (enfermo/sano), sino también multiclase mediante la cardiotocografía (CTG), que evalúa el bienestar fetal. Basándose en el estado del arte, que destaca el uso de modelos como SVM y Naïve Bayes para la detección de arritmias y cardiopatías, este trabajo busca validar estas técnicas en un entorno comparativo bajo métricas de calidad estándar.
+		
+		Diversos estudios han demostrado la efectividad de algoritmos como la Regresión Logística, las Máquinas de Vectores de Soporte y los métodos de ensamble en problemas de clasificación médica. En particular, Random Forest ha mostrado un alto desempeño debido a su capacidad para modelar relaciones no lineales y reducir el sobreajuste mediante la combinación de múltiples árboles de decisión. Asimismo, técnicas de interpretabilidad como la importancia por permutación permiten identificar las variables más influyentes, contribuyendo a la comprensión del modelo.
+		
+		En este trabajo se utilizaron los conjuntos de datos \\textit{HeartFailure}, compuesto por 918 registros correspondientes a un problema de clasificación binaria, y \\textit{Cardiotocography}, con 2115 registros correspondientes a un problema de clasificación multiclase. Ambos contienen variables clínicas relevantes utilizadas para el análisis y predicción de condiciones cardiovasculares.
+		
+		
+				\vspace{0.8cm}
+		% ----------------------------
+		\section*{LÍNEAS DE INVESTIGACIÓN Y DESARROLLO}
+		\noindent
+		
+		El eje central de la investigación es la evaluación del rendimiento de clasificadores supervisados bajo diferentes configuraciones de hiperparámetros. 
+		\begin{itemize}
+			\item \textbf{Objetivo General:} Comparar el desempeño de diversas técnicas de Aprendizaje Automático Supervisado sobre conjuntos de datos cardiológicos.
+			\item \textbf{Objetivos Específicos:} 1. Evaluar modelos en escenarios de clasificación binaria y multiclase. 2. Identificar las características clínicas más influyentes mediante importancia por permutación. 3. Determinar el equilibrio óptimo entre tiempo de cómputo y precisión.
+		\end{itemize}
+		
+				\vspace{0.8cm}
+		% ----------------------------
+		\section*{METODOLOGÍA}
+		\noindent
+		
+	
+%		El modelo Naïve Bayes Gaussiano, basado en el Teorema de Bayes y en la suposición de independencia condicional entre variables, fue configurado mediante el ajuste del parámetro de suavizado (\textit{var\_smoothing}) para mejorar la estabilidad numérica. La Regresión Logística, un clasificador lineal que estima probabilidades mediante la función logística, fue optimizada ajustando el parámetro de regularización ($C$), el tipo de penalización (L1, L2 y Elastic Net) y el algoritmo de optimización (\textit{solver}). El algoritmo Random Forest, basado en un ensamble de múltiples árboles de decisión, fue optimizado mediante la selección del criterio de partición (Gini o Entropía), la profundidad máxima de los árboles (\textit{max\_depth}) y la cantidad de atributos evaluados en cada división. Finalmente, el modelo de Máquinas de Vectores de Soporte (SVM) fue configurado mediante el ajuste del parámetro de regularización ($C$), el tipo de kernel (lineal, polinómico y RBF) y el coeficiente \textit{gamma}, que controla la influencia de cada muestra.
+		
+		
+		A partir de los conjuntos de datos mencionados, se realizó un proceso de preparación que incluyó análisis exploratorio, verificación de valores faltantes, consistencia de tipos de datos y codificación de variables categóricas cuando fue necesario. Este proceso permitió asegurar la calidad de los datos antes del entrenamiento de los modelos.
+		
+		Se implementaron cuatro algoritmos de clasificación supervisada: Naïve Bayes Gaussiano, Regresión Logística, Random Forest y Máquinas de Vectores de Soporte. Cada modelo posee hiperparámetros que influyen directamente en su capacidad de generalización y en el equilibrio entre sesgo y varianza.
+		
+		En el caso de Naïve Bayes Gaussiano, se ajustó el parámetro de suavizado, que permite mejorar la estabilidad numérica y evitar problemas derivados de varianzas cercanas a cero. La Regresión Logística fue optimizada mediante el ajuste del parámetro de regularización, el tipo de penalización y el algoritmo de optimización, lo que permite controlar el sobreajuste y mejorar la convergencia. Para Random Forest se ajustaron el criterio de partición, la profundidad máxima de los árboles y la cantidad de variables consideradas en cada división, parámetros que afectan la complejidad del modelo y su capacidad de capturar relaciones no lineales. En el modelo SVM se optimizaron el parámetro de regularización, el tipo de kernel y el coeficiente gamma, que determinan la forma de la frontera de decisión.
+		
+		La optimización de hiperparámetros se realizó mediante búsqueda en grilla combinada con validación cruzada $K$-fold, lo que permite evaluar el modelo en múltiples particiones del conjunto de datos y obtener estimaciones robustas del desempeño.
+		
+		Para la evaluación se utilizaron métricas estándar de clasificación, incluyendo Accuracy, Precisión, Recall, F1-Score y el Área Bajo la Curva ROC. Adicionalmente, se aplicó el método de importancia por permutación, que consiste en medir la disminución del desempeño del modelo al alterar aleatoriamente cada variable, permitiendo estimar su contribución relativa.
+		
+		% Espacio opcional para diagrama metodológico
+		% \\begin{figure}[H]
+		% \\centering
+		% \\includegraphics[width=0.9\\columnwidth]{fig_pipeline}
+		% \\caption{Pipeline de entrenamiento y evaluación.}
+		% \\end{figure}
+		
+	\section*{RESULTADOS OBTENIDOS}
+
+		
+		\noindent
+		Los resultados obtenidos muestran que el modelo Random Forest presentó el mejor desempeño en ambos conjuntos de datos, seguido por SVM y Regresión Logística. Esto confirma la capacidad de los métodos de ensamble para capturar relaciones complejas en los datos clínicos.
+		
+		\begin{table}[H]
+	
+		\centering
+		\small
+		\resizebox{\columnwidth}{!}{
+		\begin{tabular}{lcccc}
+		\toprule
+		Modelo & Caso & Accuracy & F1 & AUC \\
+		\midrule
+		Random Forest & Binario & 0.8780 & 0.8775 & 0.9315 \\
+		SVM (RBF) & Binario & 0.8616 & 0.8609 & 0.9232 \\
+		Random Forest & Multiclase & 0.9432 & 0.9412 & 0.9868 \\
+		Regresión Logística & Multiclase & 0.8978 & 0.8953 & 0.9644 \\
+		\bottomrule
+		\end{tabular}
+		}
+		\caption{Resultados finales con las mejores configuraciones.}
+		\end{table}
+		
+		\noindent
+		El análisis de importancia por permutación permitió identificar las variables más influyentes en las predicciones. En el conjunto HeartFailure, la variable \textit{ST\_Slope} presentó la mayor contribución, mientras que en Cardiotocography la variable \textit{ASTV} fue la más relevante.
+		
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\columnwidth]{../mejores_modelos_barras_binario}
+		\caption{Comparación de desempeño entre modelos, caso binario.}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\columnwidth]{../mejores_modelos_barras_multiclase}
+			\caption{Comparación de desempeño entre modelos, caso multiclase.}
+		\end{figure}
+		
+%		\begin{figure}
+%		\centering
+%		\includegraphics[width=0.9\\columnwidth]{fig_permutacion}
+%		\caption{Importancia de variables mediante permutación.}
+%		\end{figure}
+		
+		% Espacio opcional para matriz de confusión
+		% \\begin{figure}[H]
+		% \\centering
+		% \\includegraphics[width=0.9\\columnwidth]{fig_confusion}
+		% \\caption{Matriz de confusión del mejor modelo.}
+		% \\end{figure}
+		
+				\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\columnwidth]{../evolucion_metrica_multiclase_f1}
+			\caption{Importancia de variables mediante permutación para F1-Score, caso binario.}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\columnwidth]{../evolucion_metrica_binario_f1}
+			\caption{Importancia de variables mediante permutación para F1-Score, caso multiclase.}
+		\end{figure}
+			
+				\vspace{0.8cm}
+		% ----------------------------
+		\section*{FORMACIÓN DE RECURSOS HUMANOS}
+		\noindent
+		
+		\noindent
+		El equipo de trabajo del LIDEC se encuentra conformado por tres investigadores formados, cuatro investigadores estudiantes de doctorado, y cuatro alumnos de grado que se encuentran realizando la tesis final de grado. Este trabajo constituye la idea más importante de la tesis para obtener el título de Técnico Universitario en Inteligencia Artificial , del alumno Nicolás Seivane.  
+		
+				\vspace{0.8cm}
+		% ----------------------------
+		\section*{CONCLUSIONES}
+		\noindent
+		
+		Se concluye que el modelo Random Forest es la herramienta más robusta para este tipo de datos debido a su capacidad para capturar relaciones no lineales y reducir el sobreajuste mediante el voto mayoritario de sus árboles. SVM también mostró un rendimiento competitivo, especialmente con kernels RBF y polinómicos. El estudio permitió identificar atributos críticos como \textit{ST\_Slope} y \textit{Oldpeak} para el diagnóstico de riesgo cardíaco. Como trabajos futuros, se propone el uso de optimización bayesiana para un ajuste de hiperparámetros más fino y técnicas de reducción de dimensionalidad (PCA) para simplificar los modelos sin perder precisión.
+		
+		
+				\vspace{0.8cm}
+		% ----------------------------
+		\section*{BIBLIOGRAFÍA}
+		\noindent
+		
+		1. Breiman, L. (2001). Random forests. Machine Learning, 45(1):5–32. \\
+		2. Pedregosa, F. et al. (2011). Scikit-learn: Machine learning in Python. JMLR, 12:2825–2830. \\
+		3. fedesoriano. (2021). Heart failure prediction dataset. Kaggle.
+		
+	\end{multicols}
+	
+\end{document}
