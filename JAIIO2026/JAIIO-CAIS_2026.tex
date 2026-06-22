@@ -40,13 +40,24 @@
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
 %
-\author{}
+%\author{}
+\author{Nicolás Seivane\inst{1}\orcidID{0000-1111-2222-3333} \and
+Andrea Rey\inst{1}\orcidID{0000-0002-9185-1382}}
+%
+\authorrunning{N. Seivane et al.}
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+%
+\institute{
+Laboratorio de Investigación y Desarrollo Experimental en Computación (LIDEC),
+ Universidad Nacional de Hurlingham (UNAHUR), Buenos Aires, Argentina
+\email{seivanenicolas@gmail.com, andrea.rey@unahur.edu.ar}}
 %
 \authorrunning{}
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
 %
-\institute{}
+%\institute{}
 %
 \maketitle              % typeset the header of the contribution
 %
@@ -144,7 +155,10 @@ El análisis de importancia por permutación permitió identificar las variables
 
 \section{Conclusiones y trabajos futuros}
 
-Se concluye que el modelo RF es la herramienta más robusta para el tipo de datos bajo análisis debido a su capacidad para capturar relaciones no lineales y reducir el sobreajuste mediante el voto mayoritario de los árboles que lo integran. SVM también mostró un rendimiento competitivo, especialmente con \emph{kernels} radiales y polinómicos. El estudio permitió identificar atributos críticos, como la pendiente del segmento ST en el ECG y el porcentaje de tiempo con variabilidad anormal a corto plazo, para el diagnóstico de riesgo cardíaco. Como trabajos futuros, se propone el uso de optimización bayesiana para un ajuste de hiperparámetros más fino y técnicas de reducción de dimensionalidad, como \emph{Principal Component Analysis}, para simplificar los modelos sin perder precisión.
+Se concluye que el modelo RF es la herramienta más robusta para el tipo de datos bajo análisis debido a su capacidad para capturar relaciones no lineales y reducir el sobreajuste mediante el voto mayoritario de los árboles que lo integran. SVM también mostró un rendimiento competitivo, especialmente con \emph{kernels} radiales y polinómicos. El estudio permitió identificar atributos críticos, como la pendiente del segmento ST en el ECG y el porcentaje de tiempo con variabilidad anormal a corto plazo, para el diagnóstico de riesgo cardíaco. 
+Como trabajos futuros, se propone el uso de optimización bayesiana para un ajuste de hiperparámetros más fino y técnicas de reducción de dimensionalidad, como \emph{Principal Component Analysis}, para simplificar los modelos sin perder precisión.
+
+Esta línea de trabajo se basa en la hipótesis de que el uso de herramientas de Aprendizaje Automático en entornos sanitarios puede ser útil en la asistencia a los profesionales de ciencias de la salud, tanto al momento de realizar el diagnóstico de una patología cardíaca, como en el diseño de estudios capaces de capturas variables que resulten de importancia para el entrenamiento de un algoritmo, favoreciendo incluso prácticas no invasivas para los pacientes.
 
 \begin{credits}
 %\subsubsection{\ackname} Este trabajo ha sido parcialmente financiado por el proyecto PIADT PIUNAHUR-80020240200003HU.
