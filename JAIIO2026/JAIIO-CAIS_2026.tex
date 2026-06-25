@@ -68,7 +68,7 @@ In the present work, a comparative analysis of machine learning techniques appli
 In this context, the implementation of advanced computational models could be used to design preventive strategies based on algorithmic evidence and the analysis of historical data. It is important to highlight that machine learning does not aim to replace clinical judgment, but rather to strengthen it, functioning as a support tool for the interpretation of diagnostic tests, optimizing response times in critical cardiac intensive care environments.
 
 % keywords in lowercase
-\keywords{Cardiology\and Machine Learning\and Classification}
+\keywords{cardiology\and machine learning\and classification}
 \end{abstract}
 
 % SPANISH VERSION
@@ -79,7 +79,7 @@ In this context, the implementation of advanced computational models could be us
 \vspace{1cm}
 {\Large \bfseries\boldmath Análisis de datos cardiológicos con herramientas de aprendizaje automático}
 
-\vspace{0.5cm}
+%\vspace{0.5cm}
 \end{center}
 
 \begin{abstract}
@@ -91,7 +91,7 @@ En este contexto, la implementación de modelos computacionales avanzados podrí
 
 
 % palabras clave en minúsculas
-\keywords{Cardiología\and Aprendizaje Automático\and Clasificación}
+\keywords{cardiología\and aprendizaje automático\and clasificación}
 \end{abstract}
 
 
@@ -123,9 +123,10 @@ Luego de optimizar los hiperparámetros, se obtuvo la mejor configuración para 
 Los resultados de la Tabla~\ref{tab:métricas} para el caso binario (izq.) y para el caso multiclase (der.) muestran que RF tuvo el mejor desempeño en ambos casos, alcanzando los valores más altos de \emph{accuracy} ($0,8782$ y $0,9432$), F1-\emph{Score} ($0,8775$ y $0,9412$) y AUC ($0,9315$ y $0,9868$), tanto en el caso binario como en el multiclase. El modelo SVM con kernel radial también mostró un desempeño competitivo, especialmente en el caso binario, mientras que RL presentó resultados sólidos en el problema multiclase, aunque con menor capacidad para capturar relaciones no lineales complejas. 
 %Estos resultados confirman la efectividad de los modelos basados en múltiples árboles de decisión para el análisis de datos clínicos.
 
-\begin{table}
+\begin{table}[htbp]
 \centering
 \caption{Métricas de evaluación en los casos binario (izq.) y multiclase (der.). }\label{tab:métricas}
+\resizebox{0.8\textwidth}{!}{
 \begin{tabular}{|l|r|r|r|cc|l|r|r|r|}
 \cline{1-4}  \cline{7-10}
 \textbf{Modelo}	& \textbf{\emph{Accuracy}} &	\textbf{F1-\emph{Score}} & \textbf{AUC} & & & \textbf{Modelo}	& \textbf{\emph{Accuracy}} &	\textbf{F1-\emph{Score}} & \textbf{AUC} \\ 
@@ -136,31 +137,28 @@ NB	& $0,8420$	& $0,8420$ &	$0,9138$ & & & NB	& $0,8420$	& $0,8420$	& $0,9138$ \\
 RF	& $0,8780$	& $0,8775$ &	$0,9315$ & & & RF	& $0,8780$	& $0,8775$	& $0,9315$
 \\
 \cline{1-4}  \cline{7-10}
-\end{tabular}
+\end{tabular}}
 \end{table}
 
-\begin{figure}
+El análisis de importancia por permutación permitió evaluar cuánto influye cada variable en el desempeño del modelo adoptado. Como se observa en la Fig.~\ref{fig:importancia}, el F1-\emph{Score} aumenta en la medida en que se incorporan los atributos en orden decreciente de importancia, lo que indica que las variables mejor posicionadas aportan la mayor capacidad predictiva. Las primeras características generan el mayor incremento en el desempeño, mientras que las restantes contribuyen con mejoras marginales, evidenciando que una parte reducida de los atributos concentra la mayor parte de la información relevante. 
+El análisis de importancia por permutación permitió identificar las variables más influyentes en las predicciones, donde la pendiente del segmento ST en el ECG presentó la mayor contribución en el conjunto \emph{HeartFailure}, mientras que el porcentaje de tiempo con variabilidad anormal a corto plazo fue el atributo más relevante en la base \emph{Cardiotocography}.
+
+\begin{figure}[htbp]
 \includegraphics[width=0.49\textwidth]{evolucion_metrica_binario_F1.png}
 \includegraphics[width=0.49\textwidth]{evolucion_metrica_multiclase_F1.png}
 \caption{Importancia de variables para los casos binario (izq.) y  multiclase (der.).} \label{fig:importancia}
 \end{figure}
- 
-El análisis de importancia por permutación permitió evaluar cuánto influye cada variable en el desempeño del modelo adoptado. Como se observa en la Fig.~\ref{fig:importancia}, el F1-\emph{Score} aumenta en la medida en que se incorporan los atributos en orden decreciente de importancia, lo que indica que las variables mejor posicionadas aportan la mayor capacidad predictiva. Las primeras características generan el mayor incremento en el desempeño, mientras que las restantes contribuyen con mejoras marginales, evidenciando que una parte reducida de los atributos concentra la mayor parte de la información relevante. 
-El análisis de importancia por permutación permitió identificar las variables más influyentes en las predicciones, donde la pendiente del segmento ST en el ECG presentó la mayor contribución en el conjunto \emph{HeartFailure}, mientras que el porcentaje de tiempo con variabilidad anormal a corto plazo fue el atributo más relevante en la base \emph{Cardiotocography}.
 		
-
-
-
-
 
 \section{Conclusiones y trabajos futuros}
 
 Se concluye que el modelo RF es la herramienta más robusta para el tipo de datos bajo análisis debido a su capacidad para capturar relaciones no lineales y reducir el sobreajuste mediante el voto mayoritario de los árboles que lo integran. SVM también mostró un rendimiento competitivo, especialmente con \emph{kernels} radiales y polinómicos. El estudio permitió identificar atributos críticos, como la pendiente del segmento ST en el ECG y el porcentaje de tiempo con variabilidad anormal a corto plazo, para el diagnóstico de riesgo cardíaco. 
 Como trabajos futuros, se propone el uso de optimización bayesiana para un ajuste de hiperparámetros más fino y técnicas de reducción de dimensionalidad, como \emph{Principal Component Analysis}, para simplificar los modelos sin perder precisión.
 
-Esta línea de trabajo se basa en la hipótesis de que el uso de herramientas de Aprendizaje Automático en entornos sanitarios puede ser útil en la asistencia a los profesionales de ciencias de la salud, tanto al momento de realizar el diagnóstico de una patología cardíaca, como en el diseño de estudios capaces de capturas variables que resulten de importancia para el entrenamiento de un algoritmo, favoreciendo incluso prácticas no invasivas para los pacientes.
-
-%Asimismo, se plantea la posibilidad de potenciar este soporte de diagnóstico siempre que exista información clínica previa disponible, entendiendo al modelo no como una solución aislada, sino como una vía avanzada para relacionar e integrar datos del paciente de froma màs ágil. Bajo este enfoque, el output generado se concibe como un eslabón modular dentro de una cadena más amplia, capaz de integrarse a sistemas complejos de predicción y clasificación médica. No obstante, la posibilidad de acierto de esta arquitectura depende estrictamente de la gobernanza de los datos, identificando como principal riesgo metodológico la presencia de información mal cargada, errónea o desactualizada.
+Esta línea de trabajo se basa en la hipótesis de que el uso de herramientas de Aprendizaje Automático en entornos sanitarios puede ser útil en la asistencia a los profesionales de ciencias de la salud, tanto al momento de realizar el diagnóstico, como en el diseño de estudios capaces de medir indicadores con importancia para el entrenamiento de un algoritmo, favoreciendo incluso prácticas no invasivas para los pacientes.
+Asimismo, se busca potenciar este soporte de diagnóstico, entendiendo al modelo no como una herramienta aislada, sino como un recurso para relacionar e integrar datos del paciente de forma más ágil. 
+%Bajo este enfoque, la respuesta generada por el algoritmo se concibe como un eslabón dentro de una cadena más amplia, capaz de incluirse en sistemas complejos de predicción y clasificación médica. 
+%No obstante, la posibilidad de acierto de esta arquitectura depende estrictamente de la gobernanza de los datos, identificando como principal riesgo metodológico la presencia de información mal cargada, errónea o desactualizada.
 
 \begin{credits}
 %\subsubsection{\ackname} Este trabajo ha sido parcialmente financiado por el proyecto PIADT PIUNAHUR-80020240200003HU.
